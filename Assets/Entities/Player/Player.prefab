@@ -8,6 +8,42 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6015804072438323913, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 8349349828730560086}
+    - target: {fileID: 6015804072438323913, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
+      propertyPath: SFXSource
+      value: 
+      objectReference: {fileID: 4274384687687390438}
+    - target: {fileID: 6015804072438323913, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
+      propertyPath: maxHealth
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6015804072438323913, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
+      propertyPath: moveSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6015804072438323913, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
+      propertyPath: currentHealth
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6015804072438323913, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
+      propertyPath: SFX.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6015804072438323913, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
+      propertyPath: 'SFX.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: b081388d2add93841a3a933caef193a9, type: 3}
+    - target: {fileID: 6015804072438323913, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
+      propertyPath: 'SFX.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 53e3e8ee8c85bd14d8ae3dc6a4a4460f, type: 3}
+    - target: {fileID: 6015804072438323913, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
+      propertyPath: 'SFX.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 12ed3d6e90ee99c48b6939568499678a, type: 3}
     - target: {fileID: 6344234565907112943, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
       propertyPath: m_Name
       value: Player
@@ -70,14 +106,30 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6344234565907112943, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2123602168811208419}
+      addedObject: {fileID: 8708521172601362150}
   m_SourcePrefab: {fileID: 100100000, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
+--- !u!82 &4274384687687390438 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 760127147489719006, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
+  m_PrefabInstance: {fileID: 3593073875161228856}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7107036768443071729 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6015804072438323913, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
+  m_PrefabInstance: {fileID: 3593073875161228856}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7626307339051419095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39670c897cdbebe49aca26244198fd42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Entity
 --- !u!1 &7626307339051419095 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6344234565907112943, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
   m_PrefabInstance: {fileID: 3593073875161228856}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2123602168811208419
+--- !u!114 &8708521172601362150
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -89,9 +141,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d88bfa90b5a9dd244bce172ca6ee8d19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
-  moveSpeed: 10
-  rb: {fileID: 8349349828730560086}
   moveAction: {fileID: -1680190386980627800, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  player: {fileID: 7107036768443071729}
 --- !u!50 &8349349828730560086 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 4756910380638058606, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}

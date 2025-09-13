@@ -90,7 +90,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &449484317616808125
+--- !u!1 &614926506932309287
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -98,8 +98,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7215770764612828195}
-  - component: {fileID: 5340997898055091311}
+  - component: {fileID: 1199698707584047234}
+  - component: {fileID: 760127147489719006}
   m_Layer: 0
   m_Name: Audio Source
   m_TagString: Untagged
@@ -107,13 +107,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7215770764612828195
+--- !u!4 &1199698707584047234
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 449484317616808125}
+  m_GameObject: {fileID: 614926506932309287}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -122,13 +122,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7121258720370068034}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &5340997898055091311
+--- !u!82 &760127147489719006
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 449484317616808125}
+  m_GameObject: {fileID: 614926506932309287}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
@@ -231,6 +231,7 @@ GameObject:
   - component: {fileID: 4756910380638058606}
   - component: {fileID: 8646914631786232384}
   - component: {fileID: 3881462457380608260}
+  - component: {fileID: 6015804072438323913}
   m_Layer: 0
   m_Name: Entity
   m_TagString: Untagged
@@ -252,7 +253,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7739959838223232565}
-  - {fileID: 7215770764612828195}
+  - {fileID: 1199698707584047234}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &4756910380638058606
@@ -395,3 +396,21 @@ MonoBehaviour:
     - rid: 3179737359916204285
       type: {class: ShadowShape2DProvider_Collider2D, ns: UnityEngine.Rendering.Universal, asm: Unity.RenderPipelines.Universal.2D.Runtime}
       data: 
+--- !u!114 &6015804072438323913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6344234565907112943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39670c897cdbebe49aca26244198fd42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Entity
+  currentHealth: 0
+  maxHealth: 0
+  moveSpeed: 0
+  rb: {fileID: 0}
+  movement: {x: 0, y: 0}
+  SFX: []
