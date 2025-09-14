@@ -408,9 +408,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39670c897cdbebe49aca26244198fd42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Entity
-  currentHealth: 0
-  maxHealth: 0
-  moveSpeed: 0
-  rb: {fileID: 0}
-  movement: {x: 0, y: 0}
-  SFX: []
+  SFXPlayer: {fileID: 760127147489719006}

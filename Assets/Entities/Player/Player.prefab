@@ -25,6 +25,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6015804072438323913, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
+      propertyPath: entityData
+      value: 
+      objectReference: {fileID: 11400000, guid: 852c9a555a27c5b4086bc818f3a3a509, type: 2}
+    - target: {fileID: 6015804072438323913, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
       propertyPath: currentHealth
       value: 10
       objectReference: {fileID: 0}
@@ -113,17 +117,6 @@ AudioSource:
   m_CorrespondingSourceObject: {fileID: 760127147489719006, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
   m_PrefabInstance: {fileID: 3593073875161228856}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7107036768443071729 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6015804072438323913, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
-  m_PrefabInstance: {fileID: 3593073875161228856}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7626307339051419095}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39670c897cdbebe49aca26244198fd42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Entity
 --- !u!1 &7626307339051419095 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6344234565907112943, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
@@ -142,7 +135,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
   moveAction: {fileID: -1680190386980627800, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  player: {fileID: 7107036768443071729}
+  rb: {fileID: 8349349828730560086}
+  entityData: {fileID: 11400000, guid: 852c9a555a27c5b4086bc818f3a3a509, type: 2}
+  SFXPlayer: {fileID: 4274384687687390438}
+  stepSFXDuration: 3.5
+  velocity: {x: 0, y: 0}
 --- !u!50 &8349349828730560086 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 4756910380638058606, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}

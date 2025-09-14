@@ -16,39 +16,49 @@ public class NewMonoBehaviourScript : MonoBehaviour
     }
 
     public InputActionReference moveAction;
-    public Entity player;
+    public Rigidbody2D rb;
+    public EntityData entityData;
+    public AudioSource SFXPlayer;
+    public float stepSFXDuration;
 
     private float deltaCount = 0f;
+    private int stepCounter = 0;
+
+    public Vector2 velocity;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        player = GetComponent<Entity>(); // access Entity class data
     }
 
     void PlayFootsteps(float delta)
     {
-        deltaCount += delta;
-        if (deltaCount > 1f)
+        if (deltaCount > stepSFXDuration || deltaCount == 0)
         {
-            player.SFXSource.PlayOneShot(player.SFX[0]);
+            SFXPlayer.PlayOneShot(entityData.SFX[stepCounter]);
             deltaCount = 0f;
+            stepCounter++;
+            if (stepCounter % 3 == 0)
+                stepCounter = 0;
         }
+        deltaCount += delta;
     }
 
     // Update is called once per frame
     void Update()
     {
-        player.movement = moveAction.action.ReadValue<Vector2>();
+        velocity = moveAction.action.ReadValue<Vector2>();
     }
 
     //Called once per physics time step    
     void FixedUpdate()
     {
-        player.rb.linearVelocity = new Vector2(player.movement.x * player.moveSpeed, player.movement.y * player.moveSpeed);
-        if (player.rb.linearVelocity != Vector2.zero)
-        {
+        rb.linearVelocity = new Vector2(velocity.x * entityData.moveSpeed, velocity.y * entityData.moveSpeed);
+        if (rb.linearVelocity != Vector2.zero)
             PlayFootsteps(Time.deltaTime);
+        else
+        {
+            deltaCount = 0f;
         }
     }
 }
