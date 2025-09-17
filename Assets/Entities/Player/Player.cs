@@ -6,8 +6,34 @@ using UnityEngine.AI;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class Player : Entity
 {
+    public InputActionReference moveAction;
+
+    public override void InitializeStates()
+    {
+        AddState("Idle", new PlayerIdle(this));
+        AddState("Move", new PlayerMove(this));
+        current_state = stateMap["Idle"];
+    }
+
+    void Start()
+    {
+        InitializeStates();
+        //current_state = stateMap["Idle"];
+    }
+
+    void Update()
+    {
+        //velocity = moveAction.action.ReadValue<Vector2>();
+    }
+
+    void FixedUpdate()
+    {
+        current_state.UpdateState();
+    }
+
+    /*
     private enum SFXNames
     {
         STEP1,
@@ -16,11 +42,6 @@ public class NewMonoBehaviourScript : MonoBehaviour
     }
 
     public InputActionReference moveAction;
-    public Rigidbody2D rb;
-    public EntityData entityData;
-    public AudioSource SFXPlayer;
-    public float stepSFXDuration;
-
     private float deltaCount = 0f;
     private int stepCounter = 0;
 
@@ -33,7 +54,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     void PlayFootsteps(float delta)
     {
-        if (deltaCount > stepSFXDuration || deltaCount == 0)
+        if (deltaCount > stepSFXDuration || deltaCount == 0f)
         {
             SFXPlayer.PlayOneShot(entityData.SFX[stepCounter]);
             deltaCount = 0f;
@@ -50,7 +71,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         velocity = moveAction.action.ReadValue<Vector2>();
     }
 
-    //Called once per physics time step    
+    // Called once per physics time step    
     void FixedUpdate()
     {
         rb.linearVelocity = new Vector2(velocity.x * entityData.moveSpeed, velocity.y * entityData.moveSpeed);
@@ -61,4 +82,5 @@ public class NewMonoBehaviourScript : MonoBehaviour
             deltaCount = 0f;
         }
     }
+    */
 }

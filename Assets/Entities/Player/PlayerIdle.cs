@@ -1,0 +1,29 @@
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class PlayerIdle : State
+{
+    Player player;
+
+    public PlayerIdle(Entity new_entity) : base(new_entity)
+    {
+        player = (Player) new_entity;
+    }
+
+    public override void EnterState(Dictionary<string, object> args = null)
+    {
+        entity.rb.linearVelocity = Vector2.zero;
+    }
+
+    public override void UpdateState()
+    {
+        if (player.moveAction.action.ReadValue<Vector2>() != Vector2.zero)
+            entity.ChangeState("Move");
+    }
+
+    public override void ExitState(Dictionary<string, object> args = null)
+    {
+        
+    }
+}

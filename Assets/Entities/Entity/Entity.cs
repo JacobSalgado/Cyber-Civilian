@@ -1,17 +1,10 @@
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Audio;
 
-public class Entity : MonoBehaviour
+public abstract class Entity : StateManager
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-    }
+    public EntityData entityData;
+    public Rigidbody2D rb;
+    public AudioSource SFXPlayer;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public abstract void InitializeStates();
 }

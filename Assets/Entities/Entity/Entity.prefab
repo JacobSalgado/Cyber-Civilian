@@ -231,7 +231,6 @@ GameObject:
   - component: {fileID: 4756910380638058606}
   - component: {fileID: 8646914631786232384}
   - component: {fileID: 3881462457380608260}
-  - component: {fileID: 6015804072438323913}
   m_Layer: 0
   m_Name: Entity
   m_TagString: Untagged
@@ -396,16 +395,3 @@ MonoBehaviour:
     - rid: 3179737359916204285
       type: {class: ShadowShape2DProvider_Collider2D, ns: UnityEngine.Rendering.Universal, asm: Unity.RenderPipelines.Universal.2D.Runtime}
       data: 
---- !u!114 &6015804072438323913
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6344234565907112943}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39670c897cdbebe49aca26244198fd42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Entity
-  SFXPlayer: {fileID: 760127147489719006}
