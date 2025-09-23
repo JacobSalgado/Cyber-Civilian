@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - UI Text
+  - UI Slider
   layers:
   - Default
   - TransparentFX
@@ -52,6 +54,12 @@ TagManager:
     locked: 0
   - name: UI
     uniqueID: 1012736241
+    locked: 0
+  - name: UI Text
+    uniqueID: 2712425983
+    locked: 0
+  - name: UI Slider
+    uniqueID: 846273167
     locked: 0
   m_RenderingLayers:
   - Default
