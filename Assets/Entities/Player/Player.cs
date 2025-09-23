@@ -8,6 +8,7 @@ public class Player : Entity
     {
         AddState("Idle", new PlayerIdle(this));
         AddState("Move", new PlayerMove(this));
+        AddState("Death", new EntityDeath(this));
 
         ChangeState("Idle");
     }
