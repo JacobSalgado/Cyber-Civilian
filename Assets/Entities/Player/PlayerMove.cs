@@ -38,10 +38,10 @@ public class PlayerMove : State
         if (velocity != Vector2.zero)
         {
             deltaCount += Time.deltaTime;
-            entity.rb.linearVelocity = new Vector2(velocity.x * entity.entityData.moveSpeed, velocity.y * entity.entityData.moveSpeed);
+            player.rb.linearVelocity = new Vector2(velocity.x * player.entityData.moveSpeed, velocity.y * player.entityData.moveSpeed);
             PlayFootsteps();
         }
-        else entity.ChangeState("Idle");
+        else player.ChangeState("Idle");
     }
 
     public override void ExitState(Dictionary<string, object> args = null)

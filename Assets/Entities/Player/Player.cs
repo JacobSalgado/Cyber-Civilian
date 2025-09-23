@@ -8,7 +8,8 @@ public class Player : Entity
     {
         AddState("Idle", new PlayerIdle(this));
         AddState("Move", new PlayerMove(this));
-        current_state = stateMap["Idle"];
+
+        ChangeState("Idle");
     }
 
     void Start()

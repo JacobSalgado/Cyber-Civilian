@@ -15,11 +15,12 @@ public class StateManager : MonoBehaviour
     {
         if (stateMap.ContainsKey(new_state))
         {
-            current_state.ExitState(args);
+            if (current_state is not null)
+                current_state.ExitState(args);
+
             current_state = stateMap[new_state];
             current_state.EnterState(args);
-
         }
-        else print("invalid state name");
+        else Debug.LogError(string.Format("State does not exist: {0}", new_state));
     }
 }
