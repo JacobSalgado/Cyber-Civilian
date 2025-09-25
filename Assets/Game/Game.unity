@@ -183,8 +183,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   UIHolder: {fileID: 510784590}
   BGMPlayer: {fileID: 483986786}
-  player: {fileID: 0}
   levelManager: {fileID: 778213948991123222}
+  camera: {fileID: 1093947791}
   cinemachine: {fileID: 730194402}
   levelList:
   - TestLevel

@@ -1,11 +1,12 @@
 //using System.Numerics;
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Player : Entity
 {
-    public Camera cam;
+    [NonSerialized] public Camera cam;
     public InputActionReference moveAction;
     Vector2 mousePos;
 
@@ -33,8 +34,8 @@ public class Player : Entity
     {
         current_state.UpdateState();
 
-        Vector2 lookDir = mousePos - rb.position;
+        Vector2 lookDir = mousePos - rigidBody.position;
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
-        rb.rotation = angle;
+        rigidBody.rotation = angle;
     }
 }

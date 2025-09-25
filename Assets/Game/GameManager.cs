@@ -9,6 +9,7 @@ public class GameManager : StateManager
     public GameObject UIHolder;
     public AudioSource BGMPlayer;
     public LevelManager levelManager;
+    public new Camera camera;
     public CinemachineCamera cinemachine;
 
     [Header("Starting Parameters")]

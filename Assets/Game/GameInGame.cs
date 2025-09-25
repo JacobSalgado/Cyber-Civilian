@@ -26,6 +26,8 @@ public class GameInGame : State
         // connect current level's camera confiner and player object to the game camera
         manager.cinemachine.GetComponent<CinemachineConfiner2D>().BoundingShape2D = manager.levelManager.current_level.confiner;
         manager.cinemachine.Follow = manager.player.transform;
+
+        manager.player.cam = manager.camera;
     }
 
     public override void UpdateState()
