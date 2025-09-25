@@ -8,12 +8,12 @@ public class EnemyIdle : State
 
     public EnemyIdle(Entity new_entity) : base(new_entity)
     {
-        enemy = (Enemy)new_entity;
+        enemy = (Enemy) new_entity;
     }
 
     public override void EnterState(Dictionary<string, object> args = null)
     {
-        enemy.rb.linearVelocity = Vector2.zero;
+        enemy.rigidBody.linearVelocity = Vector2.zero;
     }
 
     public override void UpdateState()

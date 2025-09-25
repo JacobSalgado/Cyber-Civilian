@@ -21,11 +21,11 @@ public class EnemyMove : State
         }
 
         Vector2 direction = (enemy.target.position - enemy.transform.position).normalized;
-        enemy.rb.linearVelocity = direction * enemy.entityData.moveSpeed;
+        enemy.rigidBody.linearVelocity = direction * enemy.entityData.moveSpeed;
     }
 
     public override void ExitState(Dictionary<string, object> args = null)
     {
-        enemy.rb.linearVelocity = Vector2.zero;
+        enemy.rigidBody.linearVelocity = Vector2.zero;
     }
 }
