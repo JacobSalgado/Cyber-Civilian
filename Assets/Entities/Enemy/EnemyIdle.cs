@@ -13,17 +13,17 @@ public class EnemyIdle : State
 
     public override void EnterState(Dictionary<string, object> args = null)
     {
-        entity.rb.linearVelocity = Vector2.zero;
+        enemy.rb.linearVelocity = Vector2.zero;
     }
 
     public override void UpdateState()
     {
         if (enemy.target != null)
         {
-            float distance = Vector2.Distance(entity.transform.position, enemy.target.position);
+            float distance = Vector2.Distance(enemy.transform.position, enemy.target.position);
             if (distance < 5f)
             {
-                entity.ChangeState("Move");
+                enemy.ChangeState("Move");
             }
         }
     }
