@@ -1,9 +1,12 @@
 using System.Collections.Generic;
+using Unity.Cinemachine;
+using UnityEditor;
 using UnityEngine;
 
 public class GameInGame : State
 {
-    GameManager manager;
+    //const string playerHUDPath= "";
+    readonly GameManager manager;
 
     public GameInGame(GameManager gameManager) : base(gameManager)
     {
@@ -12,20 +15,25 @@ public class GameInGame : State
 
     public override void EnterState(Dictionary<string, object> args = null)
     {
-        manager.levelManager.LoadLevel(manager.level_list[0]);
+        manager.levelManager.LoadLevel(manager.levelList[0]);
+        manager.player = manager.levelManager.current_level.player;
 
-        // load ui object
-        
+        // load PlayerHUD prefab
+        //PrefabUtility.LoadPrefabContents(playerHUDPath);
         //.transform.SetParent(manager.transform, false);
         //manager.UIHolder
-    }
 
-    public override void ExitState(Dictionary<string, object> args = null)
-    {
-        
+        // connect current level's camera confiner and player object to the game camera
+        manager.cinemachine.GetComponent<CinemachineConfiner2D>().BoundingShape2D = manager.levelManager.current_level.confiner;
+        manager.cinemachine.Follow = manager.player.transform;
     }
 
     public override void UpdateState()
+    {
+
+    }
+    
+    public override void ExitState(Dictionary<string, object> args = null)
     {
         
     }

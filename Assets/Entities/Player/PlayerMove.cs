@@ -3,15 +3,16 @@ using UnityEngine;
 
 public class PlayerMove : State
 {
+    private const float timeToStep = 0.35f;
+
     Vector2 velocity;
-    Player player;
+    readonly Player player;
     private float deltaCount = 0f;
-    private float timeToStep = 0.35f;
     int stepCounter = 0;
 
     public PlayerMove(Entity new_entity) : base(new_entity)
     {
-        player = (Player)new_entity;
+        player = (Player) new_entity;
     }
 
     private void PlayFootsteps()
@@ -39,7 +40,7 @@ public class PlayerMove : State
         if (velocity != Vector2.zero)
         {
             deltaCount += Time.deltaTime;
-            player.rb.linearVelocity = new Vector2(velocity.x * player.entityData.moveSpeed, velocity.y * player.entityData.moveSpeed);
+            player.rigidBody.linearVelocity = new Vector2(velocity.x * player.entityData.moveSpeed, velocity.y * player.entityData.moveSpeed);
             PlayFootsteps();
         }
         else player.ChangeState("Idle");

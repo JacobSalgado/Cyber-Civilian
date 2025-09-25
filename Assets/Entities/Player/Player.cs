@@ -16,6 +16,7 @@ public class Player : Entity
     void Start()
     {
         InitializeStates();
+        //healthBar = new HealthBar(entityData, );
     }
 
     void FixedUpdate()

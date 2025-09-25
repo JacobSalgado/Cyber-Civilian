@@ -72,6 +72,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: -6730523510664672678}
   m_SourcePrefab: {fileID: 100100000, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
+--- !u!82 &3659447077544777838 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 760127147489719006, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
+  m_PrefabInstance: {fileID: 4054493277425281712}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6939848692803389791 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6344234565907112943, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
@@ -89,3 +94,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fad9b73aaca5cf44abbbe9782c128f5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  rigidBody: {fileID: 8811157356989125342}
+  SFXPlayer: {fileID: 3659447077544777838}
+  entityData: {fileID: 0}
+  healthBar: {fileID: 0}
+  invincibility: 0
+--- !u!50 &8811157356989125342 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 4756910380638058606, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
+  m_PrefabInstance: {fileID: 4054493277425281712}
+  m_PrefabAsset: {fileID: 0}
