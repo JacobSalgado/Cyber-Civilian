@@ -1,16 +1,23 @@
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : Entity
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public Transform target; // following the player
+
+    public override void InitializeStates()
     {
-        
+        AddState("Idle", new EnemyIdle(this));
+        AddState("Move", new EnemyMove(this));
+        current_state = stateMap["Idle"];
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        InitializeStates();
+    }
+
+    private void FixedUpdate()
+    {
+        current_state.UpdateState();
     }
 }
