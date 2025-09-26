@@ -8,6 +8,8 @@ public class HealthBar : MonoBehaviour
 
     public Slider slider;
 
+    public GameObject enemy;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -24,6 +26,6 @@ public class HealthBar : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
-
+        slider.value -= amount;
     }
 }
