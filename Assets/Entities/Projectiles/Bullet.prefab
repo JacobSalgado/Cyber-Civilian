@@ -178,5 +178,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7c91f6713e9f9a40a9b3953869b640b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Projectile
-  hitEffect: {fileID: 7680393125382298724, guid: a2ae0a6907a37f54e97ee7d3417ca202, type: 3}
+  hitEffect: {fileID: 6996612073667387790, guid: 73dd775d02fe8ef4cab1bbcfb652c45c, type: 3}
   damage: 1
