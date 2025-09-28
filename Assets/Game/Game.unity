@@ -187,7 +187,7 @@ MonoBehaviour:
   camera: {fileID: 1093947791}
   cinemachine: {fileID: 730194402}
   levelList:
-  - TestLevel
+  - TestLevell-Shooting
   startingState: InGame
 --- !u!4 &476967449
 Transform:
