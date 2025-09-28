@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6122305334654523836}
   - component: {fileID: 1519358861776225125}
   m_Layer: 5
-  m_Name: UI Canvas
+  m_Name: PlayerHUD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -453,6 +453,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5834362079009829732, guid: 6b7f536e5f7553c4bacf14f3c6c8edc4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6642541657504805162, guid: 6b7f536e5f7553c4bacf14f3c6c8edc4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8482398946777153263, guid: 6b7f536e5f7553c4bacf14f3c6c8edc4, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}

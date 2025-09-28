@@ -16,8 +16,8 @@ public class Enemy : Entity
         InitializeStates();
     }
 
-    private void FixedUpdate()
+    public override void FixedUpdate()
     {
-        current_state.UpdateState();
+        base.FixedUpdate();
     }
 }

@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using UnityEngine;
 
 public abstract class Entity : StateManager
@@ -14,14 +15,9 @@ public abstract class Entity : StateManager
 
     public void TakeDamage(int damageTaken)
     {
-        if (invincibility || entityData.currentHealth > 0) return;
+        if (invincibility || entityData.currentHealth <= 0) return;
 
-        if (entityData.currentHealth - damageTaken <= 0)
-        {
-            entityData.currentHealth = 0;
-        }
-        else
-            entityData.currentHealth -= damageTaken;
+        SetHealth(entityData.currentHealth - damageTaken);
     }
 
     public void SetHealth(int new_health)
@@ -36,7 +32,12 @@ public abstract class Entity : StateManager
         else
             entityData.currentHealth = new_health;
 
-        if (healthBar is not null)
+        
             healthBar.UpdateHealthBar();
+    }
+
+    public virtual void FixedUpdate()
+    {
+        current_state.UpdateState();
     }
 }

@@ -22,7 +22,6 @@ public class Player : Entity
     void Start()
     {
         InitializeStates();
-        //healthBar = new HealthBar(entityData, );
     }
 
     void Update()
@@ -30,9 +29,9 @@ public class Player : Entity
         mousePos = cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
     }
 
-    void FixedUpdate()
+    public override void FixedUpdate()
     {
-        current_state.UpdateState();
+        base.FixedUpdate();
 
         Vector2 lookDir = mousePos - rigidBody.position;
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;

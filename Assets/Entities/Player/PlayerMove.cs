@@ -21,7 +21,7 @@ public class PlayerMove : State
         {
             player.SFXPlayer.PlayOneShot(player.entityData.SFX[stepCounter++]);
             deltaCount = 0f;
-            //player.TakeDamage(10);
+            //player.TakeDamage(100);
             if (stepCounter > 2) stepCounter = 0;
         }
     }
