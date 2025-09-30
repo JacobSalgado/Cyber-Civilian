@@ -1,9 +1,24 @@
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class Projectile : Entity
 {
     public GameObject hitEffect;
-    [SerializeField] public float damage = 1f;
+    public float damage = 1f;
+    public float force;
+    public Vector2 mousePos;
+
+    public override void InitializeStates()
+    {
+        AddState("Idle", new ProjectileIdle(this));
+        AddState("Travel", new ProjectileTravel(this));
+
+        ChangeState("Travel");
+    }
+
+    void Start()
+    {
+        InitializeStates();
+    }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -11,5 +26,4 @@ public class Projectile : MonoBehaviour
         Destroy(effect, 0.1f);
         Destroy(gameObject);
     }
-    
 }

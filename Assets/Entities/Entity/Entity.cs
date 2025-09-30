@@ -27,7 +27,7 @@ public abstract class Entity : StateManager
         else if (new_health < 0)
         {
             entityData.currentHealth = 0;
-            ChangeState("Death");
+            //ChangeState("Death");
         }
         else
             entityData.currentHealth = new_health;

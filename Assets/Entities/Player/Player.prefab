@@ -115,7 +115,7 @@ Transform:
   m_GameObject: {fileID: 5573281873685104601}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.02, y: -0.06, z: 0}
+  m_LocalPosition: {x: -1.128, y: -0.153, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -579,9 +579,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6344234565907112943, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1072733472485737790}
-    - targetCorrespondingSourceObject: {fileID: 6344234565907112943, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 116889642311012367}
   m_SourcePrefab: {fileID: 100100000, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
 --- !u!82 &4274384687687390438 stripped
 AudioSource:
@@ -616,23 +613,12 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   invincibility: 0
   moveAction: {fileID: -1680190386980627800, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
---- !u!114 &116889642311012367
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7626307339051419095}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 153f88f1dfbce9c4b9f7c35df686daa2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerShooting
-  firePoint: {fileID: 7870654291819106841}
-  bulletPrefab: {fileID: 8419984211183267208, guid: b683dc0d137ba0f4aaa85bd7ebb0816c, type: 3}
-  bulletForce: 40
-  fireRate: 5
   fireAction: {fileID: 1120369429361536294, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  projPrefabs:
+  - {fileID: 3454936053175321556, guid: 0385869716d2dec4d98dcb0e9fa674c1, type: 3}
+  fireRate: 5
+  firePoint: {fileID: 7870654291819106841}
+  currentProj: 0
 --- !u!50 &8349349828730560086 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 4756910380638058606, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
