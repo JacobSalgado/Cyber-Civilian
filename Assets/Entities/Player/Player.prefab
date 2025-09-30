@@ -231,11 +231,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4756910380638058606, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
       propertyPath: m_Mass
-      value: 100
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4756910380638058606, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
       propertyPath: m_Simulated
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756910380638058606, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 6015804072438323913, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
       propertyPath: rb
@@ -621,13 +625,14 @@ MonoBehaviour:
   entityData: {fileID: 11400000, guid: 852c9a555a27c5b4086bc818f3a3a509, type: 2}
   healthBar: {fileID: 0}
   hurtbox: {fileID: 4941127190497077590}
+  firePoint: {fileID: 7870654291819106841}
+  fireTimer: 0
+  fireRate: 5
   invincibility: 0
   moveAction: {fileID: -1680190386980627800, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   fireAction: {fileID: 1120369429361536294, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   projPrefabs:
   - {fileID: 3454936053175321556, guid: 0385869716d2dec4d98dcb0e9fa674c1, type: 3}
-  fireRate: 5
-  firePoint: {fileID: 7870654291819106841}
   currentProj: 0
 --- !u!50 &8349349828730560086 stripped
 Rigidbody2D:

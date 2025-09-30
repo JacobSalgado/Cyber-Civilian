@@ -1,10 +1,10 @@
+using System;
 using UnityEngine;
 
 public class Enemy : Entity
 {
     public Transform target; // following the player
     public GameObject proj;
-    public Transform firePoint;
 
     public override void InitializeStates()
     {
@@ -18,6 +18,34 @@ public class Enemy : Entity
     {
         base.Start();
         InitializeStates();
+    }
+
+    public override void FixedUpdate()
+    {
+        base.FixedUpdate();
+
+        if (CanEnemyShoot())
+        {
+            Vector2 direction = (target.position - transform.position).normalized;
+            RotateToDirection(direction);
+
+            fireTimer -= Time.deltaTime;
+            if (fireTimer <= 0f)
+            {
+                ShootProjectile(proj, firePoint, 7);
+                fireTimer += 1f / fireRate;
+            }
+        }
+    }
+
+    private bool CanEnemyShoot()
+    {
+        if (target != null)
+        {
+            float distance = Vector2.Distance(transform.position, target.position);
+            return distance < 10f;
+        }
+        else return false;
     }
 
     public override void OnCollisionEnter2D(Collision2D collision)

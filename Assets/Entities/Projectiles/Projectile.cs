@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Projectile : Entity
@@ -27,10 +28,15 @@ public class Projectile : Entity
         if (gameObject.layer == 7 && collision.gameObject.TryGetComponent<Player>(out var player))
         {
             player.TakeDamage(damage);
+            player.rigidBody.linearVelocity = Vector2.zero;
+            player.rigidBody.bodyType = RigidbodyType2D.Static;
+            player.rigidBody.bodyType = RigidbodyType2D.Dynamic;
         }
         else if (gameObject.layer == 6 && collision.gameObject.TryGetComponent<Enemy>(out var enemy))
         {
             enemy.TakeDamage(damage);
+            enemy.rigidBody.bodyType = RigidbodyType2D.Static;
+            enemy.rigidBody.bodyType = RigidbodyType2D.Dynamic;
         }
 
         if (!collision.gameObject.TryGetComponent<Projectile>(out var proj))

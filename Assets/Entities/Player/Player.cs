@@ -25,9 +25,6 @@ public class Player : Entity
 
     [Header("Shooting Properties")]
     [SerializeField] private GameObject[] projPrefabs;
-    [SerializeField] private float fireRate = 5f;
-    [SerializeField] private Transform firePoint;
-    private float fireTimer = 0f;
     public PlayerProjType currentProj;
 
 

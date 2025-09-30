@@ -2,12 +2,16 @@ using UnityEngine;
 
 public abstract class Entity : StateManager
 {
-    [Header("Entity GameObjects")]
+    [Header("Entity GameObjects and Vars")]
     public Rigidbody2D rigidBody;
     public AudioSource SFXPlayer;
     public EntityData entityData;
     public HealthBar healthBar;
     public PolygonCollider2D hurtbox;
+
+    public Transform firePoint;
+    [SerializeField] protected float fireTimer = 0f;
+    [SerializeField] protected float fireRate = 5f;
 
     public bool invincibility = false;
 
