@@ -426,11 +426,12 @@ MonoBehaviour:
   SFXPlayer: {fileID: 9040371715733983973}
   entityData: {fileID: 0}
   healthBar: {fileID: 0}
+  hurtbox: {fileID: 9019427488721472585}
   invincibility: 0
   hitEffect: {fileID: 6996612073667387790, guid: 73dd775d02fe8ef4cab1bbcfb652c45c, type: 3}
   damage: 1
   force: 20
-  mousePos: {x: 0, y: 0}
+  owner: {fileID: 0}
 --- !u!50 &3889607568730740821 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 4756910380638058606, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}

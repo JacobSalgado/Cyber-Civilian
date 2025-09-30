@@ -585,6 +585,11 @@ AudioSource:
   m_CorrespondingSourceObject: {fileID: 760127147489719006, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
   m_PrefabInstance: {fileID: 3593073875161228856}
   m_PrefabAsset: {fileID: 0}
+--- !u!60 &4941127190497077590 stripped
+PolygonCollider2D:
+  m_CorrespondingSourceObject: {fileID: 8453046112392220526, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
+  m_PrefabInstance: {fileID: 3593073875161228856}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5984970219455982714 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7121258720370068034, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
@@ -611,6 +616,7 @@ MonoBehaviour:
   SFXPlayer: {fileID: 4274384687687390438}
   entityData: {fileID: 11400000, guid: 852c9a555a27c5b4086bc818f3a3a509, type: 2}
   healthBar: {fileID: 0}
+  hurtbox: {fileID: 4941127190497077590}
   invincibility: 0
   moveAction: {fileID: -1680190386980627800, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   fireAction: {fileID: 1120369429361536294, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
