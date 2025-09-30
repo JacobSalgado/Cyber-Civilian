@@ -30,7 +30,7 @@ public class EnemyIdle : State
                 fireTimer -= Time.deltaTime;
                 if (fireTimer <= 0f)
                 {
-                    enemy.Shoot();
+                    enemy.ShootProjectile(enemy.proj, enemy.firePoint, 7);
                     fireTimer += 1f / fireRate;
                 }
             }

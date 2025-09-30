@@ -1,4 +1,3 @@
-using System.Security.Cryptography;
 using UnityEngine;
 
 public abstract class Entity : StateManager
@@ -13,6 +12,20 @@ public abstract class Entity : StateManager
     public bool invincibility = false;
 
     public abstract void InitializeStates();
+
+    // dictionary: asset store or scriptable objects
+    public virtual void Start()
+    {
+        // make a copy of the entityData
+        if (entityData != null)
+        {
+            entityData = Instantiate(entityData);
+            if (healthBar != null)
+            {
+                healthBar.entityData = entityData;
+            }
+        }
+    }
 
     public void TakeDamage(int damageTaken)
     {
@@ -53,6 +66,17 @@ public abstract class Entity : StateManager
 
     public virtual void OnCollisionEnter2D(Collision2D collision)
     {
-        
+
+    }
+
+    public void ShootProjectile(GameObject proj, Transform fire_point, int collision_layer)
+    {
+        string ignored_layer = collision_layer == 6 ? "Enemy Attacks" : "Player Attacks";
+        LayerMask layer = LayerMask.GetMask(ignored_layer);
+
+        Projectile projectile = Instantiate(proj, fire_point.position, fire_point.rotation).GetComponent<Projectile>();
+        projectile.gameObject.layer = collision_layer;
+        projectile.rigidBody.excludeLayers = layer;
+
     }
 }

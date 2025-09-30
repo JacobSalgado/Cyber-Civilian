@@ -14,21 +14,14 @@ public class Enemy : Entity
         ChangeState("Idle");
     }
 
-    private void Start()
+    public override void Start()
     {
+        base.Start();
         InitializeStates();
-    }
-
-    public void Shoot()
-    {
-        Projectile proj = Instantiate(this.proj, firePoint.position, firePoint.rotation).GetComponent<Projectile>();
     }
 
     public override void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.TryGetComponent<Projectile>(out var proj)
-        ) {
-            TakeDamage(proj.damage);
-        }
+
     }
 }

@@ -22,6 +22,7 @@ public class GameInGame : State
         // load PlayerHUD prefab
         Canvas hud = PrefabUtility.LoadPrefabContents(playerHUDPath).GetComponent<Canvas>();
         hud.transform.SetParent(manager.UIHolder.transform, false);
+        
         manager.player.healthBar = hud.transform.Find("HealthSlider").GetComponent<HealthBar>();
         manager.player.healthBar.UpdateHealthBar();
 
