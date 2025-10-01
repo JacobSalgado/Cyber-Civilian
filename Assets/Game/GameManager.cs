@@ -1,26 +1,29 @@
+using System;
+using Unity.Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : StateManager
 {
-    [SerializeField]
-    public LevelManager levelManager;
-
-    [SerializeField]
-    public AudioSource BGMPlayer;
-
-    [SerializeField]
-    public string[] level_list;
-
-    [SerializeField]
-    string startingState;
-
-    [SerializeField]
+    [Header("Necessary GameManager Objects")]
     public GameObject UIHolder;
+    public AudioSource BGMPlayer;
+    public LevelManager levelManager;
+    public new Camera camera;
+    public CinemachineCamera cinemachine;
+
+    [Header("Starting Parameters")]
+    public string[] levelList;
+    [SerializeField] string startingState;
+
+    /* Non-Serialized Vars */
+    [NonSerialized] public Player player;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         // initialize states
+        AddState("MainMenu", new GameMainMenu(this));
         AddState("InGame", new GameInGame(this));
 
         ChangeState(startingState);

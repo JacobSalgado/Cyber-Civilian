@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerIdle : State
 {
-    Player player;
+    readonly Player player;
 
     public PlayerIdle(Entity new_entity) : base(new_entity)
     {
@@ -12,7 +12,7 @@ public class PlayerIdle : State
 
     public override void EnterState(Dictionary<string, object> args = null)
     {
-        player.rb.linearVelocity = Vector2.zero;
+        player.rigidBody.linearVelocity = Vector2.zero;
     }
 
     public override void UpdateState()

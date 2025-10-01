@@ -1,10 +1,11 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyIdle : State
 {
-    Enemy enemy;
+    readonly Enemy enemy;
+    private float fireTimer = 0f;
+    private float fireRate = 5f;
 
     public EnemyIdle(Entity new_entity) : base(new_entity)
     {
@@ -13,7 +14,7 @@ public class EnemyIdle : State
 
     public override void EnterState(Dictionary<string, object> args = null)
     {
-        enemy.rb.linearVelocity = Vector2.zero;
+        enemy.rigidBody.linearVelocity = Vector2.zero;
     }
 
     public override void UpdateState()
@@ -21,9 +22,21 @@ public class EnemyIdle : State
         if (enemy.target != null)
         {
             float distance = Vector2.Distance(enemy.transform.position, enemy.target.position);
-            if (distance < 5f)
+            if (distance < 10f)
             {
-                enemy.ChangeState("Move");
+                Vector2 direction = (enemy.target.position - enemy.transform.position).normalized;
+                enemy.RotateToDirection(direction);
+
+                fireTimer -= Time.deltaTime;
+                if (fireTimer <= 0f)
+                {
+                    enemy.Shoot();
+                    fireTimer += 1f / fireRate;
+                }
+            }
+            else
+            {
+                fireTimer = 0f;
             }
         }
     }
