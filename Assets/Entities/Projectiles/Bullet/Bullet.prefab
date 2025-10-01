@@ -431,9 +431,12 @@ MonoBehaviour:
   entityData: {fileID: 0}
   healthBar: {fileID: 0}
   hurtbox: {fileID: 9019427488721472585}
+  firePoint: {fileID: 0}
+  fireTimer: 0
+  fireRate: 5
   invincibility: 0
   hitEffect: {fileID: 6996612073667387790, guid: 73dd775d02fe8ef4cab1bbcfb652c45c, type: 3}
-  damage: 100
+  damage: 50
   force: 20
 --- !u!50 &3889607568730740821 stripped
 Rigidbody2D:

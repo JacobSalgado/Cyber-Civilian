@@ -282,6 +282,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 12ed3d6e90ee99c48b6939568499678a, type: 3}
     - target: {fileID: 6086762081228105543, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6086762081228105543, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.size
       value: 4
       objectReference: {fileID: 0}

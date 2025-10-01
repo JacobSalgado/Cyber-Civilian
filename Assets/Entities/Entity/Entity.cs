@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public abstract class Entity : StateManager
@@ -75,12 +76,11 @@ public abstract class Entity : StateManager
 
     public void ShootProjectile(GameObject proj, Transform fire_point, int collision_layer)
     {
-        string ignored_layer = collision_layer == 6 ? "Enemy Attacks" : "Player Attacks";
-        LayerMask layer = LayerMask.GetMask(ignored_layer);
+        string[] ignored_layers = { "Enemy Attacks", "Player Attacks" };
+        LayerMask layer = LayerMask.GetMask(ignored_layers);
 
         Projectile projectile = Instantiate(proj, fire_point.position, fire_point.rotation).GetComponent<Projectile>();
         projectile.gameObject.layer = collision_layer;
         projectile.rigidBody.excludeLayers = layer;
-
     }
 }
