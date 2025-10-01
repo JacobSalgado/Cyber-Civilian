@@ -58,6 +58,7 @@ public class Player : Entity
     void Start()
     {
         InitializeStates();
+        tr.emitting = false;
     }
 
     void Update()
@@ -85,6 +86,8 @@ public class Player : Entity
         if (dashAction.action.WasPressedThisFrame() && canDash && !isDashing)
         {
             Debug.Log("DASH");
+            canDash = false;
+            isDashing = true;
             ChangeState("Dash");
         }
     }
@@ -103,11 +106,6 @@ public class Player : Entity
     {
         Projectile proj = Instantiate(projPrefabs[(int)currentProj], firePoint.position, firePoint.rotation).GetComponent<Projectile>();
         proj.mousePos = mousePos;
-    }
-
-    public bool getCanDash()
-    {
-        return canDash;
     }
 
     public bool getIsDashing()
