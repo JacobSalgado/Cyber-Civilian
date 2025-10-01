@@ -1,11 +1,11 @@
+using System;
 using UnityEngine;
 
 public class Projectile : Entity
 {
     public GameObject hitEffect;
-    public float damage = 1f;
+    public int damage = 50;
     public float force;
-    public Vector2 mousePos;
 
     public override void InitializeStates()
     {
@@ -20,7 +20,7 @@ public class Projectile : Entity
         InitializeStates();
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    public override void OnCollisionEnter2D(Collision2D collision)
     {
         GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
         Destroy(effect, 0.1f);

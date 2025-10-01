@@ -105,7 +105,14 @@ public class Player : Entity
     void Shoot()
     {
         Projectile proj = Instantiate(projPrefabs[(int)currentProj], firePoint.position, firePoint.rotation).GetComponent<Projectile>();
-        proj.mousePos = mousePos;
+    }
+
+    public override void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.TryGetComponent<Projectile>(out var proj)
+        ) {
+            TakeDamage(proj.damage);
+        }
     }
 
     public bool getIsDashing()
