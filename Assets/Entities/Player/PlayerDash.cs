@@ -35,6 +35,7 @@ public class PlayerDash : State
         yield return new WaitForSeconds(player.dashTime);
         player.tr.emitting = false;
         player.setIsDashing(false);
+        player.invincibility = false;
         player.StartCoroutine(DashCooldown());
         // yield return new WaitForSeconds(player.dashCooldown);
         // player.setCanDash(true);

@@ -85,9 +85,9 @@ public class Player : Entity
         // check dash inputs
         if (dashAction.action.WasPressedThisFrame() && canDash && !isDashing)
         {
-            Debug.Log("DASH");
             canDash = false;
             isDashing = true;
+            invincibility = true;
             ChangeState("Dash");
         }
     }
