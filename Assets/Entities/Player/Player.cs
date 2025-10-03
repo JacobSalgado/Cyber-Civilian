@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class Player : Entity
 {
-    public enum PlayerProjType
+    public enum PlayerWeaponType
     {
         BULLET,
         RAILGUN,
@@ -24,8 +24,10 @@ public class Player : Entity
     private Vector2 mousePos;
 
     [Header("Shooting Properties")]
-    [SerializeField] private GameObject[] projPrefabs;
-    public PlayerProjType currentProj;
+    [SerializeField] private GameObject[] weapons;
+    public PlayerWeaponType currentWeaponType;
+
+    // TODO: assign weapons to player in inspector
 
 
     public override void InitializeStates()
@@ -48,19 +50,7 @@ public class Player : Entity
         mousePos = cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 
         // check fire inputs
-        if (fireAction.action.IsPressed())
-        {
-            fireTimer -= Time.deltaTime;
-            if (fireTimer <= 0f)
-            {
-                ShootProjectile(projPrefabs[(int)currentProj], firePoint, 6);
-                fireTimer += 1f / fireRate;
-            }
-        }
-        else
-        {
-            fireTimer = 0f;
-        }
+        weapons[(int)currentWeaponType].GetComponent<Weapon>().ShootWeapon(fireAction, firePoint, 6);
     }
 
     public override void FixedUpdate()

@@ -6,6 +6,8 @@ public class Enemy : Entity
     public Transform target; // following the player
     public GameObject proj;
 
+    // TODO: add weapon variable
+
     public override void InitializeStates()
     {
         AddState("Idle", new EnemyIdle(this));
@@ -29,12 +31,7 @@ public class Enemy : Entity
             Vector2 direction = (target.position - transform.position).normalized;
             RotateToDirection(direction);
 
-            fireTimer -= Time.deltaTime;
-            if (fireTimer <= 0f)
-            {
-                ShootProjectile(proj, firePoint, 7);
-                fireTimer += 1f / fireRate;
-            }
+            // TODO: enemy shoot weapon here
         }
     }
 
