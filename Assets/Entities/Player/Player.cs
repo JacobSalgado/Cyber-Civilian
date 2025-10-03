@@ -66,7 +66,16 @@ public class Player : Entity
         mousePos = cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 
         // check fire inputs
-        weapons[(int)currentWeaponType].GetComponent<Weapon>().ShootWeapon(fireAction, firePoint, 6);
+        //weapons[(int)currentWeaponType].GetComponent<Weapon>().ShootWeapon(fireAction, firePoint, 6);
+        
+        // check dash inputs
+        if (dashAction.action.WasPressedThisFrame() && canDash && !isDashing)
+        {
+            canDash = false;
+            isDashing = true;
+            invincibility = true;
+            ChangeState("Dash");
+        }
     }
 
     public override void FixedUpdate()
