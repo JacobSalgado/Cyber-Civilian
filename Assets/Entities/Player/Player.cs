@@ -1,5 +1,8 @@
 //using System.Numerics;
 using System;
+using System.Collections;
+//using System.Numerics;
+using NUnit.Framework;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -18,9 +21,13 @@ public class Player : Entity
 
     [NonSerialized] public Camera cam;
 
+    // Used to create dashing effect
+    [SerializeField] public TrailRenderer tr;
+
     [Header("Controls")]
     public InputActionReference moveAction;
     public InputActionReference fireAction;
+    public InputActionReference dashAction;
     private Vector2 mousePos;
 
     [Header("Shooting Properties")]
@@ -29,19 +36,28 @@ public class Player : Entity
 
     // TODO: assign weapons to player in inspector
 
+    [Header("Dashing properties")]
+    private bool canDash = true;
+    private bool isDashing = false;
+    [SerializeField] public float dashPower = 2f;
+    [SerializeField] public float dashTime = 0.2f;
+    [SerializeField] public float dashCooldown = 1f;
+
+
 
     public override void InitializeStates()
     {
         AddState("Idle", new PlayerIdle(this));
         AddState("Move", new PlayerMove(this));
+        AddState("Dash", new PlayerDash(this));
 
         ChangeState("Idle");
     }
 
     public override void Start()
     {
-        base.Start();
-        InitializeStates();        
+        InitializeStates();
+        tr.emitting = false;
     }
 
     void Update()
@@ -66,5 +82,20 @@ public class Player : Entity
     public override void OnCollisionEnter2D(Collision2D collision)
     {
         
+    }
+
+    public bool getIsDashing()
+    {
+        return isDashing;
+    }
+
+    public void setCanDash(bool new_canDash)
+    {
+        canDash = new_canDash;
+    }
+
+    public void setIsDashing(bool new_isDashing)
+    {
+        isDashing = new_isDashing;
     }
 }
