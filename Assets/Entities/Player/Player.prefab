@@ -129,6 +129,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2908069105312177254, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 3881462457380608260, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
       propertyPath: m_HasRenderer
       value: 1
@@ -231,11 +235,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4756910380638058606, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
       propertyPath: m_Mass
-      value: 100
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4756910380638058606, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
       propertyPath: m_Simulated
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756910380638058606, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 6015804072438323913, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
       propertyPath: rb
@@ -277,6 +285,10 @@ PrefabInstance:
       propertyPath: 'SFX.Array.data[2]'
       value: 
       objectReference: {fileID: 8300000, guid: 12ed3d6e90ee99c48b6939568499678a, type: 3}
+    - target: {fileID: 6086762081228105543, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6086762081228105543, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.size
       value: 4
@@ -624,6 +636,9 @@ MonoBehaviour:
   entityData: {fileID: 11400000, guid: 852c9a555a27c5b4086bc818f3a3a509, type: 2}
   healthBar: {fileID: 0}
   hurtbox: {fileID: 4941127190497077590}
+  firePoint: {fileID: 7870654291819106841}
+  fireTimer: 0
+  fireRate: 5
   invincibility: 0
   tr: {fileID: 6616881326347800582}
   moveAction: {fileID: -1680190386980627800, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
@@ -631,8 +646,6 @@ MonoBehaviour:
   dashAction: {fileID: -7471211009204490832, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   projPrefabs:
   - {fileID: 3454936053175321556, guid: 0385869716d2dec4d98dcb0e9fa674c1, type: 3}
-  fireRate: 5
-  firePoint: {fileID: 7870654291819106841}
   currentProj: 0
   dashPower: 1.5
   dashTime: 0.2

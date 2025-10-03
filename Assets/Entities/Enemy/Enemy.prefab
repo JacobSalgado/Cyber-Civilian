@@ -45,7 +45,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4756910380638058606, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
       propertyPath: m_Mass
-      value: 100
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6086762081228105543, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.size
@@ -235,10 +235,12 @@ MonoBehaviour:
   entityData: {fileID: 11400000, guid: 627a852840c38b742b3f103c16f1509c, type: 2}
   healthBar: {fileID: 0}
   hurtbox: {fileID: 5551588691467970014}
+  firePoint: {fileID: 1868575608633948007}
+  fireTimer: 0
+  fireRate: 5
   invincibility: 0
   target: {fileID: 0}
   proj: {fileID: 3454936053175321556, guid: 0385869716d2dec4d98dcb0e9fa674c1, type: 3}
-  firePoint: {fileID: 1868575608633948007}
 --- !u!50 &8811157356989125342 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 4756910380638058606, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}

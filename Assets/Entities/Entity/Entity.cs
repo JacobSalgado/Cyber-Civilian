@@ -1,18 +1,36 @@
-using System.Security.Cryptography;
+using System.Linq;
 using UnityEngine;
 
 public abstract class Entity : StateManager
 {
-    [Header("Entity GameObjects")]
+    [Header("Entity GameObjects and Vars")]
     public Rigidbody2D rigidBody;
     public AudioSource SFXPlayer;
     public EntityData entityData;
     public HealthBar healthBar;
     public PolygonCollider2D hurtbox;
 
+    public Transform firePoint;
+    [SerializeField] protected float fireTimer = 0f;
+    [SerializeField] protected float fireRate = 5f;
+
     public bool invincibility = false;
 
     public abstract void InitializeStates();
+
+    // dictionary: asset store or scriptable objects
+    public virtual void Start()
+    {
+        // make a copy of the entityData
+        if (entityData != null)
+        {
+            entityData = Instantiate(entityData);
+            if (healthBar != null)
+            {
+                healthBar.entityData = entityData;
+            }
+        }
+    }
 
     public void TakeDamage(int damageTaken)
     {
@@ -53,6 +71,16 @@ public abstract class Entity : StateManager
 
     public virtual void OnCollisionEnter2D(Collision2D collision)
     {
-        
+
+    }
+
+    public void ShootProjectile(GameObject proj, Transform fire_point, int collision_layer)
+    {
+        string[] ignored_layers = { "Enemy Attacks", "Player Attacks" };
+        LayerMask layer = LayerMask.GetMask(ignored_layers);
+
+        Projectile projectile = Instantiate(proj, fire_point.position, fire_point.rotation).GetComponent<Projectile>();
+        projectile.gameObject.layer = collision_layer;
+        projectile.rigidBody.excludeLayers = layer;
     }
 }

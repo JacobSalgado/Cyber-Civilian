@@ -32,9 +32,6 @@ public class Player : Entity
 
     [Header("Shooting Properties")]
     [SerializeField] private GameObject[] projPrefabs;
-    [SerializeField] private float fireRate = 5f;
-    [SerializeField] private Transform firePoint;
-    private float fireTimer = 0f;
     public PlayerProjType currentProj;
 
     [Header("Dashing properties")]
@@ -55,7 +52,7 @@ public class Player : Entity
         ChangeState("Idle");
     }
 
-    void Start()
+    public override void Start()
     {
         InitializeStates();
         tr.emitting = false;
@@ -73,7 +70,7 @@ public class Player : Entity
             fireTimer -= Time.deltaTime;
             if (fireTimer <= 0f)
             {
-                Shoot();
+                ShootProjectile(projPrefabs[(int)currentProj], firePoint, 6);
                 fireTimer += 1f / fireRate;
             }
         }
@@ -102,17 +99,9 @@ public class Player : Entity
         rigidBody.rotation = angle;
     }
 
-    void Shoot()
-    {
-        Projectile proj = Instantiate(projPrefabs[(int)currentProj], firePoint.position, firePoint.rotation).GetComponent<Projectile>();
-    }
-
     public override void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.TryGetComponent<Projectile>(out var proj)
-        ) {
-            TakeDamage(proj.damage);
-        }
+        
     }
 
     public bool getIsDashing()
