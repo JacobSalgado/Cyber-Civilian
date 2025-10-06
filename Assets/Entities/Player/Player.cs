@@ -44,7 +44,6 @@ public class Player : Entity
     [SerializeField] public float dashCooldown = 1f;
 
 
-
     public override void InitializeStates()
     {
         AddState("Idle", new PlayerIdle(this));
@@ -56,7 +55,6 @@ public class Player : Entity
 
     public override void Start()
     {
-        base.Start();
         InitializeStates();
         tr.emitting = false;
     }

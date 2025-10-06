@@ -7,8 +7,5 @@ public class Level : MonoBehaviour
     public PolygonCollider2D confiner;
     public Player player;
 
-    void Start()
-    {
-        // TODO: initialize stuff here
-    }
+    // TODO: EXPAND ON LEVEL SCRIPT
 }
