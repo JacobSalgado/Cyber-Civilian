@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+// SCRIPT NOT IN USE, SEE Weapon.cs FOR UPDATED PLAYER SHOOTING MECHANISM
 public class PlayerShooting : MonoBehaviour
 {
     public Transform firePoint;
@@ -28,7 +29,8 @@ public class PlayerShooting : MonoBehaviour
                 Shoot();
                 fireTimer += 1f / fireRate;
             }
-        } else
+        }
+        else
         {
             fireTimer = 0f;
         }

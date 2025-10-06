@@ -28,11 +28,12 @@ public class Player : Entity
     public InputActionReference moveAction;
     public InputActionReference fireAction;
     public InputActionReference dashAction;
+    public InputActionReference NextWeaponAction;
     private Vector2 mousePos;
 
     [Header("Shooting Properties")]
     [SerializeField] private GameObject[] weapons;
-    public PlayerWeaponType currentWeaponType;
+    public PlayerWeaponType currentWeaponType = PlayerWeaponType.BULLET;
 
     // TODO: assign weapons to player in inspector
 
@@ -43,7 +44,8 @@ public class Player : Entity
     [SerializeField] public float dashTime = 0.2f;
     [SerializeField] public float dashCooldown = 1f;
 
-
+    // Renderer for switching weapon sprites
+    [SerializeField] public SpriteRenderer weaponRenderer;
 
     public override void InitializeStates()
     {
@@ -58,6 +60,7 @@ public class Player : Entity
     {
         InitializeStates();
         tr.emitting = false;
+        Equip();
     }
 
     void Update()
@@ -65,8 +68,43 @@ public class Player : Entity
         // update mouse position
         mousePos = cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 
+        // check for next weapon input
+        if (NextWeaponAction.action.WasPressedThisFrame())
+        {
+            currentWeaponType = (PlayerWeaponType)(((int)currentWeaponType + 1) % weapons.Length);
+            Equip();
+        }
+
+        // Check specific weapon inputs
+        var kb = Keyboard.current;
+        if (kb.digit1Key.wasPressedThisFrame)
+        {
+            currentWeaponType = PlayerWeaponType.BULLET;
+            Equip();
+        }
+        else if (kb.digit2Key.wasPressedThisFrame)
+        {
+            currentWeaponType = PlayerWeaponType.RAILGUN;
+            Equip();
+        }
+        else if (kb.digit3Key.wasPressedThisFrame)
+        {
+            currentWeaponType = PlayerWeaponType.MISSILE;
+            Equip();
+        }
+        else if (kb.digit4Key.wasPressedThisFrame)
+        {
+            currentWeaponType = PlayerWeaponType.PLASMA;
+            Equip();
+        }
+        else if (kb.digit5Key.wasPressedThisFrame)
+        {
+            currentWeaponType = PlayerWeaponType.FLAMETHROWER;
+            Equip();
+        }
+
         // check fire inputs
-        //weapons[(int)currentWeaponType].GetComponent<Weapon>().ShootWeapon(fireAction, firePoint, 6);
+        weapons[(int)currentWeaponType].GetComponent<Weapon>().ShootWeapon(fireAction, firePoint, 6);
         
         // check dash inputs
         if (dashAction.action.WasPressedThisFrame() && canDash && !isDashing)
@@ -91,6 +129,11 @@ public class Player : Entity
     public override void OnCollisionEnter2D(Collision2D collision)
     {
         
+    }
+
+    public void Equip()
+    {
+        weaponRenderer.sprite = weapons[(int)currentWeaponType].GetComponent<Weapon>().weaponSprite;
     }
 
     public bool getIsDashing()
