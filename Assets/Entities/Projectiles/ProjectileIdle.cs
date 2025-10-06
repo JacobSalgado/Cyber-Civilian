@@ -4,7 +4,7 @@ using UnityEngine;
 public class ProjectileIdle : State
 {
     readonly Projectile proj;
-    private float deltaCount = 0f;
+    //private float deltaCount = 0f;
 
     public ProjectileIdle(Entity new_entity) : base(new_entity)
     {

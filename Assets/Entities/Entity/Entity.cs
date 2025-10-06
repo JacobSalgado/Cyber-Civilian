@@ -14,7 +14,10 @@ public abstract class Entity : StateManager
 
     public bool invincibility = false;
 
-    public abstract void InitializeStates();
+    public virtual void InitializeStates()
+    {
+        
+    }
 
     // dictionary: asset store or scriptable objects
     public virtual void Start()
@@ -53,6 +56,12 @@ public abstract class Entity : StateManager
         {
             healthBar.UpdateHealthBar();
         }
+    }
+
+    public Vector2 GetDirectionToPosition(Vector2 point)
+    {
+        Vector2 direction = (point - (Vector2) transform.position).normalized;
+        return direction;
     }
 
     public void RotateToDirection(Vector2 dir)

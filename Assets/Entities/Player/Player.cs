@@ -56,6 +56,7 @@ public class Player : Entity
 
     public override void Start()
     {
+        base.Start();
         InitializeStates();
         tr.emitting = false;
     }
