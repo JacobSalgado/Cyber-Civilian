@@ -7,11 +7,12 @@ public class Bullet : Projectile
         AddState("Idle", new BulletIdle(this));
         AddState("Travel", new BulletTravel(this));
 
-        ChangeState("Idle");
+        ChangeState("Travel");
     }
 
     public override void Start()
     {
+        base.Start();
         InitializeStates();
     }
 }

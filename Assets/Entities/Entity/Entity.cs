@@ -1,9 +1,9 @@
-using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public abstract class Entity : StateManager
 {
-    [Header("Entity GameObjects and Vars")]
+    [Header("==Entity GameObjects and Vars==")]
     public Rigidbody2D rigidBody;
     public AudioSource SFXPlayer;
     public EntityData entityData;
@@ -14,7 +14,10 @@ public abstract class Entity : StateManager
 
     public bool invincibility = false;
 
-    public abstract void InitializeStates();
+    public virtual void InitializeStates()
+    {
+
+    }
 
     // dictionary: asset store or scriptable objects
     public virtual void Start()
@@ -55,6 +58,12 @@ public abstract class Entity : StateManager
         }
     }
 
+    public Vector2 GetDirectionToPosition(Vector2 point)
+    {
+        Vector2 direction = (point - (Vector2)transform.position).normalized;
+        return direction;
+    }
+
     public void RotateToDirection(Vector2 dir)
     {
         float angleRad = Mathf.Atan2(dir.y, dir.x);
@@ -67,8 +76,8 @@ public abstract class Entity : StateManager
         current_state.UpdateState();
     }
 
-    public virtual void OnCollisionEnter2D(Collision2D collision)
+    public void ShootWeapon(GameObject weapon, InputActionReference fireAction, Transform firePoint, int collision_layer)
     {
-
+        weapon.GetComponent<Weapon>().Shoot(fireAction, firePoint, collision_layer);
     }
 }

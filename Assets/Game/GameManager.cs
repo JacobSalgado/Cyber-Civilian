@@ -1,6 +1,5 @@
 using System;
 using Unity.Cinemachine;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : StateManager
@@ -12,14 +11,13 @@ public class GameManager : StateManager
     public new Camera camera;
     public CinemachineCamera cinemachine;
 
-    [Header("Starting Parameters")]
+    [Header("Game Parameters")]
     public string[] levelList;
     [SerializeField] string startingState;
 
     /* Non-Serialized Vars */
     [NonSerialized] public Player player;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         // initialize states
@@ -29,7 +27,6 @@ public class GameManager : StateManager
         ChangeState(startingState);
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         current_state.UpdateState();

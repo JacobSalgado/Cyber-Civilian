@@ -1,24 +1,13 @@
+using System;
 using UnityEngine;
 
-public class Projectile : Entity
+public abstract class Projectile : Entity
 {
+    [Header("==Projectile GameObjects==")]
     public GameObject hitEffect;
-    public int damage;
-    public float force;
 
-    public override void InitializeStates()
-    {
-        AddState("Idle", new ProjectileIdle(this));
-        AddState("Travel", new ProjectileTravel(this));
-
-        ChangeState("Travel");
-    }
-
-    public override void Start()
-    {
-        base.Start();
-        InitializeStates();
-    }
+    [NonSerialized] public float force;
+    [NonSerialized] public int damage;
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
@@ -30,7 +19,6 @@ public class Projectile : Entity
         else if (gameObject.layer == 6 && collision.gameObject.TryGetComponent<Enemy>(out var enemy))
         {
             enemy.TakeDamage(damage);
-
         }
 
         if (collision.gameObject.layer == 0)
@@ -39,6 +27,5 @@ public class Projectile : Entity
             Destroy(effect, 0.1f);
             Destroy(gameObject);
         }
-
     }
 }
