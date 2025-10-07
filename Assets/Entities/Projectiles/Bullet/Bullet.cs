@@ -1,17 +1,17 @@
 using UnityEngine;
 
-public class Railgun : Projectile
+public class Bullet : Projectile
 {
     public override void InitializeStates()
     {
-        AddState("Idle", new RailgunIdle(this));
-        AddState("Travel", new RailgunTravel(this));
+        AddState("Idle", new BulletIdle(this));
+        AddState("Travel", new BulletTravel(this));
 
         ChangeState("Idle");
     }
 
     public override void Start()
     {
-        
+        InitializeStates();
     }
 }
