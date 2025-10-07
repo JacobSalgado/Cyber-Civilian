@@ -1,8 +1,6 @@
 using System.Collections.Generic;
-using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.XR;
 
 public class PlayerDash : State
 {
@@ -19,6 +17,20 @@ public class PlayerDash : State
         velocity = player.moveAction.action.ReadValue<Vector2>();
         player.tr.emitting = true;
         player.StartCoroutine(initiateDash());
+    }
+
+    public override void UpdateState()
+    {
+        if (player.getIsDashing())
+        {
+            player.rigidBody.linearVelocity = velocity.normalized * player.dashPower * player.entityData.moveSpeed;
+            return;
+        }
+    }
+
+    public override void ExitState(Dictionary<string, object> args = null)
+    {
+
     }
 
     private IEnumerator initiateDash()
@@ -45,19 +57,5 @@ public class PlayerDash : State
     {
         yield return new WaitForSeconds(player.dashCooldown);
         player.setCanDash(true);
-    }
-
-    public override void UpdateState()
-    {
-        if (player.getIsDashing())
-        {
-            player.rigidBody.linearVelocity = velocity.normalized * player.dashPower * player.entityData.moveSpeed;
-            return;
-        }
-    }
-
-    public override void ExitState(Dictionary<string, object> args = null)
-    {
-
     }
 }

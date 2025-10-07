@@ -10,7 +10,7 @@ public class Weapon : MonoBehaviour
     public float fireTimer;
     public float fireRate;
 
-    // Firemode is used to determine firigh behavior
+    // Firemode is used to determine firing behavior
     // 0 = full auto, 1 = semi auto
     // Semi auto seems to work when firerate is = 0 but that leads to division by zero which is an underfined behavior
     public int fireMode;

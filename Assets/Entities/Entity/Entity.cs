@@ -1,9 +1,8 @@
-using System.Linq;
 using UnityEngine;
 
 public abstract class Entity : StateManager
 {
-    [Header("Entity GameObjects and Vars")]
+    [Header("==Entity GameObjects and Vars==")]
     public Rigidbody2D rigidBody;
     public AudioSource SFXPlayer;
     public EntityData entityData;

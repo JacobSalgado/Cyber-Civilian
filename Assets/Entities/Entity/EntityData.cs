@@ -10,7 +10,7 @@ public class EntityData : ScriptableObject
     * - Can be accessed and changed directly (i.e. doesn't need the owner to access it)
     */
 
-    [Header("General Entity Properties")]
+    [Header("==General Entity Properties==")]
     public int currentHealth;
     public int maxHealth;
     public float moveSpeed;

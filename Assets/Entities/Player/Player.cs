@@ -1,9 +1,4 @@
-//using System.Numerics;
 using System;
-using System.Collections;
-//using System.Numerics;
-using NUnit.Framework;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,33 +14,31 @@ public class Player : Entity
         NONE
     }
 
+    // private variables
     [NonSerialized] public Camera cam;
+    private Vector2 mousePos;
 
-    // Used to create dashing effect
-    [SerializeField] public TrailRenderer tr;
-
-    [Header("Controls")]
+    [Header("==Controls==")]
     public InputActionReference moveAction;
     public InputActionReference fireAction;
     public InputActionReference dashAction;
     public InputActionReference NextWeaponAction;
-    private Vector2 mousePos;
+    public InputActionReference weaponKeybindAction;
 
-    [Header("Shooting Properties")]
+    [Header("==Weapon Properties==")]
     [SerializeField] private GameObject[] weapons;
     public PlayerWeaponType currentWeaponType = PlayerWeaponType.BULLET;
+    public SpriteRenderer weaponRenderer; // Renderer for switching weapon sprites
 
-    // TODO: assign weapons to player in inspector
-
-    [Header("Dashing properties")]
+    [Header("==Dashing Properties==")]
+    public float dashPower = 2f;
+    public float dashTime = 0.2f;
+    public float dashCooldown = 1f;
     private bool canDash = true;
     private bool isDashing = false;
-    [SerializeField] public float dashPower = 2f;
-    [SerializeField] public float dashTime = 0.2f;
-    [SerializeField] public float dashCooldown = 1f;
 
-    // Renderer for switching weapon sprites
-    [SerializeField] public SpriteRenderer weaponRenderer;
+    [Header("==Trail Renderer==")]
+    public TrailRenderer tr; // Used to create dashing effect
 
     public override void InitializeStates()
     {
@@ -60,7 +53,8 @@ public class Player : Entity
     {
         InitializeStates();
         tr.emitting = false;
-        Equip();
+
+        EquipNewWeapon(currentWeaponType);
     }
 
     void Update()
@@ -71,40 +65,41 @@ public class Player : Entity
         // check for next weapon input
         if (NextWeaponAction.action.WasPressedThisFrame())
         {
-            currentWeaponType = (PlayerWeaponType)(((int)currentWeaponType + 1) % weapons.Length);
-            Equip();
+            EquipNewWeapon((PlayerWeaponType)(((int)currentWeaponType + 1) % weapons.Length));
         }
 
         // Check specific weapon inputs
         var kb = Keyboard.current;
+        
         if (kb.digit1Key.wasPressedThisFrame)
         {
             currentWeaponType = PlayerWeaponType.BULLET;
-            Equip();
+            //Equip();
         }
         else if (kb.digit2Key.wasPressedThisFrame)
         {
             currentWeaponType = PlayerWeaponType.RAILGUN;
-            Equip();
+            //Equip();
         }
         else if (kb.digit3Key.wasPressedThisFrame)
         {
             currentWeaponType = PlayerWeaponType.MISSILE;
-            Equip();
+            //Equip();
         }
         else if (kb.digit4Key.wasPressedThisFrame)
         {
             currentWeaponType = PlayerWeaponType.PLASMA;
-            Equip();
+            //Equip();
         }
         else if (kb.digit5Key.wasPressedThisFrame)
         {
             currentWeaponType = PlayerWeaponType.FLAMETHROWER;
-            Equip();
+            //Equip();
         }
 
         // check fire inputs
-        weapons[(int)currentWeaponType].GetComponent<Weapon>().ShootWeapon(fireAction, firePoint, 6);
+        if (currentWeaponType < PlayerWeaponType.NONE)
+            weapons[(int)currentWeaponType].GetComponent<Weapon>().ShootWeapon(fireAction, firePoint, 6);
         
         // check dash inputs
         if (dashAction.action.WasPressedThisFrame() && canDash && !isDashing)
@@ -126,14 +121,11 @@ public class Player : Entity
         rigidBody.rotation = angle;
     }
 
-    public override void OnCollisionEnter2D(Collision2D collision)
-    {
-        
-    }
 
-    public void Equip()
+    public void EquipNewWeapon(PlayerWeaponType newWeaponType)
     {
-        weaponRenderer.sprite = weapons[(int)currentWeaponType].GetComponent<Weapon>().weaponSprite;
+        currentWeaponType = newWeaponType;
+        weaponRenderer.sprite = weapons[(int) newWeaponType].GetComponent<Weapon>().weaponSprite;
     }
 
     public bool getIsDashing()
