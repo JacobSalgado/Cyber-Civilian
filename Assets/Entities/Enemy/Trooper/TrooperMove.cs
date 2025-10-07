@@ -27,6 +27,7 @@ public class TrooperMove : State
         if (trooper.target == null)
         {
             trooper.ChangeState("Idle");
+            Debug.LogError("Target not found");
             return;
         }
 
@@ -41,7 +42,7 @@ public class TrooperMove : State
             else if (distance < trooper.distanceToMove)
             {
                 directionToTarget = trooper.GetDirectionToPosition(trooper.target.transform.position);
-
+                trooper.RotateToDirection(directionToTarget);
                 trooper.rigidBody.linearVelocity = directionToTarget * trooper.entityData.moveSpeed;
             }
             else trooper.ChangeState("Idle");
@@ -50,6 +51,6 @@ public class TrooperMove : State
 
     public override void ExitState(Dictionary<string, object> args = null)
     {
-        trooper.rigidBody.linearVelocity = Vector2.zero;
+        
     }
 }

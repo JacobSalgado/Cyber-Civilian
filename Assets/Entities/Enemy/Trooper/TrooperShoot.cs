@@ -12,7 +12,7 @@ public class TrooperShoot : State
 
     public override void EnterState(Dictionary<string, object> args = null)
     {
-
+        trooper.rigidBody.linearVelocity = Vector2.zero;
     }
 
     public override void UpdateState()
@@ -22,8 +22,8 @@ public class TrooperShoot : State
         {
             if (distance < trooper.distanceToShoot)
             {
-                // TODO: fire weapon here
-                Debug.Log("Trooper fired shoot");
+                trooper.RotateToDirection(trooper.GetDirectionToPosition(trooper.target.transform.position));
+                trooper.ShootWeapon(trooper.weapon, null, trooper.firePoint, 7);
             }
             else if (distance < trooper.distanceToMove)
             {

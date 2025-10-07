@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -22,8 +23,7 @@ public class Player : Entity
     public InputActionReference moveAction;
     public InputActionReference fireAction;
     public InputActionReference dashAction;
-    public InputActionReference NextWeaponAction;
-    public InputActionReference weaponKeybindAction;
+    public InputActionReference weaponKeybindsAction;
 
     [Header("==Weapon Properties==")]
     [SerializeField] private GameObject[] weapons;
@@ -62,44 +62,26 @@ public class Player : Entity
         // update mouse position
         mousePos = cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 
-        // check for next weapon input
-        if (NextWeaponAction.action.WasPressedThisFrame())
+        // check for weaponKeybind input
+        if (weaponKeybindsAction.action.WasPressedThisFrame())
         {
-            EquipNewWeapon((PlayerWeaponType)(((int)currentWeaponType + 1) % weapons.Length));
-        }
+            // check which button was pressed in the actionMap
+            PlayerWeaponType new_weapon_type;
+            string action = weaponKeybindsAction.action.activeControl.name;
+            
+            if (string.Compare(action, "q") != 0)
+            {
+                int num_key = int.Parse(action);
+                new_weapon_type = (PlayerWeaponType)(num_key - 1);
+            }
+            else new_weapon_type = (PlayerWeaponType)(((int)currentWeaponType + 1) % weapons.Length);
 
-        // Check specific weapon inputs
-        var kb = Keyboard.current;
-        
-        if (kb.digit1Key.wasPressedThisFrame)
-        {
-            currentWeaponType = PlayerWeaponType.BULLET;
-            //Equip();
-        }
-        else if (kb.digit2Key.wasPressedThisFrame)
-        {
-            currentWeaponType = PlayerWeaponType.RAILGUN;
-            //Equip();
-        }
-        else if (kb.digit3Key.wasPressedThisFrame)
-        {
-            currentWeaponType = PlayerWeaponType.MISSILE;
-            //Equip();
-        }
-        else if (kb.digit4Key.wasPressedThisFrame)
-        {
-            currentWeaponType = PlayerWeaponType.PLASMA;
-            //Equip();
-        }
-        else if (kb.digit5Key.wasPressedThisFrame)
-        {
-            currentWeaponType = PlayerWeaponType.FLAMETHROWER;
-            //Equip();
+            EquipNewWeapon(new_weapon_type);
         }
 
         // check fire inputs
         if (currentWeaponType < PlayerWeaponType.NONE)
-            weapons[(int)currentWeaponType].GetComponent<Weapon>().ShootWeapon(fireAction, firePoint, 6);
+           ShootWeapon(weapons[(int)currentWeaponType], fireAction, firePoint, 6);
         
         // check dash inputs
         if (dashAction.action.WasPressedThisFrame() && canDash && !isDashing)
@@ -121,11 +103,14 @@ public class Player : Entity
         rigidBody.rotation = angle;
     }
 
-
     public void EquipNewWeapon(PlayerWeaponType newWeaponType)
     {
-        currentWeaponType = newWeaponType;
-        weaponRenderer.sprite = weapons[(int) newWeaponType].GetComponent<Weapon>().weaponSprite;
+        if ((int)newWeaponType < weapons.Length)
+        {
+            currentWeaponType = newWeaponType;
+            weaponRenderer.sprite = weapons[(int)newWeaponType].GetComponent<Weapon>().weaponSprite;
+        }
+        else Debug.LogError(string.Format("{0} not in weapon array", newWeaponType));
     }
 
     public bool getIsDashing()

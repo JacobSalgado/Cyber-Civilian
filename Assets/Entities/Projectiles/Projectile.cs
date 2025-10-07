@@ -1,10 +1,13 @@
+using System;
 using UnityEngine;
 
 public class Projectile : Entity
 {
+    [Header("==Projectile GameObjects==")]
     public GameObject hitEffect;
-    public int damage;
-    public float force;
+
+    [NonSerialized] public float force;
+    [NonSerialized] public int damage;
 
     public override void InitializeStates()
     {
@@ -30,7 +33,6 @@ public class Projectile : Entity
         else if (gameObject.layer == 6 && collision.gameObject.TryGetComponent<Enemy>(out var enemy))
         {
             enemy.TakeDamage(damage);
-
         }
 
         if (collision.gameObject.layer == 0)
@@ -39,6 +41,5 @@ public class Projectile : Entity
             Destroy(effect, 0.1f);
             Destroy(gameObject);
         }
-
     }
 }

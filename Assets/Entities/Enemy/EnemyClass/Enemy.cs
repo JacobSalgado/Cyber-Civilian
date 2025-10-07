@@ -2,13 +2,10 @@ using UnityEngine;
 
 public abstract class Enemy : Entity
 {
-    [Header("Enemy Properties")]
+    [Header("==Enemy GameObjects==")]
     public Transform target; // following the player
-    public GameObject proj;
+    public GameObject weapon;
     //[NonSerialized] public bool isAggro;
-
-    // TODO: add weapon variable
-
 
     /// <summary>
     /// Calculates distance to target

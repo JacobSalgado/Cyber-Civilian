@@ -638,20 +638,20 @@ MonoBehaviour:
   hurtbox: {fileID: 4941127190497077590}
   firePoint: {fileID: 7870654291819106841}
   invincibility: 0
-  tr: {fileID: 6616881326347800582}
   moveAction: {fileID: -1680190386980627800, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   fireAction: {fileID: 1120369429361536294, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  dashAction: {fileID: -7471211009204490832, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  NextWeaponAction: {fileID: 5651876746905854087, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  dashAction: {fileID: -1591832314784998302, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  weaponKeybindsAction: {fileID: -2735380176781456793, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   weapons:
   - {fileID: 4367270167898253899, guid: fde5e6f7714814c4e8108a58b4763bf1, type: 3}
   - {fileID: 4674413761428591574, guid: 3bb0f60c7f8aaf24d8e1e5bf48bb31d8, type: 3}
   - {fileID: 2015299630638325686, guid: a1a29321763e4f84a94bb04cdd04f731, type: 3}
   currentWeaponType: 0
+  weaponRenderer: {fileID: 1226822478304895784}
   dashPower: 3
   dashTime: 0.2
   dashCooldown: 0.5
-  weaponRenderer: {fileID: 1226822478304895784}
+  tr: {fileID: 6616881326347800582}
 --- !u!96 &6616881326347800582
 TrailRenderer:
   serializedVersion: 3

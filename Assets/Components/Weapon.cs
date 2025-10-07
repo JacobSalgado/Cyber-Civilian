@@ -3,48 +3,104 @@ using UnityEngine.InputSystem;
 
 public class Weapon : MonoBehaviour
 {
+    public enum FireMode
+    {
+        FULL_AUTO,
+        SEMI_AUTO
+    }
+
+    [Header("==Necessary GameObjects==")]
+    public GameObject projectile;
+    public Sprite weaponSprite;
+
+    [Header("==Weapon Properties==")]
+    public int damage;
+    public float projectileForce;
     public int currentAmmo;
     public int maxAmmo;
-    public GameObject proj;
-    public Sprite weaponSprite;
-    public float fireTimer;
+    public int ammoCost;
     public float fireRate;
+    public bool infiniteAmmo = false;
+    private float fireTimer;
 
     // Firemode is used to determine firing behavior
     // 0 = full auto, 1 = semi auto
     // Semi auto seems to work when firerate is = 0 but that leads to division by zero which is an underfined behavior
-    public int fireMode;
+    public FireMode fireMode;
 
-    public void ShootWeapon(InputActionReference fireAction, Transform firePoint, int collision_layer)
+
+    void Start()
     {
-        if (fireMode == 0 && fireAction.action.IsPressed())
-        {
-            fireTimer -= Time.deltaTime;
-            if (fireTimer <= 0f)
-            {
-                Shoot(firePoint, collision_layer);
+        // ammo underflow/overflow check
+        if (currentAmmo < 0) currentAmmo = 0;
+        if (currentAmmo > maxAmmo) currentAmmo = maxAmmo;
+    }
 
-                fireTimer += 1f / fireRate;
+    public void Shoot(InputActionReference fireAction, Transform firePoint, int collision_layer)
+    {
+        if (fireAction != null) // player shooting
+        {
+            if (fireMode == FireMode.FULL_AUTO && fireAction.action.IsPressed())
+            {
+                fireTimer -= Time.deltaTime;
+                if (fireTimer <= 0f && currentAmmo - ammoCost > 0)
+                {
+                    if (!infiniteAmmo) currentAmmo -= ammoCost;
+                    fireTimer += 1f / fireRate;
+                    ShootProjectile(firePoint, collision_layer);
+                }
+            }
+            else if (fireMode == FireMode.SEMI_AUTO && fireAction.action.WasPressedThisFrame() && currentAmmo - ammoCost > 0)
+            {
+                if (!infiniteAmmo) currentAmmo -= ammoCost;
+                ShootProjectile(firePoint, collision_layer);
+            }
+            else
+            {
+                fireTimer = 0f;
             }
         }
-        else if (fireMode == 1 && fireAction.action.WasPressedThisFrame())
+        else // other entities
         {
-            Shoot(firePoint, collision_layer);
-        }
-        else
-        {
-            fireTimer = 0f;
+            switch (fireMode)
+            {
+                case FireMode.FULL_AUTO:
+                    fireTimer -= Time.deltaTime;
+                    if (fireTimer <= 0f && (infiniteAmmo || currentAmmo - ammoCost > 0))
+                    {
+                        if (!infiniteAmmo) currentAmmo -= ammoCost;
+                        fireTimer += 1f / fireRate;
+                        ShootProjectile(firePoint, collision_layer);
+                    }
+
+                    break;
+
+                case FireMode.SEMI_AUTO:
+                    if (currentAmmo - ammoCost > 0)
+                    {
+                        if (!infiniteAmmo) currentAmmo -= ammoCost;
+                        ShootProjectile(firePoint, collision_layer);
+                    }
+                    break;
+
+                default:
+                    fireTimer = 0f;
+                    break;
+            }
         }
     }
 
-    private void Shoot(Transform firePoint, int collision_layer)
+    private void ShootProjectile(Transform firePoint, int collision_layer)
     {
         // create projectile
         string[] ignored_layers = { "Enemy Attacks", "Player Attacks" };
         LayerMask layer = LayerMask.GetMask(ignored_layers);
 
-        Projectile projectile = Instantiate(proj, firePoint.position, firePoint.rotation).GetComponent<Projectile>();
-        projectile.gameObject.layer = collision_layer;
-        projectile.rigidBody.excludeLayers = layer;        
+        // TODO: set parent of proj to owner GameObject
+        Projectile proj  = Instantiate(projectile, firePoint.position, firePoint.rotation).GetComponent<Projectile>();
+        proj.damage = damage;
+        proj.force = projectileForce;
+        proj.gameObject.layer = collision_layer;
+        proj.rigidBody.excludeLayers = layer;        
     }
 }
