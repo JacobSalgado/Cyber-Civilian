@@ -1,27 +1,13 @@
 using System;
 using UnityEngine;
 
-public class Projectile : Entity
+public abstract class Projectile : Entity
 {
     [Header("==Projectile GameObjects==")]
     public GameObject hitEffect;
 
     [NonSerialized] public float force;
     [NonSerialized] public int damage;
-
-    public override void InitializeStates()
-    {
-        AddState("Idle", new ProjectileIdle(this));
-        AddState("Travel", new ProjectileTravel(this));
-
-        ChangeState("Travel");
-    }
-
-    public override void Start()
-    {
-        base.Start();
-        InitializeStates();
-    }
 
     public void OnTriggerEnter2D(Collider2D collision)
     {

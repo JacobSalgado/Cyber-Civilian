@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletIdle : State
@@ -8,7 +7,7 @@ public class BulletIdle : State
 
     public BulletIdle(Entity new_entity) : base(new_entity)
     {
-        bullet = (Bullet)new_entity;
+        bullet = (Bullet) new_entity;
     }
 
     public override void UpdateState()

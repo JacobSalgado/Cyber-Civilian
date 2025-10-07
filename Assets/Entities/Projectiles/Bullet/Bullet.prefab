@@ -397,7 +397,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6344234565907112943, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8128291381692878137}
+      addedObject: {fileID: 607599828958427451}
   m_SourcePrefab: {fileID: 100100000, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
 --- !u!4 &1525192652845148793 stripped
 Transform:
@@ -414,7 +414,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6344234565907112943, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
   m_PrefabInstance: {fileID: 8645039574102401083}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8128291381692878137
+--- !u!114 &607599828958427451
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -423,21 +423,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 3454936053175321556}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7c91f6713e9f9a40a9b3953869b640b, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e49cb0386f8c8443a574deb8e5a485c, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Projectile
+  m_EditorClassIdentifier: Assembly-CSharp::Bullet
   rigidBody: {fileID: 3889607568730740821}
   SFXPlayer: {fileID: 9040371715733983973}
   entityData: {fileID: 0}
   healthBar: {fileID: 0}
   hurtbox: {fileID: 9019427488721472585}
   firePoint: {fileID: 0}
-  fireTimer: 0
-  fireRate: 5
   invincibility: 0
   hitEffect: {fileID: 6996612073667387790, guid: 73dd775d02fe8ef4cab1bbcfb652c45c, type: 3}
-  damage: 50
-  force: 20
 --- !u!50 &3889607568730740821 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 4756910380638058606, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
