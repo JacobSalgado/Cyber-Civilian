@@ -42,14 +42,14 @@ public class Weapon : MonoBehaviour
             if (fireMode == FireMode.FULL_AUTO && fireAction.action.IsPressed())
             {
                 fireTimer -= Time.deltaTime;
-                if (fireTimer <= 0f && currentAmmo - ammoCost > 0)
+                if (fireTimer <= 0f && currentAmmo - ammoCost >= 0)
                 {
                     if (!infiniteAmmo) currentAmmo -= ammoCost;
                     fireTimer += 1f / fireRate;
                     ShootProjectile(firePoint, collision_layer);
                 }
             }
-            else if (fireMode == FireMode.SEMI_AUTO && fireAction.action.WasPressedThisFrame() && currentAmmo - ammoCost > 0)
+            else if (fireMode == FireMode.SEMI_AUTO && fireAction.action.WasPressedThisFrame() && currentAmmo - ammoCost >= 0)
             {
                 if (!infiniteAmmo) currentAmmo -= ammoCost;
                 ShootProjectile(firePoint, collision_layer);
@@ -65,7 +65,7 @@ public class Weapon : MonoBehaviour
             {
                 case FireMode.FULL_AUTO:
                     fireTimer -= Time.deltaTime;
-                    if (fireTimer <= 0f && (infiniteAmmo || currentAmmo - ammoCost > 0))
+                    if (fireTimer <= 0f && (infiniteAmmo || currentAmmo - ammoCost >= 0))
                     {
                         if (!infiniteAmmo) currentAmmo -= ammoCost;
                         fireTimer += 1f / fireRate;
@@ -75,7 +75,7 @@ public class Weapon : MonoBehaviour
                     break;
 
                 case FireMode.SEMI_AUTO:
-                    if (currentAmmo - ammoCost > 0)
+                    if (currentAmmo - ammoCost >= 0)
                     {
                         if (!infiniteAmmo) currentAmmo -= ammoCost;
                         ShootProjectile(firePoint, collision_layer);
