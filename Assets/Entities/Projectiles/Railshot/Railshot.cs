@@ -1,0 +1,18 @@
+using UnityEngine;
+
+public class Railshot : Projectile
+{
+    public override void InitializeStates()
+    {
+        AddState("Idle", new RailshotIdle(this));
+        AddState("Travel", new RailshotTravel(this));
+
+        ChangeState("Travel");
+    }
+
+    public override void Start()
+    {
+        base.Start();
+        InitializeStates();
+    }
+}
