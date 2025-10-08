@@ -17,8 +17,32 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8488037738508959878}
     - target: {fileID: 980040537850196916, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_PreviousShadowShape2DSource
+      value: 
+      objectReference: {fileID: 8488037738508959878}
+    - target: {fileID: 980040537850196916, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_ShadowMesh.m_LocalBounds.m_Center.x
+      value: 0.008407593
+      objectReference: {fileID: 0}
+    - target: {fileID: 980040537850196916, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_ShadowMesh.m_LocalBounds.m_Center.y
+      value: 0.0001449585
+      objectReference: {fileID: 0}
+    - target: {fileID: 980040537850196916, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_ShadowMesh.m_LocalBounds.m_Extent.x
+      value: 0.5039215
+      objectReference: {fileID: 0}
+    - target: {fileID: 980040537850196916, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_ShadowMesh.m_LocalBounds.m_Extent.y
+      value: 1.015068
+      objectReference: {fileID: 0}
+    - target: {fileID: 980040537850196916, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       propertyPath: 'managedReferences[3501390542134837322]'
       value: Unity.RenderPipelines.Universal.2D.Runtime UnityEngine.Rendering.Universal.ShadowShape2DProvider_Collider2D
+      objectReference: {fileID: 0}
+    - target: {fileID: 1868575608633948007, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.09
       objectReference: {fileID: 0}
     - target: {fileID: 6527896415030157554, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       propertyPath: m_LocalPosition.x
