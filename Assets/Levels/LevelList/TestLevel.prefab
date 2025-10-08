@@ -10999,6 +10999,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7417837885597610919}
     m_Modifications:
+    - target: {fileID: 1472304401240260293, guid: 1cc5c3f5a7b954e4a856c91027a3f23f, type: 3}
+      propertyPath: m_PreviousShadowShape2DSource
+      value: 
+      objectReference: {fileID: 7871857314443426658}
+    - target: {fileID: 1472304401240260293, guid: 1cc5c3f5a7b954e4a856c91027a3f23f, type: 3}
+      propertyPath: m_ShadowMesh.m_LocalBounds.m_Center.x
+      value: 0.008407593
+      objectReference: {fileID: 0}
+    - target: {fileID: 1472304401240260293, guid: 1cc5c3f5a7b954e4a856c91027a3f23f, type: 3}
+      propertyPath: m_ShadowMesh.m_LocalBounds.m_Center.y
+      value: 0.0001449585
+      objectReference: {fileID: 0}
+    - target: {fileID: 1472304401240260293, guid: 1cc5c3f5a7b954e4a856c91027a3f23f, type: 3}
+      propertyPath: m_ShadowMesh.m_LocalBounds.m_Extent.x
+      value: 0.5039215
+      objectReference: {fileID: 0}
+    - target: {fileID: 1472304401240260293, guid: 1cc5c3f5a7b954e4a856c91027a3f23f, type: 3}
+      propertyPath: m_ShadowMesh.m_LocalBounds.m_Extent.y
+      value: 1.015068
+      objectReference: {fileID: 0}
     - target: {fileID: 4855126226618772867, guid: 1cc5c3f5a7b954e4a856c91027a3f23f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.72
@@ -11055,6 +11075,11 @@ PrefabInstance:
 --- !u!4 &6599244923236603495 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4855126226618772867, guid: 1cc5c3f5a7b954e4a856c91027a3f23f, type: 3}
+  m_PrefabInstance: {fileID: 1798596373320973284}
+  m_PrefabAsset: {fileID: 0}
+--- !u!60 &7871857314443426658 stripped
+PolygonCollider2D:
+  m_CorrespondingSourceObject: {fileID: 8488037738508959878, guid: 1cc5c3f5a7b954e4a856c91027a3f23f, type: 3}
   m_PrefabInstance: {fileID: 1798596373320973284}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5786827480593058606
@@ -11145,12 +11170,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6771834842223702313, guid: 512edb4db613d9045b2de37832b2b10f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7417837885597610919}
-    - targetCorrespondingSourceObject: {fileID: 6771834842223702313, guid: 512edb4db613d9045b2de37832b2b10f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6729087765433909064}
-    - targetCorrespondingSourceObject: {fileID: 6771834842223702313, guid: 512edb4db613d9045b2de37832b2b10f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4217777840635023671}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 512edb4db613d9045b2de37832b2b10f, type: 3}
 --- !u!4 &987575872505297415 stripped

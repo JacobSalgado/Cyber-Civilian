@@ -1,16 +1,16 @@
 using UnityEngine;
 
-public class RailgunIdle : MonoBehaviour
+public class RailgunIdle : State
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    readonly Railgun railgun;
+
+    public RailgunIdle(Entity new_entity) : base(new_entity)
     {
-        
+        railgun = (Railgun)new_entity;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void UpdateState()
     {
-        
+        railgun.ChangeState("Travel");
     }
 }

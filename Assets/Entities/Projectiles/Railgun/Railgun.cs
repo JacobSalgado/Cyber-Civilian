@@ -7,11 +7,12 @@ public class Railgun : Projectile
         AddState("Idle", new RailgunIdle(this));
         AddState("Travel", new RailgunTravel(this));
 
-        ChangeState("Idle");
+        ChangeState("Travel");
     }
 
     public override void Start()
     {
-        
+        base.Start();
+        InitializeStates();
     }
 }
