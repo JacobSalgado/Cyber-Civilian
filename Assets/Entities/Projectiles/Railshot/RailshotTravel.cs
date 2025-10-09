@@ -5,7 +5,7 @@ public class RailshotTravel : State
 {
     readonly Railshot railshot;
 
-    private float lifeTime = 5f;
+    private float lifeTime = 1f;
     private float timer = 0f;
   
     public RailshotTravel(Entity new_entity) : base(new_entity)
@@ -15,11 +15,11 @@ public class RailshotTravel : State
 
     public override void EnterState(Dictionary<string, object> args = null)
     {
-        // Keep STILL
-        railshot.rigidBody.linearVelocity = Vector2.zero;
+        // reset velocity
+        //railshot.rigidBody.linearVelocity = Vector2.zero;
 
         //  forward force
-        // railshot.rigidBody.AddForce(railshot.transform.right * -1f * railshot.force, ForceMode2D.Impulse);
+        railshot.rigidBody.AddForce(railshot.transform.right * -1f * railshot.force, ForceMode2D.Impulse);
     }
 
     public override void UpdateState()
