@@ -15,11 +15,11 @@ public class RailshotTravel : State
 
     public override void EnterState(Dictionary<string, object> args = null)
     {
-        // reset velocity
-        //railshot.rigidBody.linearVelocity = Vector2.zero;
+        // rkeep STILL
+        railshot.rigidBody.linearVelocity = Vector2.zero;
 
         //  forward force
-        railshot.rigidBody.AddForce(railshot.transform.right * -1f * railshot.force, ForceMode2D.Impulse);
+        // railshot.rigidBody.AddForce(railshot.transform.right * -1f * railshot.force, ForceMode2D.Impulse);
     }
 
     public override void UpdateState()
