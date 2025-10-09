@@ -4,10 +4,12 @@ public class Railshot : Projectile
 {
     public override void InitializeStates()
     {
-        AddState("Idle", new RailshotIdle(this));
-        AddState("Travel", new RailshotTravel(this));
+        //AddState("Idle", new RailshotIdle(this));
+        //AddState("Travel", new RailshotTravel(this));
 
-        ChangeState("Travel");
+        AddState("Active", new RailshotActive(this));
+
+        ChangeState("Active");
     }
 
     public override void Start()
