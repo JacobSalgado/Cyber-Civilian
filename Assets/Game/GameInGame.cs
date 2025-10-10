@@ -7,6 +7,7 @@ public class GameInGame : State
 {
     const string playerHUDPath= "Assets/UI/PlayerHUD/PlayerHUD.prefab";
     readonly GameManager manager;
+    private PlayerHUD hud;
 
     public GameInGame(GameManager gameManager) : base(gameManager)
     {
@@ -15,18 +16,22 @@ public class GameInGame : State
 
     public override void EnterState(Dictionary<string, object> args = null)
     {
-        manager.levelManager.LoadLevel(manager.levelList[0]);
-        manager.player = manager.levelManager.current_level.player;
+        Level new_level;
+
+        LevelManager.LoadLevel(manager.levelList[0], manager.levelHolder);
+        new_level = LevelManager.current_level;
+
+        manager.player = new_level.player;
 
         // load PlayerHUD prefab
-        Canvas hud = PrefabUtility.LoadPrefabContents(playerHUDPath).GetComponent<Canvas>();
-        hud.transform.SetParent(manager.UIHolder.transform, false);
-        
-        manager.player.healthBar = hud.transform.Find("HealthSlider").GetComponent<HealthBar>();
+        hud = PrefabUtility.LoadPrefabContents(playerHUDPath).GetComponent<PlayerHUD>();
+        hud.gameObject.transform.SetParent(manager.UIHolder.transform, false);
+
+        manager.player.healthBar = hud.healthSlider.GetComponent<HealthBar>();
         manager.player.healthBar.UpdateHealthBar();
 
         // connect current level's camera confiner and player object to the game camera
-        manager.cinemachine.GetComponent<CinemachineConfiner2D>().BoundingShape2D = manager.levelManager.current_level.confiner;
+        manager.cinemachine.GetComponent<CinemachineConfiner2D>().BoundingShape2D = new_level.confiner;
         manager.cinemachine.Follow = manager.player.transform;
 
         // connect player to cam for mouse aiming
@@ -37,9 +42,13 @@ public class GameInGame : State
     {
 
     }
-    
+
     public override void ExitState(Dictionary<string, object> args = null)
     {
-        
+        // close current level
+        LevelManager.Close();
+
+        // close HUD
+        hud.PlayerHUDClose();
     }
 }

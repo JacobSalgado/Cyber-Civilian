@@ -12,7 +12,7 @@ public class BulletTravel : State
 
     public override void EnterState(Dictionary<string, object> args = null)
     {
-        bullet.rigidBody.AddForce(bullet.transform.right * -1f * bullet.force, ForceMode2D.Impulse);
+        bullet.rigidBody.AddForce(-1f * bullet.force * bullet.transform.right, ForceMode2D.Impulse);
     }
 
     public override void UpdateState()

@@ -28,7 +28,6 @@ public class Weapon : MonoBehaviour
     // Semi auto seems to work when firerate is = 0 but that leads to division by zero which is an underfined behavior
     public FireMode fireMode;
 
-
     void Start()
     {
         // ammo underflow/overflow check
@@ -96,8 +95,8 @@ public class Weapon : MonoBehaviour
         string[] ignored_layers = { "Enemy Attacks", "Player Attacks" };
         LayerMask layer = LayerMask.GetMask(ignored_layers);
 
-        // TODO: set parent of proj to owner GameObject
         Projectile proj  = Instantiate(projectile, firePoint.position, firePoint.rotation).GetComponent<Projectile>();
+
         proj.damage = damage;
         proj.force = projectileForce;
         proj.gameObject.layer = collision_layer;

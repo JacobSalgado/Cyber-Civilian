@@ -54,6 +54,7 @@ public class Player : Entity
 
     public override void Start()
     {
+        base.Start();
         InitializeStates();
         tr.emitting = false;
 
@@ -107,9 +108,8 @@ public class Player : Entity
         base.FixedUpdate();
 
         // update rotation
-        Vector2 lookDir = mousePos - rigidBody.position;
-        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 180f;
-        rigidBody.rotation = angle;
+        Vector2 dir = GetDirectionToPosition(mousePos);
+        RotateToDirection(dir);
     }
 
     public void EquipNewWeapon(PlayerWeaponType newWeaponType)

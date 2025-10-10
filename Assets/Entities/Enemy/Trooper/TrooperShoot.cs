@@ -22,7 +22,8 @@ public class TrooperShoot : State
         {
             if (distance < trooper.distanceToShoot)
             {
-                trooper.RotateToDirection(trooper.GetDirectionToPosition(trooper.target.transform.position));
+                Vector2 dir = trooper.GetDirectionToPosition(trooper.target.gameObject.transform.position);
+                trooper.RotateToDirection(dir);
                 trooper.ShootWeapon(trooper.weapon, null, trooper.firePoint, 7);
             }
             else if (distance < trooper.distanceToMove)

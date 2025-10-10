@@ -9,7 +9,6 @@ public abstract class Entity : StateManager
     public EntityData entityData;
     public HealthBar healthBar;
     public PolygonCollider2D hurtbox;
-
     public Transform firePoint;
 
     public bool invincibility = false;
@@ -60,7 +59,7 @@ public abstract class Entity : StateManager
 
     public Vector2 GetDirectionToPosition(Vector2 point)
     {
-        Vector2 direction = (point - (Vector2)transform.position).normalized;
+        Vector2 direction = (point - (Vector2) transform.position).normalized;
         return direction;
     }
 
@@ -70,6 +69,14 @@ public abstract class Entity : StateManager
         float angleDeg = angleRad * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, angleDeg + 180f);
     }
+
+    // TODO: rotate firePoint transform
+    /*
+    public Vector2 RotateFirePoint(Transform firePoint)
+    {
+
+    }
+    */
 
     public virtual void FixedUpdate()
     {
