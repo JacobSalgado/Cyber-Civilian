@@ -40,17 +40,11 @@ public class PlayerDash : State
     }
     private IEnumerator Dash()
     {
-        // velocity = player.moveAction.action.ReadValue<Vector2>();
-        // player.rigidBody.linearVelocity = new Vector2(velocity.normalized.x * player.dashPower, velocity.normalized.y * player.dashPower);
-        // player.rigidBody.linearVelocity = velocity.normalized * player.dashPower * player.entityData.moveSpeed;
-        // player.tr.emitting = true;
         yield return new WaitForSeconds(player.dashTime);
         player.tr.emitting = false;
         player.setIsDashing(false);
         player.invincibility = false;
         player.StartCoroutine(DashCooldown());
-        // yield return new WaitForSeconds(player.dashCooldown);
-        // player.setCanDash(true);
     }
 
     private IEnumerator DashCooldown()

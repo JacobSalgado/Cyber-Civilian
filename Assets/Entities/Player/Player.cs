@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -24,6 +25,7 @@ public class Player : Entity
     public InputActionReference fireAction;
     public InputActionReference dashAction;
     public InputActionReference weaponKeybindsAction;
+    public InputActionReference phaseAction;
 
     [Header("==Weapon Properties==")]
     [SerializeField] private GameObject[] weapons;
@@ -36,6 +38,7 @@ public class Player : Entity
     public float dashCooldown = 1f;
     private bool canDash = true;
     private bool isDashing = false;
+    private bool isPhasing = false;
 
     [Header("==Trail Renderer==")]
     public TrailRenderer tr; // Used to create dashing effect
@@ -68,7 +71,7 @@ public class Player : Entity
             // check which button was pressed in the actionMap
             PlayerWeaponType new_weapon_type;
             string action = weaponKeybindsAction.action.activeControl.name;
-            
+
             if (string.Compare(action, "q") != 0)
             {
                 int num_key = int.Parse(action);
@@ -81,8 +84,8 @@ public class Player : Entity
 
         // check fire inputs
         if (currentWeaponType < PlayerWeaponType.NONE)
-           ShootWeapon(weapons[(int)currentWeaponType], fireAction, firePoint, 6);
-        
+            ShootWeapon(weapons[(int)currentWeaponType], fireAction, firePoint, 6);
+
         // check dash inputs
         if (dashAction.action.WasPressedThisFrame() && canDash && !isDashing)
         {
@@ -91,6 +94,12 @@ public class Player : Entity
             invincibility = true;
             ChangeState("Dash");
         }
+
+        // check phase inputs
+        if (phaseAction.action.WasPressedThisFrame() && !isPhasing)
+            Phase(true);
+        else if (phaseAction.action.WasPressedThisFrame() && isPhasing)
+            Phase(false);
     }
 
     public override void FixedUpdate()
@@ -111,6 +120,20 @@ public class Player : Entity
             weaponRenderer.sprite = weapons[(int)newWeaponType].GetComponent<Weapon>().weaponSprite;
         }
         else Debug.LogError(string.Format("{0} not in weapon array", newWeaponType));
+    }
+
+    public void Phase(bool activate)
+    {
+        if (activate)
+        {
+            isPhasing = true;
+            gameObject.layer = LayerMask.NameToLayer("Phasing"); // Layer 8
+        }
+        else
+        {
+            isPhasing = false;
+            gameObject.layer = LayerMask.NameToLayer("Default"); // Layer 0
+        }
     }
 
     public bool getIsDashing()
