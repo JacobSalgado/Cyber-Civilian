@@ -70,16 +70,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4620524579252194416, guid: 44f83fffe9635974e91eced60e11c4c8, type: 3}
       propertyPath: fireMode
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4620524579252194416, guid: 44f83fffe9635974e91eced60e11c4c8, type: 3}
       propertyPath: fireRate
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4620524579252194416, guid: 44f83fffe9635974e91eced60e11c4c8, type: 3}
       propertyPath: projectile
       value: 
       objectReference: {fileID: 1229317439514898867, guid: 1e05c91a53de4944f9251f8be5f6c4fb, type: 3}
+    - target: {fileID: 4620524579252194416, guid: 44f83fffe9635974e91eced60e11c4c8, type: 3}
+      propertyPath: spawnDelay
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4620524579252194416, guid: 44f83fffe9635974e91eced60e11c4c8, type: 3}
       propertyPath: currentAmmo
       value: 1
@@ -95,6 +99,10 @@ PrefabInstance:
     - target: {fileID: 4620524579252194416, guid: 44f83fffe9635974e91eced60e11c4c8, type: 3}
       propertyPath: projectileForce
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4620524579252194416, guid: 44f83fffe9635974e91eced60e11c4c8, type: 3}
+      propertyPath: playerRailshotTime
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

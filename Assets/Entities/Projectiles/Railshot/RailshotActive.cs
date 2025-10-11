@@ -5,7 +5,7 @@ public class RailshotActive : State
 {
     readonly Railshot railshot;
 
-    private float chargeTime = 2f;
+    private float chargeTime = 5f;
     private float lifeTime = 5f;
     private float timer = 0f;
 
@@ -19,6 +19,7 @@ public class RailshotActive : State
     public override void EnterState(Dictionary<string, object> args = null)
     {
         railshot.rigidBody.linearVelocity = Vector2.zero;
+        timer = 0f;
     }
 
     public override void UpdateState()

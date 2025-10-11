@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -23,6 +24,11 @@ public class GameManager : StateManager
     [Header("==Game Parameters==")]
     public string[] levelList;
     [SerializeField] private GameState startingState;
+
+    [Header("==Weapon References==")]
+    public Weapon weapon;
+    public Transform firePoint;
+    public int collisionLayer = 8;
 
     /* Non-Serialized Vars */
     [NonSerialized] public Player player;

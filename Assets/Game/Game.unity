@@ -194,6 +194,10 @@ MonoBehaviour:
   levelList:
   - TestLevel
   startingState: 2
+  weapon: {fileID: 736572276714353089, guid: 3bb0f60c7f8aaf24d8e1e5bf48bb31d8, type: 3}
+  fireAction: {fileID: 1120369429361536294, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  firePoint: {fileID: 5984970219455982714, guid: 31a76bbf8f3a0104cb94a726e11d1040, type: 3}
+  collisionLayer: 8
 --- !u!4 &476967449
 Transform:
   m_ObjectHideFlags: 0
