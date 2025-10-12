@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEditor;
-using UnityEngine;
 
 public class GameInGame : State
 {
@@ -40,7 +39,14 @@ public class GameInGame : State
 
     public override void UpdateState()
     {
+        // check level completion
+        if (LevelManager.isLevelCompleted)
+        {
+            // TODO: change level to new one
+            manager.ChangeState("MainMenu");
+        }
 
+        // TODO: spawn non-immediate enemies based on their spawn condition
     }
 
     public override void ExitState(Dictionary<string, object> args = null)

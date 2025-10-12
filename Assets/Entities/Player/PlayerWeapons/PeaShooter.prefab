@@ -58,7 +58,7 @@ PrefabInstance:
       objectReference: {fileID: 3454936053175321556, guid: 0385869716d2dec4d98dcb0e9fa674c1, type: 3}
     - target: {fileID: 4620524579252194416, guid: 44f83fffe9635974e91eced60e11c4c8, type: 3}
       propertyPath: damage
-      value: 10
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 4620524579252194416, guid: 44f83fffe9635974e91eced60e11c4c8, type: 3}
       propertyPath: maxAmmo

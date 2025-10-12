@@ -15,23 +15,23 @@ public abstract class Projectile : Entity
         if (attacking_layer == 7 && collision.gameObject.TryGetComponent<Player>(out var player))
         {
             player.TakeDamage(damage);
-            ProjectileExplode();
+            EntityDie();
         }
         else if (attacking_layer == 6 && collision.gameObject.TryGetComponent<Enemy>(out var enemy))
         {
             enemy.TakeDamage(damage);
-            ProjectileExplode();
+            EntityDie();
         }
-        
+
         // colliding with the level
         if (collision.gameObject.layer == 0)
         {
             //print(collision.gameObject.name);
-            ProjectileExplode();
+            EntityDie();
         }
     }
-
-    public void ProjectileExplode()
+    
+    public override void EntityDie()
     {
         GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity, LevelManager.current_level.EntityList.transform);
 

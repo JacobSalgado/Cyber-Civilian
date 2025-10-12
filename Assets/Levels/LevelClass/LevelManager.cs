@@ -9,9 +9,12 @@ using UnityEngine;
 /// </summary>
 public static class LevelManager
 {
-    [NonSerialized] public static Level current_level;
-    [NonSerialized] public static Player player;
-    [NonSerialized] public static bool isLevelCompleted = false;
+    public static Level current_level;
+    public static Player player;
+    public static bool isLevelCompleted = false;
+
+    public static int enemyKilledCounter = 0;
+    public static int enemyKilledGoal = 2;
 
     /// <summary>
     /// Load a level prefab
@@ -45,7 +48,8 @@ public static class LevelManager
         foreach (Transform child in current_level.EnemySpawns.transform)
         {
             EnemySpawn enemySpawn = child.gameObject.GetComponent<EnemySpawn>();
-            enemySpawn.Spawn();
+            if (enemySpawn.spawnCondition == EnemySpawn.EnemySpawnCondition.IMMEDIATE)
+                enemySpawn.Spawn();
         }
         
         // establish level completion
@@ -53,6 +57,8 @@ public static class LevelManager
 
     public static void Close()
     {
+        enemyKilledCounter = 0;
+        isLevelCompleted = false;
         current_level.LevelClose();
     }
 

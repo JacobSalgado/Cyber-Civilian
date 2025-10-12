@@ -51,6 +51,11 @@ public class Player : Entity
         ChangeState("Idle");
     }
 
+    public override void EntityDie()
+    {
+        // TODO: GAME OVER SCREEN
+    }
+
     public override void Start()
     {
         base.Start();

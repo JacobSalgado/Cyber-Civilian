@@ -8,8 +8,8 @@ public abstract class Enemy : Entity
     public GameObject weapon;
 
     // Non-Serialized Vars
+    [NonSerialized] public Transform target; // following the player
     //[NonSerialized] public bool isAggro;
-    public Transform target; // following the player
 
     /// <summary>
     /// Calculates distance to target
@@ -36,5 +36,11 @@ public abstract class Enemy : Entity
         }
 
         return -1f;
+    }
+
+    public override void EntityDie()
+    {
+        LevelManager.enemyKilledCounter += 1;
+        Destroy(gameObject);
     }
 }

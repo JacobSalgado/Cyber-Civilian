@@ -8,13 +8,11 @@ public abstract class Entity : StateManager
     public AudioSource SFXPlayer;
     public EntityData entityData;
     public HealthBar healthBar;
-
     public bool invincibility = false;
 
-    public virtual void InitializeStates()
-    {
+    public virtual void InitializeStates() { }
 
-    }
+    public abstract void EntityDie();
 
     // dictionary: asset store or scriptable objects
     public virtual void Start()
@@ -71,6 +69,12 @@ public abstract class Entity : StateManager
     public virtual void FixedUpdate()
     {
         current_state.UpdateState();
+
+        // health checks
+        if (entityData != null && entityData.currentHealth <= 0)
+        {
+            EntityDie();
+        }
     }
 
     public void ShootWeapon(GameObject weapon, InputActionReference fireAction, Vector3 position, Quaternion rotation, int collision_layer)
