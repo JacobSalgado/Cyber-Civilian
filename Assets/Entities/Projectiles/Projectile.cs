@@ -24,7 +24,7 @@ public abstract class Projectile : Entity
         }
         
         // colliding with the level
-        if (collision.gameObject.layer == 0 && !collision.gameObject.TryGetComponent<Entity>(out _))
+        if (collision.gameObject.layer == 0)
         {
             //print(collision.gameObject.name);
             ProjectileExplode();
