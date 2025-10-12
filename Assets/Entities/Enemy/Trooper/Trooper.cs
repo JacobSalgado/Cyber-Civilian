@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Trooper : Enemy
 {
-    [Header("Trooper Properties")]
+    [Header("==Trooper Properties==")]
     public float distanceToShoot;
     public float distanceToMove;
 

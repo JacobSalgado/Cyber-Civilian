@@ -92,14 +92,14 @@ public class Weapon : MonoBehaviour
     private void ShootProjectile(Transform firePoint, int collision_layer)
     {
         // create projectile
-        string[] ignored_layers = { "Enemy Attacks", "Player Attacks" };
-        LayerMask layer = LayerMask.GetMask(ignored_layers);
+        //string[] ignored_layers = { "Enemy Attacks", "Player Attacks" };
+        //LayerMask layer = LayerMask.GetMask(ignored_layers);
 
-        Projectile proj  = Instantiate(projectile, firePoint.position, firePoint.rotation).GetComponent<Projectile>();
+        Projectile proj  = Instantiate(projectile, firePoint.position, firePoint.rotation, LevelManager.current_level.EntityList.transform).GetComponent<Projectile>();
 
         proj.damage = damage;
         proj.force = projectileForce;
-        proj.gameObject.layer = collision_layer;
-        proj.rigidBody.excludeLayers = layer;        
+        proj.attacking_layer = collision_layer;
+        //proj.rigidBody.excludeLayers = layer;        
     }
 }

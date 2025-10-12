@@ -20,8 +20,8 @@ public class GameMainMenu : State
         menu.gameObject.transform.SetParent(manager.UIHolder.transform, false);
 
         // assign listeners for buttons
-        menu.buttons[0].onClick.AddListener(manager.StartGame);
-        menu.buttons[1].onClick.AddListener(manager.EndGame);
+        menu.buttons[0].onClick.AddListener(manager.StartGameButton);
+        menu.buttons[1].onClick.AddListener(manager.EndGameButton);
     }
 
     public override void UpdateState()

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GameInGame : State
 {
-    const string playerHUDPath= "Assets/UI/PlayerHUD/PlayerHUD.prefab";
+    const string playerHUDPath = "Assets/UI/PlayerHUD/PlayerHUD.prefab";
     readonly GameManager manager;
     private PlayerHUD hud;
 

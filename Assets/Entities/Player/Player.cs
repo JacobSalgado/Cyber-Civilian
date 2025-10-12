@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using JetBrains.Rider.Unity.Editor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,9 +16,8 @@ public class Player : Entity
         NONE
     }
 
-    // private variables
-    [NonSerialized] public Camera cam;
-    private Vector2 mousePos;
+    [Header("==Necessary GameObjects==")]
+    public TrailRenderer tr; // Used to create dashing effect
 
     [Header("==Controls==")]
     public InputActionReference moveAction;
@@ -26,6 +26,7 @@ public class Player : Entity
     public InputActionReference weaponKeybindsAction;
 
     [Header("==Weapon Properties==")]
+    public Transform firePoint;
     [SerializeField] private GameObject[] weapons;
     public PlayerWeaponType currentWeaponType = PlayerWeaponType.BULLET;
     public SpriteRenderer weaponRenderer; // Renderer for switching weapon sprites
@@ -37,8 +38,9 @@ public class Player : Entity
     private bool canDash = true;
     private bool isDashing = false;
 
-    [Header("==Trail Renderer==")]
-    public TrailRenderer tr; // Used to create dashing effect
+    // private variables
+    [NonSerialized] public Camera cam;
+    private Vector2 mousePos;
 
     public override void InitializeStates()
     {

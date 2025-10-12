@@ -1,11 +1,15 @@
+using System;
 using UnityEngine;
 
 public abstract class Enemy : Entity
 {
     [Header("==Enemy GameObjects==")]
-    public Transform target; // following the player
+    public Transform firePoint;
     public GameObject weapon;
+
+    // Non-Serialized Vars
     //[NonSerialized] public bool isAggro;
+    public Transform target; // following the player
 
     /// <summary>
     /// Calculates distance to target

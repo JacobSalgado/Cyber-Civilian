@@ -5,38 +5,37 @@ public abstract class Projectile : Entity
 {
     [Header("==Projectile GameObjects==")]
     public GameObject hitEffect;
+    public LayerMask attacking_layer = 0;
 
     [NonSerialized] public float force;
     [NonSerialized] public int damage;
 
-    public override void Start()
-    {
-        base.Start();
-
-        // TODO: set parent of proj to owner GameObject
-        gameObject.transform.SetParent(LevelManager.current_level.EntityList.transform, false);
-    }
-
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        //print(hurtbox.gameObject.layer);
-        if (gameObject.layer == 7 && collision.gameObject.TryGetComponent<Player>(out var player))
+        if (attacking_layer == 7 && collision.gameObject.TryGetComponent<Player>(out var player))
         {
             player.TakeDamage(damage);
+            ProjectileExplode();
         }
-        else if (gameObject.layer == 6 && collision.gameObject.TryGetComponent<Enemy>(out var enemy))
+        else if (attacking_layer == 6 && collision.gameObject.TryGetComponent<Enemy>(out var enemy))
         {
             enemy.TakeDamage(damage);
+            ProjectileExplode();
         }
-
-        if (collision.gameObject.layer == 0)
+        
+        // colliding with the level
+        if (collision.gameObject.layer == 0 && !collision.gameObject.TryGetComponent<Entity>(out _))
         {
-            GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
-
-            effect.transform.SetParent(LevelManager.current_level.EntityList.transform, false);
-
-            Destroy(effect, 0.1f);
-            Destroy(gameObject);
+            //print(collision.gameObject.name);
+            ProjectileExplode();
         }
+    }
+
+    public void ProjectileExplode()
+    {
+        GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity, LevelManager.current_level.EntityList.transform);
+
+        Destroy(effect, 0.1f);
+        Destroy(gameObject);
     }
 }

@@ -41,12 +41,12 @@ public class GameManager : StateManager
         current_state.UpdateState();
     }
 
-    public void StartGame()
+    public void StartGameButton()
     {
         ChangeState("InGame");
     }
 
-    public void EndGame()
+    public void EndGameButton()
     {
         // TODO: implement end game
         Debug.Log("Game Ended");
@@ -54,23 +54,12 @@ public class GameManager : StateManager
 
     private string GameState_To_String(GameState state)
     {
-        string state_key;
-
-        switch (state)
+        string state_key = state switch
         {
-            case GameState.MAIN_MENU:
-                state_key = "MainMenu";
-                break;
-
-            case GameState.PAUSE_MENU:
-                state_key = "PauseMenu";
-                break;
-
-            default:
-                state_key = "InGame";
-                break;
-        }
-
+            GameState.MAIN_MENU => "MainMenu",
+            GameState.PAUSE_MENU => "PauseMenu",
+            _ => "InGame",
+        };
         return state_key;
     }
 }
