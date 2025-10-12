@@ -83,8 +83,8 @@ public class Player : Entity
         }
 
         // check fire inputs
-        if (currentWeaponType < PlayerWeaponType.NONE)
-           ShootWeapon(weapons[(int)currentWeaponType], fireAction, firePoint, 6);
+        if (currentWeaponType < PlayerWeaponType.NONE && fireAction.action.IsPressed())
+           ShootWeapon(weapons[(int)currentWeaponType], fireAction, firePoint.position, firePoint.rotation, 6);
         
         // check dash inputs
         if (dashAction.action.WasPressedThisFrame() && canDash && !isDashing)

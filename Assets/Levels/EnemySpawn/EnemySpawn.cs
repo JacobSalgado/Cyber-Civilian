@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 public class EnemySpawn : MonoBehaviour
@@ -19,6 +20,8 @@ public class EnemySpawn : MonoBehaviour
             return;
         }
 
+        //GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(enemyPrefab);
+        
         Instantiate(enemyPrefab, transform.position, transform.rotation, LevelManager.current_level.EntityList.transform);
     }
 }

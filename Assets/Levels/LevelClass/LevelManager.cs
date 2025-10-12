@@ -10,7 +10,8 @@ using UnityEngine;
 public static class LevelManager
 {
     [NonSerialized] public static Level current_level;
-    public static bool isLevelCompleted = false;
+    [NonSerialized] public static Player player;
+    [NonSerialized] public static bool isLevelCompleted = false;
 
     /// <summary>
     /// Load a level prefab
@@ -24,6 +25,8 @@ public static class LevelManager
         if (current_level)
             current_level.gameObject.transform.SetParent(parent.transform, false);
         else Debug.LogError(string.Format("Level: {0} doesn't exist in LevelList Folder", level_name));
+
+        player = current_level.player;
 
         // TODO: START THE LEVEL
         StartLevel();
@@ -39,8 +42,12 @@ public static class LevelManager
         }
 
         // Immediate Enemy Spawns Only
+        foreach (Transform child in current_level.EnemySpawns.transform)
+        {
+            EnemySpawn enemySpawn = child.gameObject.GetComponent<EnemySpawn>();
+            enemySpawn.Spawn();
+        }
         
-
         // establish level completion
     }
 
