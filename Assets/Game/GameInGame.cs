@@ -18,7 +18,7 @@ public class GameInGame : State
     {
         Level new_level;
 
-        LevelManager.LoadLevel(manager.levelList[1], manager.levelHolder);
+        LevelManager.LoadLevel(manager.levelList[0], manager.levelHolder);
         new_level = LevelManager.current_level;
 
         manager.player = new_level.player;
