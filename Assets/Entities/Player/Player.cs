@@ -43,6 +43,13 @@ public class Player : Entity
     [Header("==Trail Renderer==")]
     public TrailRenderer tr; // Used to create dashing effect
 
+    [Header("==Resource==")]
+
+    public float energy = 1000f;
+    public float energyStep = 0.01f;
+    public float dashCost = 100f;
+    public float phaseCost = 0.1f;
+
     public override void InitializeStates()
     {
         AddState("Idle", new PlayerIdle(this));
@@ -88,16 +95,17 @@ public class Player : Entity
             ShootWeapon(weapons[(int)currentWeaponType], fireAction, firePoint, 6);
 
         // check dash inputs
-        if (dashAction.action.WasPressedThisFrame() && canDash && !isDashing)
+        if (dashAction.action.WasPressedThisFrame() && canDash && !isDashing && energy - dashCost >= 0)
         {
             canDash = false;
             isDashing = true;
             invincibility = true;
+            energy -= dashCost;
             ChangeState("Dash");
         }
 
         // check phase inputs
-        if (phaseAction.action.WasPressedThisFrame() && !isPhasing)
+        if (phaseAction.action.WasPressedThisFrame() && !isPhasing && energy - phaseCost >= 0)
             Phase(true);
         else if (phaseAction.action.WasPressedThisFrame() && isPhasing)
             Phase(false);
@@ -110,6 +118,22 @@ public class Player : Entity
         // update rotation
         Vector2 dir = GetDirectionToPosition(mousePos);
         RotateToDirection(dir);
+
+        // regenerate energy
+        if (energy < 1000)
+        {
+            energy += energyStep;
+            if (energy > 1000) energy = 1000;
+        }
+
+        if (isPhasing && energy <= 0)
+        {
+            Phase(false);
+        }
+        else if (isPhasing)
+        {
+            energy -= phaseCost;
+        }
     }
 
     public void EquipNewWeapon(PlayerWeaponType newWeaponType)
@@ -127,12 +151,17 @@ public class Player : Entity
         if (activate)
         {
             isPhasing = true;
-            gameObject.layer = LayerMask.NameToLayer("Phasing"); // Layer 8
+            //string[] ignored_layers = { "Default" };
+            Debug.Log("Change state to phasing");
+            //LayerMask phaseLayer = LayerMask.GetMask("Default");
+            //rigidBody.excludeLayers = phaseLayer;
+            gameObject.layer = 8; // Layer Phasing
         }
         else
         {
             isPhasing = false;
-            gameObject.layer = LayerMask.NameToLayer("Default"); // Layer 0
+            Debug.Log("Change state to normal");
+            gameObject.layer = 0; // Layer Default
         }
     }
 
