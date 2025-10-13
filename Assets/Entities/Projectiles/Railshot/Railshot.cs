@@ -2,10 +2,14 @@ using UnityEngine;
 
 public class Railshot : Projectile
 {
+    public SpriteRenderer spriteRenderer;
+    public float fadeawayTime = 2f;
+
     public override void InitializeStates()
     {
         AddState("Idle", new RailshotIdle(this));
         AddState("Active", new RailshotActive(this));
+        AddState("FadeAway", new RailshotFadeAway(this));
 
         ChangeState("Active");
     }

@@ -18,6 +18,7 @@ public abstract class Projectile : Entity
         if (attacking_layer == 7 && collision.gameObject.TryGetComponent<Player>(out var player))
         {
             player.TakeDamage(projData.damage);
+            HitEffect(collision.transform.position);
 
             if (projData.destroyOnCollision)
                 EntityDie();
@@ -25,6 +26,7 @@ public abstract class Projectile : Entity
         else if (attacking_layer == 6 && collision.gameObject.TryGetComponent<Enemy>(out var enemy))
         {
             enemy.TakeDamage(projData.damage);
+            HitEffect(collision.transform.position);
             
             if (projData.destroyOnCollision)
                 EntityDie();
@@ -34,15 +36,20 @@ public abstract class Projectile : Entity
         if (collision.gameObject.layer == 0 && projData.destroyOnCollision)
         {
             //print(collision.gameObject.name);            
+            HitEffect(transform.position);
             EntityDie();
         }
     }
-    
+
     public override void EntityDie()
     {
-        GameObject effect = Instantiate(projData.hitEffect, transform.position, Quaternion.identity, LevelManager.current_level.EntityList.transform);
+        Destroy(gameObject);
+    }
+    
+    public void HitEffect(Vector2 position)
+    {
+        GameObject effect = Instantiate(projData.hitEffect, position, Quaternion.identity, LevelManager.current_level.EntityList.transform);
 
         Destroy(effect, 0.1f);
-        Destroy(gameObject);
     }
 }

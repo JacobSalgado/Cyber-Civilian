@@ -81,13 +81,17 @@ public class Weapon : MonoBehaviour
                 }
 
                 // Fire when player releases the button
-                if (isCharging && fireTimer >= projData.timeToSpawn && fireAction.action.WasReleasedThisFrame())
+                if (isCharging && fireAction.action.WasReleasedThisFrame())
                 {
-                    Debug.Log($"Released at {fireTimer:F2}s");
-                    ShootProjectile(firePoint, collision_layer);
+                    if (fireTimer >= projData.timeToSpawn)
+                    {
+                        Debug.Log($"Released at {fireTimer:F2}s");
+                        ShootProjectile(firePoint, collision_layer);
 
-                    // Reset for next charge
-                    isCharging = false;
+                        // Reset for next charge
+                        isCharging = false;
+                    }
+                    
                     fireTimer = 0f;
                 }
             }
