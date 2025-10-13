@@ -6,7 +6,13 @@ public class ProjectileData : EntityData
 {
     [Header("==General Projectile Data==")]
     public int damage;
+    public GameObject hitEffect;
+
+    [Header("==Optional Projectile Data==")]
     public float lifeTime;
     public float timeToSpawn;
-    public GameObject hitEffect;
+    public bool destroyOnCollision = true;
+
+    [Header("==Railshot Properties==")]
+    public float railshotLength = 10;
 }

@@ -18,18 +18,22 @@ public abstract class Projectile : Entity
         if (attacking_layer == 7 && collision.gameObject.TryGetComponent<Player>(out var player))
         {
             player.TakeDamage(projData.damage);
-            EntityDie();
+
+            if (projData.destroyOnCollision)
+                EntityDie();
         }
         else if (attacking_layer == 6 && collision.gameObject.TryGetComponent<Enemy>(out var enemy))
         {
             enemy.TakeDamage(projData.damage);
-            EntityDie();
+            
+            if (projData.destroyOnCollision)
+                EntityDie();
         }
 
         // colliding with the level
-        if (collision.gameObject.layer == 0)
+        if (collision.gameObject.layer == 0 && projData.destroyOnCollision)
         {
-            //print(collision.gameObject.name);
+            //print(collision.gameObject.name);            
             EntityDie();
         }
     }
