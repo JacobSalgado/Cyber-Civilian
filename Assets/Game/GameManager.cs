@@ -26,11 +26,6 @@ public class GameManager : StateManager
     [SerializeField] private GameState startingState;
     public float loadingTime = 3;
 
-    [Header("==Weapon References==")]
-    public Weapon weapon;
-    public Transform firePoint;
-    public int collisionLayer = 8;
-
     /* Non-Serialized Vars */
     [NonSerialized] public Player player;
     [NonSerialized] public int levelIndex = 0;

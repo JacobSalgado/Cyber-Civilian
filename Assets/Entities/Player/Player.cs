@@ -62,6 +62,11 @@ public class Player : Entity
         InitializeStates();
         tr.emitting = false;
 
+        for (int i = 0; i < weapons.Length; i++) {
+            weapons[i] = Instantiate(weapons[i]);
+            weapons[i].transform.SetParent(transform);
+        }
+
         EquipNewWeapon(currentWeaponType);
     }
 

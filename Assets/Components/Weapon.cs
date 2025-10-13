@@ -1,11 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Weapon : MonoBehaviour
 {
-    public GameManager gameManager;
-
     public enum FireMode
     {
         FULL_AUTO,
@@ -25,47 +24,42 @@ public class Weapon : MonoBehaviour
     public int ammoCost;
     public float fireRate;
     public bool infiniteAmmo = false;
-    private float fireTimer;
-
-    [Header("==Charge Properties==")]
-    public float playerRailshotTime = 2f;
-    private float chargeTimer = 0f;
-    private bool isCharging = false;
-
-    private Transform pendingFirePoint;
-    private int pendingCollisionLayer;
 
     // Firemode is used to determine firing behavior
     // 0 = full auto, 1 = semi auto
     // Semi auto seems to work when firerate is = 0 but that leads to division by zero which is an underfined behavior
     public FireMode fireMode;
 
+    // private vars
+    [NonSerialized] public float fireTimer = 0f;
+    private bool isCharging = false;
+    public float playerRailshotTime = 2f;
+
     void Start()
     {
         // ammo underflow/overflow check
         if (currentAmmo < 0) currentAmmo = 0;
         if (currentAmmo > maxAmmo) currentAmmo = maxAmmo;
-
-        // get gamemanager
-        gameManager = GetComponent<GameManager>();
     }
 
     public void Shoot(InputActionReference fireAction, Transform firePoint, int collision_layer)
     {
+        if (currentAmmo - ammoCost < 0) return;
+
         if (fireAction != null) // player shooting
         {
             if (fireMode == FireMode.FULL_AUTO && fireAction.action.IsPressed())
             {
                 fireTimer -= Time.deltaTime;
                 // Debug.Log(fireTimer); // testing how firetimer works
-                if (fireTimer <= 0f && currentAmmo - ammoCost >= 0)
+                if (fireTimer <= 0f)
                 {
                     if (!infiniteAmmo) currentAmmo -= ammoCost;
                     fireTimer += 1f / fireRate;
                     ShootProjectile(firePoint, collision_layer);
                 }
             }
-            else if (fireMode == FireMode.SEMI_AUTO && fireAction.action.WasPressedThisFrame() && currentAmmo - ammoCost >= 0)
+            else if (fireMode == FireMode.SEMI_AUTO && fireAction.action.WasPressedThisFrame())
             {
                 if (!infiniteAmmo) currentAmmo -= ammoCost;
                 ShootProjectile(firePoint, collision_layer);
@@ -78,24 +72,24 @@ public class Weapon : MonoBehaviour
                     if (!isCharging)
                     {
                         isCharging = true;
-                        chargeTimer = 0f;
+                        fireTimer = 0f;
                         Debug.Log("Started charging");
                     }
 
                     // Increment charge timer while holding
-                    chargeTimer += Time.deltaTime;
-                    Debug.Log($"Charging... {chargeTimer:F2}s");
+                    fireTimer += Time.deltaTime;
+                    Debug.Log($"Charging... {fireTimer:F2}s");
                 }
 
                 // Fire when player releases the button
-                if (isCharging && fireAction.action.WasReleasedThisFrame() && chargeTimer >= playerRailshotTime)
+                else if (fireTimer >= playerRailshotTime && fireAction.action.WasReleasedThisFrame())
                 {
-                    Debug.Log($"Released at {chargeTimer:F2}s");
+                    Debug.Log($"Released at {fireTimer:F2}s");
                     ShootProjectile(firePoint, collision_layer);
 
                     // Reset for next charge
                     isCharging = false;
-                    chargeTimer = 0f;
+                    fireTimer = 0f;
                 }
             }
         }
@@ -105,7 +99,7 @@ public class Weapon : MonoBehaviour
             {
                 case FireMode.FULL_AUTO:
                     fireTimer -= Time.deltaTime;
-                    if (fireTimer <= 0f && (infiniteAmmo || currentAmmo - ammoCost >= 0))
+                    if (fireTimer <= 0f && infiniteAmmo)
                     {
                         if (!infiniteAmmo) currentAmmo -= ammoCost;
                         fireTimer += 1f / fireRate;
@@ -115,11 +109,9 @@ public class Weapon : MonoBehaviour
                     break;
 
                 case FireMode.SEMI_AUTO:
-                    if (currentAmmo - ammoCost >= 0)
-                    {
-                        if (!infiniteAmmo) currentAmmo -= ammoCost;
-                        ShootProjectile(firePoint, collision_layer);
-                    }
+                    if (!infiniteAmmo) currentAmmo -= ammoCost;
+                    ShootProjectile(firePoint, collision_layer);
+                    
                     break;
             }
         }

@@ -6,7 +6,7 @@ public class RailshotActive : State
     readonly Railshot railshot;
 
     private float chargeTime = 5f;
-    private float lifeTime = 5f;
+    private float lifeTime = 2f;
     private float timer = 0f;
 
     private bool hasFired = false;
@@ -33,7 +33,7 @@ public class RailshotActive : State
 
         if (timer >= chargeTime + lifeTime)
         {
-            GameObject.Destroy(railshot.gameObject);
+            Object.Destroy(railshot.gameObject);
         }
     }
 }

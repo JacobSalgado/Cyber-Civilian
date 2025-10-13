@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class Railshot : Projectile
 {
-
     public override void InitializeStates()
     {
         AddState("Active", new RailshotActive(this));
