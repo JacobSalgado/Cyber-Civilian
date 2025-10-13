@@ -35,7 +35,7 @@ public class Weapon : MonoBehaviour
         if (currentAmmo > maxAmmo) currentAmmo = maxAmmo;
     }
 
-    public void Shoot(InputActionReference fireAction, Vector3 position, Quaternion rotation, int collision_layer)
+    public void Shoot(InputActionReference fireAction, Transform firePoint, int collision_layer)
     {
         if (fireAction != null) // player shooting
         {
@@ -46,13 +46,13 @@ public class Weapon : MonoBehaviour
                 {
                     if (!infiniteAmmo) currentAmmo -= ammoCost;
                     fireTimer += 1f / fireRate;
-                    ShootProjectile(position, rotation, collision_layer);
+                    ShootProjectile(firePoint, collision_layer);
                 }
             }
             else if (fireMode == FireMode.SEMI_AUTO && fireAction.action.WasPressedThisFrame() && currentAmmo - ammoCost >= 0)
             {
                 if (!infiniteAmmo) currentAmmo -= ammoCost;
-                ShootProjectile(position, rotation, collision_layer);
+                ShootProjectile(firePoint, collision_layer);
             }
         }
         else // other entities
@@ -65,7 +65,7 @@ public class Weapon : MonoBehaviour
                     {
                         if (!infiniteAmmo) currentAmmo -= ammoCost;
                         fireTimer += 1f / fireRate;
-                        ShootProjectile(position, rotation, collision_layer);
+                        ShootProjectile(firePoint, collision_layer);
                     }
 
                     break;
@@ -74,21 +74,21 @@ public class Weapon : MonoBehaviour
                     if (currentAmmo - ammoCost >= 0)
                     {
                         if (!infiniteAmmo) currentAmmo -= ammoCost;
-                        ShootProjectile(position, rotation, collision_layer);
+                        ShootProjectile(firePoint, collision_layer);
                     }
                     break;
             }
         }
     }
 
-    private void ShootProjectile(Vector2 position, Quaternion rotation, int collision_layer)
+    private void ShootProjectile(Transform firePoint, int collision_layer)
     {
         // create projectile
         //string[] ignored_layers = { "Enemy Attacks", "Player Attacks" };
         //LayerMask layer = LayerMask.GetMask(ignored_layers);
 
         //print(firePoint.position);
-        Projectile proj  = Instantiate(projectile, position, rotation, LevelManager.current_level.EntityList.transform).GetComponent<Projectile>();
+        Projectile proj  = Instantiate(projectile, firePoint.position, firePoint.rotation, LevelManager.current_level.EntityList.transform).GetComponent<Projectile>();
 
         proj.damage = damage;
         proj.force = projectileForce;

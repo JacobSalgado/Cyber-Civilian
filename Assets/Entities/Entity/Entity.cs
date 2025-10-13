@@ -77,8 +77,8 @@ public abstract class Entity : StateManager
         }
     }
 
-    public void ShootWeapon(GameObject weapon, InputActionReference fireAction, Vector3 position, Quaternion rotation, int collision_layer)
+    public void ShootWeapon(GameObject weapon, InputActionReference fireAction, Transform firePoint, int collision_layer)
     {
-        weapon.GetComponent<Weapon>().Shoot(fireAction, position, rotation, collision_layer);
+        weapon.GetComponent<Weapon>().Shoot(fireAction, firePoint, collision_layer);
     }
 }

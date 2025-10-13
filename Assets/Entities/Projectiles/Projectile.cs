@@ -5,8 +5,8 @@ public abstract class Projectile : Entity
 {
     [Header("==Projectile GameObjects==")]
     public GameObject hitEffect;
-    public LayerMask attacking_layer = 0;
-
+    
+    [NonSerialized] public LayerMask attacking_layer = 0;
     [NonSerialized] public float force;
     [NonSerialized] public int damage;
 
