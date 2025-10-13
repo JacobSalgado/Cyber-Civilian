@@ -1,12 +1,16 @@
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Weapon : MonoBehaviour
 {
+    public GameManager gameManager;
+
     public enum FireMode
     {
         FULL_AUTO,
-        SEMI_AUTO
+        SEMI_AUTO,
+        CHARGE
     }
 
     [Header("==Necessary GameObjects==")]
@@ -23,6 +27,14 @@ public class Weapon : MonoBehaviour
     public bool infiniteAmmo = false;
     private float fireTimer;
 
+    [Header("==Charge Properties==")]
+    public float playerRailshotTime = 2f;
+    private float chargeTimer = 0f;
+    private bool isCharging = false;
+
+    private Transform pendingFirePoint;
+    private int pendingCollisionLayer;
+
     // Firemode is used to determine firing behavior
     // 0 = full auto, 1 = semi auto
     // Semi auto seems to work when firerate is = 0 but that leads to division by zero which is an underfined behavior
@@ -33,6 +45,9 @@ public class Weapon : MonoBehaviour
         // ammo underflow/overflow check
         if (currentAmmo < 0) currentAmmo = 0;
         if (currentAmmo > maxAmmo) currentAmmo = maxAmmo;
+
+        // get gamemanager
+        gameManager = GetComponent<GameManager>();
     }
 
     public void Shoot(InputActionReference fireAction, Transform firePoint, int collision_layer)
@@ -42,6 +57,7 @@ public class Weapon : MonoBehaviour
             if (fireMode == FireMode.FULL_AUTO && fireAction.action.IsPressed())
             {
                 fireTimer -= Time.deltaTime;
+                // Debug.Log(fireTimer); // testing how firetimer works
                 if (fireTimer <= 0f && currentAmmo - ammoCost >= 0)
                 {
                     if (!infiniteAmmo) currentAmmo -= ammoCost;
@@ -53,6 +69,34 @@ public class Weapon : MonoBehaviour
             {
                 if (!infiniteAmmo) currentAmmo -= ammoCost;
                 ShootProjectile(firePoint, collision_layer);
+            }
+            else if (fireMode == FireMode.CHARGE)
+            {
+                // Start charging when the player holds the button
+                if (fireAction.action.IsPressed())
+                {
+                    if (!isCharging)
+                    {
+                        isCharging = true;
+                        chargeTimer = 0f;
+                        Debug.Log("Started charging");
+                    }
+
+                    // Increment charge timer while holding
+                    chargeTimer += Time.deltaTime;
+                    Debug.Log($"Charging... {chargeTimer:F2}s");
+                }
+
+                // Fire when player releases the button
+                if (isCharging && fireAction.action.WasReleasedThisFrame() && chargeTimer >= playerRailshotTime)
+                {
+                    Debug.Log($"Released at {chargeTimer:F2}s");
+                    ShootProjectile(firePoint, collision_layer);
+
+                    // Reset for next charge
+                    isCharging = false;
+                    chargeTimer = 0f;
+                }
             }
         }
         else // other entities
@@ -81,7 +125,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    private void ShootProjectile(Transform firePoint, int collision_layer)
+    public void ShootProjectile(Transform firePoint, int collision_layer)
     {
         // create projectile
         //string[] ignored_layers = { "Enemy Attacks", "Player Attacks" };

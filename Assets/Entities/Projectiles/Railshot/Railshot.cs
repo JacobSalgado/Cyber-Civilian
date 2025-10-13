@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class Railshot : Projectile
 {
+
     public override void InitializeStates()
     {
-        AddState("Idle", new RailshotIdle(this));
-        AddState("Travel", new RailshotTravel(this));
+        AddState("Active", new RailshotActive(this));
 
-        ChangeState("Travel");
+        ChangeState("Active");
     }
 
     public override void Start()
