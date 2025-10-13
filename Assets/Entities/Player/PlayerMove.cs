@@ -40,7 +40,7 @@ public class PlayerMove : State
         if (velocity != Vector2.zero)
         {
             deltaCount += Time.deltaTime;
-            player.rigidBody.linearVelocity = new Vector2(velocity.x * player.entityData.moveSpeed, velocity.y * player.entityData.moveSpeed);
+            player.rigidBody.linearVelocity = velocity * player.entityData.moveSpeed;
             PlayFootsteps();
         }
         else player.ChangeState("Idle");

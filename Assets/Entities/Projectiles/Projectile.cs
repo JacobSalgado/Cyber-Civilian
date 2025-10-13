@@ -3,23 +3,26 @@ using UnityEngine;
 
 public abstract class Projectile : Entity
 {
-    [Header("==Projectile GameObjects==")]
-    public GameObject hitEffect;
-    
+    //[Header("==Projectile GameObjects==")]
+    // assigned by weapon
+    [NonSerialized] public ProjectileData projData;
     [NonSerialized] public LayerMask attacking_layer = 0;
-    [NonSerialized] public float force;
-    [NonSerialized] public int damage;
+
+    public override void Start()
+    {
+        base.Start();
+    }
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (attacking_layer == 7 && collision.gameObject.TryGetComponent<Player>(out var player))
         {
-            player.TakeDamage(damage);
+            player.TakeDamage(projData.damage);
             EntityDie();
         }
         else if (attacking_layer == 6 && collision.gameObject.TryGetComponent<Enemy>(out var enemy))
         {
-            enemy.TakeDamage(damage);
+            enemy.TakeDamage(projData.damage);
             EntityDie();
         }
 
@@ -33,7 +36,7 @@ public abstract class Projectile : Entity
     
     public override void EntityDie()
     {
-        GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity, LevelManager.current_level.EntityList.transform);
+        GameObject effect = Instantiate(projData.hitEffect, transform.position, Quaternion.identity, LevelManager.current_level.EntityList.transform);
 
         Destroy(effect, 0.1f);
         Destroy(gameObject);

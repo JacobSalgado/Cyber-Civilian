@@ -351,11 +351,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Trooper
   rigidBody: {fileID: 7183492431902957487}
   SFXPlayer: {fileID: 64986239074965240}
-  entityData: {fileID: 11400000, guid: 83c0cc8a82ae4ed409d4b67b9414dfe3, type: 2}
+  entityData: {fileID: 11400000, guid: 35b7bf2e7d293054fb9c1ac413796119, type: 2}
   healthBar: {fileID: 0}
   invincibility: 0
   firePoint: {fileID: 7286729672604182}
   weapon: {fileID: 16432950934994515, guid: f705a370a6ca9194bbfbf1d5d7c0044f, type: 3}
-  target: {fileID: 0}
   distanceToShoot: 6.7
   distanceToMove: 8.5

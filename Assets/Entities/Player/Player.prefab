@@ -1143,7 +1143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   rigidBody: {fileID: 8349349828730560086}
   SFXPlayer: {fileID: 1191445660241909505}
-  entityData: {fileID: 11400000, guid: 852c9a555a27c5b4086bc818f3a3a509, type: 2}
+  entityData: {fileID: 11400000, guid: 6c4ca02f294d5644bad555ee4509fd1b, type: 2}
   healthBar: {fileID: 0}
   invincibility: 0
   tr: {fileID: 6616881326347800582}

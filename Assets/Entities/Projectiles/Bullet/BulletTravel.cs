@@ -12,11 +12,11 @@ public class BulletTravel : State
 
     public override void EnterState(Dictionary<string, object> args = null)
     {
-        bullet.rigidBody.AddForce(-1f * bullet.force * bullet.transform.right, ForceMode2D.Impulse);
+        
     }
 
     public override void UpdateState()
     {
-        
+        bullet.rigidBody.linearVelocity = bullet.transform.right * -bullet.projData.moveSpeed;
     }
 }

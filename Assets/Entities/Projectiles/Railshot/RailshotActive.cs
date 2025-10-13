@@ -4,12 +4,7 @@ using System.Collections.Generic;
 public class RailshotActive : State
 {
     readonly Railshot railshot;
-
-    private float chargeTime = 5f;
-    private float lifeTime = 2f;
-    private float timer = 0f;
-
-    private bool hasFired = false;
+    private float timer;
 
     public RailshotActive(Entity new_entity) : base(new_entity)
     {
@@ -25,15 +20,9 @@ public class RailshotActive : State
     public override void UpdateState()
     {
         timer += Time.deltaTime;
-
-        if (!hasFired && timer >= chargeTime)
+        if (timer >= railshot.projData.lifeTime)
         {
-            hasFired = true;
-        }
-
-        if (timer >= chargeTime + lifeTime)
-        {
-            Object.Destroy(railshot.gameObject);
+            railshot.EntityDie();
         }
     }
 }

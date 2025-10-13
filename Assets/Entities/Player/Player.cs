@@ -40,6 +40,7 @@ public class Player : Entity
 
     // private variables
     [NonSerialized] public Camera cam;
+    [NonSerialized] public PlayerData playerData;
     private Vector2 mousePos;
 
     public override void InitializeStates()
@@ -59,6 +60,9 @@ public class Player : Entity
     public override void Start()
     {
         base.Start();
+        playerData = (PlayerData)entityData;
+        //Debug.Log(playerData.test);
+
         InitializeStates();
         tr.emitting = false;
 
@@ -93,8 +97,8 @@ public class Player : Entity
         }
 
         // check fire inputs
-        if (currentWeaponType < PlayerWeaponType.NONE && fireAction.action.IsPressed())
-           ShootWeapon(weapons[(int)currentWeaponType], fireAction, firePoint, 6);
+        if (currentWeaponType < PlayerWeaponType.NONE)
+            ShootWeapon(weapons[(int)currentWeaponType], fireAction, firePoint, 6);
         
         // check dash inputs
         if (dashAction.action.WasPressedThisFrame() && canDash && !isDashing)

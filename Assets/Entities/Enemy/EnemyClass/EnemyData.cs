@@ -3,5 +3,5 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "EnemyData", menuName = "Scriptable Objects/EnemyData")]
 public class EnemyData : EntityData
 {
-    // add stuff here
+    // TODO: add stuff here
 }

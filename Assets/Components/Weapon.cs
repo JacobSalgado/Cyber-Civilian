@@ -17,13 +17,12 @@ public class Weapon : MonoBehaviour
     public Sprite weaponSprite;
 
     [Header("==Weapon Properties==")]
-    public int damage;
-    public float projectileForce;
     public int currentAmmo;
     public int maxAmmo;
     public int ammoCost;
     public float fireRate;
     public bool infiniteAmmo = false;
+    public ProjectileData projData;
 
     // Firemode is used to determine firing behavior
     // 0 = full auto, 1 = semi auto
@@ -33,7 +32,7 @@ public class Weapon : MonoBehaviour
     // private vars
     [NonSerialized] public float fireTimer = 0f;
     private bool isCharging = false;
-    public float playerRailshotTime = 2f;
+    
 
     void Start()
     {
@@ -82,7 +81,7 @@ public class Weapon : MonoBehaviour
                 }
 
                 // Fire when player releases the button
-                else if (fireTimer >= playerRailshotTime && fireAction.action.WasReleasedThisFrame())
+                if (isCharging && fireTimer >= projData.timeToSpawn && fireAction.action.WasReleasedThisFrame())
                 {
                     Debug.Log($"Released at {fireTimer:F2}s");
                     ShootProjectile(firePoint, collision_layer);
@@ -124,10 +123,9 @@ public class Weapon : MonoBehaviour
         //LayerMask layer = LayerMask.GetMask(ignored_layers);
 
         //print(firePoint.position);
-        Projectile proj  = Instantiate(projectile, firePoint.position, firePoint.rotation, LevelManager.current_level.EntityList.transform).GetComponent<Projectile>();
+        Projectile proj = Instantiate(projectile, firePoint.position, firePoint.rotation, LevelManager.current_level.EntityList.transform).GetComponent<Projectile>();
 
-        proj.damage = damage;
-        proj.force = projectileForce;
+        proj.projData = Instantiate(projData);
         proj.attacking_layer = collision_layer;
         //proj.rigidBody.excludeLayers = layer;        
     }
