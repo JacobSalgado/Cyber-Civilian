@@ -15,6 +15,10 @@ MonoBehaviour:
   currentHealth: 1000
   maxHealth: 1000
   moveSpeed: 10
+  SFXNames:
+  - Footstep1
+  - Footstep2
+  - Footstep3
   SFX:
   - {fileID: 8300000, guid: b081388d2add93841a3a933caef193a9, type: 3}
   - {fileID: 8300000, guid: 53e3e8ee8c85bd14d8ae3dc6a4a4460f, type: 3}

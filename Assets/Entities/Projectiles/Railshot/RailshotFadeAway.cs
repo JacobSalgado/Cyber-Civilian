@@ -14,20 +14,21 @@ public class RailshotFadeAway : State
     public override void EnterState(Dictionary<string, object> args = null)
     {
         timer = 0;
+        railshot.attacking_layer = 0; // turn off collision
     }
 
     public override void UpdateState()
     {
         timer += Time.deltaTime;
 
-        if (timer >= railshot.fadeawayTime)
+        if (timer >= railshot.projData.fadeawayTime)
         {
             railshot.EntityDie();
             return;
         }
 
         Color currentColor = railshot.spriteRenderer.color;
-        currentColor.a -= Time.deltaTime / railshot.fadeawayTime;
+        currentColor.a -= Time.deltaTime / railshot.projData.fadeawayTime;
         railshot.spriteRenderer.color = currentColor;
     }
 }

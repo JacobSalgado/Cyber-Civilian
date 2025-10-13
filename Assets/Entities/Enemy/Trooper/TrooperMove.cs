@@ -26,7 +26,6 @@ public class TrooperMove : State
     {
         if (trooper.target == null)
         {
-            trooper.ChangeState("Idle");
             Debug.LogError("Target not found");
             return;
         }

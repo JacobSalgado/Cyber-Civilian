@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "EntityData", menuName = "Scriptable Objects/EntityData")]
@@ -14,5 +15,6 @@ public abstract class EntityData : ScriptableObject
     public int currentHealth;
     public int maxHealth;
     public float moveSpeed;
+    public string[] SFXNames;
     public AudioClip[] SFX;
 }

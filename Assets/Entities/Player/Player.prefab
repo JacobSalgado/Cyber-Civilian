@@ -958,11 +958,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1072733472485737790}
   m_SourcePrefab: {fileID: 100100000, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
---- !u!82 &1191445660241909505 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 2402094416012439865, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
-  m_PrefabInstance: {fileID: 3593073875161228856}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5984970219455982714 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7121258720370068034, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
@@ -1142,9 +1137,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   rigidBody: {fileID: 8349349828730560086}
-  SFXPlayer: {fileID: 1191445660241909505}
   entityData: {fileID: 11400000, guid: 6c4ca02f294d5644bad555ee4509fd1b, type: 2}
   healthBar: {fileID: 0}
+  audioManager: {fileID: 7781527178466087580}
   invincibility: 0
   tr: {fileID: 6616881326347800582}
   moveAction: {fileID: -1680190386980627800, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
@@ -1161,6 +1156,17 @@ MonoBehaviour:
   dashPower: 3
   dashTime: 0.2
   dashCooldown: 0.5
+--- !u!114 &7781527178466087580 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6494366698852611236, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
+  m_PrefabInstance: {fileID: 3593073875161228856}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7626307339051419095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96f92c722d18c55418d7a4ec61ba0933, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioManager
 --- !u!50 &8349349828730560086 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 4756910380638058606, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}

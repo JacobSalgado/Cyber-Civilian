@@ -14,5 +14,6 @@ public class ProjectileData : EntityData
     public bool destroyOnCollision = true;
 
     [Header("==Railshot Properties==")]
-    public float railshotLength = 10;
+    public float railshotLength = 10f;
+    public float fadeawayTime = 1f;
 }

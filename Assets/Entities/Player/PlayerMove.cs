@@ -8,7 +8,7 @@ public class PlayerMove : State
     Vector2 velocity;
     readonly Player player;
     private float deltaCount = 0f;
-    int stepCounter = 0;
+    int stepCounter = 1;
 
     public PlayerMove(Entity new_entity) : base(new_entity)
     {
@@ -19,18 +19,17 @@ public class PlayerMove : State
     {
         if (deltaCount > timeToStep)
         {
-            player.SFXPlayer.PlayOneShot(player.entityData.SFX[stepCounter++]);
+            player.PlaySFX($"Footstep{stepCounter++}");
             deltaCount = 0f;
-            //player.TakeDamage(100);
-            if (stepCounter > 2) stepCounter = 0;
+            if (stepCounter > 3) stepCounter = 1;
         }
     }
 
     public override void EnterState(Dictionary<string, object> args = null)
     {
         deltaCount = 0f;
-        stepCounter = 0;
-        player.SFXPlayer.PlayOneShot(player.entityData.SFX[stepCounter++]);
+        stepCounter = 1;
+        player.PlaySFX($"Footstep{stepCounter++}");
     }
 
     public override void UpdateState()

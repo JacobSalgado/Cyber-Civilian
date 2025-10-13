@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem.Interactions;
 
 public class TrooperShoot : State
 {
@@ -18,23 +17,25 @@ public class TrooperShoot : State
 
     public override void UpdateState()
     {
-        float distance = trooper.GetDistanceToTarget();
-        if (distance > -1f)
+        if (trooper.target == null)
         {
-            if (distance < trooper.distanceToShoot)
-            {
-                Vector2 dir = trooper.GetDirectionToPosition(trooper.target.gameObject.transform.position);
-                trooper.RotateToDirection(dir);
-                trooper.ShootWeapon(trooper.weapon, null, trooper.firePoint, 7);
-            }
-            else if (distance < trooper.distanceToMove)
-            {
-                trooper.ChangeState("Idle");
-                return;
-            }
+            Debug.LogError("Target not found");
+            return;
         }
+
+        float distance = trooper.GetDistanceToTarget();
+        if (distance < trooper.distanceToShoot)
+        {
+            Vector2 dir = trooper.GetDirectionToPosition(trooper.target.gameObject.transform.position);
+            trooper.RotateToDirection(dir);
+            trooper.ShootWeapon(trooper.weapon, null, trooper.firePoint, 7);
+        }
+        else if (distance < trooper.distanceToMove)
+            trooper.ChangeState("Move");
+        else
+            trooper.ChangeState("Idle");
     }
-    
+
     public override void ExitState(Dictionary<string, object> args = null)
     {
 

@@ -17,14 +17,23 @@ public class TrooperIdle : State
 
     public override void UpdateState()
     {
-        float distance = trooper.GetDistanceToTarget();
-        if (distance > -1f)
+        if (trooper.target == null)
         {
-            if (distance < trooper.distanceToShoot)
-                trooper.ChangeState("Shoot");
-            else if (distance < trooper.distanceToMove)
-                trooper.ChangeState("Move");
+            Debug.LogError("Target not found");
+            return;
         }
+
+        float distanceToTarget = trooper.GetDistanceToTarget();
+        if (distanceToTarget <= -1f) { // assertion check
+            Debug.Log("target not set");
+            return;
+        }
+         
+        if (distanceToTarget < trooper.distanceToShoot)
+            trooper.ChangeState("Shoot");
+        else if (distanceToTarget < trooper.distanceToMove)
+            trooper.ChangeState("Move");
+        
     }
 
     public override void ExitState(Dictionary<string, object> args = null)

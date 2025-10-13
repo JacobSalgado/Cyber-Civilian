@@ -53,14 +53,12 @@ public class Weapon : MonoBehaviour
                 // Debug.Log(fireTimer); // testing how firetimer works
                 if (fireTimer <= 0f)
                 {
-                    if (!infiniteAmmo) currentAmmo -= ammoCost;
                     fireTimer += 1f / fireRate;
                     ShootProjectile(firePoint, collision_layer);
                 }
             }
             else if (fireMode == FireMode.SEMI_AUTO && fireAction.action.WasPressedThisFrame())
             {
-                if (!infiniteAmmo) currentAmmo -= ammoCost;
                 ShootProjectile(firePoint, collision_layer);
             }
             else if (fireMode == FireMode.CHARGE)
@@ -72,12 +70,12 @@ public class Weapon : MonoBehaviour
                     {
                         isCharging = true;
                         fireTimer = 0f;
-                        Debug.Log("Started charging");
+                        //Debug.Log("Started charging");
                     }
 
                     // Increment charge timer while holding
                     fireTimer += Time.deltaTime;
-                    Debug.Log($"Charging... {fireTimer:F2}s");
+                    //Debug.Log($"Charging... {fireTimer:F2}s");
                 }
 
                 // Fire when player releases the button
@@ -85,11 +83,9 @@ public class Weapon : MonoBehaviour
                 {
                     if (fireTimer >= projData.timeToSpawn)
                     {
-                        Debug.Log($"Released at {fireTimer:F2}s");
+                        //Debug.Log($"Released at {fireTimer:F2}s");
                         ShootProjectile(firePoint, collision_layer);
-
-                        // Reset for next charge
-                        isCharging = false;
+                        isCharging = false; // Reset for next charge
                     }
                     
                     fireTimer = 0f;
@@ -104,7 +100,6 @@ public class Weapon : MonoBehaviour
                     fireTimer -= Time.deltaTime;
                     if (fireTimer <= 0f && infiniteAmmo)
                     {
-                        if (!infiniteAmmo) currentAmmo -= ammoCost;
                         fireTimer += 1f / fireRate;
                         ShootProjectile(firePoint, collision_layer);
                     }
@@ -112,9 +107,25 @@ public class Weapon : MonoBehaviour
                     break;
 
                 case FireMode.SEMI_AUTO:
-                    if (!infiniteAmmo) currentAmmo -= ammoCost;
                     ShootProjectile(firePoint, collision_layer);
-                    
+                    break;
+
+                case FireMode.CHARGE:
+                    if (!isCharging)
+                    {
+                        isCharging = true;
+                        fireTimer = 0f;
+                    }
+
+                    if (isCharging) fireTimer += Time.deltaTime;
+
+                    if (fireTimer >= projData.timeToSpawn)
+                    {
+                        ShootProjectile(firePoint, collision_layer);
+                        isCharging = false;
+                        fireTimer = 0f;
+                    }
+
                     break;
             }
         }
@@ -122,15 +133,14 @@ public class Weapon : MonoBehaviour
 
     public void ShootProjectile(Transform firePoint, int collision_layer)
     {
-        // create projectile
-        //string[] ignored_layers = { "Enemy Attacks", "Player Attacks" };
-        //LayerMask layer = LayerMask.GetMask(ignored_layers);
+        // update ammo
+        if (!infiniteAmmo) currentAmmo -= ammoCost;
 
-        //print(firePoint.position);
+        // create projectile
         Projectile proj = Instantiate(projectile, firePoint.position, firePoint.rotation, LevelManager.current_level.EntityList.transform).GetComponent<Projectile>();
 
         proj.projData = Instantiate(projData);
+        proj.audioManager.InitializeSFXDictionary(proj.projData);
         proj.attacking_layer = collision_layer;
-        //proj.rigidBody.excludeLayers = layer;        
     }
 }

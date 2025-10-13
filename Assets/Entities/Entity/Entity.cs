@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,29 +7,41 @@ public abstract class Entity : StateManager
 {
     [Header("==Entity GameObjects and Vars==")]
     public Rigidbody2D rigidBody;
-    public AudioSource SFXPlayer;
     public EntityData entityData;
     public HealthBar healthBar;
+    public AudioManager audioManager;
     public bool invincibility = false;
 
+    /* VIRTUAL/ABSTRACT ENTITY FUNCTIONS */
     public virtual void InitializeStates() { }
-
     public abstract void EntityDie();
 
-    // dictionary: asset store or scriptable objects
     public virtual void Start()
     {
         // make a copy of the entityData
         if (entityData != null)
         {
             entityData = Instantiate(entityData);
+
             if (healthBar != null)
-            {
                 healthBar.entityData = entityData;
-            }
+            
+            audioManager.InitializeSFXDictionary(entityData);
         }
     }
 
+    public virtual void FixedUpdate()
+    {
+        current_state.UpdateState();
+
+        // health checks
+        if (entityData != null && entityData.currentHealth <= 0 && entityData.maxHealth != 0)
+        {
+            EntityDie();
+        }
+    }
+
+    /* GENERAL ENTITY FUNCTIONS */
     public void TakeDamage(int damageTaken)
     {
         if (invincibility || entityData.currentHealth <= 0) return;
@@ -66,19 +80,15 @@ public abstract class Entity : StateManager
         transform.rotation = Quaternion.Euler(0, 0, angleDeg + 180f);
     }
 
-    public virtual void FixedUpdate()
-    {
-        current_state.UpdateState();
-
-        // health checks
-        if (entityData != null && entityData.currentHealth <= 0)
-        {
-            EntityDie();
-        }
-    }
-
     public void ShootWeapon(GameObject weapon, InputActionReference fireAction, Transform firePoint, int collision_layer)
     {
-        weapon.GetComponent<Weapon>().Shoot(fireAction, firePoint, collision_layer);
+        if (weapon != null)
+            weapon.GetComponent<Weapon>().Shoot(fireAction, firePoint, collision_layer);
+    }
+
+    public void PlaySFX(string name)
+    {
+        if (audioManager != null)
+            audioManager.SFXPlayer.PlayOneShot(audioManager.SFX[name]);
     }
 }

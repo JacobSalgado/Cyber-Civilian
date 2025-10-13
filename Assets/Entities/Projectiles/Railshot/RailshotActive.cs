@@ -22,7 +22,14 @@ public class RailshotActive : State
         timer += Time.deltaTime;
         if (timer >= railshot.projData.lifeTime)
         {
-            railshot.ChangeState("FadeAway");
+            if (railshot.projData.fadeawayTime > 0)
+                railshot.ChangeState("FadeAway");
+            else railshot.EntityDie();
         }
+    }
+
+    public override void ExitState(Dictionary<string, object> args = null)
+    {
+        
     }
 }
