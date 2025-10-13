@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -23,27 +24,34 @@ public class GameManager : StateManager
     [Header("==Game Parameters==")]
     public string[] levelList;
     [SerializeField] private GameState startingState;
+    public float loadingTime = 3;
 
     /* Non-Serialized Vars */
     [NonSerialized] public Player player;
+    [NonSerialized] public int levelIndex = 0;
 
     void Start()
     {
         // initialize states
         AddState("MainMenu", new GameMainMenu(this));
         AddState("InGame", new GameInGame(this));
+        AddState("LoadingScreen", new GameLoadingScreen(this));
 
         ChangeState(GameState_To_String(startingState));
     }
 
-    void FixedUpdate()
+    void Update()
     {
         current_state.UpdateState();
     }
 
     public void StartGameButton()
     {
-        ChangeState("InGame");
+        levelIndex = 0;
+        ChangeState("LoadingScreen", new Dictionary<string, object>()
+        {
+            {"nextState", "InGame"}
+        });
     }
 
     public void EndGameButton()

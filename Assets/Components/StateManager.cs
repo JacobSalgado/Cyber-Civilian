@@ -29,7 +29,6 @@ public class StateManager : MonoBehaviour
         if (stateMap.ContainsKey(new_state))
         {
             current_state?.ExitState(args);
-
             current_state = stateMap[new_state];
             current_state.EnterState(args);
         }

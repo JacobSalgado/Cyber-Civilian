@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Level : MonoBehaviour
@@ -16,19 +17,25 @@ public class Level : MonoBehaviour
     public Player player;
 
     [Header("==Level Properties==")]
-    public readonly LevelObjective levelObjective;
-
-    void Update()
+    public LevelObjective levelObjective;
+    public int enemyKilledGoal;
+    [NonSerialized] public bool isExitReached = false;
+    
+    void Start()
     {
+        /* Clean up current Level's starting parameters */
+
+        // If objective is to kill all enemies, no enemy spawn should be repeatable
         if (levelObjective == LevelObjective.KILL_ALL_ENEMIES)
         {
-            LevelManager.isLevelCompleted = LevelManager.enemyKilledCounter >= LevelManager.enemyKilledGoal;
+            foreach (Transform child in EnemySpawns.transform)
+            {
+                EnemySpawn enemySpawn = child.gameObject.GetComponent<EnemySpawn>();
+                enemySpawn.repeatableSpawn = false;
+            }
         }
-    }
 
-    public void LevelClose()
-    {
-        Destroy(gameObject);
+        if (enemyKilledGoal < 0) enemyKilledGoal = 0;
     }
 
     // TODO: EXPAND ON LEVEL SCRIPT

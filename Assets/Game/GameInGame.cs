@@ -17,10 +17,19 @@ public class GameInGame : State
     {
         Level new_level;
 
-        LevelManager.LoadLevel(manager.levelList[0], manager.levelHolder);
+        if (args != null && args.ContainsKey("FromPauseMenu"))
+        {
+            // TODO: resume normal game operation
+            return;
+        }
+        else LevelManager.LoadLevel(manager.levelList[manager.levelIndex], manager.levelHolder); // initialize selected level
         new_level = LevelManager.current_level;
 
         manager.player = new_level.player;
+        if (args != null && args.ContainsKey("UpdatePlayer"))
+        {
+            // TODO: update base player prefab to match state from previous level
+        }
 
         // load PlayerHUD prefab
         hud = PrefabUtility.LoadPrefabContents(playerHUDPath).GetComponent<PlayerHUD>();
@@ -39,14 +48,31 @@ public class GameInGame : State
 
     public override void UpdateState()
     {
+        LevelManager.Update();
+
         // check level completion
         if (LevelManager.isLevelCompleted)
         {
-            // TODO: change level to new one
-            manager.ChangeState("MainMenu");
-        }
+            manager.levelIndex++;
+            if (manager.levelIndex >= manager.levelList.Length) // Game Complete
+            {
+                manager.ChangeState("LoadingScreen", new Dictionary<string, object>()
+                {
+                    {"nextState", "MainMenu"}
+                });
+                return;
+                
+            }
+            else // Next Level
+            {
+                manager.ChangeState("LoadingScreen", new Dictionary<string, object>()
+                {
+                    {"nextState", "InGame"},
+                    {"UpdatePlayer", true}
+                });
+            }
 
-        // TODO: spawn non-immediate enemies based on their spawn condition
+        }
     }
 
     public override void ExitState(Dictionary<string, object> args = null)

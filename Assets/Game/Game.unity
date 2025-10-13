@@ -193,7 +193,9 @@ MonoBehaviour:
   - {fileID: 6240969308177333660, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   levelList:
   - TestLevel
-  startingState: 2
+  - TestLevel-Shooting
+  startingState: 0
+  loadingTime: 0.3
 --- !u!4 &476967449
 Transform:
   m_ObjectHideFlags: 0

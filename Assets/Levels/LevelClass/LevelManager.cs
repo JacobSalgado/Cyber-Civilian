@@ -1,4 +1,4 @@
-using System;
+using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 
@@ -11,10 +11,11 @@ public static class LevelManager
 {
     public static Level current_level;
     public static Player player;
-    public static bool isLevelCompleted = false;
 
+    // Current Level Data
+    public static bool isLevelCompleted = false;
     public static int enemyKilledCounter = 0;
-    public static int enemyKilledGoal = 2;
+    public static float levelTimer = 0;
 
     /// <summary>
     /// Load a level prefab
@@ -31,7 +32,6 @@ public static class LevelManager
 
         player = current_level.player;
 
-        // TODO: START THE LEVEL
         StartLevel();
     }
 
@@ -44,29 +44,53 @@ public static class LevelManager
             return;
         }
 
-        // Immediate Enemy Spawns Only
+        // Reset LevelManager values
+        levelTimer = 0;
+        enemyKilledCounter = 0;
+        isLevelCompleted = false;
+
+        // When starting a level, only immediate type enemy spawns should be called
         foreach (Transform child in current_level.EnemySpawns.transform)
         {
             EnemySpawn enemySpawn = child.gameObject.GetComponent<EnemySpawn>();
             if (enemySpawn.spawnCondition == EnemySpawn.EnemySpawnCondition.IMMEDIATE)
                 enemySpawn.Spawn();
         }
-        
-        // establish level completion
+    }
+
+    public static void Update()
+    {
+        if (current_level == null) return;
+
+        //levelTimer += Time.deltaTime;
+
+        // TODO: spawn non-immediate enemies based on their spawn condition
+
+        // Check if level is completed
+        if (current_level.levelObjective == Level.LevelObjective.KILL_ALL_ENEMIES)
+        {
+            isLevelCompleted = enemyKilledCounter >= current_level.EnemySpawns.transform.childCount;
+        }
+        else if (current_level.levelObjective == Level.LevelObjective.ENEMY_COUNT)
+        {
+            isLevelCompleted = enemyKilledCounter >= current_level.enemyKilledGoal;
+        }
+        else if (current_level.levelObjective == Level.LevelObjective.REACH_EXIT)
+        {
+            isLevelCompleted = current_level.isExitReached;
+        }
     }
 
     public static void Close()
     {
+        levelTimer = 0;
         enemyKilledCounter = 0;
         isLevelCompleted = false;
-        current_level.LevelClose();
+        Object.Destroy(current_level.gameObject);
     }
 
     /*
     TODO: Expand Level Manager Capabilites
     - Restart Level
-    - Initiate Enemy Spawns
-    - Level Completion Checks
-    - etc.
     */
 }
