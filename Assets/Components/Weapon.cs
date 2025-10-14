@@ -140,7 +140,7 @@ public class Weapon : MonoBehaviour
         Projectile proj = Instantiate(projectile, firePoint.position, firePoint.rotation, LevelManager.current_level.EntityList.transform).GetComponent<Projectile>();
 
         proj.projData = Instantiate(projData);
-        proj.audioManager.InitializeSFXDictionary(proj.projData);
+        proj.audioManager.InitializeAudioDictionary(proj.projData.SFXNames, proj.projData.SFX);
         proj.attacking_layer = collision_layer;
     }
 }

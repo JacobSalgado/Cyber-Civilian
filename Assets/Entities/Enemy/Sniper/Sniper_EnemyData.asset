@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fabb98b0c864e404a9bdeefd5c348c0c, type: 3}
   m_Name: Sniper_EnemyData
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
-  currentHealth: 0
-  maxHealth: 0
-  moveSpeed: 0
+  currentHealth: 450
+  maxHealth: 450
+  moveSpeed: 7.5
   SFXNames: []
   SFX: []

@@ -19,12 +19,17 @@ public class GameManager : StateManager
     public GameObject levelHolder;
     public new Camera camera;
     public CinemachineCamera cinemachine;
-    public InputActionReference[] uiActions;
+    //public InputActionReference[] uiActions;
+    public AudioManager audioManager;
 
     [Header("==Game Parameters==")]
     public string[] levelList;
     [SerializeField] private GameState startingState;
     public float loadingTime = 3;
+
+    [Header("==BGM==")]
+    [SerializeField] private string[] BGMNames;
+    [SerializeField] private AudioClip[] BGM;
 
     /* Non-Serialized Vars */
     [NonSerialized] public Player player;
@@ -38,6 +43,9 @@ public class GameManager : StateManager
         AddState("LoadingScreen", new GameLoadingScreen(this));
 
         ChangeState(GameState_To_String(startingState));
+
+        // initialize audio manager
+        audioManager.InitializeAudioDictionary(BGMNames, BGM);
     }
 
     void Update()

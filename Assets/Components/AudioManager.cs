@@ -3,25 +3,26 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public AudioSource SFXPlayer;
-    public Dictionary<string, AudioClip> SFX = new();
+    public AudioSource AudioPlayer;
+    public Dictionary<string, AudioClip> audioClips = new();
 
-    public void InitializeSFXDictionary(EntityData entityData)
+    public void InitializeAudioDictionary(string[] SFXNames, AudioClip[] SFX)
     {
-        for (int i = 0; i < entityData.SFX.Length; i++)
+        for (int i = 0; i < SFX.Length; i++)
         {
-            SFX.Add(entityData.SFXNames[i], entityData.SFX[i]);
+            audioClips.Add(SFXNames[i], SFX[i]);
         }
     }
 
-    public void InitializeSFXDictionary(GameObject gameSFX)
+    public void PlayAudioClip(string name, bool loop = false)
     {
-        // TODO: implement game/level sfx
-        /*
-        for (int i = 0; i < entityData.SFX.Length; i++)
+        if (!audioClips.ContainsKey(name))
         {
-            SFX.Add(entityData.SFXNames[i], entityData.SFX[i]);
+            Debug.Log($"{name} not found in audio dictionary");
+            return;
         }
-        */
+
+        AudioPlayer.loop = loop;
+        AudioPlayer.PlayOneShot(audioClips[name]);
     }
 }

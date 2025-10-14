@@ -19,7 +19,7 @@ public class PlayerMove : State
     {
         if (deltaCount > timeToStep)
         {
-            player.PlaySFX($"Footstep{stepCounter++}");
+            player.audioManager.PlayAudioClip($"Footstep{stepCounter++}");
             deltaCount = 0f;
             if (stepCounter > 3) stepCounter = 1;
         }
@@ -29,7 +29,7 @@ public class PlayerMove : State
     {
         deltaCount = 0f;
         stepCounter = 1;
-        player.PlaySFX($"Footstep{stepCounter++}");
+        player.audioManager.PlayAudioClip($"Footstep{stepCounter++}");
     }
 
     public override void UpdateState()

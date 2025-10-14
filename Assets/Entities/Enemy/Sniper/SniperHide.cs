@@ -23,7 +23,7 @@ public class SniperHide : State
             return;
         }
 
-        // TODO: 
+        // TODO: implement hiding behavior
     }
     
     public override void ExitState(Dictionary<string, object> args = null)

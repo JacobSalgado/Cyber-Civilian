@@ -26,7 +26,7 @@ public abstract class Entity : StateManager
             if (healthBar != null)
                 healthBar.entityData = entityData;
             
-            audioManager.InitializeSFXDictionary(entityData);
+            audioManager.InitializeAudioDictionary(entityData.SFXNames, entityData.SFX);
         }
     }
 
@@ -84,11 +84,5 @@ public abstract class Entity : StateManager
     {
         if (weapon != null)
             weapon.GetComponent<Weapon>().Shoot(fireAction, firePoint, collision_layer);
-    }
-
-    public void PlaySFX(string name)
-    {
-        if (audioManager != null)
-            audioManager.SFXPlayer.PlayOneShot(audioManager.SFX[name]);
     }
 }
