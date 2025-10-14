@@ -15,6 +15,7 @@ MonoBehaviour:
   currentHealth: 0
   maxHealth: 0
   moveSpeed: 30
+  SFXNames: []
   SFX: []
   damage: 30
   hitEffect: {fileID: 6996612073667387790, guid: 73dd775d02fe8ef4cab1bbcfb652c45c, type: 3}
@@ -22,3 +23,4 @@ MonoBehaviour:
   timeToSpawn: 0
   destroyOnCollision: 1
   railshotLength: 10
+  fadeawayTime: 1

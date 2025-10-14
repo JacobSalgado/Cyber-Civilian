@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Windows.Speech;
 
 public class EnemySpawn : MonoBehaviour
 {
@@ -14,6 +16,7 @@ public class EnemySpawn : MonoBehaviour
     public EnemySpawnCondition spawnCondition = EnemySpawnCondition.IMMEDIATE;
     public bool repeatableSpawn = false;
     public float timeTilRespawn; // only checked if repeatableSpawn is true
+    //public Dictionary<string, int> enemySpawnLimit = new();
 
     // Non-Serialized Vars
     [NonSerialized] public float respawnTimer = 0.0f;

@@ -571,7 +571,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4756910380638058606, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
-      value: 128
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6015804072438323913, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
       propertyPath: rb
@@ -657,6 +657,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 6494366698852611236, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
+      propertyPath: AudioPlayer
+      value: 
+      objectReference: {fileID: 1191445660241909505}
     - target: {fileID: 7020208417353967638, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.14899999
@@ -966,6 +970,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1072733472485737790}
   m_SourcePrefab: {fileID: 100100000, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
+--- !u!82 &1191445660241909505 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2402094416012439865, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
+  m_PrefabInstance: {fileID: 3593073875161228856}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5984970219455982714 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7121258720370068034, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
@@ -1154,6 +1163,7 @@ MonoBehaviour:
   fireAction: {fileID: 1120369429361536294, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   dashAction: {fileID: -1591832314784998302, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   weaponKeybindsAction: {fileID: -2735380176781456793, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  phaseAction: {fileID: -9135410620642095999, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   firePoint: {fileID: 7870654291819106841}
   weapons:
   - {fileID: 4367270167898253899, guid: fde5e6f7714814c4e8108a58b4763bf1, type: 3}
@@ -1164,6 +1174,10 @@ MonoBehaviour:
   dashPower: 3
   dashTime: 0.2
   dashCooldown: 0.5
+  energy: 1
+  energyStep: 0.01
+  dashCost: 100
+  phaseCost: 0.1
 --- !u!114 &7781527178466087580 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6494366698852611236, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}

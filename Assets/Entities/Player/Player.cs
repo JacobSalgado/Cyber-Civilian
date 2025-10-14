@@ -41,17 +41,17 @@ public class Player : Entity
     private bool isDashing = false;
     private bool isPhasing = false;
 
-    // private variables
-    [NonSerialized] public Camera cam;
-    [NonSerialized] public PlayerData playerData;
-    private Vector2 mousePos;
-
     [Header("==Resource==")]
-
+    // TODO: set resource regen timer and make energy an Int
     public float energy = 1000f;
     public float energyStep = 0.01f;
     public float dashCost = 100f;
     public float phaseCost = 0.1f;
+
+    // private variables
+    [NonSerialized] public Camera cam;
+    [NonSerialized] public PlayerData playerData;
+    private Vector2 mousePos;
 
     public override void InitializeStates()
     {
@@ -108,7 +108,7 @@ public class Player : Entity
 
         // check fire inputs
         if (currentWeaponType < PlayerWeaponType.NONE)
-        ShootWeapon(weapons[(int)currentWeaponType], fireAction, firePoint, 6);
+            ShootWeapon(weapons[(int)currentWeaponType], fireAction, firePoint, 6);
 
         // check dash inputs
         if (dashAction.action.WasPressedThisFrame() && canDash && !isDashing && energy - dashCost >= 0)
@@ -167,17 +167,14 @@ public class Player : Entity
         if (activate)
         {
             isPhasing = true;
-            //string[] ignored_layers = { "Default" };
+            gameObject.layer = 3;
             Debug.Log("Change state to phasing");
-            //LayerMask phaseLayer = LayerMask.GetMask("Default");
-            //rigidBody.excludeLayers = phaseLayer;
-            gameObject.layer = 8; // Layer Phasing
         }
         else
         {
             isPhasing = false;
+            gameObject.layer = 6; 
             Debug.Log("Change state to normal");
-            gameObject.layer = 0; // Layer Default
         }
     }
 
