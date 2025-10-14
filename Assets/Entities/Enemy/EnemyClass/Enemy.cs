@@ -6,10 +6,20 @@ public abstract class Enemy : Entity
     [Header("==Enemy GameObjects==")]
     public Transform firePoint;
     public GameObject weapon;
+    public GameObject canvas;
 
     // Non-Serialized Vars
     [NonSerialized] public Transform target; // following the player
     //[NonSerialized] public bool isAggro;
+
+    public override void Start()
+    {
+        base.Start();
+        target = LevelManager.player.transform;
+    
+        weapon = Instantiate(weapon, transform);
+        UpdateHealthBar();
+    }
 
     /// <summary>
     /// Calculates distance to target
@@ -18,15 +28,6 @@ public abstract class Enemy : Entity
     /// If target is not null, returns distance to target as float
     /// If target is null, returns -1
     /// </returns>
-
-    public override void Start()
-    {
-        base.Start();
-        target = LevelManager.player.transform;
-        weapon = Instantiate(weapon);
-        weapon.transform.SetParent(transform, false);
-    }
-
     public float GetDistanceToTarget()
     {
         if (target != null)
@@ -36,6 +37,14 @@ public abstract class Enemy : Entity
         }
 
         return -1f;
+    }
+
+    public override void FixedUpdate()
+    {
+        base.FixedUpdate();
+
+        // undo healthBar rotation
+        canvas.transform.rotation = Quaternion.identity;
     }
 
     public override void EntityDie()

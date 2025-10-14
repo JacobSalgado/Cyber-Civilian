@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 110406454919198107}
   - component: {fileID: 6841705666882722812}
-  - component: {fileID: 4489856370025559850}
   m_Layer: 5
   m_Name: HealthSlider
   m_TagString: Untagged
@@ -90,20 +89,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &4489856370025559850
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2594496345486796033}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8ad90dd2497d64468a511421effac10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Health
-  entityData: {fileID: 11400000, guid: 6c4ca02f294d5644bad555ee4509fd1b, type: 2}
-  slider: {fileID: 6841705666882722812}
 --- !u!1 &3246942025684176724
 GameObject:
   m_ObjectHideFlags: 0

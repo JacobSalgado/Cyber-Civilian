@@ -285,6 +285,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1868575608633948007, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
   m_PrefabInstance: {fileID: 1871070412002053489}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1488475855081233014 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 963559520040949511, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+  m_PrefabInstance: {fileID: 1871070412002053489}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5632614513543846834 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6331060172565108419, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+  m_PrefabInstance: {fileID: 1871070412002053489}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
 --- !u!50 &7183492431902957487 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 8811157356989125342, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
@@ -346,11 +362,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Trooper
   rigidBody: {fileID: 7183492431902957487}
   entityData: {fileID: 11400000, guid: 35b7bf2e7d293054fb9c1ac413796119, type: 2}
-  healthBar: {fileID: 0}
+  healthBar: {fileID: 5632614513543846834}
   audioManager: {fileID: 8904659477835846501}
   invincibility: 0
   firePoint: {fileID: 7286729672604182}
   weapon: {fileID: 16432950934994515, guid: f705a370a6ca9194bbfbf1d5d7c0044f, type: 3}
+  canvas: {fileID: 1488475855081233014}
   distanceToShoot: 6.7
   distanceToMove: 8.5
 --- !u!114 &8904659477835846501 stripped

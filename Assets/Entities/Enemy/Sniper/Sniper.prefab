@@ -75,6 +75,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 3067670079557629852}
   m_SourcePrefab: {fileID: 100100000, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+--- !u!1 &2966775912804215989 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 963559520040949511, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+  m_PrefabInstance: {fileID: 2626542781473881010}
+  m_PrefabAsset: {fileID: 0}
 --- !u!212 &3453748074742007050 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 836956141584006840, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
@@ -141,13 +146,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Sniper
   rigidBody: {fileID: 6788294976325675372}
   entityData: {fileID: 11400000, guid: e7c7fb0cc6648cc4d9bf944e1138779e, type: 2}
-  healthBar: {fileID: 0}
+  healthBar: {fileID: 8335928785559891313}
   audioManager: {fileID: 5050662202592535974}
   invincibility: 0
   firePoint: {fileID: 4439943555385396437}
   weapon: {fileID: 1157213995312190472, guid: f4f07c3e278a0334fad700404b5b7fe0, type: 3}
+  canvas: {fileID: 2966775912804215989}
   spriteRenderer: {fileID: 3453748074742007050}
-  distanceToShoot: 10
   distanceToHide: 0
 --- !u!114 &5050662202592535974 stripped
 MonoBehaviour:
@@ -165,3 +170,14 @@ Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 8811157356989125342, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
   m_PrefabInstance: {fileID: 2626542781473881010}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8335928785559891313 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6331060172565108419, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+  m_PrefabInstance: {fileID: 2626542781473881010}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
