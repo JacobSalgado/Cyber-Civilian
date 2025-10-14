@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using JetBrains.Rider.Unity.Editor;
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -24,6 +25,7 @@ public class Player : Entity
     public InputActionReference fireAction;
     public InputActionReference dashAction;
     public InputActionReference weaponKeybindsAction;
+    public InputActionReference phaseAction;
 
     [Header("==Weapon Properties==")]
     public Transform firePoint;
@@ -37,11 +39,19 @@ public class Player : Entity
     public float dashCooldown = 1f;
     private bool canDash = true;
     private bool isDashing = false;
+    private bool isPhasing = false;
 
     // private variables
     [NonSerialized] public Camera cam;
     [NonSerialized] public PlayerData playerData;
     private Vector2 mousePos;
+
+    [Header("==Resource==")]
+
+    public float energy = 1000f;
+    public float energyStep = 0.01f;
+    public float dashCost = 100f;
+    public float phaseCost = 0.1f;
 
     public override void InitializeStates()
     {
@@ -85,7 +95,7 @@ public class Player : Entity
             // check which button was pressed in the actionMap
             PlayerWeaponType new_weapon_type;
             string action = weaponKeybindsAction.action.activeControl.name;
-            
+
             if (string.Compare(action, "q") != 0)
             {
                 int num_key = int.Parse(action);
@@ -98,16 +108,23 @@ public class Player : Entity
 
         // check fire inputs
         if (currentWeaponType < PlayerWeaponType.NONE)
-            ShootWeapon(weapons[(int)currentWeaponType], fireAction, firePoint, 6);
-        
+        ShootWeapon(weapons[(int)currentWeaponType], fireAction, firePoint, 6);
+
         // check dash inputs
-        if (dashAction.action.WasPressedThisFrame() && canDash && !isDashing)
+        if (dashAction.action.WasPressedThisFrame() && canDash && !isDashing && energy - dashCost >= 0)
         {
             canDash = false;
             isDashing = true;
             invincibility = true;
+            energy -= dashCost;
             ChangeState("Dash");
         }
+
+        // check phase inputs
+        if (phaseAction.action.WasPressedThisFrame() && !isPhasing && energy - phaseCost >= 0)
+            Phase(true);
+        else if (phaseAction.action.WasPressedThisFrame() && isPhasing)
+            Phase(false);
     }
 
     public override void FixedUpdate()
@@ -117,6 +134,22 @@ public class Player : Entity
         // update rotation
         Vector2 dir = GetDirectionToPosition(mousePos);
         RotateToDirection(dir);
+
+        // regenerate energy
+        if (energy < 1000)
+        {
+            energy += energyStep;
+            if (energy > 1000) energy = 1000;
+        }
+
+        if (isPhasing && energy <= 0)
+        {
+            Phase(false);
+        }
+        else if (isPhasing)
+        {
+            energy -= phaseCost;
+        }
     }
 
     public void EquipNewWeapon(PlayerWeaponType newWeaponType)
@@ -127,6 +160,25 @@ public class Player : Entity
             weaponRenderer.sprite = weapons[(int)newWeaponType].GetComponent<Weapon>().weaponSprite;
         }
         else Debug.LogError(string.Format("{0} not in weapon array", newWeaponType));
+    }
+
+    public void Phase(bool activate)
+    {
+        if (activate)
+        {
+            isPhasing = true;
+            //string[] ignored_layers = { "Default" };
+            Debug.Log("Change state to phasing");
+            //LayerMask phaseLayer = LayerMask.GetMask("Default");
+            //rigidBody.excludeLayers = phaseLayer;
+            gameObject.layer = 8; // Layer Phasing
+        }
+        else
+        {
+            isPhasing = false;
+            Debug.Log("Change state to normal");
+            gameObject.layer = 0; // Layer Default
+        }
     }
 
     public bool getIsDashing()
