@@ -38,6 +38,9 @@ public class GameInGame : State
         manager.player.healthBar = hud.healthSlider;
         manager.player.UpdateHealthBar();
 
+        manager.player.resourceMeter = hud.resourceSlider;
+        manager.player.UpdateResourceMeter();
+
         // connect current level's camera confiner and player object to the game camera
         manager.cinemachine.GetComponent<CinemachineConfiner2D>().BoundingShape2D = new_level.confiner;
         manager.cinemachine.Follow = manager.player.transform;

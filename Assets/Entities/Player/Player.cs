@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Player : Entity
 {
@@ -39,16 +40,18 @@ public class Player : Entity
     private bool isDashing = false;
     private bool isPhasing = false;
 
-    [Header("==Resource==")]
+    [Header("==Resource Properties==")]
     // TODO: set resource regen timer and make energy an Int
-    public float energy = 1000f;
-    public float energyStep = 0.01f;
-    public float dashCost = 100f;
-    public float phaseCost = 0.1f;
+    public int currentEnergy = 1000;
+    public int maxEnergy = 1000;
+    public int energyRegen = 1;
+    public int dashCost = 100;
+    public int phaseCost = 50;
 
     // private variables
     [NonSerialized] public Camera cam;
     [NonSerialized] public PlayerData playerData;
+    [NonSerialized] public Slider resourceMeter;
     private Vector2 mousePos;
 
     public override void InitializeStates()
@@ -109,17 +112,17 @@ public class Player : Entity
             ShootWeapon(weapons[(int)currentWeaponType], fireAction, firePoint, 6);
 
         // check dash inputs
-        if (dashAction.action.WasPressedThisFrame() && canDash && !isDashing && energy - dashCost >= 0)
+        if (dashAction.action.WasPressedThisFrame() && canDash && !isDashing && currentEnergy - dashCost >= 0)
         {
             canDash = false;
             isDashing = true;
             invincibility = true;
-            energy -= dashCost;
+            currentEnergy -= dashCost;
             ChangeState("Dash");
         }
 
         // check phase inputs
-        if (phaseAction.action.WasPressedThisFrame() && !isPhasing && energy - phaseCost >= 0)
+        if (phaseAction.action.WasPressedThisFrame() && !isPhasing && currentEnergy - phaseCost >= 0)
             Phase(true);
         else if (phaseAction.action.WasPressedThisFrame() && isPhasing)
             Phase(false);
@@ -134,20 +137,21 @@ public class Player : Entity
         RotateToDirection(dir);
 
         // regenerate energy
-        if (energy < 1000)
+        if (currentEnergy < 1000)
         {
-            energy += energyStep;
-            if (energy > 1000) energy = 1000;
+            currentEnergy += energyRegen;
+            if (currentEnergy > 1000) currentEnergy = 1000;
         }
 
-        if (isPhasing && energy <= 0)
+        if (isPhasing && currentEnergy <= 0)
         {
             Phase(false);
         }
         else if (isPhasing)
         {
-            energy -= phaseCost;
+            currentEnergy -= phaseCost;
         }
+        UpdateResourceMeter();
     }
 
     public void EquipNewWeapon(PlayerWeaponType newWeaponType)
@@ -171,9 +175,15 @@ public class Player : Entity
         else
         {
             isPhasing = false;
-            gameObject.layer = 6; 
+            gameObject.layer = 6;
             Debug.Log("Change state to normal");
         }
+    }
+    
+    public void UpdateResourceMeter()
+    {
+        resourceMeter.maxValue = maxEnergy;
+        resourceMeter.value = currentEnergy;
     }
 
     public bool getIsDashing()

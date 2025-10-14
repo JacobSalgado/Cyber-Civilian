@@ -1159,6 +1159,7 @@ MonoBehaviour:
   audioManager: {fileID: 7781527178466087580}
   invincibility: 0
   tr: {fileID: 6616881326347800582}
+  spriteRenderer: {fileID: 0}
   moveAction: {fileID: -1680190386980627800, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   fireAction: {fileID: 1120369429361536294, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   dashAction: {fileID: -1591832314784998302, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
@@ -1174,10 +1175,11 @@ MonoBehaviour:
   dashPower: 3
   dashTime: 0.2
   dashCooldown: 0.5
-  energy: 1
-  energyStep: 0.01
+  currentEnergy: 1000
+  maxEnergy: 1000
+  energyRegen: 1
   dashCost: 100
-  phaseCost: 0.1
+  phaseCost: 2
 --- !u!114 &7781527178466087580 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6494366698852611236, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}

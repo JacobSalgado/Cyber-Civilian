@@ -15,7 +15,7 @@ public abstract class Projectile : Entity
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (attacking_layer == 7 && collision.gameObject.layer == 6 && collision.gameObject.TryGetComponent<Player>(out var player))
+        if (attacking_layer == 7 && collision.gameObject.TryGetComponent<Player>(out var player))
         {
             player.TakeDamage(projData.damage);
             HitEffect(collision.transform.position);
@@ -23,7 +23,7 @@ public abstract class Projectile : Entity
             if (projData.destroyOnCollision)
                 EntityDie();
         }
-        else if (attacking_layer == 6 && collision.gameObject.layer == 7 && collision.gameObject.TryGetComponent<Enemy>(out var enemy))
+        else if (attacking_layer == 6 && collision.gameObject.TryGetComponent<Enemy>(out var enemy))
         {
             enemy.TakeDamage(projData.damage);
             HitEffect(collision.transform.position);
