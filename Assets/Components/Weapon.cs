@@ -131,7 +131,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    public void ShootProjectile(Transform firePoint, int collision_layer)
+    public void ShootProjectile(Transform firePoint, int receiving_layer)
     {
         // update ammo
         if (!infiniteAmmo) currentAmmo -= ammoCost;
@@ -141,6 +141,6 @@ public class Weapon : MonoBehaviour
 
         proj.projData = Instantiate(projData);
         proj.audioManager.InitializeAudioDictionary(proj.projData.SFXNames, proj.projData.SFX);
-        proj.attacking_layer = collision_layer;
+        proj.attacking_layer = receiving_layer;
     }
 }

@@ -19,6 +19,7 @@ public class Player : Entity
 
     [Header("==Necessary GameObjects==")]
     public TrailRenderer tr; // Used to create dashing effect
+    public SpriteRenderer spriteRenderer;
 
     [Header("==Controls==")]
     public InputActionReference moveAction;
