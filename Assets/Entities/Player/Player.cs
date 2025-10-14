@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using JetBrains.Rider.Unity.Editor;
-using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
 

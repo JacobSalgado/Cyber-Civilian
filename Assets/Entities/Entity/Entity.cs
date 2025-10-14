@@ -1,14 +1,13 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public abstract class Entity : StateManager
 {
     [Header("==Entity GameObjects and Vars==")]
     public Rigidbody2D rigidBody;
     public EntityData entityData;
-    public HealthBar healthBar;
+    public Slider healthBar;
     public AudioManager audioManager;
     public bool invincibility = false;
 
@@ -22,10 +21,6 @@ public abstract class Entity : StateManager
         if (entityData != null)
         {
             entityData = Instantiate(entityData);
-
-            if (healthBar != null)
-                healthBar.entityData = entityData;
-            
             audioManager.InitializeAudioDictionary(entityData.SFXNames, entityData.SFX);
         }
     }
@@ -63,7 +58,7 @@ public abstract class Entity : StateManager
 
         if (healthBar != null)
         {
-            healthBar.UpdateHealthBar();
+            UpdateHealthBar();
         }
     }
 
@@ -78,6 +73,12 @@ public abstract class Entity : StateManager
         float angleRad = Mathf.Atan2(dir.y, dir.x);
         float angleDeg = angleRad * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, angleDeg + 180f);
+    }
+
+    public void UpdateHealthBar()
+    {
+        healthBar.maxValue = entityData.maxHealth;
+        healthBar.value = entityData.currentHealth;
     }
 
     public void ShootWeapon(GameObject weapon, InputActionReference fireAction, Transform firePoint, int collision_layer)

@@ -35,8 +35,8 @@ public class GameInGame : State
         hud = PrefabUtility.LoadPrefabContents(playerHUDPath).GetComponent<PlayerHUD>();
         hud.gameObject.transform.SetParent(manager.UIHolder.transform, false);
 
-        manager.player.healthBar = hud.healthSlider.GetComponent<HealthBar>();
-        manager.player.healthBar.UpdateHealthBar();
+        manager.player.healthBar = hud.healthSlider;
+        manager.player.UpdateHealthBar();
 
         // connect current level's camera confiner and player object to the game camera
         manager.cinemachine.GetComponent<CinemachineConfiner2D>().BoundingShape2D = new_level.confiner;
