@@ -1,18 +1,34 @@
-using System.Security.Cryptography;
+using System.Linq;
 using UnityEngine;
 
 public abstract class Entity : StateManager
 {
-    [Header("Entity GameObjects")]
+    [Header("Entity GameObjects and Vars")]
     public Rigidbody2D rigidBody;
     public AudioSource SFXPlayer;
     public EntityData entityData;
     public HealthBar healthBar;
     public PolygonCollider2D hurtbox;
 
+    public Transform firePoint;
+
     public bool invincibility = false;
 
     public abstract void InitializeStates();
+
+    // dictionary: asset store or scriptable objects
+    public virtual void Start()
+    {
+        // make a copy of the entityData
+        if (entityData != null)
+        {
+            entityData = Instantiate(entityData);
+            if (healthBar != null)
+            {
+                healthBar.entityData = entityData;
+            }
+        }
+    }
 
     public void TakeDamage(int damageTaken)
     {
@@ -53,6 +69,6 @@ public abstract class Entity : StateManager
 
     public virtual void OnCollisionEnter2D(Collision2D collision)
     {
-        
+
     }
 }
