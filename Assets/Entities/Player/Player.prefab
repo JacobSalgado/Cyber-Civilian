@@ -1150,6 +1150,7 @@ MonoBehaviour:
   moveAction: {fileID: -1680190386980627800, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   fireAction: {fileID: 1120369429361536294, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   dashAction: {fileID: -1591832314784998302, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  shieldAction: {fileID: -566977883720413807, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   weaponKeybindsAction: {fileID: -2735380176781456793, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   firePoint: {fileID: 7870654291819106841}
   weapons:
@@ -1161,6 +1162,9 @@ MonoBehaviour:
   dashPower: 3
   dashTime: 0.2
   dashCooldown: 0.5
+  hurtBox: {fileID: 0}
+  shieldSprite: {fileID: 21300000, guid: 8c1ee7a9b9b644f3855920e1807835f4, type: 3}
+  enemy: {fileID: 7916685865108859529, guid: 1cc5c3f5a7b954e4a856c91027a3f23f, type: 3}
 --- !u!50 &8349349828730560086 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 4756910380638058606, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}

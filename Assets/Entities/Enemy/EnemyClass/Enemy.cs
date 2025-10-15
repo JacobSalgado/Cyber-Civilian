@@ -7,6 +7,8 @@ public abstract class Enemy : Entity
     public Transform firePoint;
     public GameObject weapon;
 
+    public Player player;
+
     // Non-Serialized Vars
     [NonSerialized] public Transform target; // following the player
     //[NonSerialized] public bool isAggro;
@@ -43,4 +45,21 @@ public abstract class Enemy : Entity
         LevelManager.enemyKilledCounter += 1;
         Destroy(gameObject);
     }
+
+    // doing it in here since enemies get instantiated
+    /*public void PlayerShield()
+    {
+        Vector2 playerForward = player.firePoint.right;
+        Vector2 toPlayer = (player.transform.position - transform.position).normalized;
+
+        float dot = Vector2.Dot(playerForward, toPlayer);
+        if (dot > Mathf.Cos(45f * Mathf.Deg2Rad) && player.getIsBlocking())
+        {
+            player.invincibility = true;
+        }
+        else
+        {
+            player.invincibility = false;
+        }
+    }*/
 }
