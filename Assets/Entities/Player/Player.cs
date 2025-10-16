@@ -1,4 +1,5 @@
 using System;
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -18,6 +19,7 @@ public class Player : Entity
     [Header("==Necessary GameObjects==")]
     public TrailRenderer tr; // Used to create dashing effect
     public SpriteRenderer spriteRenderer;
+    public Sprite shieldSprite;
 
     [Header("==Controls==")]
     public InputActionReference moveAction;
@@ -42,7 +44,7 @@ public class Player : Entity
     private bool isPhasing = false;
 
     [Header("==Resource Properties==")]
-    // TODO: set resource regen timer and make energy an Int
+    // TODO: set resource regen timer
     public int currentEnergy = 1000;
     public int maxEnergy = 1000;
     public int energyRegen = 1;
@@ -50,20 +52,15 @@ public class Player : Entity
     public int phaseCost = 50;
 
     [Header("==Blocking Properties==")]
-    public BoxCollider hurtBox;
-    private Vector2 forward_direction;
-    private bool canBlock = true;
-    [NonSerialized] private bool isBlocking = false;
-
-    public Sprite shieldSprite;
-
-    public Enemy enemy;
+    //TODO: make blocking use up Resource Energy
 
     // private variables
     [NonSerialized] public Camera cam;
     [NonSerialized] public PlayerData playerData;
     [NonSerialized] public Slider resourceMeter;
     private Vector2 mousePos;
+    private bool canBlock = true;
+    private bool isBlocking = false;
 
     public override void InitializeStates()
     {
@@ -148,10 +145,27 @@ public class Player : Entity
         {
             canBlock = false;
             isBlocking = true;
-            //invincibility = true;
 
             EquipShield();
         }
+
+        // regenerate energy
+        if (currentEnergy < 1000)
+        {
+            currentEnergy += energyRegen;
+            if (currentEnergy > 1000) currentEnergy = 1000;
+        }
+
+        if (isPhasing) //
+        {
+            if (currentEnergy <= 0)
+                Phase(false);
+            else
+                currentEnergy -= phaseCost;
+        }
+
+        // UI updates
+        UpdateResourceMeter();
     }
 
     public override void FixedUpdate()
@@ -161,23 +175,6 @@ public class Player : Entity
         // update rotation
         Vector2 dir = GetDirectionToPosition(mousePos);
         RotateToDirection(dir);
-
-        // regenerate energy
-        if (currentEnergy < 1000)
-        {
-            currentEnergy += energyRegen;
-            if (currentEnergy > 1000) currentEnergy = 1000;
-        }
-
-        if (isPhasing && currentEnergy <= 0)
-        {
-            Phase(false);
-        }
-        else if (isPhasing)
-        {
-            currentEnergy -= phaseCost;
-        }
-        UpdateResourceMeter();
     }
 
     public void EquipNewWeapon(PlayerWeaponType newWeaponType)
@@ -187,11 +184,20 @@ public class Player : Entity
             currentWeaponType = newWeaponType;
             weaponRenderer.sprite = weapons[(int)newWeaponType].GetComponent<Weapon>().weaponSprite;
         }
-        else Debug.LogError(string.Format("{0} not in weapon array", newWeaponType));
+        else Debug.LogError($"{newWeaponType} not in weapon array" );
     }
 
+    public void UpdateResourceMeter()
+    {
+        resourceMeter.maxValue = maxEnergy;
+        resourceMeter.value = currentEnergy;
+    }
+
+    // Phase functions
     public void Phase(bool activate)
     {
+        // TODO: lower sprite alpha to be make player seem transparent
+
         if (activate)
         {
             isPhasing = true;
@@ -204,22 +210,6 @@ public class Player : Entity
             gameObject.layer = 6;
             Debug.Log("Change state to normal");
         }
-    }
-    
-    public void UpdateResourceMeter()
-    {
-        resourceMeter.maxValue = maxEnergy;
-        resourceMeter.value = currentEnergy;
-    }
-
-    public void EquipShield()
-    {
-        // keep track of previous weapon the player was holding
-        // change weaponrenderer sprite to a shield sprite
-
-        weaponRenderer.sprite = shieldSprite;
-
-        //enemy.PlayerShield();
     }
 
     public bool getIsDashing()
@@ -238,6 +228,14 @@ public class Player : Entity
     }
 
     // Shield Functions
+    public void EquipShield()
+    {
+        // TODO: keep track of previous weapon the player was holding
+
+        // change weaponrenderer sprite to a shield sprite
+        weaponRenderer.sprite = shieldSprite;
+    }
+
     public bool getIsBlocking()
     {
         return isBlocking;

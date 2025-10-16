@@ -28,23 +28,17 @@ public abstract class Projectile : Entity
 
                 float dot = Vector2.Dot(playerForward, toProjectile);
 
-                if (dot > Mathf.Cos(45f * Mathf.Deg2Rad))
-                {
-                    // Within the block cone
-                    player.invincibility = true;
-                    blocked = true;
-                    Debug.Log("Projectile Blocked");
-                }
+                blocked = dot > Mathf.Cos(45f * Mathf.Deg2Rad);
             }
 
             if (!blocked)
             {
-                // Player takes damage if not blocked
-                player.invincibility = false;
                 player.TakeDamage(projData.damage);
             }
+            else Debug.Log("Projectile Blocked");
 
             // Destroy projectile if necessary (blocked or hit)
+            HitEffect(collision.transform.position);
             if (projData.destroyOnCollision)
                 EntityDie();
         }

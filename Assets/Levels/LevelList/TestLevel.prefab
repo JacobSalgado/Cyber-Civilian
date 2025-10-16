@@ -10491,10 +10491,10 @@ PrefabInstance:
     - target: {fileID: -4032455514951249693, guid: cd7cca92be2028d4d8d1fde642a90b14, type: 3}
       propertyPath: enemyPrefab
       value: 
-      objectReference: {fileID: 4916823724006355693, guid: 5fb676e0a7b43614d826979a01768f60, type: 3}
+      objectReference: {fileID: 8770807821078955054, guid: 1cc5c3f5a7b954e4a856c91027a3f23f, type: 3}
     - target: {fileID: -4032455514951249693, guid: cd7cca92be2028d4d8d1fde642a90b14, type: 3}
       propertyPath: timeTilRespawn
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -4032455514951249693, guid: cd7cca92be2028d4d8d1fde642a90b14, type: 3}
       propertyPath: repeatableSpawn
