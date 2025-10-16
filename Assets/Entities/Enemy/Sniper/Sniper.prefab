@@ -20,6 +20,14 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.7610062
       objectReference: {fileID: 0}
+    - target: {fileID: 6474276062370758235, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6474276062370758235, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6527896415030157554, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -154,6 +162,8 @@ MonoBehaviour:
   canvas: {fileID: 2966775912804215989}
   spriteRenderer: {fileID: 3453748074742007050}
   distanceToHide: 0
+  healthCanvas: {fileID: 7159623827065755054}
+  sniperCollider: {fileID: 8828476117384761170}
 --- !u!114 &5050662202592535974 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7090025075723263508, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
@@ -168,6 +178,11 @@ MonoBehaviour:
 --- !u!50 &6788294976325675372 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 8811157356989125342, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+  m_PrefabInstance: {fileID: 2626542781473881010}
+  m_PrefabAsset: {fileID: 0}
+--- !u!223 &7159623827065755054 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 5129403513514798620, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
   m_PrefabInstance: {fileID: 2626542781473881010}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &8335928785559891313 stripped
