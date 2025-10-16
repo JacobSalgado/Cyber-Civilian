@@ -131,7 +131,7 @@ public class Player : Entity
         {
             canBlock = false;
             isBlocking = true;
-            invincibility = true;
+            //invincibility = true;
 
             EquipShield();
         }
