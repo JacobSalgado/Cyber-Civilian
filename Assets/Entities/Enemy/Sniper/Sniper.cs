@@ -3,19 +3,21 @@ using UnityEngine;
 
 public class Sniper : Enemy
 {
-    [Header("==Sniper Properties==")]
+    [Header("==Sniper GameObjects==")]
     public SpriteRenderer spriteRenderer;
-    public float distanceToHide;
-    public Canvas healthCanvas;
     public CapsuleCollider2D sniperCollider;
 
     [Header("==Hide Properties==")]
-    [NonSerialized] public bool isRecharging;
-    [NonSerialized] public float rechargeTime = 5f;
-    public float timer;
-
+    public float distanceToHide = 10f;
+    public float[] invisibleTimeRange = {0f, 1f};
+    public float invisibleRechargeTime = 5f;
+    
     // Non-Serialized vars
     [NonSerialized] public float distanceToShoot;
+    [NonSerialized] public bool isInvisibleRecharging = false;
+    [NonSerialized] public bool isInvisible = false;
+    [NonSerialized] public float timer = 0;
+    private Canvas healthCanvas;
 
     public override void InitializeStates()
     {
@@ -31,17 +33,25 @@ public class Sniper : Enemy
         base.Start();
         InitializeStates();
 
+        healthCanvas = canvas.GetComponent<Canvas>();
+
+        // NOTE: distanceToShoot for sniper is determined by given railshot length
         distanceToShoot = weapon.GetComponent<Weapon>().projData.railshotLength;
-
-        sniperCollider = GetComponent<CapsuleCollider2D>();
-
-        // hide properties
-        timer = 0;
-        isRecharging = false;
     }
+
+    public override void FixedUpdate()
+    {
+        base.FixedUpdate();
+
+        timer += Time.deltaTime;
+        isInvisibleRecharging = !isInvisible && timer <= invisibleRechargeTime;
+        //Debug.Log(current_state + " | " + isInvisibleRecharging);
+    }
+
 
     public void Invisible()
     {
+        isInvisible = true;
         spriteRenderer.enabled = false;
         healthCanvas.enabled = false;
         sniperCollider.enabled = false;
@@ -49,6 +59,7 @@ public class Sniper : Enemy
 
     public void Visible()
     {
+        isInvisible = false;
         spriteRenderer.enabled = true;
         healthCanvas.enabled = true;
         sniperCollider.enabled = true;

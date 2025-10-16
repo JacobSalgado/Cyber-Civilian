@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
 
 public class SniperShoot : State
@@ -18,13 +17,6 @@ public class SniperShoot : State
 
     public override void UpdateState()
     {
-        sniper.timer += Time.deltaTime; // hide recharge
-
-        if (sniper.timer > sniper.rechargeTime)
-        {
-            sniper.isRecharging = false;
-        }
-
         if (sniper.target == null)
         {
             Debug.LogError("Target not found");
@@ -32,14 +24,11 @@ public class SniperShoot : State
         }
 
         float distanceToTarget = sniper.GetDistanceToTarget();
-
-        /*
-        if (distanceToTarget < sniper.distanceToHide)
+        if (distanceToTarget < sniper.distanceToHide && !sniper.isInvisibleRecharging && sniper.timer > sniper.invisibleRechargeTime)
         {
             sniper.ChangeState("Hide");
             return;
         }
-        */
 
         if (distanceToTarget < sniper.distanceToShoot)
         {
@@ -48,12 +37,6 @@ public class SniperShoot : State
             sniper.Visible();
             sniper.ShootWeapon(sniper.weapon, null, sniper.firePoint, 7);
         }
-
-        if (sniper.GetDistanceToTarget() < 10f && !sniper.isRecharging && sniper.timer > sniper.rechargeTime)
-        {
-            sniper.ChangeState("Hide");
-        }
-
     }
     
     public override void ExitState(Dictionary<string, object> args = null)

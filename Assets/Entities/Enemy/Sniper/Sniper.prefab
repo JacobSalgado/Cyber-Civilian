@@ -161,9 +161,13 @@ MonoBehaviour:
   weapon: {fileID: 1157213995312190472, guid: f4f07c3e278a0334fad700404b5b7fe0, type: 3}
   canvas: {fileID: 2966775912804215989}
   spriteRenderer: {fileID: 3453748074742007050}
-  distanceToHide: 0
+  distanceToHide: 4
   healthCanvas: {fileID: 7159623827065755054}
   sniperCollider: {fileID: 8828476117384761170}
+  invisibleTimeRange:
+  - 2
+  - 4.5
+  invisibleRechargeTime: 4
 --- !u!114 &5050662202592535974 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7090025075723263508, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
