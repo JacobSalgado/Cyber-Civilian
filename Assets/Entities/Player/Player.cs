@@ -23,6 +23,7 @@ public class Player : Entity
     public InputActionReference moveAction;
     public InputActionReference fireAction;
     public InputActionReference dashAction;
+    public InputActionReference shieldAction;
     public InputActionReference weaponKeybindsAction;
     public InputActionReference phaseAction;
 
@@ -47,6 +48,16 @@ public class Player : Entity
     public int energyRegen = 1;
     public int dashCost = 100;
     public int phaseCost = 50;
+
+    [Header("==Blocking Properties==")]
+    public BoxCollider hurtBox;
+    private Vector2 forward_direction;
+    private bool canBlock = true;
+    [NonSerialized] private bool isBlocking = false;
+
+    public Sprite shieldSprite;
+
+    public Enemy enemy;
 
     // private variables
     [NonSerialized] public Camera cam;
@@ -93,6 +104,11 @@ public class Player : Entity
         // check for weaponKeybind input
         if (weaponKeybindsAction.action.WasPressedThisFrame())
         {
+            // Resets from previously having the shield
+            canBlock = true;
+            isBlocking = false;
+            invincibility = false;
+
             // check which button was pressed in the actionMap
             PlayerWeaponType new_weapon_type;
             string action = weaponKeybindsAction.action.activeControl.name;
@@ -108,7 +124,7 @@ public class Player : Entity
         }
 
         // check fire inputs
-        if (currentWeaponType < PlayerWeaponType.NONE)
+        if (currentWeaponType < PlayerWeaponType.NONE && !isBlocking)
             ShootWeapon(weapons[(int)currentWeaponType], fireAction, firePoint, 6);
 
         // check dash inputs
@@ -126,6 +142,16 @@ public class Player : Entity
             Phase(true);
         else if (phaseAction.action.WasPressedThisFrame() && isPhasing)
             Phase(false);
+
+        // check shield inputs
+        if (shieldAction.action.IsPressed() && canBlock && !isBlocking)
+        {
+            canBlock = false;
+            isBlocking = true;
+            //invincibility = true;
+
+            EquipShield();
+        }
     }
 
     public override void FixedUpdate()
@@ -186,6 +212,16 @@ public class Player : Entity
         resourceMeter.value = currentEnergy;
     }
 
+    public void EquipShield()
+    {
+        // keep track of previous weapon the player was holding
+        // change weaponrenderer sprite to a shield sprite
+
+        weaponRenderer.sprite = shieldSprite;
+
+        //enemy.PlayerShield();
+    }
+
     public bool getIsDashing()
     {
         return isDashing;
@@ -200,4 +236,21 @@ public class Player : Entity
     {
         isDashing = new_isDashing;
     }
+
+    // Shield Functions
+    public bool getIsBlocking()
+    {
+        return isBlocking;
+    }
+
+    public void setCanBlock(bool new_canBlock)
+    {
+        isBlocking = new_canBlock;
+    }
+
+    public void setIsBlocking(bool new_isBlocking)
+    {
+        isBlocking = new_isBlocking;
+    }
+
 }
