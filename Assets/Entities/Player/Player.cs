@@ -54,6 +54,8 @@ public class Player : Entity
     [Header("==Blocking Properties==")]
     //TODO: make blocking use up Resource Energy
 
+    public float shieldDrainRate = 50f;
+
     // private variables
     [NonSerialized] public Camera cam;
     [NonSerialized] public PlayerData playerData;
@@ -61,6 +63,7 @@ public class Player : Entity
     private Vector2 mousePos;
     private bool canBlock = true;
     private bool isBlocking = false;
+    private PlayerWeaponType previousWeaponType;
 
     public override void InitializeStates()
     {
@@ -141,16 +144,26 @@ public class Player : Entity
             Phase(false);
 
         // check shield inputs
-        if (shieldAction.action.IsPressed() && canBlock && !isBlocking)
+        if (shieldAction.action.WasPressedThisFrame())
         {
-            canBlock = false;
-            isBlocking = true;
+            if (isBlocking)
+            {
+                canBlock = true;
+                isBlocking = false;
+                EquipNewWeapon(previousWeaponType);
+            }
+            else if (canBlock && !isBlocking)
+            {
+                previousWeaponType = currentWeaponType;
 
-            EquipShield();
+                canBlock = false;
+                isBlocking = true;
+                EquipShield();
+            }
         }
 
         // regenerate energy
-        if (currentEnergy < 1000)
+        if (currentEnergy < 1000 && !isBlocking && !isPhasing)
         {
             currentEnergy += energyRegen;
             if (currentEnergy > 1000) currentEnergy = 1000;
@@ -162,6 +175,19 @@ public class Player : Entity
                 Phase(false);
             else
                 currentEnergy -= phaseCost;
+        }
+
+        if (isBlocking)
+        {
+            currentEnergy -= Mathf.RoundToInt(shieldDrainRate * Time.deltaTime);
+            if (currentEnergy <= 0)
+            {
+                currentEnergy = 0;
+                canBlock = true; // reset for when resource regenerates
+                isBlocking = false;
+                // switch from shield to gun
+                EquipNewWeapon(previousWeaponType);
+            }
         }
 
         // UI updates
