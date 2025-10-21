@@ -4,6 +4,7 @@ using UnityEngine;
 public class SniperHide : State
 {
     readonly Sniper sniper;
+    private float hideTime;
 
     public SniperHide(Entity new_entity) : base(new_entity)
     {
@@ -12,7 +13,9 @@ public class SniperHide : State
 
     public override void EnterState(Dictionary<string, object> args = null)
     {
-
+        sniper.timer = 0;
+        sniper.Invisible();
+        hideTime = Random.Range(sniper.invisibleTimeRange[0], sniper.invisibleTimeRange[1]);
     }
 
     public override void UpdateState()
@@ -23,11 +26,13 @@ public class SniperHide : State
             return;
         }
 
-        // TODO: implement hiding behavior
+        if (sniper.timer > hideTime)
+            sniper.ChangeState("Idle");
     }
     
     public override void ExitState(Dictionary<string, object> args = null)
     {
-        
+        sniper.timer = 0;
+        sniper.Visible();
     }
 }

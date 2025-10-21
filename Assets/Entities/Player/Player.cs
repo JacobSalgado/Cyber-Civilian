@@ -1,4 +1,5 @@
 using System;
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -18,11 +19,13 @@ public class Player : Entity
     [Header("==Necessary GameObjects==")]
     public TrailRenderer tr; // Used to create dashing effect
     public SpriteRenderer spriteRenderer;
+    public Sprite shieldSprite;
 
     [Header("==Controls==")]
     public InputActionReference moveAction;
     public InputActionReference fireAction;
     public InputActionReference dashAction;
+    public InputActionReference shieldAction;
     public InputActionReference weaponKeybindsAction;
     public InputActionReference phaseAction;
 
@@ -41,18 +44,23 @@ public class Player : Entity
     private bool isPhasing = false;
 
     [Header("==Resource Properties==")]
-    // TODO: set resource regen timer and make energy an Int
+    // TODO: set resource regen timer
     public int currentEnergy = 1000;
     public int maxEnergy = 1000;
     public int energyRegen = 1;
     public int dashCost = 100;
     public int phaseCost = 50;
 
+    [Header("==Blocking Properties==")]
+    //TODO: make blocking use up Resource Energy
+
     // private variables
     [NonSerialized] public Camera cam;
     [NonSerialized] public PlayerData playerData;
     [NonSerialized] public Slider resourceMeter;
     private Vector2 mousePos;
+    private bool canBlock = true;
+    private bool isBlocking = false;
 
     public override void InitializeStates()
     {
@@ -93,6 +101,11 @@ public class Player : Entity
         // check for weaponKeybind input
         if (weaponKeybindsAction.action.WasPressedThisFrame())
         {
+            // Resets from previously having the shield
+            canBlock = true;
+            isBlocking = false;
+            invincibility = false;
+
             // check which button was pressed in the actionMap
             PlayerWeaponType new_weapon_type;
             string action = weaponKeybindsAction.action.activeControl.name;
@@ -108,7 +121,7 @@ public class Player : Entity
         }
 
         // check fire inputs
-        if (currentWeaponType < PlayerWeaponType.NONE)
+        if (currentWeaponType < PlayerWeaponType.NONE && !isBlocking)
             ShootWeapon(weapons[(int)currentWeaponType], fireAction, firePoint, 6);
 
         // check dash inputs
@@ -126,6 +139,33 @@ public class Player : Entity
             Phase(true);
         else if (phaseAction.action.WasPressedThisFrame() && isPhasing)
             Phase(false);
+
+        // check shield inputs
+        if (shieldAction.action.IsPressed() && canBlock && !isBlocking)
+        {
+            canBlock = false;
+            isBlocking = true;
+
+            EquipShield();
+        }
+
+        // regenerate energy
+        if (currentEnergy < 1000)
+        {
+            currentEnergy += energyRegen;
+            if (currentEnergy > 1000) currentEnergy = 1000;
+        }
+
+        if (isPhasing) //
+        {
+            if (currentEnergy <= 0)
+                Phase(false);
+            else
+                currentEnergy -= phaseCost;
+        }
+
+        // UI updates
+        UpdateResourceMeter();
     }
 
     public override void FixedUpdate()
@@ -135,23 +175,6 @@ public class Player : Entity
         // update rotation
         Vector2 dir = GetDirectionToPosition(mousePos);
         RotateToDirection(dir);
-
-        // regenerate energy
-        if (currentEnergy < 1000)
-        {
-            currentEnergy += energyRegen;
-            if (currentEnergy > 1000) currentEnergy = 1000;
-        }
-
-        if (isPhasing && currentEnergy <= 0)
-        {
-            Phase(false);
-        }
-        else if (isPhasing)
-        {
-            currentEnergy -= phaseCost;
-        }
-        UpdateResourceMeter();
     }
 
     public void EquipNewWeapon(PlayerWeaponType newWeaponType)
@@ -161,11 +184,20 @@ public class Player : Entity
             currentWeaponType = newWeaponType;
             weaponRenderer.sprite = weapons[(int)newWeaponType].GetComponent<Weapon>().weaponSprite;
         }
-        else Debug.LogError(string.Format("{0} not in weapon array", newWeaponType));
+        else Debug.LogError($"{newWeaponType} not in weapon array" );
     }
 
+    public void UpdateResourceMeter()
+    {
+        resourceMeter.maxValue = maxEnergy;
+        resourceMeter.value = currentEnergy;
+    }
+
+    // Phase functions
     public void Phase(bool activate)
     {
+        // TODO: lower sprite alpha to be make player seem transparent
+
         if (activate)
         {
             isPhasing = true;
@@ -178,12 +210,6 @@ public class Player : Entity
             gameObject.layer = 6;
             Debug.Log("Change state to normal");
         }
-    }
-    
-    public void UpdateResourceMeter()
-    {
-        resourceMeter.maxValue = maxEnergy;
-        resourceMeter.value = currentEnergy;
     }
 
     public bool getIsDashing()
@@ -200,4 +226,29 @@ public class Player : Entity
     {
         isDashing = new_isDashing;
     }
+
+    // Shield Functions
+    public void EquipShield()
+    {
+        // TODO: keep track of previous weapon the player was holding
+
+        // change weaponrenderer sprite to a shield sprite
+        weaponRenderer.sprite = shieldSprite;
+    }
+
+    public bool getIsBlocking()
+    {
+        return isBlocking;
+    }
+
+    public void setCanBlock(bool new_canBlock)
+    {
+        isBlocking = new_canBlock;
+    }
+
+    public void setIsBlocking(bool new_isBlocking)
+    {
+        isBlocking = new_isBlocking;
+    }
+
 }

@@ -90,7 +90,6 @@ public static class LevelManager
     }
 
     /*
-    TODO: Expand Level Manager Capabilites
-    - Restart Level
+    TODO: Restart Level
     */
 }

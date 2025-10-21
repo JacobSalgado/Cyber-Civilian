@@ -24,22 +24,19 @@ public class SniperShoot : State
         }
 
         float distanceToTarget = sniper.GetDistanceToTarget();
-
-        /*
-        if (distanceToTarget < sniper.distanceToHide)
+        if (distanceToTarget < sniper.distanceToHide && !sniper.isInvisibleRecharging && sniper.timer > sniper.invisibleRechargeTime)
         {
             sniper.ChangeState("Hide");
             return;
         }
-        */
 
         if (distanceToTarget < sniper.distanceToShoot)
         {
             Vector2 dir = sniper.GetDirectionToPosition(sniper.target.gameObject.transform.position);
             sniper.RotateToDirection(dir);
+            sniper.Visible();
             sniper.ShootWeapon(sniper.weapon, null, sniper.firePoint, 7);
         }
-
     }
     
     public override void ExitState(Dictionary<string, object> args = null)

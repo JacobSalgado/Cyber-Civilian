@@ -24,10 +24,14 @@ public class SniperIdle : State
         }
 
         float distanceToTarget = sniper.GetDistanceToTarget();
+
+        if (distanceToTarget < sniper.distanceToHide && !sniper.isInvisibleRecharging && sniper.timer > sniper.invisibleRechargeTime)
+        {
+            sniper.ChangeState("Hide");
+            return;
+        }
         if (distanceToTarget < sniper.distanceToShoot)
             sniper.ChangeState("Shoot");
-        //else if (distanceToTarget < sniper.distanceToHide)
-        //    sniper.ChangeState("Hide");        
     }
     
     public override void ExitState(Dictionary<string, object> args = null)
