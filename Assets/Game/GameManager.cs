@@ -19,7 +19,7 @@ public class GameManager : StateManager
     public GameObject levelHolder;
     public new Camera camera;
     public CinemachineCamera cinemachine;
-    //public InputActionReference[] uiActions;
+    public InputActionReference pauseAction;
     public AudioManager audioManager;
 
     [Header("==Game Parameters==")]
@@ -66,6 +66,23 @@ public class GameManager : StateManager
     {
         // TODO: implement end game
         Debug.Log("Game Ended");
+    }
+
+    public void ResumeGameButton()
+    {
+        ChangeState("LoadingScreen", new Dictionary<string, object>()
+        {
+            {"nextState", "InGame"},
+            {"FromPauseMenu", true},
+        });
+    }
+
+    public void ExitGameButton()
+    {
+        ChangeState("LoadingScreen", new Dictionary<string, object>()
+        {
+            {"nextState", "MainMenu"}
+        });
     }
 
     private string GameState_To_String(GameState state)
