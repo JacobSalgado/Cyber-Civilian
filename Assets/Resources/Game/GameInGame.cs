@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using System.Diagnostics;
-using UnityEngine.InputSystem.Interactions;
 
 public class GameInGame : State
 {
@@ -23,7 +21,7 @@ public class GameInGame : State
 
     public override void UpdateState()
     {
-        if (manager.pauseAction.action.IsPressed())
+        if (manager.pauseAction.action.WasPressedThisFrame())
         {
             manager.levelHolder.SetActive(false);
             manager.UIHolder.SetActive(false);

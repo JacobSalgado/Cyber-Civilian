@@ -18,7 +18,14 @@ public class GamePauseMenu : State
 
     public override void UpdateState()
     {
-        
+        if (manager.pauseAction.action.WasPressedThisFrame())
+        {
+            manager.ChangeState("InGame", new Dictionary<string, object>()
+            {
+                {"FromPauseMenu", true}
+            });
+            return;
+        }
     }
 
     public override void ExitState(Dictionary<string, object> args = null)
