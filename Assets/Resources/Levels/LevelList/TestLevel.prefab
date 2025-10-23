@@ -10740,7 +10740,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7205215515983607880, guid: 512edb4db613d9045b2de37832b2b10f, type: 3}
       propertyPath: enemyKilledGoal
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

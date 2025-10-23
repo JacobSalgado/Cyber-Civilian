@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class GameManager : StateManager
 {
@@ -16,17 +17,19 @@ public class GameManager : StateManager
 
     [Header("==Necessary GameManager Objects==")]
     public GameObject UIHolder;
-    public AudioSource BGMPlayer;
     public GameObject levelHolder;
+    public GameObject loadingScreenHolder;
+    public Slider loadingScreenSlider;
+    public AudioSource BGMPlayer;
     public new Camera camera;
     public CinemachineCamera cinemachine;
     public InputActionReference pauseAction;
     public AudioManager audioManager;
+    public PauseMenu pauseMenu;
 
     [Header("==Game Parameters==")]
     public string[] levelList;
     [SerializeField] private GameState startingState;
-    public float loadingTime = 3;
 
     [Header("==BGM==")]
     [SerializeField] private string[] BGMNames;
@@ -36,19 +39,26 @@ public class GameManager : StateManager
     [NonSerialized] public bool isLoading = false;
     [NonSerialized] public Player player;
     [NonSerialized] public int levelIndex = 0;
+    [NonSerialized] public float loadingProgress = 0f;
     const string mainMenuPath = "UI/MainMenu/MainMenu";
     const string playerHUDPath = "UI/PlayerHUD/PlayerHUD";
+    const string pauseMenuPath = "UI/PauseMenu/PauseMenu";
 
-    public MainMenu mainMenu = null;
-    public PlayerHUD hud = null;
-    public PauseMenu pauseMenu = null;
-    public Dictionary<string, object> args = new();
+    [NonSerialized] public MainMenu mainMenu = null;
+    [NonSerialized] public PlayerHUD hud = null;
+    [NonSerialized] public Dictionary<string, object> args = new();
 
     void Start()
     {
+        loadingScreenHolder.SetActive(false);
+        loadingScreenSlider.value = 0f;
+
+        InitializePauseMenu();
+
         // initialize states
         AddState("MainMenu", new GameMainMenu(this));
         AddState("InGame", new GameInGame(this));
+        AddState("PauseMenu", new GamePauseMenu(this));
         AddState("LoadingScreen", new GameLoadingScreen(this));
 
         ChangeState("LoadingScreen", new Dictionary<string, object>()
@@ -76,24 +86,33 @@ public class GameManager : StateManager
 
     public void EndGameButton()
     {
-        // TODO: implement end game
         Debug.Log("Game Ended");
+        #if UNITY_STANDALONE
+            Application.Quit();
+        #endif
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #endif
     }
 
     public void ResumeGameButton()
     {
-        ChangeState("LoadingScreen", new Dictionary<string, object>()
+        ChangeState("InGame", new Dictionary<string, object>()
         {
-            {"nextState", GameState.IN_GAME},
-            {"FromPauseMenu", true},
+            {"FromPauseMenu", true}
         });
     }
 
     public void ExitGameButton()
     {
+        hud.PlayerHUDClose();
+        hud = null;
+
+        LevelManager.Close();
+
         ChangeState("LoadingScreen", new Dictionary<string, object>()
         {
-            {"nextState", "MainMenu"}
+            {"nextState", GameState.MAIN_MENU}
         });
     }
 
@@ -121,11 +140,16 @@ public class GameManager : StateManager
         while (!request.isDone)
         {
             Debug.Log("loading main menu prefab");
+            loadingProgress = request.progress * 0.5f;
             yield return null;
         }
 
+        loadingProgress = request.progress * 0.5f;
+
         // assign listeners for buttons
         yield return StartCoroutine(InitializeMainMenu(request.asset as GameObject));
+
+        loadingProgress += 0.5f;
 
         isLoading = false;
     }
@@ -152,6 +176,9 @@ public class GameManager : StateManager
         Level new_level;
 
         yield return LevelManager.LoadLevel(levelList[levelIndex], this);
+
+        loadingProgress = 0.25f;
+
         new_level = LevelManager.current_level;
 
         player = new_level.player;
@@ -166,11 +193,16 @@ public class GameManager : StateManager
         {
             Debug.Log("loading hud prefab prefab");
             yield return null;
+
+            loadingProgress = 0.25f + request.progress * 0.25f;
         }
 
         yield return StartCoroutine(InitializePlayerHUD(request.asset as GameObject));
 
+        loadingProgress += 0.25f;
+
         yield return StartCoroutine(InitializeGameCamera(new_level));
+        loadingProgress = 1.0f;
 
         isLoading = false;
     }
@@ -202,9 +234,19 @@ public class GameManager : StateManager
 
         yield return null;
     }
-    
+
     public GameObject InstantiatePrefab(GameObject asset, GameObject parent)
     {
         return Instantiate(asset, parent.transform);
     }
+
+    private void InitializePauseMenu()
+    {
+        pauseMenu.gameObject.SetActive(false);
+
+        pauseMenu.buttons[0].onClick.AddListener(ResumeGameButton);
+        pauseMenu.buttons[1].onClick.AddListener(ExitGameButton);
+    }
+
+    
 }

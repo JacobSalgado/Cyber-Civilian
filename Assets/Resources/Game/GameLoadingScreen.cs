@@ -1,17 +1,10 @@
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
-using System.Threading.Tasks;
-using Unity.Cinemachine;
 
 public class GameLoadingScreen : State
 {
     readonly GameManager manager;
     GameManager.GameState nextState;
     Dictionary<string, object> prev_args = null;
-    // bool isRequestDone = false;
-    // private float loadingTimer = 0;
-
 
     public GameLoadingScreen(GameManager gameManager) : base(gameManager)
     {
@@ -20,12 +13,15 @@ public class GameLoadingScreen : State
 
     public override void EnterState(Dictionary<string, object> args = null)
     {
-        // TODO: load the menu prefab and attach it to UI Holder
+        manager.UIHolder.SetActive(false);
+        manager.loadingScreenHolder.SetActive(true);
+        manager.loadingProgress = 0f;
+        manager.loadingScreenSlider.value = 0f;
 
         // get next state
         if (args != null && args.ContainsKey("nextState"))
         {
-            nextState = (GameManager.GameState)args["nextState"];
+            nextState = (GameManager.GameState) args["nextState"];
             prev_args = args;
         }
 
@@ -46,19 +42,18 @@ public class GameLoadingScreen : State
 
     public override void UpdateState()
     {
-        /*
-        loadingTimer += Time.deltaTime;
+        manager.loadingScreenSlider.value = manager.loadingProgress;
 
-        if (loadingTimer >= manager.loadingTime)
-            manager.ChangeState(nextState);
-        */
         if (!manager.isLoading)
             manager.ChangeState(manager.GameState_To_String(nextState), prev_args);
     }
 
     public override void ExitState(Dictionary<string, object> args = null)
     {
-        // loadingTimer = 0;
-        // prev_args = null;
+        if (nextState == GameManager.GameState.IN_GAME)
+        {
+            manager.camera.gameObject.SetActive(true);
+        }
+        manager.loadingScreenHolder.SetActive(false);
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
-using UnityEngine;
+using System.Diagnostics;
+using UnityEngine.InputSystem.Interactions;
 
 public class GameInGame : State
 {
@@ -13,14 +14,24 @@ public class GameInGame : State
 
     public override void EnterState(Dictionary<string, object> args = null)
     {
-        manager.camera.gameObject.SetActive(true);
-        LevelManager.StartLevel();
         manager.UIHolder.SetActive(true);
+
+        if (args == null || (args != null && !args.ContainsKey("FromPauseMenu")))
+            LevelManager.StartLevel();
+
     }
 
     public override void UpdateState()
     {
-        //LevelManager.Update();
+        if (manager.pauseAction.action.IsPressed())
+        {
+            manager.levelHolder.SetActive(false);
+            manager.UIHolder.SetActive(false);
+            manager.ChangeState("PauseMenu");
+            return;
+        }
+
+        LevelManager.Update();
 
         // check level completion
         if (LevelManager.isLevelCompleted)
@@ -30,16 +41,16 @@ public class GameInGame : State
             {
                 manager.ChangeState("LoadingScreen", new Dictionary<string, object>()
                 {
-                    {"nextState", "MainMenu"}
+                    {"nextState", GameManager.GameState.MAIN_MENU}
                 });
                 return;
-                
+
             }
             else // Next Level
             {
                 manager.ChangeState("LoadingScreen", new Dictionary<string, object>()
                 {
-                    {"nextState", "InGame"},
+                    {"nextState", GameManager.GameState.IN_GAME},
                     {"UpdatePlayer", true}
                 });
             }
@@ -49,10 +60,12 @@ public class GameInGame : State
     public override void ExitState(Dictionary<string, object> args = null)
     {
         // close current level
-        LevelManager.Close();
+        if (args != null)
+        {
+            manager.hud.PlayerHUDClose();
+            manager.hud = null;
 
-        // close HUD
-        manager.hud.PlayerHUDClose();
-        manager.hud = null;
+            LevelManager.Close();
+        }
     }
 }
