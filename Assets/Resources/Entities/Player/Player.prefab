@@ -657,10 +657,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 6494366698852611236, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
-      propertyPath: AudioPlayer
-      value: 
-      objectReference: {fileID: 1191445660241909505}
     - target: {fileID: 7020208417353967638, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.14899999
@@ -975,11 +971,6 @@ SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 3736020708952019976, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
   m_PrefabInstance: {fileID: 3593073875161228856}
   m_PrefabAsset: {fileID: 0}
---- !u!82 &1191445660241909505 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 2402094416012439865, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
-  m_PrefabInstance: {fileID: 3593073875161228856}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5984970219455982714 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7121258720370068034, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
@@ -1162,9 +1153,15 @@ MonoBehaviour:
   entityData: {fileID: 11400000, guid: 6c4ca02f294d5644bad555ee4509fd1b, type: 2}
   healthBar: {fileID: 0}
   audioManager: {fileID: 7781527178466087580}
+  audioEffects:
+  - {fileID: 6079927618582836151, guid: 1fd44d5f49a045846b3fe7e545e94c51, type: 3}
+  - {fileID: 6079927618582836151, guid: bc167f2b6964cfb45bc865a45b6329c6, type: 3}
+  - {fileID: 6079927618582836151, guid: 3b433ca77c214134c8ee836c8aa6bd54, type: 3}
+  - {fileID: 6079927618582836151, guid: 6706382dc010fc64f9016569ef19c7c8, type: 3}
   invincibility: 0
   tr: {fileID: 6616881326347800582}
   spriteRenderer: {fileID: 145288011879166512}
+  shieldSprite: {fileID: 0}
   moveAction: {fileID: -1680190386980627800, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   fireAction: {fileID: 1120369429361536294, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   dashAction: {fileID: -1591832314784998302, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
@@ -1186,9 +1183,7 @@ MonoBehaviour:
   energyRegen: 1
   dashCost: 100
   phaseCost: 2
-  hurtBox: {fileID: 0}
-  shieldSprite: {fileID: 0}
-  enemy: {fileID: 0}
+  shieldDrainRate: 50
 --- !u!114 &7781527178466087580 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6494366698852611236, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}

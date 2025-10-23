@@ -9,6 +9,7 @@ public abstract class Entity : StateManager
     public EntityData entityData;
     public Slider healthBar;
     public AudioManager audioManager;
+    public AudioEffect[] audioEffects;
     public bool invincibility = false;
 
     /* VIRTUAL/ABSTRACT ENTITY FUNCTIONS */
@@ -21,7 +22,7 @@ public abstract class Entity : StateManager
         if (entityData != null)
         {
             entityData = Instantiate(entityData);
-            audioManager.InitializeAudioDictionary(entityData.SFXNames, entityData.SFX);
+            audioManager.InitializeAudioDictionary(audioEffects);
         }
     }
 
@@ -83,7 +84,9 @@ public abstract class Entity : StateManager
 
     public void ShootWeapon(GameObject weapon, InputActionReference fireAction, Transform firePoint, int collision_layer)
     {
-        if (weapon != null)
-            weapon.GetComponent<Weapon>().Shoot(fireAction, firePoint, collision_layer);
+        if (weapon != null && weapon.GetComponent<Weapon>().Shoot(fireAction, firePoint, collision_layer))
+        {
+            audioManager.PlayAudioSource("Shoot");
+        }
     }
 }

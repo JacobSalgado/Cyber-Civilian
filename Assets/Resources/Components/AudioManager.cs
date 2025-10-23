@@ -3,26 +3,62 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public AudioSource AudioPlayer;
-    public Dictionary<string, AudioClip> audioClips = new();
+    [Header("==Necessary GameObjects==")]
+    public GameObject audioPlayer;
+    public Dictionary<string, AudioSource> audioEffects = new();
 
-    public void InitializeAudioDictionary(string[] SFXNames, AudioClip[] SFX)
+    public void InitializeAudioDictionary(AudioEffect[] newAudioEffects)
     {
-        for (int i = 0; i < SFX.Length; i++)
+        for (int i = 0; i < newAudioEffects.Length; i++)
         {
-            audioClips.Add(SFXNames[i], SFX[i]);
+            AudioSource player = audioPlayer.AddComponent<AudioSource>();
+
+            player.playOnAwake = false;
+            player.loop = newAudioEffects[i].loop;
+            player.pitch = newAudioEffects[i].pitch;
+            player.clip = newAudioEffects[i].clip;
+            player.volume = newAudioEffects[i].volume;
+
+            audioEffects.Add(newAudioEffects[i].gameObject.name, player);
         }
     }
 
-    public void PlayAudioClip(string name, bool loop = false)
+    public void PlayAudioSource(string name)
     {
-        if (!audioClips.ContainsKey(name))
+        AudioSource player = GetAudioSource(name);
+        if (player != null)
+            player.Play();
+    }
+
+    public void PauseAudioSource(string name)
+    {
+        AudioSource player = GetAudioSource(name);
+        if (player != null)
+            player.Pause();
+    }
+
+    public void UnPauseAudioSource(string name)
+    {
+        AudioSource player = GetAudioSource(name);
+        if (player != null)
+            player.UnPause();
+    }
+
+    public void StopAudioSource(string name)
+    {
+        AudioSource player = GetAudioSource(name);
+        if (player != null && player.isPlaying)
+            player.Stop();
+    }
+    
+    public AudioSource GetAudioSource(string name)
+    {
+        if (!audioEffects.ContainsKey(name))
         {
             Debug.Log($"{name} not found in audio dictionary");
-            return;
+            return null;
         }
 
-        AudioPlayer.loop = loop;
-        AudioPlayer.PlayOneShot(audioClips[name]);
+        return audioEffects[name];
     }
 }

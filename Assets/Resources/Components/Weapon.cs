@@ -32,6 +32,7 @@ public class Weapon : MonoBehaviour
     // private vars
     [NonSerialized] public float fireTimer = 0f;
     private bool isCharging = false;
+    private bool didShoot = false;
     
 
     void Start()
@@ -41,10 +42,11 @@ public class Weapon : MonoBehaviour
         if (currentAmmo > maxAmmo) currentAmmo = maxAmmo;
     }
 
-    public void Shoot(InputActionReference fireAction, Transform firePoint, int collision_layer)
+    public bool Shoot(InputActionReference fireAction, Transform firePoint, int collision_layer)
     {
-        if (currentAmmo - ammoCost < 0) return;
+        if (currentAmmo - ammoCost < 0) return false;
 
+        didShoot = false;
         if (fireAction != null) // player shooting
         {
             if (fireMode == FireMode.FULL_AUTO && fireAction.action.IsPressed())
@@ -55,11 +57,13 @@ public class Weapon : MonoBehaviour
                 {
                     fireTimer += 1f / fireRate;
                     ShootProjectile(firePoint, collision_layer);
+                    didShoot = true;
                 }
             }
             else if (fireMode == FireMode.SEMI_AUTO && fireAction.action.WasPressedThisFrame())
             {
                 ShootProjectile(firePoint, collision_layer);
+                didShoot = true;
             }
             else if (fireMode == FireMode.CHARGE)
             {
@@ -86,8 +90,9 @@ public class Weapon : MonoBehaviour
                         //Debug.Log($"Released at {fireTimer:F2}s");
                         ShootProjectile(firePoint, collision_layer);
                         isCharging = false; // Reset for next charge
+                        didShoot = true;
                     }
-                    
+
                     fireTimer = 0f;
                 }
             }
@@ -102,12 +107,14 @@ public class Weapon : MonoBehaviour
                     {
                         fireTimer += 1f / fireRate;
                         ShootProjectile(firePoint, collision_layer);
+                        didShoot = true;
                     }
 
                     break;
 
                 case FireMode.SEMI_AUTO:
                     ShootProjectile(firePoint, collision_layer);
+                    didShoot = true;
                     break;
 
                 case FireMode.CHARGE:
@@ -122,6 +129,7 @@ public class Weapon : MonoBehaviour
                     if (fireTimer >= projData.timeToSpawn)
                     {
                         ShootProjectile(firePoint, collision_layer);
+                        didShoot = true;
                         isCharging = false;
                         fireTimer = 0f;
                     }
@@ -129,6 +137,8 @@ public class Weapon : MonoBehaviour
                     break;
             }
         }
+
+        return didShoot;
     }
 
     public void ShootProjectile(Transform firePoint, int receiving_layer)
@@ -140,7 +150,7 @@ public class Weapon : MonoBehaviour
         Projectile proj = Instantiate(projectile, firePoint.position, firePoint.rotation, LevelManager.current_level.EntityList.transform).GetComponent<Projectile>();
 
         proj.projData = Instantiate(projData);
-        proj.audioManager.InitializeAudioDictionary(proj.projData.SFXNames, proj.projData.SFX);
+        //proj.audioManager.InitializeAudioDictionary(proj.projData.SFXNames, proj.projData.SFX);
         proj.attacking_layer = receiving_layer;
     }
 }

@@ -30,10 +30,7 @@ public class GameManager : StateManager
     [Header("==Game Parameters==")]
     public string[] levelList;
     [SerializeField] private GameState startingState;
-
-    [Header("==BGM==")]
-    [SerializeField] private string[] BGMNames;
-    [SerializeField] private AudioClip[] BGM;
+    [SerializeField] private AudioEffect[] BGM;
 
     /* Non-Serialized Vars */
     [NonSerialized] public bool isLoading = false;
@@ -67,7 +64,7 @@ public class GameManager : StateManager
         });
 
         // initialize audio manager
-        audioManager.InitializeAudioDictionary(BGMNames, BGM);
+        audioManager.InitializeAudioDictionary(BGM);
     }
 
     void Update()
