@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -57,6 +58,8 @@ public class Player : Entity
     [NonSerialized] public Camera cam;
     [NonSerialized] public PlayerData playerData;
     [NonSerialized] public Slider resourceMeter;
+    [NonSerialized] public bool updatePlayer = false;
+    [NonSerialized] public Dictionary<string, object> updateArgs;
     private Vector2 mousePos;
     private bool canBlock = true;
     private bool isBlocking = false;
@@ -91,6 +94,16 @@ public class Player : Entity
         }
 
         EquipNewWeapon(currentWeaponType);
+
+        if (updatePlayer && playerData != null)
+        {
+            playerData.currentHealth = (int) updateArgs["currentPlayerHealth"];
+            playerData.maxHealth = (int)updateArgs["currentPlayerMaxHealth"];
+            UpdateHealthBar();
+
+            updatePlayer = false;
+            updateArgs = null;
+        }
     }
 
     void Update()

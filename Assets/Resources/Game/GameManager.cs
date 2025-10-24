@@ -206,9 +206,8 @@ public class GameManager : StateManager
         if (args != null && args.ContainsKey("UpdatePlayer"))
         {
             // update base player prefab to match state from previous level
-            player.playerData.currentHealth = (int)args["currentPlayerHealth"];
-            
-            player.playerData.maxHealth = (int)args["currentPlayerMaxHealth"];
+            player.updatePlayer = true;
+            player.updateArgs = args;
         }
 
         player.healthBar = hud.healthSlider;
