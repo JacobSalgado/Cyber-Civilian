@@ -16,4 +16,10 @@ public class ProjectileData : EntityData
     [Header("==Railshot Properties==")]
     public float railshotLength = 10f;
     public float fadeawayTime = 1f;
+
+    [Header("==Missile Properties==")]
+    public bool homing = true;
+    public float rotateSpeed = 200f;
+    public float trackingStrength = 5f; // how quickly the missile adjusts its trajectory
+    //public float explosionRadius = 0f;
 }
