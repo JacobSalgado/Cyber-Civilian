@@ -13,6 +13,8 @@ public class GameLoadingScreen : State
 
     public override void EnterState(Dictionary<string, object> args = null)
     {
+        prev_args = null;
+
         manager.UIHolder.SetActive(false);
         manager.loadingScreenHolder.SetActive(true);
         manager.loadingProgress = 0f;
@@ -23,6 +25,7 @@ public class GameLoadingScreen : State
         {
             nextState = (GameManager.GameState) args["nextState"];
             prev_args = args;
+            manager.args = args;
         }
 
         manager.isLoading = true;

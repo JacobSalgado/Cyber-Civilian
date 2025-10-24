@@ -51,8 +51,6 @@ public class Player : Entity
     public int phaseCost = 50;
 
     [Header("==Blocking Properties==")]
-    //TODO: make blocking use up Resource Energy
-
     public float shieldDrainRate = 50f;
 
     // private variables
@@ -255,8 +253,6 @@ public class Player : Entity
     // Shield Functions
     public void EquipShield()
     {
-        // TODO: keep track of previous weapon the player was holding
-
         // change weaponrenderer sprite to a shield sprite
         weaponRenderer.sprite = shieldSprite;
     }

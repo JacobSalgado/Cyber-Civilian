@@ -175,14 +175,8 @@ public class GameManager : StateManager
         yield return LevelManager.LoadLevel(levelList[levelIndex], this);
 
         loadingProgress = 0.25f;
-
         new_level = LevelManager.current_level;
-
         player = new_level.player;
-        if (args != null && args.ContainsKey("UpdatePlayer"))
-        {
-            // TODO: update base player prefab to match state from previous level
-        }
 
         // load PlayerHUD prefab
         ResourceRequest request = Resources.LoadAsync<GameObject>(playerHUDPath);
@@ -208,6 +202,14 @@ public class GameManager : StateManager
     {
         GameObject instance = Instantiate(prefab, UIHolder.transform);
         hud = instance.GetComponent<PlayerHUD>();
+
+        if (args != null && args.ContainsKey("UpdatePlayer"))
+        {
+            // update base player prefab to match state from previous level
+            player.playerData.currentHealth = (int)args["currentPlayerHealth"];
+            
+            player.playerData.maxHealth = (int)args["currentPlayerMaxHealth"];
+        }
 
         player.healthBar = hud.healthSlider;
         player.UpdateHealthBar();

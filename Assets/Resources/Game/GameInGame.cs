@@ -49,7 +49,9 @@ public class GameInGame : State
                 manager.ChangeState("LoadingScreen", new Dictionary<string, object>()
                 {
                     {"nextState", GameManager.GameState.IN_GAME},
-                    {"UpdatePlayer", true}
+                    {"UpdatePlayer", true},
+                    {"currentPlayerHealth", manager.player.playerData.currentHealth},
+                    {"currentPlayerMaxHealth", manager.player.playerData.maxHealth},
                 });
             }
         }
