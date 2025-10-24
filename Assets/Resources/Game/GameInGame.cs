@@ -15,7 +15,10 @@ public class GameInGame : State
         manager.UIHolder.SetActive(true);
 
         if (args == null || (args != null && !args.ContainsKey("FromPauseMenu")))
+        {
+            manager.audioManager.PlayAudioSource("Level1");
             LevelManager.StartLevel();
+        }
 
     }
 

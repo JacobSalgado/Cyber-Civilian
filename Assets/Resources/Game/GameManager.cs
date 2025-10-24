@@ -107,6 +107,8 @@ public class GameManager : StateManager
 
         LevelManager.Close();
 
+        audioManager.StopAudioSource("Level1");
+
         ChangeState("LoadingScreen", new Dictionary<string, object>()
         {
             {"nextState", GameState.MAIN_MENU}
