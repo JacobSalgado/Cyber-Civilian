@@ -24,10 +24,9 @@ public abstract class Entity : StateManager
     {
         // make a copy of the entityData
         if (entityData != null)
-        {
             entityData = Instantiate(entityData);
-            audioManager.InitializeAudioDictionary(audioEffects);
-        }
+        
+        audioManager.InitializeAudioDictionary(audioEffects);
     }
 
     public virtual void FixedUpdate()

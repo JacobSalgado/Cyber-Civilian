@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class HammerStrike : Projectile
 {
+    //public Animn
+    private float hammerTimer = 0f;
+
     public override void InitializeStates()
     {
         AddState("Base", new HammerBase(this));
@@ -12,6 +15,17 @@ public class HammerStrike : Projectile
     {
         base.Start();
         InitializeStates();
-        Destroy(gameObject, projData.lifeTime);
+        //audioManager.PlayAudioSource("Impact");
+        Destroy(gameObject, audioManager.audioEffects["Impact"].clip.length);
+    }
+
+    public new void Update()
+    {
+        hammerTimer += Time.deltaTime;
+        if (hammerTimer > projData.lifeTime)
+        {
+            spriteRenderer.enabled = false;
+            projectileCollider.enabled = false;
+        }
     }
 }

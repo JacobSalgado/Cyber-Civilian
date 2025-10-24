@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class Railshot : Projectile
 {
-    public SpriteRenderer spriteRenderer;
-
     public override void InitializeStates()
     {
         AddState("Idle", new RailshotIdle(this));

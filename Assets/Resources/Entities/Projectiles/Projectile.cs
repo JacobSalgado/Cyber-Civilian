@@ -3,12 +3,27 @@ using UnityEngine;
 
 public abstract class Projectile : Entity
 {
+    public SpriteRenderer spriteRenderer;
+    public Collider2D projectileCollider;
+
     [NonSerialized] public ProjectileData projData;
     [NonSerialized] public LayerMask attacking_layer = 0;
+    private bool collisionHit = false;
+    private float timer = 0f;
 
     public override void Start()
     {
         base.Start();
+        timer = 0f;
+        collisionHit = false;
+    }
+
+    public void Update()
+    {
+        if (collisionHit) timer += Time.deltaTime;
+
+        if (timer > audioManager.audioEffects["Impact"].clip.length)
+            EntityDie();
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -40,7 +55,7 @@ public abstract class Projectile : Entity
             // Destroy projectile if necessary (blocked or hit)
             HitEffect(collision.transform.position);
             if (projData.destroyOnCollision)
-                EntityDie();
+                CollisionHit();
         }
 
         // Enemy Collision 
@@ -48,9 +63,9 @@ public abstract class Projectile : Entity
         {
             enemy.TakeDamage(projData.damage);
             HitEffect(collision.transform.position);
-            
+
             if (projData.destroyOnCollision)
-                EntityDie();
+                CollisionHit();
         }
 
         // Level Collision
@@ -58,19 +73,27 @@ public abstract class Projectile : Entity
         {
             //print(collision.gameObject.name);            
             HitEffect(transform.position);
-            EntityDie();
+            CollisionHit();
         }
     }
-
 
     public override void EntityDie()
     {
         Destroy(gameObject);
     }
-    
+
+    public void CollisionHit()
+    {
+        collisionHit = true;
+        spriteRenderer.enabled = false;
+        projectileCollider.enabled = false;
+    }
+
     public void HitEffect(Vector2 position)
     {
         GameObject effect = Instantiate(projData.hitEffect, position, Quaternion.identity, LevelManager.current_level.EntityList.transform);
+
+        audioManager.PlayAudioSource("Impact");
 
         Destroy(effect, 0.1f);
     }
