@@ -15,16 +15,6 @@ public class PlayerMove : State
         player = (Player) new_entity;
     }
 
-    private void PlayFootsteps()
-    {
-        if (deltaCount > timeToStep)
-        {
-            player.audioManager.PlayAudioSource($"Footsteps{stepCounter++}");
-            deltaCount = 0f;
-            if (stepCounter > 3) stepCounter = 1;
-        }
-    }
-
     public override void EnterState(Dictionary<string, object> args = null)
     {
         deltaCount = 0f;
@@ -40,7 +30,12 @@ public class PlayerMove : State
         {
             deltaCount += Time.deltaTime;
             player.rigidBody.linearVelocity = velocity * player.entityData.moveSpeed;
-            PlayFootsteps();
+            if (player.PlayFootsteps(deltaCount, timeToStep, stepCounter))
+            {
+                deltaCount = 0f;
+                stepCounter++;
+                if (stepCounter > 3) stepCounter = 1;
+            }
         }
         else player.ChangeState("Idle");
     }

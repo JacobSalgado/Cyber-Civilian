@@ -156,14 +156,21 @@ MonoBehaviour:
   entityData: {fileID: 11400000, guid: e7c7fb0cc6648cc4d9bf944e1138779e, type: 2}
   healthBar: {fileID: 8335928785559891313}
   audioManager: {fileID: 5050662202592535974}
+  audioEffects:
+  - {fileID: 6079927618582836151, guid: e5e256d33b78fed41b2f974d58808102, type: 3}
+  - {fileID: 6079927618582836151, guid: c252205f8b1911a4488e58a8b3657ec4, type: 3}
+  - {fileID: 6079927618582836151, guid: d45bf4758dcb59643af2cb5278d78569, type: 3}
+  - {fileID: 6079927618582836151, guid: af08fa06eeb9aef44814cfad6135e173, type: 3}
+  - {fileID: 6079927618582836151, guid: b2cefede146407c4f824b7080112c3ad, type: 3}
+  - {fileID: 6079927618582836151, guid: b39da1b4b388c0a44b357627e1571da2, type: 3}
+  - {fileID: 6079927618582836151, guid: 204b9ecca0f9a564aae556ffaaf4f870, type: 3}
   invincibility: 0
   firePoint: {fileID: 4439943555385396437}
   weapon: {fileID: 1157213995312190472, guid: f4f07c3e278a0334fad700404b5b7fe0, type: 3}
   canvas: {fileID: 2966775912804215989}
   spriteRenderer: {fileID: 3453748074742007050}
-  distanceToHide: 4
-  healthCanvas: {fileID: 7159623827065755054}
   sniperCollider: {fileID: 8828476117384761170}
+  distanceToHide: 4
   invisibleTimeRange:
   - 2
   - 4.5
@@ -182,11 +189,6 @@ MonoBehaviour:
 --- !u!50 &6788294976325675372 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 8811157356989125342, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
-  m_PrefabInstance: {fileID: 2626542781473881010}
-  m_PrefabAsset: {fileID: 0}
---- !u!223 &7159623827065755054 stripped
-Canvas:
-  m_CorrespondingSourceObject: {fileID: 5129403513514798620, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
   m_PrefabInstance: {fileID: 2626542781473881010}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &8335928785559891313 stripped

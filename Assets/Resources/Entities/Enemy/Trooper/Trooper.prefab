@@ -364,6 +364,11 @@ MonoBehaviour:
   entityData: {fileID: 11400000, guid: 35b7bf2e7d293054fb9c1ac413796119, type: 2}
   healthBar: {fileID: 5632614513543846834}
   audioManager: {fileID: 8904659477835846501}
+  audioEffects:
+  - {fileID: 6079927618582836151, guid: cb091bdb1abdbeb4981885164f244bd4, type: 3}
+  - {fileID: 6079927618582836151, guid: ba79cd097d33a964bb11f38e58bcb7b9, type: 3}
+  - {fileID: 6079927618582836151, guid: cff7eaf60465ebe4f9dc2209f155712a, type: 3}
+  - {fileID: 6079927618582836151, guid: 66f0f15f5cc20be44a845f3213e24594, type: 3}
   invincibility: 0
   firePoint: {fileID: 7286729672604182}
   weapon: {fileID: 16432950934994515, guid: f705a370a6ca9194bbfbf1d5d7c0044f, type: 3}

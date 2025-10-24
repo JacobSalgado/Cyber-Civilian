@@ -9,8 +9,12 @@ using UnityEngine;
 /// </summary>
 public class TrooperMove : State
 {
+    private const float timeToStep = 0.3f;
+
     readonly Trooper trooper;
     private Vector2 directionToTarget;
+    private float deltaCount = 0f;
+    int stepCounter = 1;
 
     public TrooperMove(Entity new_entity) : base(new_entity)
     {
@@ -19,7 +23,9 @@ public class TrooperMove : State
 
     public override void EnterState(Dictionary<string, object> args = null)
     {
-
+        deltaCount = 0f;
+        stepCounter = 1;
+        trooper.audioManager.PlayAudioSource($"Footsteps{stepCounter++}");
     }
 
     public override void UpdateState()
@@ -28,6 +34,15 @@ public class TrooperMove : State
         {
             Debug.LogError("Target not found");
             return;
+        }
+
+        deltaCount += Time.deltaTime;
+
+        if (trooper.PlayFootsteps(deltaCount, timeToStep, stepCounter))
+        {
+            deltaCount = 0f;
+            stepCounter++;
+            if (stepCounter > 3) stepCounter = 1;
         }
 
         float distance = trooper.GetDistanceToTarget();

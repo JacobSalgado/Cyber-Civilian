@@ -24,6 +24,7 @@ public class Sniper : Enemy
         AddState("Idle", new SniperIdle(this));
         AddState("Hide", new SniperHide(this));
         AddState("Shoot", new SniperShoot(this));
+        // TODO: add movement
 
         ChangeState("Idle");
     }
@@ -45,7 +46,7 @@ public class Sniper : Enemy
 
         timer += Time.deltaTime;
         isInvisibleRecharging = !isInvisible && timer <= invisibleRechargeTime;
-        //Debug.Log(current_state + " | " + isInvisibleRecharging);
+        //Debug.Log(current_state);
     }
 
 
@@ -55,6 +56,7 @@ public class Sniper : Enemy
         spriteRenderer.enabled = false;
         healthCanvas.enabled = false;
         sniperCollider.enabled = false;
+        audioManager.PlayAudioSource("InvisibleStart");
     }
 
     public void Visible()
@@ -63,5 +65,6 @@ public class Sniper : Enemy
         spriteRenderer.enabled = true;
         healthCanvas.enabled = true;
         sniperCollider.enabled = true;
+        audioManager.PlayAudioSource("InvisibleEnd");
     }
 }

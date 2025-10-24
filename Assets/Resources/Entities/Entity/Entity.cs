@@ -48,6 +48,7 @@ public abstract class Entity : StateManager
 
         SetHealth(entityData.currentHealth - damageTaken);
 
+        isDamaged = true;
         GotDamaged();
     }
 
@@ -94,5 +95,15 @@ public abstract class Entity : StateManager
         {
             weapon.GetComponent<Weapon>().Shoot(fireAction, firePoint, collision_layer);
         }
+    }
+
+    public bool PlayFootsteps(float deltaCount, float timeToStep, int stepCounter)
+    {
+        if (deltaCount > timeToStep)
+        {
+            audioManager.PlayAudioSource($"Footsteps{stepCounter}");
+            return true;
+        }
+        return false;
     }
 }

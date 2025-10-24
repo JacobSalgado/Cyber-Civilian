@@ -34,7 +34,6 @@ public class SniperShoot : State
         {
             Vector2 dir = sniper.GetDirectionToPosition(sniper.target.gameObject.transform.position);
             sniper.RotateToDirection(dir);
-            sniper.Visible();
             sniper.ShootWeapon(sniper.weapon, null, sniper.firePoint, 7);
         }
     }

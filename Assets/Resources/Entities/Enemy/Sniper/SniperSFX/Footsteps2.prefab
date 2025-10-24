@@ -11,18 +11,22 @@ PrefabInstance:
     - target: {fileID: -3736538713012353100, guid: a788ba907d79d1e49a2f38412bff1ca8, type: 3}
       propertyPath: clip
       value: 
-      objectReference: {fileID: 8300000, guid: 66418085dbcd8864db76659567cf4244, type: 3}
+      objectReference: {fileID: 8300000, guid: 595161691b482d9488f5fd5173f959a4, type: 3}
+    - target: {fileID: -3736538713012353100, guid: a788ba907d79d1e49a2f38412bff1ca8, type: 3}
+      propertyPath: loop
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -3736538713012353100, guid: a788ba907d79d1e49a2f38412bff1ca8, type: 3}
       propertyPath: pitch
       value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: -3736538713012353100, guid: a788ba907d79d1e49a2f38412bff1ca8, type: 3}
       propertyPath: volume
-      value: 0.56
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3725071110052549950, guid: a788ba907d79d1e49a2f38412bff1ca8, type: 3}
       propertyPath: m_Name
-      value: RailgunFire
+      value: Footsteps2
       objectReference: {fileID: 0}
     - target: {fileID: 7677490764105600873, guid: a788ba907d79d1e49a2f38412bff1ca8, type: 3}
       propertyPath: m_LocalPosition.x

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -54,12 +55,14 @@ public class Player : Entity
     [Header("==Blocking Properties==")]
     public float shieldDrainRate = 50f;
 
-    // private variables
+    // NonSerialized variables
     [NonSerialized] public Camera cam;
     [NonSerialized] public PlayerData playerData;
     [NonSerialized] public Slider resourceMeter;
     [NonSerialized] public bool updatePlayer = false;
     [NonSerialized] public Dictionary<string, object> updateArgs;
+    [NonSerialized] public float damagedTimer = 0f;
+    [NonSerialized] public float damagedTime = 0f;
     private Vector2 mousePos;
     private bool canBlock = true;
     private bool isBlocking = false;
@@ -109,6 +112,17 @@ public class Player : Entity
 
     void Update()
     {
+        if (isDamaged)
+        {
+            damagedTimer += Time.deltaTime;
+            if (damagedTimer > damagedTime)
+            {
+                damagedTime = 0f;
+                isDamaged = false;  
+                damagedTimer = 0f;
+            }
+        }
+
         // update mouse position
         mousePos = cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 
@@ -308,8 +322,11 @@ public class Player : Entity
     {
         base.GotDamaged();
 
-        string name = $"Damaged{UnityEngine.Random.Range(1, 5)}";
-        audioManager.PlayAudioSource(name);
+        if (isDamaged && damagedTime == 0f)
+        {
+            string name = $"Damaged{UnityEngine.Random.Range(1, 5)}";
+            audioManager.PlayAudioSource(name);
+            damagedTime = audioManager.audioEffects[name].clip.length;
+        }
     }
-
 }

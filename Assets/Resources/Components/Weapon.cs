@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -125,6 +123,7 @@ public class Weapon : MonoBehaviour
                     {
                         isCharging = true;
                         fireTimer = 0f;
+                        owner.audioManager.PlayAudioSource("ShootStart");
                     }
 
                     if (isCharging) fireTimer += Time.deltaTime;
