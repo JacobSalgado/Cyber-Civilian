@@ -23,7 +23,7 @@ public class PlayerDash : State
     {
         if (player.getIsDashing())
         {
-            player.rigidBody.linearVelocity = velocity.normalized * player.dashPower * player.entityData.moveSpeed;
+            player.rigidBody.linearVelocity = player.dashPower * player.entityData.moveSpeed * velocity.normalized;
             return;
         }
     }
@@ -35,6 +35,7 @@ public class PlayerDash : State
 
     private IEnumerator initiateDash()
     {
+        player.audioManager.PlayAudioSource("Dashing");
         yield return player.StartCoroutine(Dash());
         player.ChangeState("Move");
     }

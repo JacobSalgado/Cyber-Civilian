@@ -11,18 +11,14 @@ PrefabInstance:
     - target: {fileID: -3736538713012353100, guid: a788ba907d79d1e49a2f38412bff1ca8, type: 3}
       propertyPath: clip
       value: 
-      objectReference: {fileID: 8300000, guid: a11784bc7f54f554b8dd5d3ebd818a92, type: 3}
-    - target: {fileID: -3736538713012353100, guid: a788ba907d79d1e49a2f38412bff1ca8, type: 3}
-      propertyPath: pitch
-      value: 0.5
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8300000, guid: 7e862cf2775ff284198f1f017095494a, type: 3}
     - target: {fileID: -3736538713012353100, guid: a788ba907d79d1e49a2f38412bff1ca8, type: 3}
       propertyPath: volume
-      value: 1
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 3725071110052549950, guid: a788ba907d79d1e49a2f38412bff1ca8, type: 3}
       propertyPath: m_Name
-      value: Footsteps1
+      value: MissileFire
       objectReference: {fileID: 0}
     - target: {fileID: 7677490764105600873, guid: a788ba907d79d1e49a2f38412bff1ca8, type: 3}
       propertyPath: m_LocalPosition.x

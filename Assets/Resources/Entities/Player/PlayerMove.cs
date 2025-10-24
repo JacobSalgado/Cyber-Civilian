@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerMove : State
 {
-    private const float timeToStep = 0.35f;
+    private const float timeToStep = 0.25f;
 
     Vector2 velocity;
     readonly Player player;

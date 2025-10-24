@@ -88,16 +88,17 @@ public class Player : Entity
         InitializeStates();
         tr.emitting = false;
 
-        for (int i = 0; i < weapons.Length; i++) {
-            weapons[i] = Instantiate(weapons[i]);
-            weapons[i].transform.SetParent(transform);
+        for (int i = 0; i < weapons.Length; i++)
+        {
+            weapons[i] = Instantiate(weapons[i], transform);
+            weapons[i].GetComponent<Weapon>().owner = this;
         }
 
         EquipNewWeapon(currentWeaponType);
 
         if (updatePlayer && playerData != null)
         {
-            playerData.currentHealth = (int) updateArgs["currentPlayerHealth"];
+            playerData.currentHealth = (int)updateArgs["currentPlayerHealth"];
             playerData.maxHealth = (int)updateArgs["currentPlayerMaxHealth"];
             UpdateHealthBar();
 
@@ -135,7 +136,19 @@ public class Player : Entity
 
         // check fire inputs
         if (currentWeaponType < PlayerWeaponType.NONE && !isBlocking)
+        {
+            string fireSFXName = currentWeaponType switch
+            {
+                PlayerWeaponType.BULLET => "PeaShooterFire",
+                PlayerWeaponType.RAILGUN => "RailgunFire",
+                PlayerWeaponType.MISSILE => "MissileFire",
+                PlayerWeaponType.PLASMA => "PlasmaFire",
+                PlayerWeaponType.FLAMETHROWER => "FlamethrowerFire",
+                _ => "None",
+            };
+
             ShootWeapon(weapons[(int)currentWeaponType], fireAction, firePoint, 6);
+        }
 
         // check dash inputs
         if (dashAction.action.WasPressedThisFrame() && canDash && !isDashing && currentEnergy - dashCost >= 0)
@@ -149,9 +162,15 @@ public class Player : Entity
 
         // check phase inputs
         if (phaseAction.action.WasPressedThisFrame() && !isPhasing && currentEnergy - phaseCost >= 0)
+        {
+            audioManager.PlayAudioSource("PhaseStart");
             Phase(true);
+        }
         else if (phaseAction.action.WasPressedThisFrame() && isPhasing)
+        {
+            audioManager.PlayAudioSource("PhaseEnd");
             Phase(false);
+        }
 
         // check shield inputs
         if (shieldAction.action.WasPressedThisFrame())
@@ -179,7 +198,7 @@ public class Player : Entity
             if (currentEnergy > 1000) currentEnergy = 1000;
         }
 
-        if (isPhasing) //
+        if (isPhasing)
         {
             if (currentEnergy <= 0)
                 Phase(false);
@@ -220,7 +239,7 @@ public class Player : Entity
             currentWeaponType = newWeaponType;
             weaponRenderer.sprite = weapons[(int)newWeaponType].GetComponent<Weapon>().weaponSprite;
         }
-        else Debug.LogError($"{newWeaponType} not in weapon array" );
+        else Debug.LogError($"{newWeaponType} not in weapon array");
     }
 
     public void UpdateResourceMeter()
@@ -283,6 +302,14 @@ public class Player : Entity
     public void setIsBlocking(bool new_isBlocking)
     {
         isBlocking = new_isBlocking;
+    }
+
+    public override void GotDamaged()
+    {
+        base.GotDamaged();
+
+        string name = $"Damaged{UnityEngine.Random.Range(1, 5)}";
+        audioManager.PlayAudioSource(name);
     }
 
 }

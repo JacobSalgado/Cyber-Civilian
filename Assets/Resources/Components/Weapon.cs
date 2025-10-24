@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -25,14 +26,14 @@ public class Weapon : MonoBehaviour
     public ProjectileData projData;
 
     // Firemode is used to determine firing behavior
-    // 0 = full auto, 1 = semi auto
     // Semi auto seems to work when firerate is = 0 but that leads to division by zero which is an underfined behavior
     public FireMode fireMode;
 
     // private vars
+    [NonSerialized] public Entity owner;
     [NonSerialized] public float fireTimer = 0f;
     private bool isCharging = false;
-    private bool didShoot = false;
+    private bool isCharged = false;
     
 
     void Start()
@@ -42,11 +43,10 @@ public class Weapon : MonoBehaviour
         if (currentAmmo > maxAmmo) currentAmmo = maxAmmo;
     }
 
-    public bool Shoot(InputActionReference fireAction, Transform firePoint, int collision_layer)
+    public void Shoot(InputActionReference fireAction, Transform firePoint, int collision_layer)
     {
-        if (currentAmmo - ammoCost < 0) return false;
+        if (currentAmmo - ammoCost < 0) return;
 
-        didShoot = false;
         if (fireAction != null) // player shooting
         {
             if (fireMode == FireMode.FULL_AUTO && fireAction.action.IsPressed())
@@ -57,13 +57,13 @@ public class Weapon : MonoBehaviour
                 {
                     fireTimer += 1f / fireRate;
                     ShootProjectile(firePoint, collision_layer);
-                    didShoot = true;
+                    owner.audioManager.PlayAudioSource("PeaShooterFire");
                 }
             }
             else if (fireMode == FireMode.SEMI_AUTO && fireAction.action.WasPressedThisFrame())
             {
                 ShootProjectile(firePoint, collision_layer);
-                didShoot = true;
+                //owner.audioManager.PlayAudioSource("");
             }
             else if (fireMode == FireMode.CHARGE)
             {
@@ -73,25 +73,28 @@ public class Weapon : MonoBehaviour
                     if (!isCharging)
                     {
                         isCharging = true;
+                        isCharged = false;
                         fireTimer = 0f;
                         //Debug.Log("Started charging");
                     }
 
-                    // Increment charge timer while holding
-                    fireTimer += Time.deltaTime;
                     //Debug.Log($"Charging... {fireTimer:F2}s");
+                    fireTimer += Time.deltaTime; // Increment charge timer while holding
+
+                    if (fireTimer > projData.timeToSpawn && !isCharged)
+                    {
+                        owner.audioManager.PlayAudioSource("RailgunCharged");
+                        isCharged = true;
+                    }
                 }
 
                 // Fire when player releases the button
-                if (isCharging && fireAction.action.WasReleasedThisFrame())
+                if (isCharged && fireAction.action.WasReleasedThisFrame())
                 {
-                    if (fireTimer >= projData.timeToSpawn)
-                    {
-                        //Debug.Log($"Released at {fireTimer:F2}s");
-                        ShootProjectile(firePoint, collision_layer);
-                        isCharging = false; // Reset for next charge
-                        didShoot = true;
-                    }
+                    //Debug.Log($"Released at {fireTimer:F2}s");
+                    ShootProjectile(firePoint, collision_layer);
+                    owner.audioManager.PlayAudioSource("RailgunFire");
+                    isCharging = false; // Reset for next charge
 
                     fireTimer = 0f;
                 }
@@ -107,14 +110,14 @@ public class Weapon : MonoBehaviour
                     {
                         fireTimer += 1f / fireRate;
                         ShootProjectile(firePoint, collision_layer);
-                        didShoot = true;
+                        owner.audioManager.PlayAudioSource("Shoot");
                     }
 
                     break;
 
                 case FireMode.SEMI_AUTO:
                     ShootProjectile(firePoint, collision_layer);
-                    didShoot = true;
+                    owner.audioManager.PlayAudioSource("Shoot");
                     break;
 
                 case FireMode.CHARGE:
@@ -129,7 +132,7 @@ public class Weapon : MonoBehaviour
                     if (fireTimer >= projData.timeToSpawn)
                     {
                         ShootProjectile(firePoint, collision_layer);
-                        didShoot = true;
+                        owner.audioManager.PlayAudioSource("Shoot");
                         isCharging = false;
                         fireTimer = 0f;
                     }
@@ -137,8 +140,6 @@ public class Weapon : MonoBehaviour
                     break;
             }
         }
-
-        return didShoot;
     }
 
     public void ShootProjectile(Transform firePoint, int receiving_layer)

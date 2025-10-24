@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -12,9 +13,12 @@ public abstract class Entity : StateManager
     public AudioEffect[] audioEffects;
     public bool invincibility = false;
 
+    [NonSerialized] public bool isDamaged = false;
+
     /* VIRTUAL/ABSTRACT ENTITY FUNCTIONS */
-    public virtual void InitializeStates() { }
     public abstract void EntityDie();
+    public virtual void InitializeStates() { }
+    public virtual void GotDamaged() { }
 
     public virtual void Start()
     {
@@ -43,6 +47,8 @@ public abstract class Entity : StateManager
         if (invincibility || entityData.currentHealth <= 0) return;
 
         SetHealth(entityData.currentHealth - damageTaken);
+
+        GotDamaged();
     }
 
     public void SetHealth(int new_health)
@@ -84,9 +90,9 @@ public abstract class Entity : StateManager
 
     public void ShootWeapon(GameObject weapon, InputActionReference fireAction, Transform firePoint, int collision_layer)
     {
-        if (weapon != null && weapon.GetComponent<Weapon>().Shoot(fireAction, firePoint, collision_layer))
+        if (weapon != null)
         {
-            audioManager.PlayAudioSource("Shoot");
+            weapon.GetComponent<Weapon>().Shoot(fireAction, firePoint, collision_layer);
         }
     }
 }
