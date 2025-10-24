@@ -189,8 +189,9 @@ MonoBehaviour:
   cinemachine: {fileID: 730194402}
   audioManager: {fileID: 476967450}
   levelList:
-  - TestLevel
+  - levelOne
   - TestLevel-Shooting
+  - TestLevel
   startingState: 0
   loadingTime: 0.3
   BGMNames: []
