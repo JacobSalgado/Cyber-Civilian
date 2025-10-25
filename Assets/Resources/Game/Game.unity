@@ -260,6 +260,7 @@ GameObject:
   - component: {fileID: 476967449}
   - component: {fileID: 476967448}
   - component: {fileID: 476967450}
+  - component: {fileID: 476967451}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -297,6 +298,11 @@ MonoBehaviour:
   startingState: 0
   BGM:
   - {fileID: 6554651378409300978, guid: bde6bcc18be375e449f6f1b6681824bc, type: 3}
+  uiSFX:
+  - {fileID: 7704210069033511172, guid: 708bb1336b375084d82060980ac73b54, type: 3}
+  - {fileID: 7704210069033511172, guid: 76667228d29013d4ebd377c8d3575658, type: 3}
+  - {fileID: 7704210069033511172, guid: 24287df8088dd0a46aa9ee9485b51734, type: 3}
+  - {fileID: 7704210069033511172, guid: db2d867fea3b19d449f3692e6959eead, type: 3}
 --- !u!4 &476967449
 Transform:
   m_ObjectHideFlags: 0
@@ -332,6 +338,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
   audioPlayer: {fileID: 483986785}
+--- !u!81 &476967451
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 476967447}
+  m_Enabled: 1
 --- !u!1 &483986785
 GameObject:
   m_ObjectHideFlags: 0
@@ -676,7 +690,6 @@ GameObject:
   - component: {fileID: 1093947791}
   - component: {fileID: 1093947790}
   - component: {fileID: 1093947789}
-  - component: {fileID: 1093947788}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -699,14 +712,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 362184620}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!81 &1093947788
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1093947786}
-  m_Enabled: 1
 --- !u!114 &1093947789
 MonoBehaviour:
   m_ObjectHideFlags: 0

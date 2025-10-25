@@ -28,6 +28,7 @@ public class GameInGame : State
         {
             manager.levelHolder.SetActive(false);
             manager.UIHolder.SetActive(false);
+            manager.audioManager.PlayAudioSource("Pause");
             manager.ChangeState("PauseMenu");
             return;
         }

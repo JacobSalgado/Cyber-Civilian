@@ -32,6 +32,7 @@ public class GameManager : StateManager
     public string[] levelList;
     [SerializeField] private GameState startingState;
     [SerializeField] private AudioEffect[] BGM;
+    [SerializeField] private AudioEffect[] uiSFX;
 
     /* Non-Serialized Vars */
     [NonSerialized] public bool isLoading = false;
@@ -68,6 +69,7 @@ public class GameManager : StateManager
 
         // initialize audio manager
         audioManager.InitializeAudioDictionary(BGM);
+        audioManager.InitializeAudioDictionary(uiSFX);
     }
 
     void Update()
@@ -78,6 +80,7 @@ public class GameManager : StateManager
     public void StartGameButton()
     {
         levelIndex = 0;
+        audioManager.PlayAudioSource("Select");
         ChangeState("LoadingScreen", new Dictionary<string, object>()
         {
             { "nextState", GameState.IN_GAME }
@@ -97,6 +100,7 @@ public class GameManager : StateManager
 
     public void ResumeGameButton()
     {
+        audioManager.PlayAudioSource("Resume");
         ChangeState("InGame", new Dictionary<string, object>()
         {
             {"FromPauseMenu", true}
@@ -105,6 +109,8 @@ public class GameManager : StateManager
 
     public void ExitGameButton()
     {
+        audioManager.PlayAudioSource("Cancel");
+
         if (hud != null)
         {
             hud.PlayerHUDClose();
@@ -123,6 +129,7 @@ public class GameManager : StateManager
 
     public void RestartGameButton()
     {
+        audioManager.PlayAudioSource("Select");
         audioManager.StopAudioSource("Level1");
 
         StartGameButton();
