@@ -1,16 +1,17 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameOverMenu : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public Button[] buttons;
 
-    // Update is called once per frame
-    void Update()
+    public void GameOverMenuClose()
     {
-        
+        foreach (Button button in buttons)
+        {
+            button.onClick.RemoveAllListeners();
+        }
+
+        Destroy(gameObject);
     }
 }

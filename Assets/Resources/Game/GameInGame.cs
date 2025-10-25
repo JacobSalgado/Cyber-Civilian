@@ -16,7 +16,7 @@ public class GameInGame : State
 
         if (args == null || (args != null && !args.ContainsKey("FromPauseMenu")))
         {
-            manager.audioManager.PlayAudioSource("Level1");
+            manager.audioManager.PlayAudioSource("Level1"); // TODO: ACCOMODATE FOR MULTIPLE LEVEL BGMS
             LevelManager.StartLevel();
         }
 
@@ -34,10 +34,21 @@ public class GameInGame : State
 
         LevelManager.Update();
 
+        // check if player is dead
+        if (manager.player.isDead)
+        {
+            manager.ChangeState("LoadingScreen", new Dictionary<string, object>()
+            {
+                {"nextState", GameManager.GameState.GAME_OVER}
+            });
+            return;
+        }
+
         // check level completion
         if (LevelManager.isLevelCompleted)
         {
             manager.levelIndex++;
+            manager.audioManager.StopAudioSource("Level1");
             if (manager.levelIndex >= manager.levelList.Length) // Game Complete
             {
                 manager.ChangeState("LoadingScreen", new Dictionary<string, object>()
@@ -45,7 +56,6 @@ public class GameInGame : State
                     {"nextState", GameManager.GameState.MAIN_MENU}
                 });
                 return;
-
             }
             else // Next Level
             {

@@ -40,6 +40,11 @@ public class GameLoadingScreen : State
                 manager.LoadInGameAsync();
 
                 break;
+
+            case GameManager.GameState.GAME_OVER:
+                manager.LoadGameOverMenuAsync();
+
+                break;
         }
     }
 

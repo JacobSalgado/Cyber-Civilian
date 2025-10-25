@@ -79,7 +79,8 @@ public class Player : Entity
 
     public override void EntityDie()
     {
-        // TODO: GAME OVER SCREEN
+        isDead = true;
+        gameObject.SetActive(false);
     }
 
     public override void Start()

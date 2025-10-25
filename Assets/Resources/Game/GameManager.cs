@@ -12,7 +12,8 @@ public class GameManager : StateManager
     {
         MAIN_MENU,
         PAUSE_MENU,
-        IN_GAME
+        IN_GAME,
+        GAME_OVER
     }
 
     [Header("==Necessary GameManager Objects==")]
@@ -39,9 +40,10 @@ public class GameManager : StateManager
     [NonSerialized] public float loadingProgress = 0f;
     const string mainMenuPath = "UI/MainMenu/MainMenu";
     const string playerHUDPath = "UI/PlayerHUD/PlayerHUD";
-    const string pauseMenuPath = "UI/PauseMenu/PauseMenu";
+    const string gameOverPath = "UI/GameOverMenu/GameOverMenu";
 
     [NonSerialized] public MainMenu mainMenu = null;
+    [NonSerialized] public GameOverMenu gameOver = null;
     [NonSerialized] public PlayerHUD hud = null;
     [NonSerialized] public Dictionary<string, object> args = new();
 
@@ -56,6 +58,7 @@ public class GameManager : StateManager
         AddState("MainMenu", new GameMainMenu(this));
         AddState("InGame", new GameInGame(this));
         AddState("PauseMenu", new GamePauseMenu(this));
+        AddState("GameOver", new GameGameOver(this));
         AddState("LoadingScreen", new GameLoadingScreen(this));
 
         ChangeState("LoadingScreen", new Dictionary<string, object>()
@@ -115,12 +118,20 @@ public class GameManager : StateManager
         });
     }
 
+    public void RestartGameButton()
+    {
+        audioManager.StopAudioSource("Level1");
+
+        StartGameButton();
+    }
+
     public string GameState_To_String(GameState state)
     {
         string state_key = state switch
         {
             GameState.MAIN_MENU => "MainMenu",
             GameState.PAUSE_MENU => "PauseMenu",
+            GameState.GAME_OVER => "GameOver",
             _ => "InGame",
         };
         return state_key;
@@ -160,6 +171,45 @@ public class GameManager : StateManager
 
         mainMenu.buttons[0].onClick.AddListener(StartGameButton);
         mainMenu.buttons[1].onClick.AddListener(EndGameButton);
+
+        yield return null;
+    }
+
+
+    public void LoadGameOverMenuAsync()
+    {
+        UIHolder.SetActive(false);
+        StartCoroutine(LoadGameOverMenu());
+    }
+
+    private IEnumerator LoadGameOverMenu()
+    {
+        // load the menu prefab and attach it to UI Holder
+        ResourceRequest request = Resources.LoadAsync<GameObject>(gameOverPath);
+        while (!request.isDone)
+        {
+            Debug.Log("loading game over prefab");
+            loadingProgress = request.progress * 0.5f;
+            yield return null;
+        }
+
+        loadingProgress = request.progress * 0.5f;
+
+        // assign listeners for buttons
+        yield return StartCoroutine(InitializeGameOverMenu(request.asset as GameObject));
+
+        loadingProgress += 0.5f;
+
+        isLoading = false;
+    }
+
+    private IEnumerator InitializeGameOverMenu(GameObject prefab)
+    {
+        GameObject instance = Instantiate(prefab, UIHolder.transform);
+        gameOver = instance.GetComponent<GameOverMenu>();
+
+        gameOver.buttons[0].onClick.AddListener(RestartGameButton);
+        gameOver.buttons[1].onClick.AddListener(ExitGameButton);
 
         yield return null;
     }
@@ -247,6 +297,4 @@ public class GameManager : StateManager
         pauseMenu.buttons[0].onClick.AddListener(ResumeGameButton);
         pauseMenu.buttons[1].onClick.AddListener(ExitGameButton);
     }
-
-    
 }

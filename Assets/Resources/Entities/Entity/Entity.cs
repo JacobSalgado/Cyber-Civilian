@@ -14,6 +14,7 @@ public abstract class Entity : StateManager
     public bool invincibility = false;
 
     [NonSerialized] public bool isDamaged = false;
+    [NonSerialized] public bool isDead = false;
 
     /* VIRTUAL/ABSTRACT ENTITY FUNCTIONS */
     public abstract void EntityDie();
