@@ -4,15 +4,20 @@ using UnityEngine;
 public class SniperShoot : State
 {
     readonly Sniper sniper;
+    private readonly Weapon sniperRifle;
+    private float directionTimer = 0f;
+    private float stopRotatingTime = 0f;
 
     public SniperShoot(Entity new_entity) : base(new_entity)
     {
-        sniper = (Sniper) new_entity;
+        sniper = (Sniper)new_entity;
+        sniperRifle = sniper.weapon.GetComponent<Weapon>();
+        stopRotatingTime = sniperRifle.projData.timeToSpawn - 0.45f;
     }
 
     public override void EnterState(Dictionary<string, object> args = null)
     {
-
+        directionTimer = 0f;
     }
 
     public override void UpdateState()
@@ -23,6 +28,8 @@ public class SniperShoot : State
             return;
         }
 
+        directionTimer += Time.deltaTime;
+
         float distanceToTarget = sniper.GetDistanceToTarget();
         if (distanceToTarget < sniper.distanceToHide && !sniper.isInvisibleRecharging && sniper.timer > sniper.invisibleRechargeTime)
         {
@@ -32,10 +39,17 @@ public class SniperShoot : State
 
         if (distanceToTarget < sniper.distanceToShoot)
         {
-            Vector2 dir = sniper.GetDirectionToPosition(sniper.target.gameObject.transform.position);
-            sniper.RotateToDirection(dir);
+            if (directionTimer < stopRotatingTime)
+            {
+                Vector2 dir = sniper.GetDirectionToPosition(sniper.target.gameObject.transform.position);
+                sniper.RotateToDirection(dir);
+            }
+
             sniper.ShootWeapon(sniper.weapon, null, sniper.firePoint, 7);
         }
+
+        if (sniperRifle.fireTimer == 0f)
+            directionTimer = 0f;
     }
     
     public override void ExitState(Dictionary<string, object> args = null)

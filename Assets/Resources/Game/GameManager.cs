@@ -105,8 +105,11 @@ public class GameManager : StateManager
 
     public void ExitGameButton()
     {
-        hud.PlayerHUDClose();
-        hud = null;
+        if (hud != null)
+        {
+            hud.PlayerHUDClose();
+            hud = null;
+        }
 
         LevelManager.Close();
 

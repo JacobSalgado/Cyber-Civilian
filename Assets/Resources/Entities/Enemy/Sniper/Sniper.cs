@@ -8,11 +8,11 @@ public class Sniper : Enemy
     public CapsuleCollider2D sniperCollider;
 
     [Header("==Hide Properties==")]
-    public float distanceToHide = 10f;
     public float[] invisibleTimeRange = {0f, 1f};
     public float invisibleRechargeTime = 5f;
     
     // Non-Serialized vars
+    [NonSerialized] public float distanceToHide;
     [NonSerialized] public float distanceToShoot;
     [NonSerialized] public bool isInvisibleRecharging = false;
     [NonSerialized] public bool isInvisible = false;
@@ -38,6 +38,7 @@ public class Sniper : Enemy
 
         // NOTE: distanceToShoot for sniper is determined by given railshot length
         distanceToShoot = weapon.GetComponent<Weapon>().projData.railshotLength;
+        distanceToHide = distanceToShoot * 0.45f;
     }
 
     public override void FixedUpdate()
@@ -45,17 +46,17 @@ public class Sniper : Enemy
         base.FixedUpdate();
 
         timer += Time.deltaTime;
+        
         isInvisibleRecharging = !isInvisible && timer <= invisibleRechargeTime;
         //Debug.Log(current_state);
     }
-
 
     public void Invisible()
     {
         isInvisible = true;
         spriteRenderer.enabled = false;
         healthCanvas.enabled = false;
-        sniperCollider.enabled = false;
+        //sniperCollider.enabled = false;
         audioManager.PlayAudioSource("InvisibleStart");
     }
 
@@ -64,7 +65,7 @@ public class Sniper : Enemy
         isInvisible = false;
         spriteRenderer.enabled = true;
         healthCanvas.enabled = true;
-        sniperCollider.enabled = true;
+        //sniperCollider.enabled = true;
         audioManager.PlayAudioSource("InvisibleEnd");
     }
 }

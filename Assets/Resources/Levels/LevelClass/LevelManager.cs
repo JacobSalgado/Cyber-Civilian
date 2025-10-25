@@ -98,10 +98,13 @@ public static class LevelManager
 
     public static void Close()
     {
-        levelTimer = 0;
-        enemyKilledCounter = 0;
-        isLevelCompleted = false;
-        Object.Destroy(current_level.gameObject);
+        if (current_level != null)
+        {
+            levelTimer = 0;
+            enemyKilledCounter = 0;
+            isLevelCompleted = false;
+            Object.Destroy(current_level.gameObject);
+        }
     }
 
     /*

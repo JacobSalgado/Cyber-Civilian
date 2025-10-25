@@ -363,7 +363,7 @@ MonoBehaviour:
   - {fileID: 7329057885270235295, guid: 8617e52300cec4645a2460d31eeb1fbe, type: 3}
   invincibility: 0
   spriteRenderer: {fileID: 4647814237375887610}
-  projectileCollider: {fileID: 0}
+  projectileCollider: {fileID: 8436380612568787668}
 --- !u!50 &3556341427465147548 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 8848481268156799969, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
