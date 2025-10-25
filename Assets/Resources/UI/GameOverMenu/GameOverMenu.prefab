@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5795649103181383800}
   - component: {fileID: 7865221680905973177}
   m_Layer: 5
-  m_Name: Pause Text
+  m_Name: Game Over Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Game Paused
+  m_text: Game Over!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c12f3c067d5a6c94a83a89ab5092407e, type: 2}
   m_sharedMaterial: {fileID: 8598663413909712083, guid: c12f3c067d5a6c94a83a89ab5092407e, type: 2}
@@ -74,8 +74,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4292464741
-  m_fontColor: {r: 0.39569238, g: 0.816229, b: 0.8490566, a: 1}
+    rgba: 4278321407
+  m_fontColor: {r: 1, g: 0, b: 0.005943775, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -236,7 +236,7 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9529412, g: 0.29411766, b: 0.29411766, a: 1}
-    m_PressedColor: {r: 0.690566, g: 0, b: 0, a: 1}
+    m_PressedColor: {r: 0.6901961, g: 0, b: 0, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -270,9 +270,8 @@ GameObject:
   - component: {fileID: 6416337287410220022}
   - component: {fileID: 3891265617243413865}
   - component: {fileID: 1487358060871313787}
-  - component: {fileID: 4422660021191627273}
   m_Layer: 5
-  m_Name: PauseMenu
+  m_Name: GameOverMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -372,21 +371,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2660653472140934733}
   m_CullTransparentMesh: 1
---- !u!114 &4422660021191627273
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2660653472140934733}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79adc05b66efc5f45853f70e3cafb267, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
-  buttons:
-  - {fileID: 4637374788520018358}
-  - {fileID: 6063726036240910986}
 --- !u!1 &5029979709084168600
 GameObject:
   m_ObjectHideFlags: 0
@@ -399,7 +383,7 @@ GameObject:
   - component: {fileID: 7972817695786928368}
   - component: {fileID: 6758273428493093828}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Exit Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -624,8 +608,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.5568628, g: 1, b: 0.32156864, a: 1}
-    m_PressedColor: {r: 0.21960784, g: 0.5686275, b: 0, a: 1}
+    m_HighlightedColor: {r: 0.5568628, g: 1, b: 0.32941177, a: 1}
+    m_PressedColor: {r: 0.22090696, g: 0.5698112, b: 0, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -670,7 +654,7 @@ GameObject:
   - component: {fileID: 5055102907110967687}
   - component: {fileID: 7382312429452876951}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Retry Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -723,9 +707,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Resume
-
-'
+  m_text: Retry
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c12f3c067d5a6c94a83a89ab5092407e, type: 2}
   m_sharedMaterial: {fileID: 8598663413909712083, guid: c12f3c067d5a6c94a83a89ab5092407e, type: 2}
@@ -861,7 +843,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 8211464524891103784, guid: 2b2d7757438d26742b3951d14f9f00fc, type: 3}
+  m_Sprite: {fileID: -1792656109054569151, guid: 1ccadd43b126f0f48b419851586bc88f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
