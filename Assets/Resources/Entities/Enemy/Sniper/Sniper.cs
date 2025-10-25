@@ -24,7 +24,6 @@ public class Sniper : Enemy
         AddState("Idle", new SniperIdle(this));
         AddState("Hide", new SniperHide(this));
         AddState("Shoot", new SniperShoot(this));
-        // TODO: add movement
 
         ChangeState("Idle");
     }
@@ -38,7 +37,7 @@ public class Sniper : Enemy
 
         // NOTE: distanceToShoot for sniper is determined by given railshot length
         distanceToShoot = weapon.GetComponent<Weapon>().projData.railshotLength;
-        distanceToHide = distanceToShoot * 0.45f;
+        distanceToHide = distanceToShoot * 0.5f;
     }
 
     public override void FixedUpdate()
