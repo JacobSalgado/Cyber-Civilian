@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,7 +9,8 @@ public class Weapon : MonoBehaviour
     {
         FULL_AUTO,
         SEMI_AUTO,
-        CHARGE
+        CHARGE,
+        LOCK_ON
     }
 
     [Header("==Necessary GameObjects==")]
@@ -30,9 +32,10 @@ public class Weapon : MonoBehaviour
     // private vars
     [NonSerialized] public Entity owner;
     [NonSerialized] public float fireTimer = 0f;
+    [NonSerialized] public List<Transform> targets = new List<Transform> { };
     private bool isCharging = false;
     private bool isCharged = false;
-    
+    private string[] layerMask = { "Enemy" };
 
     void Start()
     {
@@ -97,6 +100,37 @@ public class Weapon : MonoBehaviour
                     fireTimer = 0f;
                 }
             }
+            else if (fireMode == FireMode.LOCK_ON)
+            {
+                if (fireAction.action.IsPressed())
+                {
+                    // get targets hit by mouse
+                    Vector2 mousePos = (owner as Player).cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+
+                    Collider2D selected = Physics2D.OverlapPoint(mousePos, LayerMask.GetMask(layerMask));
+
+                    //print(selected);
+                    if (selected != null && !targets.Contains(selected.gameObject.transform))
+                    {
+                        targets.Add(selected.gameObject.transform);
+                    }
+                }
+                if (fireAction.action.WasReleasedThisFrame())
+                {
+                    // fire a projectile for each target
+                    foreach (Transform target in targets)
+                    {
+                        if (target == null) continue;
+
+                        owner.audioManager.PlayAudioSource("MissileFire");
+
+                        Missile missile = (Missile)ShootProjectile(firePoint, collision_layer, false);
+                        missile.target = target;
+                        missile.gameObject.SetActive(true);
+                    }
+                    targets.Clear();
+                }
+            }
         }
         else // other entities
         {
@@ -141,7 +175,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    public void ShootProjectile(Transform firePoint, int receiving_layer)
+    public Projectile ShootProjectile(Transform firePoint, int receiving_layer, bool active = true)
     {
         // update ammo
         if (!infiniteAmmo) currentAmmo -= ammoCost;
@@ -150,7 +184,10 @@ public class Weapon : MonoBehaviour
         Projectile proj = Instantiate(projectile, firePoint.position, firePoint.rotation, LevelManager.current_level.EntityList.transform).GetComponent<Projectile>();
 
         proj.projData = Instantiate(projData);
-        //proj.audioManager.InitializeAudioDictionary(proj.projData.SFXNames, proj.projData.SFX);
         proj.attacking_layer = receiving_layer;
+
+        proj.gameObject.SetActive(active);
+
+        return proj;
     }
 }

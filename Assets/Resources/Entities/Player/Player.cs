@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -151,19 +150,7 @@ public class Player : Entity
 
         // check fire inputs
         if (currentWeaponType < PlayerWeaponType.NONE && !isBlocking)
-        {
-            string fireSFXName = currentWeaponType switch
-            {
-                PlayerWeaponType.BULLET => "PeaShooterFire",
-                PlayerWeaponType.RAILGUN => "RailgunFire",
-                PlayerWeaponType.MISSILE => "MissileFire",
-                PlayerWeaponType.PLASMA => "PlasmaFire",
-                PlayerWeaponType.FLAMETHROWER => "FlamethrowerFire",
-                _ => "None",
-            };
-
             ShootWeapon(weapons[(int)currentWeaponType], fireAction, firePoint, 6);
-        }
 
         // check dash inputs
         if (dashAction.action.WasPressedThisFrame() && canDash && !isDashing && currentEnergy - dashCost >= 0)

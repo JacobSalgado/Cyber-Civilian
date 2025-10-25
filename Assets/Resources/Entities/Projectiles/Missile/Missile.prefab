@@ -8,6 +8,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 799086666457626503, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 799086666457626503, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 406cd22d1ae74fc8b965253237d2275b, type: 3}
+    - target: {fileID: 799086666457626503, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 799086666457626503, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
+      propertyPath: m_Color.g
+      value: 0.88198304
+      objectReference: {fileID: 0}
+    - target: {fileID: 799086666457626503, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
+      propertyPath: m_Color.r
+      value: 0.48113203
+      objectReference: {fileID: 0}
+    - target: {fileID: 6493105512357046733, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6493105512357046733, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.1920903
+      objectReference: {fileID: 0}
+    - target: {fileID: 6493105512357046733, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.1920903
+      objectReference: {fileID: 0}
     - target: {fileID: 6493105512357046733, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -48,6 +80,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6493105512357046733, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6972928632977506400, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
       propertyPath: m_Name
       value: Missile
@@ -58,7 +94,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6972928632977506400, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2261498342936645296}
+      addedObject: {fileID: 2338270631429808559}
     - targetCorrespondingSourceObject: {fileID: 6972928632977506400, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6423777854429983320}
@@ -79,8 +115,8 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6972928632977506400, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
   m_PrefabInstance: {fileID: 5087738950071533932}
   m_PrefabAsset: {fileID: 0}
---- !u!70 &2261498342936645296
-CapsuleCollider2D:
+--- !u!60 &2338270631429808559
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -114,8 +150,26 @@ CapsuleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
-  m_Direction: 0
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.55, y: 1.07}
+    newSize: {x: 1, y: 2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.16658407, y: 0.16917133}
+      - {x: 0.59708285, y: -0.009270569}
+      - {x: -0.20546196, y: -0.19505799}
+      - {x: -0.021606088, y: -0.40426147}
+      - {x: -0.5817591, y: -0.10373211}
+      - {x: -0.60145354, y: 0.10298967}
+      - {x: -0.0026188623, y: 0.444984}
+      - {x: 0.07594483, y: 0.4426663}
+  m_UseDelaunayMesh: 0
 --- !u!114 &6423777854429983320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,8 +190,7 @@ MonoBehaviour:
   - {fileID: 3572093515493467742, guid: 06e9f3043d54ff14092b7af2e13765f3, type: 3}
   invincibility: 0
   spriteRenderer: {fileID: 5588310216381560555}
-  projectileCollider: {fileID: 2261498342936645296}
-  target: {fileID: 0}
+  projectileCollider: {fileID: 2338270631429808559}
 --- !u!50 &4348042145966447245 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 8848481268156799969, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}

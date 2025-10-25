@@ -15,9 +15,10 @@ public class SniperHide : State
     readonly string[] layerNames = { "Player", "Default" };
     private LayerMask layersToAvoid;
 
+
     public SniperHide(Entity new_entity) : base(new_entity)
     {
-        sniper = (Sniper) new_entity;
+        sniper = (Sniper)new_entity;
     }
 
     public override void EnterState(Dictionary<string, object> args = null)
