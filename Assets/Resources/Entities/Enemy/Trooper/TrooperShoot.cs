@@ -3,7 +3,10 @@ using UnityEngine;
 
 public class TrooperShoot : State
 {
+    private const float minimumShootTime = 1.9f;
+
     readonly Trooper trooper;
+    private float timer = 0f;
 
     public TrooperShoot(Entity new_entity) : base(new_entity)
     {
@@ -13,6 +16,7 @@ public class TrooperShoot : State
     public override void EnterState(Dictionary<string, object> args = null)
     {
         trooper.rigidBody.linearVelocity = Vector2.zero;
+        timer = 0f;
     }
 
     public override void UpdateState()
@@ -23,6 +27,9 @@ public class TrooperShoot : State
             return;
         }
 
+        trooper.rigidBody.linearVelocity = Vector2.zero;
+        timer += Time.deltaTime;
+
         float distance = trooper.GetDistanceToTarget();
         if (distance < trooper.distanceToShoot)
         {
@@ -30,10 +37,13 @@ public class TrooperShoot : State
             trooper.RotateToDirection(dir);
             trooper.ShootWeapon(trooper.weapon, null, trooper.firePoint, 7);
         }
-        else if (distance < trooper.distanceToMove)
-            trooper.ChangeState("Move");
-        else
-            trooper.ChangeState("Idle");
+        else if (timer > minimumShootTime)
+        {
+            if (distance < trooper.distanceToMove)
+                trooper.ChangeState("Move");
+            else
+                trooper.ChangeState("Idle");
+        }
     }
 
     public override void ExitState(Dictionary<string, object> args = null)

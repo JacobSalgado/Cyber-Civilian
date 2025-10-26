@@ -174,7 +174,7 @@ MonoBehaviour:
   weapon: {fileID: 1577679594348739716, guid: 7caa2f4813b260a44a076a1f15dcabf4, type: 3}
   canvas: {fileID: 328632794084600661}
   distanceToHit: 2
-  distanceToMove: 9
+  distanceToMove: 20
 --- !u!96 &-9056755244652651032
 TrailRenderer:
   serializedVersion: 3

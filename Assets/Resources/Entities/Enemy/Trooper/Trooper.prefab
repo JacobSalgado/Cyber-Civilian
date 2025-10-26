@@ -373,8 +373,8 @@ MonoBehaviour:
   firePoint: {fileID: 7286729672604182}
   weapon: {fileID: 16432950934994515, guid: f705a370a6ca9194bbfbf1d5d7c0044f, type: 3}
   canvas: {fileID: 1488475855081233014}
-  distanceToShoot: 6.7
-  distanceToMove: 8.5
+  distanceToShoot: 10
+  distanceToMove: 17.5
 --- !u!114 &8904659477835846501 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7090025075723263508, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}

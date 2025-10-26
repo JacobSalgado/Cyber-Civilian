@@ -165,12 +165,10 @@ public class Player : Entity
         // check phase inputs
         if (phaseAction.action.WasPressedThisFrame() && !isPhasing && currentEnergy - phaseCost >= 0)
         {
-            audioManager.PlayAudioSource("PhaseStart");
             Phase(true);
         }
         else if (phaseAction.action.WasPressedThisFrame() && isPhasing)
         {
-            audioManager.PlayAudioSource("PhaseEnd");
             Phase(false);
         }
 
@@ -257,12 +255,14 @@ public class Player : Entity
 
         if (activate)
         {
+            audioManager.PlayAudioSource("PhaseStart");
             isPhasing = true;
             gameObject.layer = 3;
             Debug.Log("Change state to phasing");
         }
         else
         {
+            audioManager.PlayAudioSource("PhaseEnd");
             isPhasing = false;
             gameObject.layer = 6;
             Debug.Log("Change state to normal");
