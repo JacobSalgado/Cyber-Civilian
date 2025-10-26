@@ -1,0 +1,64 @@
+using System.Collections.Generic;
+using UnityEngine;
+
+public class AudioManager : MonoBehaviour
+{
+    [Header("==Necessary GameObjects==")]
+    public GameObject audioPlayer;
+    public Dictionary<string, AudioSource> audioEffects = new();
+
+    public void InitializeAudioDictionary(AudioEffect[] newAudioEffects)
+    {
+        for (int i = 0; i < newAudioEffects.Length; i++)
+        {
+            AudioSource player = audioPlayer.AddComponent<AudioSource>();
+
+            player.playOnAwake = false;
+            player.loop = newAudioEffects[i].loop;
+            player.pitch = newAudioEffects[i].pitch;
+            player.clip = newAudioEffects[i].clip;
+            player.volume = newAudioEffects[i].volume;
+
+            audioEffects.Add(newAudioEffects[i].gameObject.name, player);
+        }
+    }
+
+    public void PlayAudioSource(string name)
+    {
+        AudioSource player = GetAudioSource(name);
+        if (player != null)
+            player.Play();
+    }
+
+    public void PauseAudioSource(string name)
+    {
+        AudioSource player = GetAudioSource(name);
+        if (player != null)
+            player.Pause();
+    }
+
+    public void UnPauseAudioSource(string name)
+    {
+        AudioSource player = GetAudioSource(name);
+        if (player != null)
+            player.UnPause();
+    }
+
+    public void StopAudioSource(string name)
+    {
+        AudioSource player = GetAudioSource(name);
+        if (player != null && player.isPlaying)
+            player.Stop();
+    }
+    
+    public AudioSource GetAudioSource(string name)
+    {
+        if (!audioEffects.ContainsKey(name))
+        {
+            Debug.Log($"{name} not found in audio dictionary");
+            return null;
+        }
+
+        return audioEffects[name];
+    }
+}
