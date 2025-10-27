@@ -251,12 +251,12 @@ public class Player : Entity
     // Phase functions
     public void Phase(bool activate)
     {
-        // TODO: lower sprite alpha to be make player seem transparent
-
         if (activate)
         {
             audioManager.PlayAudioSource("PhaseStart");
             isPhasing = true;
+            changeSpriteAlpha(spriteRenderer, 0.35f);
+            changeSpriteAlpha(weaponRenderer, 0.35f);
             gameObject.layer = 3;
             Debug.Log("Change state to phasing");
         }
@@ -264,9 +264,18 @@ public class Player : Entity
         {
             audioManager.PlayAudioSource("PhaseEnd");
             isPhasing = false;
+            changeSpriteAlpha(spriteRenderer, 1f);
+            changeSpriteAlpha(weaponRenderer, 1f);
             gameObject.layer = 6;
             Debug.Log("Change state to normal");
         }
+    }
+
+    public void changeSpriteAlpha(SpriteRenderer sr, float new_alpha)
+    {
+        Color tempColor = sr.color;
+        tempColor.a = new_alpha;
+        sr.color = tempColor;
     }
 
     public bool getIsDashing()

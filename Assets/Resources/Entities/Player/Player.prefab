@@ -461,6 +461,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 09684be9c3034ad987b686804f7511c5, type: 3}
+    - target: {fileID: 3736020708952019976, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3881462457380608260, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
       propertyPath: m_HasRenderer
       value: 1
@@ -1185,14 +1189,14 @@ MonoBehaviour:
   - {fileID: 2015299630638325686, guid: a1a29321763e4f84a94bb04cdd04f731, type: 3}
   currentWeaponType: 0
   weaponRenderer: {fileID: 1226822478304895784}
-  dashPower: 3
+  dashPower: 4
   dashTime: 0.2
   dashCooldown: 0.5
   currentEnergy: 1000
   maxEnergy: 1000
   energyRegen: 1
   dashCost: 100
-  phaseCost: 2
+  phaseCost: 1
   shieldDrainRate: 50
 --- !u!114 &7781527178466087580 stripped
 MonoBehaviour:
