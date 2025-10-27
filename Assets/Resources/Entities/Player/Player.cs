@@ -177,6 +177,7 @@ public class Player : Entity
         {
             if (isBlocking)
             {
+                audioManager.PlayAudioSource("ShieldStart");
                 canBlock = true;
                 isBlocking = false;
                 EquipNewWeapon(previousWeaponType);
@@ -185,6 +186,7 @@ public class Player : Entity
             {
                 previousWeaponType = currentWeaponType;
 
+                audioManager.PlayAudioSource("ShieldEnd");
                 canBlock = false;
                 isBlocking = true;
                 EquipShield();
