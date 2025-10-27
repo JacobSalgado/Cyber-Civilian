@@ -14,6 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   currentHealth: 450
   maxHealth: 450
-  moveSpeed: 7.5
-  SFXNames: []
-  SFX: []
+  moveSpeed: 17
