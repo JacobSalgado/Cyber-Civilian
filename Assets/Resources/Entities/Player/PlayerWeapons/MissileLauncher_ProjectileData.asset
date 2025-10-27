@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileData
   currentHealth: 0
   maxHealth: 0
-  moveSpeed: 30
+  moveSpeed: 20
   damage: 70
   hitEffect: {fileID: 6996612073667387790, guid: 73dd775d02fe8ef4cab1bbcfb652c45c, type: 3}
   lifeTime: 5
   timeToSpawn: 0
   destroyOnCollision: 1
-  railshotLength: 10
-  fadeawayTime: 1
-  homing: 0
-  rotateSpeed: 200
+  railshotLength: 0
+  fadeawayTime: 0
+  homing: 1
+  rotateSpeed: 300
   trackingStrength: 5

@@ -22,6 +22,6 @@ MonoBehaviour:
   destroyOnCollision: 0
   railshotLength: 20
   fadeawayTime: 0.75
-  homing: 1
-  rotateSpeed: 200
-  trackingStrength: 5
+  homing: 0
+  rotateSpeed: 0
+  trackingStrength: 0
