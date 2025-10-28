@@ -21,7 +21,6 @@ public class GameManager : StateManager
     public GameObject levelHolder;
     public GameObject loadingScreenHolder;
     public Slider loadingScreenSlider;
-    public AudioSource BGMPlayer;
     public new Camera camera;
     public CinemachineCamera cinemachine;
     public InputActionReference pauseAction;
