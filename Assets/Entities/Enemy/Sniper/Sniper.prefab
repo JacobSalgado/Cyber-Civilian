@@ -9,6 +9,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 836956141584006840, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 2097554576775798839, guid: 8aca041ba4198174c923d4b9d0a33c90, type: 3}
+    - target: {fileID: 836956141584006840, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       propertyPath: m_Color.b
       value: 0
       objectReference: {fileID: 0}
@@ -71,6 +75,18 @@ PrefabInstance:
     - target: {fileID: 6939848692803389791, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       propertyPath: m_Name
       value: Sniper
+      objectReference: {fileID: 0}
+    - target: {fileID: 9038600038189111629, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_Animation
+      value: 
+      objectReference: {fileID: 7400000, guid: e6b06925c18e42f4b9377407ddcfc331, type: 2}
+    - target: {fileID: 9038600038189111629, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_PlayAutomatically
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9038600038189111629, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_Animations.Array.size
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -161,9 +177,8 @@ MonoBehaviour:
   weapon: {fileID: 1157213995312190472, guid: f4f07c3e278a0334fad700404b5b7fe0, type: 3}
   canvas: {fileID: 2966775912804215989}
   spriteRenderer: {fileID: 3453748074742007050}
-  distanceToHide: 4
-  healthCanvas: {fileID: 7159623827065755054}
   sniperCollider: {fileID: 8828476117384761170}
+  distanceToHide: 4
   invisibleTimeRange:
   - 2
   - 4.5
@@ -182,11 +197,6 @@ MonoBehaviour:
 --- !u!50 &6788294976325675372 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 8811157356989125342, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
-  m_PrefabInstance: {fileID: 2626542781473881010}
-  m_PrefabAsset: {fileID: 0}
---- !u!223 &7159623827065755054 stripped
-Canvas:
-  m_CorrespondingSourceObject: {fileID: 5129403513514798620, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
   m_PrefabInstance: {fileID: 2626542781473881010}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &8335928785559891313 stripped

@@ -161,6 +161,10 @@ PrefabInstance:
       value: 1.0036639
       objectReference: {fileID: 0}
     - target: {fileID: 836956141584006840, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 4858409919106889688, guid: f975191b61075e24bae14dd176a1d7eb, type: 3}
+    - target: {fileID: 836956141584006840, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
@@ -196,6 +200,10 @@ PrefabInstance:
       propertyPath: 'managedReferences[3501390542134837322]'
       value: Unity.RenderPipelines.Universal.2D.Runtime UnityEngine.Rendering.Universal.ShadowShape2DProvider_Collider2D
       objectReference: {fileID: 0}
+    - target: {fileID: 1806365678181702537, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: MinDistance
+      value: 1.1746767
+      objectReference: {fileID: 0}
     - target: {fileID: 1868575608633948007, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.192
@@ -204,13 +212,21 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.061
       objectReference: {fileID: 0}
-    - target: {fileID: 6527896415030157554, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
-      propertyPath: m_LocalPosition.x
+    - target: {fileID: 6474276062370758235, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6474276062370758235, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6527896415030157554, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 6527896415030157554, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.08
       objectReference: {fileID: 0}
     - target: {fileID: 6527896415030157554, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       propertyPath: m_LocalPosition.z
@@ -268,6 +284,10 @@ PrefabInstance:
       propertyPath: m_ExcludeLayers.m_Bits
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9038600038189111629, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_Animation
+      value: 
+      objectReference: {fileID: 7400000, guid: e6b06925c18e42f4b9377407ddcfc331, type: 2}
     m_RemovedComponents:
     - {fileID: 0}
     m_RemovedGameObjects: []
@@ -345,8 +365,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
+  m_Offset: {x: -0.0011481047, y: -0.011195898}
+  m_Size: {x: 2.3060315, y: 2.3060317}
   m_Direction: 0
 --- !u!114 &7916685865108859529
 MonoBehaviour:
