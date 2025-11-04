@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -13,6 +14,7 @@ public class Player : Entity
         MISSILE,
         PLASMA,
         FLAMETHROWER,
+        REVOLVER,
         NONE
     }
 
@@ -28,11 +30,13 @@ public class Player : Entity
     public InputActionReference shieldAction;
     public InputActionReference weaponKeybindsAction;
     public InputActionReference phaseAction;
+    public InputActionReference reloadAction;
 
     [Header("==Weapon Properties==")]
     public Transform firePoint;
-    [SerializeField] private GameObject[] weapons;
+    [SerializeField] public GameObject[] weapons;
     public PlayerWeaponType currentWeaponType = PlayerWeaponType.BULLET;
+    private Weapon currentWeapon;
     public SpriteRenderer weaponRenderer; // Renderer for switching weapon sprites
 
     [Header("==Dashing Properties==")]
@@ -50,6 +54,7 @@ public class Player : Entity
     public int energyRegen = 1;
     public int dashCost = 100;
     public int phaseCost = 50;
+    private const float timeToCharge = 0.25f;
 
     [Header("==Blocking Properties==")]
     public float shieldDrainRate = 50f;
@@ -62,7 +67,11 @@ public class Player : Entity
     [NonSerialized] public Dictionary<string, object> updateArgs;
     [NonSerialized] public float damagedTimer = 0f;
     [NonSerialized] public float damagedTime = 0f;
+    [NonSerialized] public int ammo;
     private Vector2 mousePos;
+    private bool isReloading = false;
+    private float reloadTimer = 0f;
+    private float originalSpeed;
     private bool canBlock = true;
     private bool isBlocking = false;
     private PlayerWeaponType previousWeaponType;
@@ -108,6 +117,7 @@ public class Player : Entity
             updatePlayer = false;
             updateArgs = null;
         }
+        originalSpeed = this.entityData.moveSpeed;
     }
 
     void Update()
@@ -118,10 +128,42 @@ public class Player : Entity
             if (damagedTimer > damagedTime)
             {
                 damagedTime = 0f;
-                isDamaged = false;  
+                isDamaged = false;
                 damagedTimer = 0f;
             }
         }
+        
+        // reloading
+        currentWeapon = weapons[(int)currentWeaponType].GetComponent<Weapon>();
+        ammo = currentWeapon.currentAmmo;
+        if (ammo <= 0) Debug.Log("No ammo, reload!");
+        if (reloadAction.action.WasPressedThisFrame() && ammo < currentWeapon.maxAmmo && !isReloading && !isBlocking && !isDashing)
+            Reload();
+    
+        // Check for long reload for weapons that support it
+        // Currently works bad
+        /*
+        if (reloadAction.action.IsPressed() && ammo < currentWeapon.maxAmmo && !isBlocking && !isDashing && (currentWeaponType != PlayerWeaponType.BULLET) && (currentWeaponType != PlayerWeaponType.PLASMA))
+        {
+            if (!isReloading)
+            {
+                isReloading = true;
+                reloadTimer = 0f;
+                this.entityData.moveSpeed *= currentWeapon.reloadSlowDownFactor;
+                Debug.Log("Reload set to true, long reload started");
+            }                                       
+
+            reloadTimer += Time.deltaTime;
+
+            if ((reloadTimer >= currentWeapon.reloadTime || reloadAction.action.WasReleasedThisFrame()) && isReloading)
+            {
+                isReloading = false;
+                this.entityData.moveSpeed = originalSpeed;
+                currentWeapon.ReloadWeapon(reloadTimer);
+                Debug.Log("Reload set to false, long reload ended");      
+            }              
+        }
+        */
 
         // update mouse position
         mousePos = cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
@@ -149,11 +191,11 @@ public class Player : Entity
         }
 
         // check fire inputs
-        if (currentWeaponType < PlayerWeaponType.NONE && !isBlocking)
+        if (currentWeaponType < PlayerWeaponType.NONE && !isBlocking && !isReloading)
             ShootWeapon(weapons[(int)currentWeaponType], fireAction, firePoint, 6);
 
         // check dash inputs
-        if (dashAction.action.WasPressedThisFrame() && canDash && !isDashing && currentEnergy - dashCost >= 0)
+        if (dashAction.action.WasPressedThisFrame() && canDash && !isDashing && currentEnergy - dashCost >= 0 && !isReloading)
         {
             canDash = false;
             isDashing = true;
@@ -173,7 +215,7 @@ public class Player : Entity
         }
 
         // check shield inputs
-        if (shieldAction.action.WasPressedThisFrame())
+        if (shieldAction.action.WasPressedThisFrame() && !isReloading)
         {
             if (isBlocking)
             {
@@ -269,6 +311,23 @@ public class Player : Entity
             gameObject.layer = 6;
             Debug.Log("Change state to normal");
         }
+    }
+
+    private void Reload()
+    {
+        isReloading = true;
+        // halfed movement speed during reload
+        this.entityData.moveSpeed *= currentWeapon.reloadSlowDownFactor;
+        // TO-DO: play reload animation here
+        StartCoroutine(reloadCoroutine());
+    }
+
+    private IEnumerator reloadCoroutine()
+    {
+        yield return new WaitForSeconds(currentWeapon.reloadTime);
+        currentWeapon.ReloadWeapon();
+        isReloading = false;
+        this.entityData.moveSpeed = originalSpeed;
     }
 
     public void changeSpriteAlpha(SpriteRenderer sr, float new_alpha)

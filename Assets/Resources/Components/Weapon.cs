@@ -22,6 +22,9 @@ public class Weapon : MonoBehaviour
     public int maxAmmo;
     public int ammoCost;
     public float fireRate;
+    public float reloadTime;
+    public int reloadAmount;
+    public float reloadSlowDownFactor = 0.75f;
     public bool infiniteAmmo = false;
     public ProjectileData projData;
 
@@ -50,86 +53,21 @@ public class Weapon : MonoBehaviour
 
         if (fireAction != null) // player shooting
         {
-            if (fireMode == FireMode.FULL_AUTO && fireAction.action.IsPressed())
+            if (fireMode == FireMode.FULL_AUTO)
             {
-                fireTimer -= Time.deltaTime;
-                // Debug.Log(fireTimer); // testing how firetimer works
-                if (fireTimer <= 0f)
-                {
-                    fireTimer += 1f / fireRate;
-                    ShootProjectile(firePoint, collision_layer);
-                    owner.audioManager.PlayAudioSource("PeaShooterFire");
-                }
+                fullAutoShot(fireAction, firePoint, collision_layer);
             }
-            else if (fireMode == FireMode.SEMI_AUTO && fireAction.action.WasPressedThisFrame())
+            else if (fireMode == FireMode.SEMI_AUTO)
             {
-                ShootProjectile(firePoint, collision_layer);
-                //owner.audioManager.PlayAudioSource("");
+                semiAutoShot(fireAction, firePoint, collision_layer);
             }
             else if (fireMode == FireMode.CHARGE)
             {
-                // Start charging when the player holds the button
-                if (fireAction.action.IsPressed())
-                {
-                    if (!isCharging)
-                    {
-                        isCharging = true;
-                        isCharged = false;
-                        fireTimer = 0f;
-                        //Debug.Log("Started charging");
-                    }
-
-                    //Debug.Log($"Charging... {fireTimer:F2}s");
-                    fireTimer += Time.deltaTime; // Increment charge timer while holding
-
-                    if (fireTimer > projData.timeToSpawn && !isCharged)
-                    {
-                        owner.audioManager.PlayAudioSource("RailgunCharged");
-                        isCharged = true;
-                    }
-                }
-
-                // Fire when player releases the button
-                if (isCharged && fireAction.action.WasReleasedThisFrame())
-                {
-                    //Debug.Log($"Released at {fireTimer:F2}s");
-                    ShootProjectile(firePoint, collision_layer);
-                    owner.audioManager.PlayAudioSource("RailgunFire");
-                    isCharging = false; // Reset for next charge
-
-                    fireTimer = 0f;
-                }
+                chargeShot(fireAction, firePoint, collision_layer);
             }
             else if (fireMode == FireMode.LOCK_ON)
             {
-                if (fireAction.action.IsPressed())
-                {
-                    // get targets hit by mouse
-                    Vector2 mousePos = (owner as Player).cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-
-                    Collider2D selected = Physics2D.OverlapPoint(mousePos, LayerMask.GetMask(layerMask));
-
-                    //print(selected);
-                    if (selected != null && !targets.Contains(selected.gameObject.transform))
-                    {
-                        targets.Add(selected.gameObject.transform);
-                    }
-                }
-                if (fireAction.action.WasReleasedThisFrame())
-                {
-                    // fire a projectile for each target
-                    foreach (Transform target in targets)
-                    {
-                        if (target == null) continue;
-
-                        owner.audioManager.PlayAudioSource("MissileFire");
-
-                        Missile missile = (Missile)ShootProjectile(firePoint, collision_layer, false);
-                        missile.target = target;
-                        missile.gameObject.SetActive(true);
-                    }
-                    targets.Clear();
-                }
+                lockOnShot(fireAction, firePoint, collision_layer);
             }
         }
         else // other entities
@@ -173,6 +111,113 @@ public class Weapon : MonoBehaviour
                     break;
             }
         }
+    }
+
+    private void fullAutoShot(InputActionReference fireAction, Transform firePoint, int collision_layer)
+    {
+        if (fireAction.action.IsPressed())
+        {
+            fireTimer -= Time.deltaTime;
+            // Debug.Log(fireTimer); // testing how firetimer works
+            if (fireTimer <= 0f)
+            {
+                fireTimer += 1f / fireRate;
+                ShootProjectile(firePoint, collision_layer);
+                owner.audioManager.PlayAudioSource("PeaShooterFire");
+            }
+        }
+    }
+
+    private void semiAutoShot(InputActionReference fireAction, Transform firePoint, int collision_layer)
+    {
+        if (fireAction.action.WasPressedThisFrame())
+        {
+            ShootProjectile(firePoint, collision_layer);
+            //owner.audioManager.PlayAudioSource("");
+        }
+    }
+
+    private void chargeShot(InputActionReference fireAction, Transform firePoint, int collision_layer)
+    {
+        // Start charging when the player holds the button
+        if (fireAction.action.IsPressed())
+        {
+            if (!isCharging)
+            {
+                isCharging = true;
+                isCharged = false;
+                fireTimer = 0f;
+                //Debug.Log("Started charging");
+            }
+
+            //Debug.Log($"Charging... {fireTimer:F2}s");
+            fireTimer += Time.deltaTime; // Increment charge timer while holding
+            
+            if (fireTimer > projData.timeToSpawn && !isCharged)
+            {
+                owner.audioManager.PlayAudioSource("RailgunCharged");
+                isCharged = true;
+            }
+        }
+
+        // Fire when player releases the button
+        if (isCharged && fireAction.action.WasReleasedThisFrame())
+        {
+            //Debug.Log($"Released at {fireTimer:F2}s");
+            ShootProjectile(firePoint, collision_layer);
+            owner.audioManager.PlayAudioSource("RailgunFire");
+            isCharging = false; // Reset for next charge
+
+            fireTimer = 0f;
+        }        
+    }
+
+    private void lockOnShot(InputActionReference fireAction, Transform firePoint, int collision_layer)
+    {
+        if (fireAction.action.IsPressed())
+        {
+            // get targets hit by mouse
+            Vector2 mousePos = (owner as Player).cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+
+            Collider2D selected = Physics2D.OverlapPoint(mousePos, LayerMask.GetMask(layerMask));
+
+            //print(selected);
+            if (selected != null && !targets.Contains(selected.gameObject.transform))
+            {
+                targets.Add(selected.gameObject.transform);
+            }
+        }
+        if (fireAction.action.WasReleasedThisFrame())
+        {
+            // fire a projectile for each target
+            foreach (Transform target in targets)
+            {
+                if (target == null) continue;
+
+                owner.audioManager.PlayAudioSource("MissileFire");
+
+                Missile missile = (Missile)ShootProjectile(firePoint, collision_layer, false);
+                missile.target = target;
+                missile.gameObject.SetActive(true);
+            }
+            targets.Clear();
+        }
+    }
+
+    public void ReloadWeapon()
+    {
+        currentAmmo += reloadAmount;
+        Debug.Log("Weapon reloaded");
+        // play SFX/VFX
+    }
+    
+    // Overload function for partil reloads (revoler, missile launcher, etc)
+    public void ReloadWeapon(float howLongReloadWasHeld)
+    {
+        currentAmmo += reloadAmount * (int)howLongReloadWasHeld;
+        if (currentAmmo > maxAmmo) currentAmmo = maxAmmo;
+        Debug.Log("Weapon reloaded");
+        // play SFX/VFX
     }
 
     public Projectile ShootProjectile(Transform firePoint, int receiving_layer, bool active = true)

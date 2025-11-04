@@ -1182,6 +1182,7 @@ MonoBehaviour:
   shieldAction: {fileID: -566977883720413807, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   weaponKeybindsAction: {fileID: -2735380176781456793, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   phaseAction: {fileID: -9135410620642095999, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  reloadAction: {fileID: 6505802653974701790, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   firePoint: {fileID: 7870654291819106841}
   weapons:
   - {fileID: 4367270167898253899, guid: fde5e6f7714814c4e8108a58b4763bf1, type: 3}
@@ -1189,8 +1190,8 @@ MonoBehaviour:
   - {fileID: 2015299630638325686, guid: a1a29321763e4f84a94bb04cdd04f731, type: 3}
   currentWeaponType: 0
   weaponRenderer: {fileID: 1226822478304895784}
-  dashPower: 4
-  dashTime: 0.2
+  dashPower: 3
+  dashTime: 0.3
   dashCooldown: 0.5
   currentEnergy: 1000
   maxEnergy: 1000
