@@ -20,5 +20,8 @@ MonoBehaviour:
   lifeTime: 0.12
   timeToSpawn: 0
   destroyOnCollision: 0
-  railshotLength: 10
-  fadeawayTime: 1
+  railshotLength: 0
+  fadeawayTime: 0
+  homing: 0
+  rotateSpeed: 0
+  trackingStrength: 0

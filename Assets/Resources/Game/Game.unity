@@ -284,7 +284,6 @@ MonoBehaviour:
   levelHolder: {fileID: 484131940}
   loadingScreenHolder: {fileID: 1808176668}
   loadingScreenSlider: {fileID: 1774813177}
-  BGMPlayer: {fileID: 0}
   camera: {fileID: 1093947791}
   cinemachine: {fileID: 730194402}
   pauseAction: {fileID: -8928665272387638255, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
@@ -292,9 +291,6 @@ MonoBehaviour:
   pauseMenu: {fileID: 1121848291}
   levelList:
   - levelOne
-  - at859-test
-  - TestLevel-Shooting
-  - TestLevel
   startingState: 0
   BGM:
   - {fileID: 6554651378409300978, guid: bde6bcc18be375e449f6f1b6681824bc, type: 3}
@@ -508,10 +504,10 @@ MonoBehaviour:
   CameraDistance: 10
   DeadZoneDepth: 0
   Composition:
-    ScreenPosition: {x: 0, y: 0}
+    ScreenPosition: {x: 0.000000018626451, y: -0.00000009313226}
     DeadZone:
       Enabled: 1
-      Size: {x: 0.17277388, y: 0.33024284}
+      Size: {x: 0.09211538, y: 0.04096573}
     HardLimits:
       Enabled: 0
       Size: {x: 0.8, y: 0.8}

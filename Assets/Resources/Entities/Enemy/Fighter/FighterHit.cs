@@ -24,6 +24,8 @@ public class FighterHit : State
             return;
         }
 
+        fighter.rigidBody.linearVelocity = Vector2.zero;
+
         float distance = fighter.GetDistanceToTarget();
         if (distance < fighter.distanceToHit)
         {

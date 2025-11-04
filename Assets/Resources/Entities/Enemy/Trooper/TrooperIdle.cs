@@ -24,10 +24,13 @@ public class TrooperIdle : State
         }
 
         float distanceToTarget = trooper.GetDistanceToTarget();
-        if (distanceToTarget <= -1f) { // assertion check
+        if (distanceToTarget <= -1f)
+        { // assertion check
             Debug.Log("target not set");
             return;
         }
+        
+        trooper.rigidBody.linearVelocity = Vector2.zero;
          
         if (distanceToTarget < trooper.distanceToShoot)
             trooper.ChangeState("Shoot");

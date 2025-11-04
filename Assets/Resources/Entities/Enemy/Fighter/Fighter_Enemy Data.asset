@@ -12,8 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fabb98b0c864e404a9bdeefd5c348c0c, type: 3}
   m_Name: Fighter_Enemy Data
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
-  currentHealth: 100
-  maxHealth: 100
-  moveSpeed: 10
-  SFXNames: []
-  SFX: []
+  currentHealth: 350
+  maxHealth: 350
+  moveSpeed: 16

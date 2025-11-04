@@ -1172,6 +1172,8 @@ MonoBehaviour:
   - {fileID: 6079927618582836151, guid: d838ef21ebc4a9743a295c82e0e484ba, type: 3}
   - {fileID: 6079927618582836151, guid: e5fdbd51be24d23489a5ef2b8e5ebb84, type: 3}
   - {fileID: 6079927618582836151, guid: c8233c8d0d70501499afc825f90b59e3, type: 3}
+  - {fileID: 6079927618582836151, guid: 2c2734b3e85b12f4184223d76be8356c, type: 3}
+  - {fileID: 6079927618582836151, guid: 948c04e971675fd4fbe3c311af92f0fa, type: 3}
   invincibility: 0
   tr: {fileID: 6616881326347800582}
   spriteRenderer: {fileID: 145288011879166512}
@@ -1190,8 +1192,8 @@ MonoBehaviour:
   - {fileID: 2015299630638325686, guid: a1a29321763e4f84a94bb04cdd04f731, type: 3}
   currentWeaponType: 0
   weaponRenderer: {fileID: 1226822478304895784}
-  dashPower: 3
-  dashTime: 0.3
+  dashPower: 2.5
+  dashTime: 0.2
   dashCooldown: 0.5
   currentEnergy: 1000
   maxEnergy: 1000

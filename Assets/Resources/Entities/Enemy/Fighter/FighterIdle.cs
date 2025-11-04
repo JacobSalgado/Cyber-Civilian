@@ -26,6 +26,8 @@ public class FighterIdle : State
             return;
         }
 
+        fighter.rigidBody.linearVelocity = Vector2.zero;
+
         float distanceToTarget = fighter.GetDistanceToTarget();
         if (distanceToTarget <= -1f)
         { // assertion check

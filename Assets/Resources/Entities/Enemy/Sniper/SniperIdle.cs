@@ -25,6 +25,8 @@ public class SniperIdle : State
 
         float distanceToTarget = sniper.GetDistanceToTarget();
 
+        sniper.rigidBody.linearVelocity = Vector2.zero;
+
         if (distanceToTarget < sniper.distanceToHide && !sniper.isInvisibleRecharging && sniper.timer > sniper.invisibleRechargeTime)
         {
             sniper.ChangeState("Hide");

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
   currentHealth: 1000
   maxHealth: 1000
-  moveSpeed: 10
+  moveSpeed: 16
   test: test

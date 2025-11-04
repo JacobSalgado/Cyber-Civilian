@@ -62,11 +62,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4620524579252194416, guid: 44f83fffe9635974e91eced60e11c4c8, type: 3}
       propertyPath: maxAmmo
+<<<<<<< HEAD
       value: 5
+=======
+      value: 120
+>>>>>>> dev
       objectReference: {fileID: 0}
     - target: {fileID: 4620524579252194416, guid: 44f83fffe9635974e91eced60e11c4c8, type: 3}
       propertyPath: ammoCost
-      value: 1
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4620524579252194416, guid: 44f83fffe9635974e91eced60e11c4c8, type: 3}
       propertyPath: fireMode
@@ -74,7 +78,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4620524579252194416, guid: 44f83fffe9635974e91eced60e11c4c8, type: 3}
       propertyPath: fireRate
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4620524579252194416, guid: 44f83fffe9635974e91eced60e11c4c8, type: 3}
       propertyPath: projData
@@ -98,7 +102,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4620524579252194416, guid: 44f83fffe9635974e91eced60e11c4c8, type: 3}
       propertyPath: currentAmmo
+<<<<<<< HEAD
       value: 5
+=======
+      value: 120
+>>>>>>> dev
       objectReference: {fileID: 0}
     - target: {fileID: 4620524579252194416, guid: 44f83fffe9635974e91eced60e11c4c8, type: 3}
       propertyPath: infiniteAmmo
