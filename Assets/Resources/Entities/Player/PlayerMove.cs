@@ -29,7 +29,15 @@ public class PlayerMove : State
         if (velocity != Vector2.zero)
         {
             deltaCount += Time.deltaTime;
-            player.rigidBody.linearVelocity = velocity * player.entityData.moveSpeed;
+            // Adjust speed if the player is reloading
+            if (player.isReloading)
+            {
+                player.rigidBody.linearVelocity = velocity * player.entityData.moveSpeed * player.currentWeapon.reloadSlowDownFactor;
+            }
+            else
+            {
+                player.rigidBody.linearVelocity = velocity * player.entityData.moveSpeed;
+            }
             if (player.PlayFootsteps(deltaCount, timeToStep, stepCounter))
             {
                 deltaCount = 0f;

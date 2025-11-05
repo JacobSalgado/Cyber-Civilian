@@ -1188,9 +1188,10 @@ MonoBehaviour:
   firePoint: {fileID: 7870654291819106841}
   weapons:
   - {fileID: 4367270167898253899, guid: fde5e6f7714814c4e8108a58b4763bf1, type: 3}
-  - {fileID: 3168005615546048829, guid: 8211f92088d7a1e4a8d9624436ce6b24, type: 3}
+  - {fileID: 4674413761428591574, guid: 3bb0f60c7f8aaf24d8e1e5bf48bb31d8, type: 3}
   - {fileID: 2015299630638325686, guid: a1a29321763e4f84a94bb04cdd04f731, type: 3}
   currentWeaponType: 0
+  currentWeapon: {fileID: 0}
   weaponRenderer: {fileID: 1226822478304895784}
   dashPower: 2.5
   dashTime: 0.2
@@ -1201,6 +1202,7 @@ MonoBehaviour:
   dashCost: 100
   phaseCost: 1
   shieldDrainRate: 50
+  isReloading: 0
 --- !u!114 &7781527178466087580 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6494366698852611236, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}

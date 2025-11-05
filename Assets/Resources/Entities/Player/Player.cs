@@ -36,7 +36,7 @@ public class Player : Entity
     public Transform firePoint;
     [SerializeField] public GameObject[] weapons;
     public PlayerWeaponType currentWeaponType = PlayerWeaponType.BULLET;
-    private Weapon currentWeapon;
+    public Weapon currentWeapon;
     public SpriteRenderer weaponRenderer; // Renderer for switching weapon sprites
 
     [Header("==Dashing Properties==")]
@@ -69,9 +69,8 @@ public class Player : Entity
     [NonSerialized] public float damagedTime = 0f;
     [NonSerialized] public int ammo;
     private Vector2 mousePos;
-    private bool isReloading = false;
-    private float reloadTimer = 0f;
-    private float originalSpeed;
+    public bool isReloading = false;
+    // private float reloadTimer = 0f;
     private bool canBlock = true;
     private bool isBlocking = false;
     private PlayerWeaponType previousWeaponType;
@@ -117,7 +116,6 @@ public class Player : Entity
             updatePlayer = false;
             updateArgs = null;
         }
-        originalSpeed = this.entityData.moveSpeed;
     }
 
     void Update()
@@ -132,7 +130,7 @@ public class Player : Entity
                 damagedTimer = 0f;
             }
         }
-        
+
         // reloading
         currentWeapon = weapons[(int)currentWeaponType].GetComponent<Weapon>();
         ammo = currentWeapon.currentAmmo;
@@ -318,8 +316,6 @@ public class Player : Entity
     private void Reload()
     {
         isReloading = true;
-        // halfed movement speed during reload
-        this.entityData.moveSpeed *= currentWeapon.reloadSlowDownFactor;
         // TO-DO: play reload animation here
         StartCoroutine(reloadCoroutine());
     }
@@ -329,7 +325,6 @@ public class Player : Entity
         yield return new WaitForSeconds(currentWeapon.reloadTime);
         currentWeapon.ReloadWeapon();
         isReloading = false;
-        this.entityData.moveSpeed = originalSpeed;
     }
 
     public void changeSpriteAlpha(SpriteRenderer sr, float new_alpha)
