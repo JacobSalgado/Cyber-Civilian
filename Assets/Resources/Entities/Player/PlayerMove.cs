@@ -32,7 +32,7 @@ public class PlayerMove : State
             // Adjust speed if the player is reloading
             if (player.isReloading)
             {
-                player.rigidBody.linearVelocity = velocity * player.entityData.moveSpeed * player.currentWeapon.reloadSlowDownFactor;
+                player.rigidBody.linearVelocity = player.currentWeapon.reloadSlowDownFactor * player.entityData.moveSpeed * velocity;
             }
             else
             {
@@ -51,7 +51,6 @@ public class PlayerMove : State
     public override void ExitState(Dictionary<string, object> args = null)
     {
         player.rigidBody.linearVelocity = Vector2.zero;
-        player.rigidBody.angularVelocity = 0f;
     }
 
 }

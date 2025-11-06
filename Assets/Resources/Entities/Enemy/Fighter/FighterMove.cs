@@ -56,6 +56,5 @@ public class FighterMove : State
     public override void ExitState(Dictionary<string, object> args = null)
     {
         fighter.rigidBody.linearVelocity = Vector2.zero;
-        fighter.rigidBody.angularVelocity = 0f;
     }
 }

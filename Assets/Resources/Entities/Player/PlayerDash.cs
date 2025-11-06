@@ -15,7 +15,6 @@ public class PlayerDash : State
     public override void EnterState(Dictionary<string, object> args = null)
     {
         player.rigidBody.linearVelocity = Vector2.zero;
-        player.rigidBody.angularVelocity = 0f;
         velocity = player.moveAction.action.ReadValue<Vector2>();
         player.tr.emitting = true;
         player.StartCoroutine(initiateDash());

@@ -32,6 +32,7 @@ public abstract class Entity : StateManager
 
     public virtual void FixedUpdate()
     {
+        rigidBody.angularVelocity = 0f;
         current_state.UpdateState();
 
         // health checks

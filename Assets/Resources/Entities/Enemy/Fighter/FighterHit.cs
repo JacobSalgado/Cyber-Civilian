@@ -14,7 +14,6 @@ public class FighterHit : State
     public override void EnterState(Dictionary<string, object> args = null)
     {
         fighter.rigidBody.linearVelocity = Vector2.zero;
-        fighter.rigidBody.angularVelocity = 0f;
     }
 
     public override void UpdateState()
