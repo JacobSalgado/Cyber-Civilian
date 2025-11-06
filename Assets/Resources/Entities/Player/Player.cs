@@ -204,9 +204,14 @@ public class Player : Entity
             ChangeState("Dash");
         }
 
+        // NOTE: for all player abilities except Dash, turn off/stop other abilities first
+        // ability use should be mutually-exclusive (if you perform one, you can't do the others)
+
         // check phase inputs
         if (phaseAction.action.WasPressedThisFrame() && !isPhasing && currentEnergy - phaseCost >= 0)
         {
+            if (isBlocking) ShieldEnd();
+
             Phase(true);
         }
         else if (phaseAction.action.WasPressedThisFrame() && isPhasing)
@@ -217,22 +222,9 @@ public class Player : Entity
         // check shield inputs
         if (shieldAction.action.WasPressedThisFrame() && !isReloading)
         {
-            if (isBlocking)
-            {
-                audioManager.PlayAudioSource("ShieldStart");
-                canBlock = true;
-                isBlocking = false;
-                EquipNewWeapon(previousWeaponType);
-            }
-            else if (canBlock && !isBlocking)
-            {
-                previousWeaponType = currentWeaponType;
+            if (isPhasing) Phase(false);
 
-                audioManager.PlayAudioSource("ShieldEnd");
-                canBlock = false;
-                isBlocking = true;
-                EquipShield();
-            }
+            Shield();
         }
 
         // regenerate energy
@@ -242,6 +234,7 @@ public class Player : Entity
             if (currentEnergy > 1000) currentEnergy = 1000;
         }
 
+        /* energy costs for abilities */
         if (isPhasing)
         {
             if (currentEnergy <= 0)
@@ -298,7 +291,36 @@ public class Player : Entity
         if (ammoCount && currentWeapon) ammoCount.text = $"({currentWeapon.currentAmmo}/{currentWeapon.maxAmmo})";
     }
 
-    // Phase functions
+    private void ShieldStart()
+    {
+        previousWeaponType = currentWeaponType;
+
+        audioManager.PlayAudioSource("ShieldStart");
+        canBlock = false;
+        isBlocking = true;
+        EquipShield();
+    }
+
+    private void ShieldEnd()
+    {
+        audioManager.PlayAudioSource("ShieldEnd");
+        canBlock = true;
+        isBlocking = false;
+        EquipNewWeapon(previousWeaponType);
+    }
+
+    public void Shield()
+    {
+        if (isBlocking)
+        {
+            ShieldEnd();
+        }
+        else if (canBlock && !isBlocking)
+        {
+            ShieldStart();
+        }
+    }
+
     public void Phase(bool activate)
     {
         if (activate)
