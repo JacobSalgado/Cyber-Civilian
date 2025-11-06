@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 356f9bea7e000674f90a3c798389d7b9
+guid: 56a19eefa36caaa46babbe6721e95b7b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3279843769133324740
-    second: CrabEnemy_Idle_Sprite_0
+      213: 2097554576775798839
+    second: CrabEnemy_Walk_SpriteSheet_0
+  - first:
+      213: -2760348100586967441
+    second: CrabEnemy_Walk_SpriteSheet_1
+  - first:
+      213: 3668890868879694338
+    second: CrabEnemy_Walk_SpriteSheet_2
+  - first:
+      213: 3820707476398242150
+    second: CrabEnemy_Walk_SpriteSheet_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +109,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CrabEnemy_Idle_Sprite_0
+      name: CrabEnemy_Walk_SpriteSheet_0
       rect:
         serializedVersion: 2
-        x: 60
-        y: 53
-        width: 221
-        height: 203
+        x: 25
+        y: 41
+        width: 204
+        height: 224
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +124,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4c958f9d788548d20800000000000000
-      internalID: 3279843769133324740
+      spriteID: 73067b536c20c1d10800000000000000
+      internalID: 2097554576775798839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrabEnemy_Walk_SpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 40
+        width: 218
+        height: 223
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6ee618070641b9d0800000000000000
+      internalID: -2760348100586967441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrabEnemy_Walk_SpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 639
+        y: 36
+        width: 204
+        height: 221
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20a9f3f7ec48ae230800000000000000
+      internalID: 3668890868879694338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrabEnemy_Walk_SpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 961
+        y: 37
+        width: 274
+        height: 246
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6697561f431e50530800000000000000
+      internalID: 3820707476398242150
       vertices: []
       indices: 
       edges: []
@@ -135,7 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      CrabEnemy_Idle_Sprite_0: 3279843769133324740
+      CrabEnemy_Walk_SpriteSheet_0: 2097554576775798839
+      CrabEnemy_Walk_SpriteSheet_1: -2760348100586967441
+      CrabEnemy_Walk_SpriteSheet_2: 3668890868879694338
+      CrabEnemy_Walk_SpriteSheet_3: 3820707476398242150
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
