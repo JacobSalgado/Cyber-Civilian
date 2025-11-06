@@ -207,6 +207,7 @@ public class Weapon : MonoBehaviour
     public void ReloadWeapon()
     {
         currentAmmo += reloadAmount;
+        if (currentAmmo > maxAmmo) currentAmmo = maxAmmo;
         Debug.Log("Weapon reloaded");
         // play SFX/VFX
     }

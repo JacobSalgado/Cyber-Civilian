@@ -277,6 +277,9 @@ public class GameManager : StateManager
         player.resourceMeter = hud.resourceSlider;
         player.UpdateResourceMeter();
 
+        player.ammoCount = hud.ammoCountText;
+        player.UpdateAmmoCount();
+
         yield return null;
     }
 

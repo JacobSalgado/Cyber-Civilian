@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -63,6 +64,7 @@ public class Player : Entity
     [NonSerialized] public Camera cam;
     [NonSerialized] public PlayerData playerData;
     [NonSerialized] public Slider resourceMeter;
+    [NonSerialized] public TextMeshProUGUI ammoCount;
     [NonSerialized] public bool updatePlayer = false;
     [NonSerialized] public Dictionary<string, object> updateArgs;
     [NonSerialized] public float damagedTimer = 0f;
@@ -193,7 +195,7 @@ public class Player : Entity
             ShootWeapon(weapons[(int)currentWeaponType], fireAction, firePoint, 6);
 
         // check dash inputs
-        if (dashAction.action.WasPressedThisFrame() && canDash && !isDashing && currentEnergy - dashCost >= 0 && !isReloading)
+        if (dashAction.action.WasPressedThisFrame() && canDash && !isDashing && currentEnergy - dashCost >= 0)
         {
             canDash = false;
             isDashing = true;
@@ -263,6 +265,7 @@ public class Player : Entity
 
         // UI updates
         UpdateResourceMeter();
+        UpdateAmmoCount();
     }
 
     public override void FixedUpdate()
@@ -288,6 +291,11 @@ public class Player : Entity
     {
         resourceMeter.maxValue = maxEnergy;
         resourceMeter.value = currentEnergy;
+    }
+
+    public void UpdateAmmoCount()
+    {
+        if (ammoCount && currentWeapon) ammoCount.text = $"({currentWeapon.currentAmmo}/{currentWeapon.maxAmmo})";
     }
 
     // Phase functions

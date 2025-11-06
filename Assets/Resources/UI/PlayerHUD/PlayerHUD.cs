@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,6 +7,7 @@ public class PlayerHUD : MonoBehaviour
     [Header("Player HUD Propertoes")]
     public Slider healthSlider;
     public Slider resourceSlider;
+    public TextMeshProUGUI ammoCountText;
 
     /*
     TODO:
