@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class PlayerHUD : MonoBehaviour
 {
-    [Header("Player HUD Propertoes")]
+    [Header("Player HUD Properties")]
     public Slider healthSlider;
     public Slider resourceSlider;
     public TextMeshProUGUI ammoCountText;
