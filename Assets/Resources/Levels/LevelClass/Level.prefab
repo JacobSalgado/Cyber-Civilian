@@ -125,7 +125,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5349965029925476758}
-  - component: {fileID: 89902665210044186}
   m_Layer: 0
   m_Name: Boundaries
   m_TagString: Untagged
@@ -148,47 +147,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1069633530505471020}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!68 &89902665210044186
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1791620402160617562}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points: []
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
 --- !u!1 &3463881024250766976
 GameObject:
   m_ObjectHideFlags: 0
@@ -350,6 +308,8 @@ MonoBehaviour:
   EnemySpawns: {fileID: 8489659787397819312}
   confiner: {fileID: 4472277376370721584}
   player: {fileID: 0}
+  levelObjective: 0
+  enemyKilledGoal: 0
 --- !u!1 &5674041302656736327
 GameObject:
   m_ObjectHideFlags: 0
