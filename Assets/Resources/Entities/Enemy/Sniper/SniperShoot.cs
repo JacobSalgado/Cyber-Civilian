@@ -6,7 +6,7 @@ public class SniperShoot : State
     readonly Sniper sniper;
     private readonly Weapon sniperRifle;
     private float directionTimer = 0f;
-    private float stopRotatingTime = 0f;
+    private readonly float stopRotatingTime = 0f;
 
     public SniperShoot(Entity new_entity) : base(new_entity)
     {
@@ -31,6 +31,7 @@ public class SniperShoot : State
         directionTimer += Time.deltaTime;
 
         sniper.rigidBody.linearVelocity = Vector2.zero;
+        sniper.rigidBody.angularVelocity = 0f;
 
         float distanceToTarget = sniper.GetDistanceToTarget();
         if (distanceToTarget < sniper.distanceToHide && !sniper.isInvisibleRecharging && sniper.timer > sniper.invisibleRechargeTime)

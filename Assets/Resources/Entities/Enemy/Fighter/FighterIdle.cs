@@ -14,6 +14,7 @@ public class FighterIdle : State
     public override void EnterState(Dictionary<string, object> args = null)
     {
         fighter.rigidBody.linearVelocity = Vector2.zero;
+        fighter.rigidBody.angularVelocity = 0f;
         fighter.deltaCount = 0f;
         fighter.stepCounter = 1;
     }
@@ -27,6 +28,7 @@ public class FighterIdle : State
         }
 
         fighter.rigidBody.linearVelocity = Vector2.zero;
+        fighter.rigidBody.angularVelocity = 0f;
 
         float distanceToTarget = fighter.GetDistanceToTarget();
         if (distanceToTarget <= -1f)

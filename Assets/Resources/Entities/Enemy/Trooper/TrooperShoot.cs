@@ -16,6 +16,7 @@ public class TrooperShoot : State
     public override void EnterState(Dictionary<string, object> args = null)
     {
         trooper.rigidBody.linearVelocity = Vector2.zero;
+        trooper.rigidBody.angularVelocity = 0f;
         timer = 0f;
     }
 
@@ -28,6 +29,7 @@ public class TrooperShoot : State
         }
 
         trooper.rigidBody.linearVelocity = Vector2.zero;
+        trooper.rigidBody.angularVelocity = 0f;
         timer += Time.deltaTime;
 
         float distance = trooper.GetDistanceToTarget();

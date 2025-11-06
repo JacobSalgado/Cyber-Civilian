@@ -50,7 +50,8 @@ public class PlayerMove : State
 
     public override void ExitState(Dictionary<string, object> args = null)
     {
-
+        player.rigidBody.linearVelocity = Vector2.zero;
+        player.rigidBody.angularVelocity = 0f;
     }
 
 }
