@@ -1,41 +1,58 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-guid: 410c59542808eb04ebea0416c09ecb52
-=======
-guid: e8f4538a199cc6e4799643c4520b9a41
->>>>>>> animation
+guid: 3512257bba523e84ea2ad74b531893d2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1049018038841941545
-    second: SharkEnemy_Walk_SpriteSheet_0
+      213: -965538814003805593
+    second: PlayerFeet_Walk_SpriteSheet_0
   - first:
-      213: -8765778366714854108
-    second: SharkEnemy_Walk_SpriteSheet_1
+      213: -3114905874516945756
+    second: PlayerFeet_Walk_SpriteSheet_1
   - first:
-      213: 2096642310810102458
-    second: SharkEnemy_Walk_SpriteSheet_2
+      213: 7813491055268217183
+    second: PlayerFeet_Walk_SpriteSheet_2
   - first:
-      213: -851995919781848027
-    second: SharkEnemy_Walk_SpriteSheet_3
+      213: -5051007384186950969
+    second: PlayerFeet_Walk_SpriteSheet_3
   - first:
-      213: 8584018443304147961
-    second: SharkEnemy_Walk_SpriteSheet_4
+      213: 7880673609892621418
+    second: PlayerFeet_Walk_SpriteSheet_4
   - first:
-      213: -5521289381450792479
-    second: SharkEnemy_Walk_SpriteSheet_5
+      213: -8111726155414248516
+    second: PlayerFeet_Walk_SpriteSheet_5
   - first:
-      213: -6702374081139383046
-    second: SharkEnemy_Walk_SpriteSheet_6
+      213: 263886027128756164
+    second: PlayerFeet_Walk_SpriteSheet_6
   - first:
-      213: -5244539696221624640
-    second: SharkEnemy_Walk_SpriteSheet_7
-<<<<<<< HEAD
-=======
+      213: 1340194068453785032
+    second: PlayerFeet_Walk_SpriteSheet_7
   - first:
-      213: 7361312367886262857
-    second: SharkEnemy_Walk_SpriteSheet_8
->>>>>>> animation
+      213: -896321482189860516
+    second: PlayerFeet_Walk_SpriteSheet_8
+  - first:
+      213: 4319764995222372184
+    second: PlayerFeet_Walk_SpriteSheet_9
+  - first:
+      213: 8359916130665670399
+    second: PlayerFeet_Walk_SpriteSheet_10
+  - first:
+      213: -6121286142993048577
+    second: PlayerFeet_Walk_SpriteSheet_11
+  - first:
+      213: 1950430941962943787
+    second: PlayerFeet_Walk_SpriteSheet_12
+  - first:
+      213: 737684292783217655
+    second: PlayerFeet_Walk_SpriteSheet_13
+  - first:
+      213: -2598633298810330762
+    second: PlayerFeet_Walk_SpriteSheet_14
+  - first:
+      213: 7304425016905554031
+    second: PlayerFeet_Walk_SpriteSheet_15
+  - first:
+      213: 5222889092829616492
+    second: PlayerFeet_Walk_SpriteSheet_16
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -68,7 +85,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -131,267 +148,186 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SharkEnemy_Walk_SpriteSheet_0
+      name: PlayerFeet_Walk_SpriteSheet_0
       rect:
         serializedVersion: 2
-<<<<<<< HEAD
-        x: 11
-        y: 33
-        width: 123
-        height: 218
-=======
-        x: 17
-        y: 78
-        width: 217
-        height: 122
->>>>>>> animation
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7d169dfc6a32171f0800000000000000
-      internalID: -1049018038841941545
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SharkEnemy_Walk_SpriteSheet_1
-      rect:
-        serializedVersion: 2
-<<<<<<< HEAD
-        x: 161
-        y: 33
-        width: 123
-        height: 223
-=======
-        x: 255
-        y: 78
-        width: 223
-        height: 123
->>>>>>> animation
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4254820c403b95680800000000000000
-      internalID: -8765778366714854108
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SharkEnemy_Walk_SpriteSheet_2
-      rect:
-        serializedVersion: 2
-<<<<<<< HEAD
-        x: 308
-        y: 33
-        width: 126
-        height: 220
-=======
-        x: 502
-        y: 80
-        width: 220
-        height: 126
->>>>>>> animation
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: abae3ecb215c81d10800000000000000
-      internalID: 2096642310810102458
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SharkEnemy_Walk_SpriteSheet_3
-      rect:
-        serializedVersion: 2
-<<<<<<< HEAD
-        x: 461
-        y: 32
-        width: 123
-        height: 223
-=======
-        x: 751
-        y: 82
-        width: 223
-        height: 123
->>>>>>> animation
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 52c125b993a1d24f0800000000000000
-      internalID: -851995919781848027
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SharkEnemy_Walk_SpriteSheet_4
-      rect:
-        serializedVersion: 2
-<<<<<<< HEAD
-        x: 611
-        y: 32
-        width: 123
-        height: 218
-=======
-        x: 997
-        y: 79
-        width: 217
-        height: 124
->>>>>>> animation
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9fb9b8a4b4f802770800000000000000
-      internalID: 8584018443304147961
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SharkEnemy_Walk_SpriteSheet_5
-      rect:
-        serializedVersion: 2
-<<<<<<< HEAD
-        x: 761
-        y: 33
-        width: 123
-        height: 223
-=======
-        x: 1239
-        y: 80
-        width: 222
-        height: 124
->>>>>>> animation
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1e14d748f807063b0800000000000000
-      internalID: -5521289381450792479
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SharkEnemy_Walk_SpriteSheet_6
-      rect:
-        serializedVersion: 2
-<<<<<<< HEAD
-        x: 911
-        y: 33
-        width: 123
-        height: 222
-=======
-        x: 1487
-        y: 80
-        width: 221
-        height: 122
->>>>>>> animation
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: af4e6eda8426cf2a0800000000000000
-      internalID: -6702374081139383046
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SharkEnemy_Walk_SpriteSheet_7
-      rect:
-        serializedVersion: 2
-<<<<<<< HEAD
-        x: 1061
-        y: 33
-        width: 122
-        height: 223
-=======
-        x: 1744
-        y: 81
-        width: 223
-        height: 124
->>>>>>> animation
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0c6664cdee6a737b0800000000000000
-      internalID: -5244539696221624640
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-<<<<<<< HEAD
-=======
-    - serializedVersion: 2
-      name: SharkEnemy_Walk_SpriteSheet_8
-      rect:
-        serializedVersion: 2
-        x: 1146
+        x: 0
         y: 0
-        width: 16
-        height: 6
+        width: 300
+        height: 300
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 942ec80c892a82660800000000000000
-      internalID: 7361312367886262857
+      spriteID: 76283767097b992f0800000000000000
+      internalID: -965538814003805593
       vertices: []
       indices: 
       edges: []
       weights: []
->>>>>>> animation
+    - serializedVersion: 2
+      name: PlayerFeet_Walk_SpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 0
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a4d3a05c91a5c4d0800000000000000
+      internalID: -3114905874516945756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerFeet_Walk_SpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 0
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5144f497b81f6c60800000000000000
+      internalID: 7813491055268217183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerFeet_Walk_SpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 0
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ca69a3ab8737e9b0800000000000000
+      internalID: -5051007384186950969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerFeet_Walk_SpriteSheet_4
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 0
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6ce17405e6cd5d60800000000000000
+      internalID: 7880673609892621418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerFeet_Walk_SpriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 1500
+        y: 0
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb3e9471a0c5d6f80800000000000000
+      internalID: -8111726155414248516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerFeet_Walk_SpriteSheet_6
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 0
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c7d23c81f289a300800000000000000
+      internalID: 263886027128756164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerFeet_Walk_SpriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 2100
+        y: 0
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8cdf5449763599210800000000000000
+      internalID: 1340194068453785032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 4f175fd764435084a8b9a44ebbc9b536
     internalID: 0
     vertices: []
     indices: 
@@ -399,20 +335,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":8.0,"y":1.0},"gridSpriteSize":{"x":300.0,"y":300.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      SharkEnemy_Walk_SpriteSheet_0: -1049018038841941545
-      SharkEnemy_Walk_SpriteSheet_1: -8765778366714854108
-      SharkEnemy_Walk_SpriteSheet_2: 2096642310810102458
-      SharkEnemy_Walk_SpriteSheet_3: -851995919781848027
-      SharkEnemy_Walk_SpriteSheet_4: 8584018443304147961
-      SharkEnemy_Walk_SpriteSheet_5: -5521289381450792479
-      SharkEnemy_Walk_SpriteSheet_6: -6702374081139383046
-      SharkEnemy_Walk_SpriteSheet_7: -5244539696221624640
-<<<<<<< HEAD
-=======
-      SharkEnemy_Walk_SpriteSheet_8: 7361312367886262857
->>>>>>> animation
+      PlayerFeet_Walk_SpriteSheet_0: -965538814003805593
+      PlayerFeet_Walk_SpriteSheet_1: -3114905874516945756
+      PlayerFeet_Walk_SpriteSheet_2: 7813491055268217183
+      PlayerFeet_Walk_SpriteSheet_3: -5051007384186950969
+      PlayerFeet_Walk_SpriteSheet_4: 7880673609892621418
+      PlayerFeet_Walk_SpriteSheet_5: -8111726155414248516
+      PlayerFeet_Walk_SpriteSheet_6: 263886027128756164
+      PlayerFeet_Walk_SpriteSheet_7: 1340194068453785032
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

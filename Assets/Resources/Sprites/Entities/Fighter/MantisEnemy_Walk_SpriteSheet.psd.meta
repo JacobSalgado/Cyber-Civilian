@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 5be4538acb18c054983337f3868b611f
+=======
+guid: bcc0cb4b4cbc85e4eaa39c3a03f5cf13
+>>>>>>> animation
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -112,10 +116,17 @@ TextureImporter:
       name: MantisEnemy_Walk_SpriteSheet_0
       rect:
         serializedVersion: 2
+<<<<<<< HEAD
         x: 31
         y: 31
         width: 168
         height: 238
+=======
+        x: 11
+        y: 65
+        width: 238
+        height: 167
+>>>>>>> animation
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,10 +145,17 @@ TextureImporter:
       name: MantisEnemy_Walk_SpriteSheet_1
       rect:
         serializedVersion: 2
+<<<<<<< HEAD
         x: 287
         y: 31
         width: 168
         height: 238
+=======
+        x: 265
+        y: 68
+        width: 238
+        height: 167
+>>>>>>> animation
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -156,10 +174,17 @@ TextureImporter:
       name: MantisEnemy_Walk_SpriteSheet_2
       rect:
         serializedVersion: 2
+<<<<<<< HEAD
         x: 543
         y: 31
         width: 168
         height: 238
+=======
+        x: 518
+        y: 70
+        width: 238
+        height: 168
+>>>>>>> animation
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -178,10 +203,17 @@ TextureImporter:
       name: MantisEnemy_Walk_SpriteSheet_3
       rect:
         serializedVersion: 2
+<<<<<<< HEAD
         x: 812
         y: 31
         width: 168
         height: 238
+=======
+        x: 760
+        y: 73
+        width: 240
+        height: 167
+>>>>>>> animation
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
