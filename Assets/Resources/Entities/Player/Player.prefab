@@ -1182,6 +1182,7 @@ MonoBehaviour:
   tr: {fileID: 6616881326347800582}
   spriteRenderer: {fileID: 145288011879166512}
   shieldSprite: {fileID: 0}
+  vortexSprite: {fileID: 0}
   moveAction: {fileID: -1680190386980627800, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   fireAction: {fileID: 1120369429361536294, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   dashAction: {fileID: -1591832314784998302, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
@@ -1189,6 +1190,7 @@ MonoBehaviour:
   weaponKeybindsAction: {fileID: -2735380176781456793, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   phaseAction: {fileID: -9135410620642095999, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   reloadAction: {fileID: 6505802653974701790, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  vortexAction: {fileID: 5246173511191468154, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   firePoint: {fileID: 7870654291819106841}
   weapons:
   - {fileID: 4367270167898253899, guid: fde5e6f7714814c4e8108a58b4763bf1, type: 3}
@@ -1208,6 +1210,7 @@ MonoBehaviour:
   phaseCost: 1
   shieldDrainRate: 50
   isReloading: 0
+  playerVortex: {fileID: 0}
 --- !u!114 &7781527178466087580 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6494366698852611236, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}

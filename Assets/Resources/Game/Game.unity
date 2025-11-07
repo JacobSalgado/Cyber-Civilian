@@ -286,7 +286,7 @@ MonoBehaviour:
   loadingScreenSlider: {fileID: 1774813177}
   camera: {fileID: 1093947791}
   cinemachine: {fileID: 730194402}
-  pauseAction: {fileID: -8928665272387638255, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  pauseAction: {fileID: 0}
   audioManager: {fileID: 476967450}
   pauseMenu: {fileID: 1121848291}
   levelList:
@@ -294,11 +294,7 @@ MonoBehaviour:
   startingState: 0
   BGM:
   - {fileID: 6554651378409300978, guid: bde6bcc18be375e449f6f1b6681824bc, type: 3}
-  uiSFX:
-  - {fileID: 7704210069033511172, guid: 708bb1336b375084d82060980ac73b54, type: 3}
-  - {fileID: 7704210069033511172, guid: 76667228d29013d4ebd377c8d3575658, type: 3}
-  - {fileID: 7704210069033511172, guid: 24287df8088dd0a46aa9ee9485b51734, type: 3}
-  - {fileID: 7704210069033511172, guid: db2d867fea3b19d449f3692e6959eead, type: 3}
+  uiSFX: []
 --- !u!4 &476967449
 Transform:
   m_ObjectHideFlags: 0
@@ -333,7 +329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96f92c722d18c55418d7a4ec61ba0933, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
-  audioPlayer: {fileID: 483986785}
+  audioPlayer: {fileID: 0}
 --- !u!81 &476967451
 AudioListener:
   m_ObjectHideFlags: 0

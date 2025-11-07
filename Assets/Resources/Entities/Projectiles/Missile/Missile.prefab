@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &5087738950071533932
+--- !u!1001 &5155614888869814177
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -8,38 +8,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 799086666457626503, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
-      propertyPath: m_FlipX
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 799086666457626503, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 406cd22d1ae74fc8b965253237d2275b, type: 3}
-    - target: {fileID: 799086666457626503, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 799086666457626503, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
-      propertyPath: m_Color.g
-      value: 0.88198304
-      objectReference: {fileID: 0}
-    - target: {fileID: 799086666457626503, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
-      propertyPath: m_Color.r
-      value: 0.48113203
-      objectReference: {fileID: 0}
-    - target: {fileID: 6493105512357046733, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2.11
-      objectReference: {fileID: 0}
-    - target: {fileID: 6493105512357046733, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.1920903
-      objectReference: {fileID: 0}
-    - target: {fileID: 6493105512357046733, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.1920903
-      objectReference: {fileID: 0}
     - target: {fileID: 6493105512357046733, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -80,10 +48,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6493105512357046733, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6972928632977506400, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
       propertyPath: m_Name
       value: Missile
@@ -94,110 +58,27 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6972928632977506400, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2338270631429808559}
-    - targetCorrespondingSourceObject: {fileID: 6972928632977506400, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6423777854429983320}
+      addedObject: {fileID: -3566125237886162906}
   m_SourcePrefab: {fileID: 100100000, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
---- !u!114 &2626735032692184647 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7129002523404261163, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
-  m_PrefabInstance: {fileID: 5087738950071533932}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2765093879465672972}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96f92c722d18c55418d7a4ec61ba0933, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AudioManager
---- !u!1 &2765093879465672972 stripped
+--- !u!1 &2830721035799273409 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6972928632977506400, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
-  m_PrefabInstance: {fileID: 5087738950071533932}
+  m_PrefabInstance: {fileID: 5155614888869814177}
   m_PrefabAsset: {fileID: 0}
---- !u!60 &2338270631429808559
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2765093879465672972}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.55, y: 1.07}
-    newSize: {x: 1, y: 2}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.16658407, y: 0.16917133}
-      - {x: 0.59708285, y: -0.009270569}
-      - {x: -0.20546196, y: -0.19505799}
-      - {x: -0.021606088, y: -0.40426147}
-      - {x: -0.5817591, y: -0.10373211}
-      - {x: -0.60145354, y: 0.10298967}
-      - {x: -0.0026188623, y: 0.444984}
-      - {x: 0.07594483, y: 0.4426663}
-  m_UseDelaunayMesh: 0
---- !u!114 &6423777854429983320
+--- !u!114 &-3566125237886162906
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2765093879465672972}
+  m_GameObject: {fileID: 2830721035799273409}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d3b8a59b57df884481db591056b6894, type: 3}
+  m_Script: {fileID: 11500000, guid: 85435d95c8496494a9b5bc157b06e33e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Missile
-  rigidBody: {fileID: 4348042145966447245}
+  rigidBody: {fileID: 0}
   entityData: {fileID: 0}
   healthBar: {fileID: 0}
-  audioManager: {fileID: 2626735032692184647}
-  audioEffects:
-  - {fileID: 3572093515493467742, guid: 06e9f3043d54ff14092b7af2e13765f3, type: 3}
+  audioManager: {fileID: 0}
   invincibility: 0
-  spriteRenderer: {fileID: 5588310216381560555}
-  projectileCollider: {fileID: 2338270631429808559}
---- !u!50 &4348042145966447245 stripped
-Rigidbody2D:
-  m_CorrespondingSourceObject: {fileID: 8848481268156799969, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
-  m_PrefabInstance: {fileID: 5087738950071533932}
-  m_PrefabAsset: {fileID: 0}
---- !u!212 &5588310216381560555 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 799086666457626503, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
-  m_PrefabInstance: {fileID: 5087738950071533932}
-  m_PrefabAsset: {fileID: 0}
