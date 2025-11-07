@@ -33,6 +33,8 @@ public class SniperHide : State
         hideTime = Random.Range(sniper.invisibleTimeRange[0], sniper.invisibleTimeRange[1]);
 
         layersToAvoid = LayerMask.GetMask(layerNames);
+
+        sniper.PlayAnim("Idle");
     }
 
     public override void UpdateState()

@@ -15,7 +15,7 @@ public class FighterMove : State
 
     public override void EnterState(Dictionary<string, object> args = null)
     {
-        
+        fighter.PlayAnim("Walk");
     }
 
     public override void UpdateState()

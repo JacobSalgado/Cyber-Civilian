@@ -13,6 +13,7 @@ public class SniperIdle : State
     public override void EnterState(Dictionary<string, object> args = null)
     {
         sniper.rigidBody.linearVelocity = Vector2.zero;
+        sniper.PlayAnim("Idle");
     }
 
     public override void UpdateState()

@@ -17,6 +17,7 @@ public class TrooperShoot : State
     {
         trooper.rigidBody.linearVelocity = Vector2.zero;
         timer = 0f;
+        trooper.PlayAnim("Idle");
     }
 
     public override void UpdateState()

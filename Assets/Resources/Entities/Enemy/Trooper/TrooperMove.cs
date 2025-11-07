@@ -26,6 +26,7 @@ public class TrooperMove : State
         deltaCount = 0f;
         stepCounter = 1;
         trooper.audioManager.PlayAudioSource($"Footsteps{stepCounter++}");
+        trooper.PlayAnim("Walk");
     }
 
     public override void UpdateState()

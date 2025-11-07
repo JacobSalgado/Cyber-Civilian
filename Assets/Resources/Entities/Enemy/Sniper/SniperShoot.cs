@@ -18,6 +18,7 @@ public class SniperShoot : State
     public override void EnterState(Dictionary<string, object> args = null)
     {
         directionTimer = 0f;
+        sniper.PlayAnim("Attack");
     }
 
     public override void UpdateState()

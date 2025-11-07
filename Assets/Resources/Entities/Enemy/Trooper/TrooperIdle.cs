@@ -13,6 +13,7 @@ public class TrooperIdle : State
     public override void EnterState(Dictionary<string, object> args = null)
     {
         trooper.rigidBody.linearVelocity = Vector2.zero;
+        trooper.PlayAnim("Idle");
     }
 
     public override void UpdateState()

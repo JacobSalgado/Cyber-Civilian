@@ -16,6 +16,7 @@ public class FighterIdle : State
         fighter.rigidBody.linearVelocity = Vector2.zero;        
         fighter.deltaCount = 0f;
         fighter.stepCounter = 1;
+        fighter.PlayAnim("Idle");
     }
 
     public override void UpdateState()
