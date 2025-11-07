@@ -56,6 +56,24 @@ public class Player : Entity
     [Header("==Blocking Properties==")]
     public float shieldDrainRate = 50f;
 
+    //[Header("==Vortex Controller==")]
+    //public PlayerVortex playerVortex;
+
+    [Header("==Vortex Properties==")]
+    public float vortexRadius = 2f;
+    public int maxAbsorbedProjectiles = 10;
+    public float damageMultiplierPerProjectile = 0.2f;
+    public float vortexDrainRate = 30f; // Energy drained per second
+
+    [Header("==Visual Effects==")]
+    public GameObject vortexVisualEffect;
+    public float rotationSpeed = 180f;
+
+    private List<Projectile> absorbedProjectiles = new List<Projectile>();
+    private int absorbedCount = 0;
+    private GameObject activeVortexEffect;
+    private CircleCollider2D vortexCollider;
+
     // NonSerialized variables
     [NonSerialized] public Camera cam;
     [NonSerialized] public PlayerData playerData;
@@ -115,6 +133,12 @@ public class Player : Entity
             updatePlayer = false;
             updateArgs = null;
         }
+
+        // create vortex collider
+        vortexCollider = gameObject.AddComponent<CircleCollider2D>();
+        vortexCollider.radius = vortexRadius;
+        vortexCollider.isTrigger = true;
+        vortexCollider.enabled = false; // Initially disabled
     }
 
     void Update()
@@ -207,6 +231,9 @@ public class Player : Entity
             {
                 canVortexBlock = true;
                 isVortexBlocking = false;
+
+                DeactivateVortex();
+
                 EquipNewWeapon(previousWeaponType);
             }
             else if (canVortexBlock && !isVortexBlocking)
@@ -215,6 +242,8 @@ public class Player : Entity
 
                 canVortexBlock = false;
                 isVortexBlocking = true;
+
+                ActivateVortex();
                 EquipVortex();
             }
         }
@@ -247,8 +276,34 @@ public class Player : Entity
             }
         }
 
+        if (isVortexBlocking)
+        {
+            //float drainAmount = playerVortex != null ? playerVortex.GetVortexDrainRate() : 30f;
+            float drainAmount = GetVortexDrainRate();
+
+            currentEnergy -= Mathf.RoundToInt(drainAmount * Time.deltaTime);
+
+            if (currentEnergy <= 0)
+            { 
+                currentEnergy = 0;
+                canVortexBlock = true; // reset for when resource regenerates
+                isVortexBlocking = false;
+
+                // deactivate vortex
+                DeactivateVortex();
+
+                EquipNewWeapon(previousWeaponType);
+            }
+        }
+
         // UI updates
         UpdateResourceMeter();
+
+        // rotate visual effect for vortex
+        if (activeVortexEffect != null)
+        {
+            activeVortexEffect.transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
+        }
     }
 
     public override void FixedUpdate()
@@ -355,6 +410,34 @@ public class Player : Entity
         return isVortexBlocking;
     }
 
+    public void ActivateVortex()
+    {
+        vortexCollider.enabled = true;
+        absorbedCount = 0;
+        absorbedProjectiles.Clear();
+
+        // create visual effect
+        if (vortexVisualEffect != null)
+        {
+            activeVortexEffect = Instantiate(vortexVisualEffect, transform);
+        }
+
+        Debug.Log("Vortex activated");
+    }
+
+    public void DeactivateVortex()
+    {
+        vortexCollider.enabled = false;
+
+        // destroy visual effect
+        if (activeVortexEffect != null)
+        {
+            Destroy(activeVortexEffect);
+        }
+
+        Debug.Log("Vortex deactivated");
+    }
+
     public override void GotDamaged()
     {
         base.GotDamaged();
@@ -365,5 +448,56 @@ public class Player : Entity
             audioManager.PlayAudioSource(name);
             damagedTime = audioManager.audioEffects[name].clip.length;
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // when vortex is active
+        if (!vortexCollider.enabled) return;
+
+        // check if enemy projectile
+        if (collision.gameObject.TryGetComponent<Projectile>(out var projectile))
+        {
+            // targeting player layer
+            if (projectile.attacking_layer == 6 && absorbedCount < maxAbsorbedProjectiles)
+            {
+                AbsorbProjectile(projectile.gameObject);
+            }
+        }
+    }
+
+    private void AbsorbProjectile(GameObject projectile)
+    {
+        absorbedCount++;
+
+        // add visual/audio feedback
+
+        Destroy(projectile);
+
+
+        Debug.Log($"Absorbed projectile! Count: {absorbedCount}");
+    }
+
+    public float GetDamageMultiplier()
+    {
+        float multiplier = 1f + (absorbedCount * damageMultiplierPerProjectile);
+        return multiplier;
+    }
+
+    public int GetAbsorbedCount()
+    {
+        return absorbedCount;
+    }
+
+    public void ResetAbsorbedCount()
+    {
+        absorbedCount = 0;
+
+        // add UI reset and then visual effects here
+    }
+
+    public float GetVortexDrainRate()
+    {
+        return vortexDrainRate;
     }
 }

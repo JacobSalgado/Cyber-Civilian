@@ -186,6 +186,23 @@ public class Weapon : MonoBehaviour
         proj.projData = Instantiate(projData);
         proj.attacking_layer = receiving_layer;
 
+        // Vortex damage booster when player is active with vortex
+        if (owner is Player player)
+        { 
+            int absorbedCount = player.GetAbsorbedCount();
+
+            if (absorbedCount > 0)
+            { 
+                // Apply damage multiplier
+                float multiplier = player.GetDamageMultiplier();
+                int originalDamage = proj.projData.damage;
+                int boostedDamage = Mathf.RoundToInt(originalDamage * multiplier);
+                proj.projData.damage = boostedDamage;
+
+                Debug.Log($"Vortex boost! Damage: {originalDamage} -> {boostedDamage} (x{multiplier:F2}, absorbed: {absorbedCount}");
+            }
+        }
+
         proj.gameObject.SetActive(active);
 
         return proj;
