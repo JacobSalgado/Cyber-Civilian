@@ -1194,6 +1194,7 @@ MonoBehaviour:
   - {fileID: 4367270167898253899, guid: fde5e6f7714814c4e8108a58b4763bf1, type: 3}
   - {fileID: 4674413761428591574, guid: 3bb0f60c7f8aaf24d8e1e5bf48bb31d8, type: 3}
   - {fileID: 2015299630638325686, guid: a1a29321763e4f84a94bb04cdd04f731, type: 3}
+  - {fileID: 798979298692045763, guid: 03797b305e8f775499f1abc22c0f6816, type: 3}
   currentWeaponType: 0
   currentWeapon: {fileID: 0}
   weaponRenderer: {fileID: 1226822478304895784}
