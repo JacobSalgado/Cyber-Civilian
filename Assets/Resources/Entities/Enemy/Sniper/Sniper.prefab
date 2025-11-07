@@ -14,15 +14,15 @@ PrefabInstance:
       objectReference: {fileID: 3279843769133324740, guid: 356f9bea7e000674f90a3c798389d7b9, type: 3}
     - target: {fileID: 836956141584006840, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 0.36037737
       objectReference: {fileID: 0}
     - target: {fileID: 836956141584006840, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       propertyPath: m_Color.g
-      value: 0
+      value: 0.36037737
       objectReference: {fileID: 0}
     - target: {fileID: 836956141584006840, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       propertyPath: m_Color.r
-      value: 0.7610062
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6474276062370758235, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       propertyPath: m_AnchorMax.x
@@ -163,6 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17812578970f9f44caa097675a8ed0bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sniper
+  animator: {fileID: -476112364568801663}
   rigidBody: {fileID: 6788294976325675372}
   entityData: {fileID: 11400000, guid: e7c7fb0cc6648cc4d9bf944e1138779e, type: 2}
   healthBar: {fileID: 8335928785559891313}

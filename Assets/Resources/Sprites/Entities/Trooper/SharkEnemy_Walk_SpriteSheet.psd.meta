@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 guid: 410c59542808eb04ebea0416c09ecb52
-=======
-guid: e8f4538a199cc6e4799643c4520b9a41
->>>>>>> animation
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -30,12 +26,9 @@ TextureImporter:
   - first:
       213: -5244539696221624640
     second: SharkEnemy_Walk_SpriteSheet_7
-<<<<<<< HEAD
-=======
   - first:
       213: 7361312367886262857
     second: SharkEnemy_Walk_SpriteSheet_8
->>>>>>> animation
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -127,6 +120,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -134,17 +140,10 @@ TextureImporter:
       name: SharkEnemy_Walk_SpriteSheet_0
       rect:
         serializedVersion: 2
-<<<<<<< HEAD
-        x: 11
-        y: 33
-        width: 123
-        height: 218
-=======
         x: 17
         y: 78
         width: 217
         height: 122
->>>>>>> animation
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -163,17 +162,10 @@ TextureImporter:
       name: SharkEnemy_Walk_SpriteSheet_1
       rect:
         serializedVersion: 2
-<<<<<<< HEAD
-        x: 161
-        y: 33
-        width: 123
-        height: 223
-=======
         x: 255
         y: 78
         width: 223
         height: 123
->>>>>>> animation
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,17 +184,10 @@ TextureImporter:
       name: SharkEnemy_Walk_SpriteSheet_2
       rect:
         serializedVersion: 2
-<<<<<<< HEAD
-        x: 308
-        y: 33
-        width: 126
-        height: 220
-=======
         x: 502
         y: 80
         width: 220
         height: 126
->>>>>>> animation
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -221,17 +206,10 @@ TextureImporter:
       name: SharkEnemy_Walk_SpriteSheet_3
       rect:
         serializedVersion: 2
-<<<<<<< HEAD
-        x: 461
-        y: 32
-        width: 123
-        height: 223
-=======
         x: 751
         y: 82
         width: 223
         height: 123
->>>>>>> animation
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -250,17 +228,10 @@ TextureImporter:
       name: SharkEnemy_Walk_SpriteSheet_4
       rect:
         serializedVersion: 2
-<<<<<<< HEAD
-        x: 611
-        y: 32
-        width: 123
-        height: 218
-=======
         x: 997
         y: 79
         width: 217
         height: 124
->>>>>>> animation
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -279,17 +250,10 @@ TextureImporter:
       name: SharkEnemy_Walk_SpriteSheet_5
       rect:
         serializedVersion: 2
-<<<<<<< HEAD
-        x: 761
-        y: 33
-        width: 123
-        height: 223
-=======
         x: 1239
         y: 80
         width: 222
         height: 124
->>>>>>> animation
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -308,17 +272,10 @@ TextureImporter:
       name: SharkEnemy_Walk_SpriteSheet_6
       rect:
         serializedVersion: 2
-<<<<<<< HEAD
-        x: 911
-        y: 33
-        width: 123
-        height: 222
-=======
         x: 1487
         y: 80
         width: 221
         height: 122
->>>>>>> animation
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -337,17 +294,10 @@ TextureImporter:
       name: SharkEnemy_Walk_SpriteSheet_7
       rect:
         serializedVersion: 2
-<<<<<<< HEAD
-        x: 1061
-        y: 33
-        width: 122
-        height: 223
-=======
         x: 1744
         y: 81
         width: 223
         height: 124
->>>>>>> animation
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -362,8 +312,6 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-<<<<<<< HEAD
-=======
     - serializedVersion: 2
       name: SharkEnemy_Walk_SpriteSheet_8
       rect:
@@ -386,7 +334,6 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
->>>>>>> animation
     outline: []
     customData: 
     physicsShape: []
@@ -409,10 +356,7 @@ TextureImporter:
       SharkEnemy_Walk_SpriteSheet_5: -5521289381450792479
       SharkEnemy_Walk_SpriteSheet_6: -6702374081139383046
       SharkEnemy_Walk_SpriteSheet_7: -5244539696221624640
-<<<<<<< HEAD
-=======
       SharkEnemy_Walk_SpriteSheet_8: 7361312367886262857
->>>>>>> animation
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

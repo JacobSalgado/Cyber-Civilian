@@ -174,15 +174,15 @@ PrefabInstance:
       objectReference: {fileID: 2195191635609960088, guid: c1a23fe6ac8854842867efb1d31ac2c7, type: 3}
     - target: {fileID: 836956141584006840, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       propertyPath: m_Color.b
-      value: 0.91764706
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 836956141584006840, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       propertyPath: m_Color.g
-      value: 0.72995
+      value: 0.8734398
       objectReference: {fileID: 0}
     - target: {fileID: 836956141584006840, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       propertyPath: m_Color.r
-      value: 0
+      value: 0.3830188
       objectReference: {fileID: 0}
     - target: {fileID: 836956141584006840, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       propertyPath: m_WasSpriteAssigned
@@ -441,6 +441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f7407a0f4c3e3242a8bbe5e769909f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Trooper
+  animator: {fileID: 9190693830181494833}
   rigidBody: {fileID: 7183492431902957487}
   entityData: {fileID: 11400000, guid: 35b7bf2e7d293054fb9c1ac413796119, type: 2}
   healthBar: {fileID: 5632614513543846834}

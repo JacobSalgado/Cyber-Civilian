@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public abstract class Entity : StateManager
 {
     [Header("==Entity GameObjects and Vars==")]
+    public Animator animator;
     public Rigidbody2D rigidBody;
     public EntityData entityData;
     public Slider healthBar;
@@ -106,5 +107,10 @@ public abstract class Entity : StateManager
             return true;
         }
         return false;
+    }
+
+    public void PlayAnim(string name)
+    {
+        animator.Play(name);
     }
 }

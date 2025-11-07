@@ -14,15 +14,15 @@ PrefabInstance:
       objectReference: {fileID: -5148245963441109538, guid: 933a76df249d4334c8026e53b7e24977, type: 3}
     - target: {fileID: 836956141584006840, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       propertyPath: m_Color.b
-      value: 0.25098035
+      value: 0.73018867
       objectReference: {fileID: 0}
     - target: {fileID: 836956141584006840, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       propertyPath: m_Color.g
-      value: 0.9529412
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 836956141584006840, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       propertyPath: m_Color.r
-      value: 0.52807564
+      value: 0.8372088
       objectReference: {fileID: 0}
     - target: {fileID: 6474276062370758235, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       propertyPath: m_AnchorMax.x
@@ -168,6 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd7a3da8ad50ebd47b1437d1820e4959, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Fighter
+  animator: {fileID: -2165622025388617675}
   rigidBody: {fileID: 8329211114925616780}
   entityData: {fileID: 11400000, guid: 67c4a42d4838f1742997698fbf68c877, type: 2}
   healthBar: {fileID: 6776993992137878161}
