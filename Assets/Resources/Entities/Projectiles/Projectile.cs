@@ -33,7 +33,7 @@ public abstract class Projectile : Entity
         {
             bool blocked = false;
 
-            if (player.getIsBlocking())
+            if (player.getIsShieldBlocking())
             {
                 // Player's forward direction (the direction they are facing)
                 Vector2 playerForward = -player.firePoint.right.normalized;

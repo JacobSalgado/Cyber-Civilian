@@ -20,6 +20,7 @@ public class Player : Entity
     public TrailRenderer tr; // Used to create dashing effect
     public SpriteRenderer spriteRenderer;
     public Sprite shieldSprite;
+    public Sprite vortexSprite;
 
     [Header("==Controls==")]
     public InputActionReference moveAction;
@@ -28,6 +29,7 @@ public class Player : Entity
     public InputActionReference shieldAction;
     public InputActionReference weaponKeybindsAction;
     public InputActionReference phaseAction;
+    public InputActionReference vortexAction;
 
     [Header("==Weapon Properties==")]
     public Transform firePoint;
@@ -63,8 +65,13 @@ public class Player : Entity
     [NonSerialized] public float damagedTimer = 0f;
     [NonSerialized] public float damagedTime = 0f;
     private Vector2 mousePos;
-    private bool canBlock = true;
-    private bool isBlocking = false;
+
+    private bool canShieldBlock = true;
+    private bool isShieldBlocking = false;
+
+    private bool canVortexBlock = true;
+    private bool isVortexBlocking = false;
+
     private PlayerWeaponType previousWeaponType;
 
     public override void InitializeStates()
@@ -130,8 +137,8 @@ public class Player : Entity
         if (weaponKeybindsAction.action.WasPressedThisFrame())
         {
             // Resets from previously having the shield
-            canBlock = true;
-            isBlocking = false;
+            canShieldBlock = true;
+            isShieldBlocking = false;
             invincibility = false;
 
             // check which button was pressed in the actionMap
@@ -149,7 +156,7 @@ public class Player : Entity
         }
 
         // check fire inputs
-        if (currentWeaponType < PlayerWeaponType.NONE && !isBlocking)
+        if (currentWeaponType < PlayerWeaponType.NONE && !isShieldBlocking)
             ShootWeapon(weapons[(int)currentWeaponType], fireAction, firePoint, 6);
 
         // check dash inputs
@@ -175,26 +182,45 @@ public class Player : Entity
         // check shield inputs
         if (shieldAction.action.WasPressedThisFrame())
         {
-            if (isBlocking)
+            if (isShieldBlocking)
             {
                 audioManager.PlayAudioSource("ShieldStart");
-                canBlock = true;
-                isBlocking = false;
+                canShieldBlock = true;
+                isShieldBlocking = false;
                 EquipNewWeapon(previousWeaponType);
             }
-            else if (canBlock && !isBlocking)
+            else if (canShieldBlock && !isShieldBlocking)
             {
                 previousWeaponType = currentWeaponType;
 
                 audioManager.PlayAudioSource("ShieldEnd");
-                canBlock = false;
-                isBlocking = true;
+                canShieldBlock = false;
+                isShieldBlocking = true;
                 EquipShield();
             }
         }
 
+        // check vortex inputs
+        if (vortexAction.action.WasPressedThisFrame())
+        {
+            if (isVortexBlocking)
+            {
+                canVortexBlock = true;
+                isVortexBlocking = false;
+                EquipNewWeapon(previousWeaponType);
+            }
+            else if (canVortexBlock && !isVortexBlocking)
+            {
+                previousWeaponType = currentWeaponType;
+
+                canVortexBlock = false;
+                isVortexBlocking = true;
+                EquipVortex();
+            }
+        }
+
         // regenerate energy
-        if (currentEnergy < 1000 && !isBlocking && !isPhasing)
+        if (currentEnergy < 1000 && !isShieldBlocking && !isPhasing)
         {
             currentEnergy += energyRegen;
             if (currentEnergy > 1000) currentEnergy = 1000;
@@ -208,14 +234,14 @@ public class Player : Entity
                 currentEnergy -= phaseCost;
         }
 
-        if (isBlocking)
+        if (isShieldBlocking)
         {
             currentEnergy -= Mathf.RoundToInt(shieldDrainRate * Time.deltaTime);
             if (currentEnergy <= 0)
             {
                 currentEnergy = 0;
-                canBlock = true; // reset for when resource regenerates
-                isBlocking = false;
+                canShieldBlock = true; // reset for when resource regenerates
+                isShieldBlocking = false;
                 // switch from shield to gun
                 EquipNewWeapon(previousWeaponType);
             }
@@ -302,19 +328,31 @@ public class Player : Entity
         weaponRenderer.sprite = shieldSprite;
     }
 
-    public bool getIsBlocking()
+    public bool getIsShieldBlocking()
     {
-        return isBlocking;
+        return isShieldBlocking;
     }
 
-    public void setCanBlock(bool new_canBlock)
+    public void setCanShieldBlock(bool new_canBlock)
     {
-        isBlocking = new_canBlock;
+        isShieldBlocking = new_canBlock;
     }
 
-    public void setIsBlocking(bool new_isBlocking)
+    public void setIsShieldBlocking(bool new_isBlocking)
     {
-        isBlocking = new_isBlocking;
+        isShieldBlocking = new_isBlocking;
+    }
+
+    // Vortex Functions
+    public void EquipVortex()
+    {
+        // change weaponrenderer sprite to a vortex sprite
+        weaponRenderer.sprite = vortexSprite;
+    }
+
+    public bool getIsVortexBlocking()
+    {
+        return isVortexBlocking;
     }
 
     public override void GotDamaged()
