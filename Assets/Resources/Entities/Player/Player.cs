@@ -167,13 +167,13 @@ public class Player : Entity
         currentWeapon = weapons[(int)currentWeaponType].GetComponent<Weapon>();
         ammo = currentWeapon.currentAmmo;
         if (ammo <= 0) Debug.Log("No ammo, reload!");
-        if (reloadAction.action.WasPressedThisFrame() && ammo < currentWeapon.maxAmmo && !isReloading && !isBlocking && !isDashing)
+        if (reloadAction.action.WasPressedThisFrame() && ammo < currentWeapon.maxAmmo && !isReloading && !isShieldBlocking && !isDashing)
             Reload();
     
         // Check for long reload for weapons that support it
         // Currently works bad
         /*
-        if (reloadAction.action.IsPressed() && ammo < currentWeapon.maxAmmo && !isBlocking && !isDashing && (currentWeaponType != PlayerWeaponType.BULLET) && (currentWeaponType != PlayerWeaponType.PLASMA))
+        if (reloadAction.action.IsPressed() && ammo < currentWeapon.maxAmmo && !isShieldBlocking && !isDashing && (currentWeaponType != PlayerWeaponType.BULLET) && (currentWeaponType != PlayerWeaponType.PLASMA))
         {
             if (!isReloading)
             {
@@ -240,7 +240,7 @@ public class Player : Entity
         // check phase inputs
         if (phaseAction.action.WasPressedThisFrame() && !isPhasing && currentEnergy - phaseCost >= 0)
         {
-            if (isBlocking) ShieldEnd();
+            if (isShieldBlocking) ShieldEnd();
 
             Phase(true);
         }
@@ -389,26 +389,26 @@ public class Player : Entity
         previousWeaponType = currentWeaponType;
 
         audioManager.PlayAudioSource("ShieldStart");
-        canBlock = false;
-        isBlocking = true;
+        canShieldBlock = false;
+        isShieldBlocking = true;
         EquipShield();
     }
 
     private void ShieldEnd()
     {
         audioManager.PlayAudioSource("ShieldEnd");
-        canBlock = true;
-        isBlocking = false;
+        canShieldBlock = true;
+        isShieldBlocking = false;
         EquipNewWeapon(previousWeaponType);
     }
 
     public void Shield()
     {
-        if (isBlocking)
+        if (isShieldBlocking)
         {
             ShieldEnd();
         }
-        else if (canBlock && !isBlocking)
+        else if (canShieldBlock && !isShieldBlocking)
         {
             ShieldStart();
         }
@@ -484,14 +484,14 @@ public class Player : Entity
         return isShieldBlocking;
     }
 
-    public void setCanShieldBlock(bool new_canBlock)
+    public void setCanShieldBlock(bool new_canShieldBlock)
     {
-        isShieldBlocking = new_canBlock;
+        isShieldBlocking = new_canShieldBlock;
     }
 
-    public void setIsShieldBlocking(bool new_isBlocking)
+    public void setIsShieldBlocking(bool new_isShieldBlocking)
     {
-        isShieldBlocking = new_isBlocking;
+        isShieldBlocking = new_isShieldBlocking;
     }
 
     // Vortex Functions
