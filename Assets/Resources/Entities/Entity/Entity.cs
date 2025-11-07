@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -13,6 +14,11 @@ public abstract class Entity : StateManager
     public AudioManager audioManager;
     public AudioEffect[] audioEffects;
     public bool invincibility = false;
+    public bool isOnFire = false;
+    public int fireDamage;
+    public float slowDownFactor;
+    public bool isShocked = false;
+    private float originalMoveSpeed;
 
     [NonSerialized] public bool isDamaged = false;
     [NonSerialized] public bool isDead = false;
@@ -27,7 +33,7 @@ public abstract class Entity : StateManager
         // make a copy of the entityData
         if (entityData != null)
             entityData = Instantiate(entityData);
-        
+
         audioManager.InitializeAudioDictionary(audioEffects);
     }
 
@@ -40,6 +46,12 @@ public abstract class Entity : StateManager
         if (entityData != null && entityData.currentHealth <= 0 && entityData.maxHealth != 0)
         {
             EntityDie();
+        }
+
+        // Status Effects
+        if (isOnFire)
+        {
+            TakeDamage(fireDamage);
         }
     }
 
@@ -112,5 +124,36 @@ public abstract class Entity : StateManager
     public void PlayAnim(string name)
     {
         animator.Play(name);
+    }
+
+    public void ApplyOnFireEffect(float duration, int damage)
+    {
+        if (isOnFire) return;
+        fireDamage = damage;
+        isOnFire = true;
+        StartCoroutine(FireEffectTimer(duration));
+    }
+
+    private IEnumerator FireEffectTimer(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        isOnFire = false;
+    }
+
+    public void ApplyShockEffect(float duration, float speedReduction)
+    {
+        if (isShocked) return;
+        slowDownFactor = speedReduction;
+        isShocked = true;
+        originalMoveSpeed = entityData.moveSpeed;
+        entityData.moveSpeed *= slowDownFactor;
+        StartCoroutine(ShockEffectTimer(duration));
+    }
+    
+    private IEnumerator ShockEffectTimer(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        entityData.moveSpeed = originalMoveSpeed;
+        isShocked = false;
     }
 }

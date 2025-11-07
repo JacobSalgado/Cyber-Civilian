@@ -11,8 +11,8 @@ public class PlayerHUD : MonoBehaviour
 
     /*
     TODO:
-    - AMMO COUNT
     - LEVEL PROGRESSION/MISSION OBJECTION
+    - CURRENT WEAPON ICON
     */
 
     public void PlayerHUDClose()

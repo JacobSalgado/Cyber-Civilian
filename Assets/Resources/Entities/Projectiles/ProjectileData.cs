@@ -22,4 +22,12 @@ public class ProjectileData : EntityData
     public float rotateSpeed = 200f;
     public float trackingStrength = 5f; // how quickly the missile adjusts its trajectory
     //public float explosionRadius = 0f;
+
+    [Header("==Status Effect Properties==")]
+    public bool setsOnFire = false;
+    public float burnDuration = 0f;
+    public int burnDamage = 0;
+    public bool shocks = false;
+    public float shockDuration = 0f;
+    public float slowDownFactor = 0f;
 }

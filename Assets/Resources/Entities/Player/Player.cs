@@ -15,7 +15,6 @@ public class Player : Entity
         MISSILE,
         PLASMA,
         FLAMETHROWER,
-        REVOLVER,
         NONE
     }
 
