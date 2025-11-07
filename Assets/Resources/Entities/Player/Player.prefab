@@ -1175,6 +1175,10 @@ MonoBehaviour:
   - {fileID: 6079927618582836151, guid: 2c2734b3e85b12f4184223d76be8356c, type: 3}
   - {fileID: 6079927618582836151, guid: 948c04e971675fd4fbe3c311af92f0fa, type: 3}
   invincibility: 0
+  isOnFire: 0
+  fireDamage: 1
+  slowDownFactor: 0.5
+  isShocked: 0
   tr: {fileID: 6616881326347800582}
   spriteRenderer: {fileID: 145288011879166512}
   shieldSprite: {fileID: 0}
