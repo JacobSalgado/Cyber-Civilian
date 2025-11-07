@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileData
   currentHealth: 0
   maxHealth: 0
-  moveSpeed: 0
+  moveSpeed: 50
   damage: 120
   hitEffect: {fileID: 6996612073667387790, guid: 73dd775d02fe8ef4cab1bbcfb652c45c, type: 3}
   lifeTime: 0
