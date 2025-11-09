@@ -12,7 +12,7 @@ public class TrooperIdle : State
 
     public override void EnterState(Dictionary<string, object> args = null)
     {
-        trooper.rigidBody.linearVelocity = Vector2.zero;
+        trooper.moveVelocity = Vector2.zero;
         trooper.PlayAnim("Idle");
     }
 
@@ -30,8 +30,8 @@ public class TrooperIdle : State
             Debug.Log("target not set");
             return;
         }
-        
-        trooper.rigidBody.linearVelocity = Vector2.zero;
+
+        trooper.moveVelocity = Vector2.zero;
          
         if (distanceToTarget < trooper.distanceToShoot)
             trooper.ChangeState("Shoot");

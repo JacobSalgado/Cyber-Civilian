@@ -1,8 +1,9 @@
+using System;
 using UnityEngine;
 
 public class Missile : Projectile
 {
-    public Transform target;
+    [NonSerialized] public Transform target;
 
     public override void InitializeStates()
     {

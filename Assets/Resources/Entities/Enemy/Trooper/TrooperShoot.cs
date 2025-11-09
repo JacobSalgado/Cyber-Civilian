@@ -15,7 +15,7 @@ public class TrooperShoot : State
 
     public override void EnterState(Dictionary<string, object> args = null)
     {
-        trooper.rigidBody.linearVelocity = Vector2.zero;
+        trooper.moveVelocity = Vector2.zero;
         timer = 0f;
         trooper.PlayAnim("Idle");
     }
@@ -28,7 +28,7 @@ public class TrooperShoot : State
             return;
         }
 
-        trooper.rigidBody.linearVelocity = Vector2.zero;
+        trooper.moveVelocity = Vector2.zero;
         timer += Time.deltaTime;
 
         float distance = trooper.GetDistanceToTarget();

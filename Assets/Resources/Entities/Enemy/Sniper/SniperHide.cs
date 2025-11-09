@@ -48,7 +48,7 @@ public class SniperHide : State
         deltaCount += Time.deltaTime;
 
         // movement
-        sniper.rigidBody.linearVelocity = -sniper.gameObject.transform.right.normalized * sniper.entityData.moveSpeed;
+        sniper.moveVelocity = -sniper.gameObject.transform.right.normalized * sniper.entityData.moveSpeed;
         if (sniper.PlayFootsteps(deltaCount, timeToStep, stepCounter))
         {
             deltaCount = 0f;

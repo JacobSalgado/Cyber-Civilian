@@ -31,7 +31,7 @@ public class SniperShoot : State
 
         directionTimer += Time.deltaTime;
 
-        sniper.rigidBody.linearVelocity = Vector2.zero;
+        sniper.moveVelocity = Vector2.zero;
 
         float distanceToTarget = sniper.GetDistanceToTarget();
         if (distanceToTarget < sniper.distanceToHide && !sniper.isInvisibleRecharging && sniper.timer > sniper.invisibleRechargeTime)

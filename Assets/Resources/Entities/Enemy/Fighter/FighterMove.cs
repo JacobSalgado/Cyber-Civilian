@@ -47,7 +47,7 @@ public class FighterMove : State
             {
                 directionToTarget = fighter.GetDirectionToPosition(fighter.target.transform.position);
                 fighter.RotateToDirection(directionToTarget);
-                fighter.rigidBody.linearVelocity = directionToTarget * fighter.entityData.moveSpeed;
+                fighter.moveVelocity = directionToTarget * fighter.entityData.moveSpeed;
             }
             else fighter.ChangeState("Idle");
         }
@@ -55,6 +55,6 @@ public class FighterMove : State
 
     public override void ExitState(Dictionary<string, object> args = null)
     {
-        fighter.rigidBody.linearVelocity = Vector2.zero;
+        
     }
 }

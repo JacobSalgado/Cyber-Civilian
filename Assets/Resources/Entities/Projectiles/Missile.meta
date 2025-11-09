@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Assets/Entities/Projectiles/Missile.meta
 guid: 4b1d77e64dbe3654a82fe542e233fe59
-=======
-guid: 2cda31bf285051b418c9fbc99dbd6e31
->>>>>>> dev:Assets/Resources/Entities/Projectiles/Missile.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

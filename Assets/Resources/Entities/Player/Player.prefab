@@ -959,6 +959,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7121258720370068034, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1295127252021959570}
+    - targetCorrespondingSourceObject: {fileID: 7121258720370068034, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1950846873851393881}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6344234565907112943, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
       insertIndex: -1
@@ -1153,6 +1156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d88bfa90b5a9dd244bce172ca6ee8d19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
+  animator: {fileID: 0}
   rigidBody: {fileID: 8349349828730560086}
   entityData: {fileID: 11400000, guid: 6c4ca02f294d5644bad555ee4509fd1b, type: 2}
   healthBar: {fileID: 0}
@@ -1174,6 +1178,7 @@ MonoBehaviour:
   - {fileID: 6079927618582836151, guid: c8233c8d0d70501499afc825f90b59e3, type: 3}
   - {fileID: 6079927618582836151, guid: 2c2734b3e85b12f4184223d76be8356c, type: 3}
   - {fileID: 6079927618582836151, guid: 948c04e971675fd4fbe3c311af92f0fa, type: 3}
+  - {fileID: 7533918726549745439, guid: 019fdc823c4c7394da714d429a4eaa5d, type: 3}
   invincibility: 0
   isOnFire: 0
   fireDamage: 1
@@ -1183,6 +1188,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 145288011879166512}
   shieldSprite: {fileID: 0}
   vortexSprite: {fileID: 0}
+  pushAbility: {fileID: 914659638261417647}
   moveAction: {fileID: -1680190386980627800, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   fireAction: {fileID: 1120369429361536294, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   dashAction: {fileID: -1591832314784998302, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
@@ -1191,6 +1197,7 @@ MonoBehaviour:
   phaseAction: {fileID: -9135410620642095999, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   reloadAction: {fileID: 6505802653974701790, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   vortexAction: {fileID: 5246173511191468154, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  pushAction: {fileID: -4952092908596449744, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   firePoint: {fileID: 7870654291819106841}
   weapons:
   - {fileID: 4367270167898253899, guid: fde5e6f7714814c4e8108a58b4763bf1, type: 3}
@@ -1208,9 +1215,15 @@ MonoBehaviour:
   energyRegen: 1
   dashCost: 100
   phaseCost: 1
+  pushCost: 200
   shieldDrainRate: 50
+  vortexRadius: 2
+  maxAbsorbedProjectiles: 10
+  damageMultiplierPerProjectile: 0.2
+  vortexDrainRate: 30
+  vortexVisualEffect: {fileID: 0}
+  rotationSpeed: 180
   isReloading: 0
-  playerVortex: {fileID: 0}
 --- !u!114 &7781527178466087580 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6494366698852611236, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
@@ -1226,4 +1239,81 @@ MonoBehaviour:
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 4756910380638058606, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
   m_PrefabInstance: {fileID: 3593073875161228856}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5716776963082930206
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5984970219455982714}
+    m_Modifications:
+    - target: {fileID: 5076348673995540964, guid: 093f85e7e138e18489c1a97c77884b40, type: 3}
+      propertyPath: m_Radius
+      value: 4.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 6072223108442767175, guid: 093f85e7e138e18489c1a97c77884b40, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6072223108442767175, guid: 093f85e7e138e18489c1a97c77884b40, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6072223108442767175, guid: 093f85e7e138e18489c1a97c77884b40, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6072223108442767175, guid: 093f85e7e138e18489c1a97c77884b40, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6072223108442767175, guid: 093f85e7e138e18489c1a97c77884b40, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6072223108442767175, guid: 093f85e7e138e18489c1a97c77884b40, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6072223108442767175, guid: 093f85e7e138e18489c1a97c77884b40, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6072223108442767175, guid: 093f85e7e138e18489c1a97c77884b40, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6072223108442767175, guid: 093f85e7e138e18489c1a97c77884b40, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6072223108442767175, guid: 093f85e7e138e18489c1a97c77884b40, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048742898766298036, guid: 093f85e7e138e18489c1a97c77884b40, type: 3}
+      propertyPath: m_Name
+      value: PlayerPush
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 093f85e7e138e18489c1a97c77884b40, type: 3}
+--- !u!114 &914659638261417647 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4893042538803646129, guid: 093f85e7e138e18489c1a97c77884b40, type: 3}
+  m_PrefabInstance: {fileID: 5716776963082930206}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e29e8beaf6fd5f1489d43c0c3cf35938, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerPush
+--- !u!4 &1950846873851393881 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6072223108442767175, guid: 093f85e7e138e18489c1a97c77884b40, type: 3}
+  m_PrefabInstance: {fileID: 5716776963082930206}
   m_PrefabAsset: {fileID: 0}

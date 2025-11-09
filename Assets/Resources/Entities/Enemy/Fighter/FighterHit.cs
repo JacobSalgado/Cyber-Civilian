@@ -13,8 +13,7 @@ public class FighterHit : State
 
     public override void EnterState(Dictionary<string, object> args = null)
     {
-        fighter.rigidBody.linearVelocity = Vector2.zero;
-        fighter.PlayAnim("Punch");
+        fighter.moveVelocity = Vector2.zero;
     }
 
     public override void UpdateState()
@@ -25,7 +24,7 @@ public class FighterHit : State
             return;
         }
 
-        fighter.rigidBody.linearVelocity = Vector2.zero;
+        fighter.moveVelocity = Vector2.zero;
 
         float distance = fighter.GetDistanceToTarget();
         if (distance < fighter.distanceToHit)
@@ -33,6 +32,7 @@ public class FighterHit : State
             Vector2 dir = fighter.GetDirectionToPosition(fighter.target.gameObject.transform.position);
             fighter.RotateToDirection(dir);
             fighter.ShootWeapon(fighter.weapon, null, fighter.firePoint, 7);
+            fighter.PlayAnim("Punch");
         }
         else if (distance < fighter.distanceToMove)
             fighter.StartCoroutine(MoveAfterDelay());

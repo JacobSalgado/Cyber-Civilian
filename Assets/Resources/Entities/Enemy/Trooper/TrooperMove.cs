@@ -58,7 +58,7 @@ public class TrooperMove : State
             {
                 directionToTarget = trooper.GetDirectionToPosition(trooper.target.transform.position);
                 trooper.RotateToDirection(directionToTarget);
-                trooper.rigidBody.linearVelocity = directionToTarget * trooper.entityData.moveSpeed;
+                trooper.moveVelocity = directionToTarget * trooper.entityData.moveSpeed;
             }
             else trooper.ChangeState("Idle");
         }

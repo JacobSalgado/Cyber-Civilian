@@ -12,7 +12,7 @@ public class SniperIdle : State
 
     public override void EnterState(Dictionary<string, object> args = null)
     {
-        sniper.rigidBody.linearVelocity = Vector2.zero;
+        sniper.moveVelocity = Vector2.zero;
         sniper.PlayAnim("Idle");
     }
 
@@ -26,7 +26,7 @@ public class SniperIdle : State
 
         float distanceToTarget = sniper.GetDistanceToTarget();
 
-        sniper.rigidBody.linearVelocity = Vector2.zero;
+        sniper.moveVelocity = Vector2.zero;
 
         if (distanceToTarget < sniper.distanceToHide && !sniper.isInvisibleRecharging && sniper.timer > sniper.invisibleRechargeTime)
         {

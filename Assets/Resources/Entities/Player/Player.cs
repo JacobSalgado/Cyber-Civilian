@@ -23,6 +23,7 @@ public class Player : Entity
     public SpriteRenderer spriteRenderer;
     public Sprite shieldSprite;
     public Sprite vortexSprite;
+    public PlayerPush pushAbility;
 
     [Header("==Controls==")]
     public InputActionReference moveAction;
@@ -33,6 +34,7 @@ public class Player : Entity
     public InputActionReference phaseAction;
     public InputActionReference reloadAction;
     public InputActionReference vortexAction;
+    public InputActionReference pushAction;
 
     [Header("==Weapon Properties==")]
     public Transform firePoint;
@@ -56,10 +58,12 @@ public class Player : Entity
     public int energyRegen = 1;
     public int dashCost = 100;
     public int phaseCost = 50;
+    public int pushCost = 200;
+
     private const float timeToCharge = 0.25f;
 
     [Header("==Blocking Properties==")]
-    public float shieldDrainRate = 50f;
+    public int shieldDrainRate = 50;
 
     //[Header("==Vortex Controller==")]
     //public PlayerVortex playerVortex;
@@ -68,7 +72,7 @@ public class Player : Entity
     public float vortexRadius = 2f;
     public int maxAbsorbedProjectiles = 10;
     public float damageMultiplierPerProjectile = 0.2f;
-    public float vortexDrainRate = 30f; // Energy drained per second
+    public int vortexDrainRate = 30; // Energy drained per second
 
     [Header("==Visual Effects==")]
     public GameObject vortexVisualEffect;
@@ -84,6 +88,7 @@ public class Player : Entity
     [NonSerialized] public PlayerData playerData;
     [NonSerialized] public Slider resourceMeter;
     [NonSerialized] public TextMeshProUGUI ammoCount;
+
     [NonSerialized] public bool updatePlayer = false;
     [NonSerialized] public Dictionary<string, object> updateArgs;
     [NonSerialized] public float damagedTimer = 0f;
@@ -252,22 +257,7 @@ public class Player : Entity
         // check shield inputs
         if (shieldAction.action.WasPressedThisFrame())
         {
-            if (isShieldBlocking)
-            {
-                audioManager.PlayAudioSource("ShieldStart");
-                canShieldBlock = true;
-                isShieldBlocking = false;
-                EquipNewWeapon(previousWeaponType);
-            }
-            else if (canShieldBlock && !isShieldBlocking)
-            {
-                previousWeaponType = currentWeaponType;
-
-                audioManager.PlayAudioSource("ShieldEnd");
-                canShieldBlock = false;
-                isShieldBlocking = true;
-                EquipShield();
-            }
+            Shield();
         }
 
         // check vortex inputs
@@ -292,6 +282,14 @@ public class Player : Entity
                 ActivateVortex();
                 EquipVortex();
             }
+        }
+
+        // push input checks
+        if (pushAction.action.WasPressedThisFrame() && currentEnergy - pushCost >= 0)
+        {
+            audioManager.PlayAudioSource("Push");
+            currentEnergy -= pushCost;
+            pushAbility.EmitPush();
         }
 
         // regenerate energy
