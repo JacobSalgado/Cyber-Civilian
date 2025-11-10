@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class Projectile : Entity
@@ -22,7 +23,7 @@ public abstract class Projectile : Entity
     {
         if (collisionHit) timer += Time.deltaTime;
 
-        if (timer > audioManager.audioEffects["Impact"].clip.length)
+        if (audioManager.audioEffects.ContainsKey("Impact") && timer > audioManager.audioEffects["Impact"].clip.length)
             EntityDie();
     }
 
@@ -91,6 +92,8 @@ public abstract class Projectile : Entity
 
     public void HitEffect(Vector2 position)
     {
+        if (!projData.hitEffect) return;
+
         GameObject effect = Instantiate(projData.hitEffect, position, Quaternion.identity, LevelManager.current_level.EntityList.transform);
 
         audioManager.PlayAudioSource("Impact");

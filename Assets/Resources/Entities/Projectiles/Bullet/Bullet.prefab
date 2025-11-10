@@ -290,6 +290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e49cb0386f8c8443a574deb8e5a485c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bullet
+  animator: {fileID: 4401634890703403025}
   rigidBody: {fileID: 3285818949574292676}
   entityData: {fileID: 0}
   healthBar: {fileID: 0}
@@ -297,8 +298,17 @@ MonoBehaviour:
   audioEffects:
   - {fileID: 4887229539785942901, guid: 35485d6ccdbdddc4897973c0b3f9a7e2, type: 3}
   invincibility: 0
+  isOnFire: 0
+  fireDamage: 0
+  slowDownFactor: 0
+  isShocked: 0
   spriteRenderer: {fileID: 6648264329710098594}
   projectileCollider: {fileID: 3602502542450344892}
+--- !u!95 &4401634890703403025 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7656176151515567924, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
+  m_PrefabInstance: {fileID: 6293090234849586981}
+  m_PrefabAsset: {fileID: 0}
 --- !u!212 &6648264329710098594 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 799086666457626503, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}

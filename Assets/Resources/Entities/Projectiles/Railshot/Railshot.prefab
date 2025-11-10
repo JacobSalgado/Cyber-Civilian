@@ -271,6 +271,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: -6280218049456837736}
   m_SourcePrefab: {fileID: 100100000, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
+--- !u!95 &2438282345117702217 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7656176151515567924, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
+  m_PrefabInstance: {fileID: 5446742536552959869}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2988694141801601110 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7129002523404261163, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
@@ -355,6 +360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27ae39e5410a57c44a2f861d0f0e0594, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Railshot
+  animator: {fileID: 2438282345117702217}
   rigidBody: {fileID: 3556341427465147548}
   entityData: {fileID: 0}
   healthBar: {fileID: 0}
@@ -362,6 +368,10 @@ MonoBehaviour:
   audioEffects:
   - {fileID: 7329057885270235295, guid: 8617e52300cec4645a2460d31eeb1fbe, type: 3}
   invincibility: 0
+  isOnFire: 0
+  fireDamage: 0
+  slowDownFactor: 0
+  isShocked: 0
   spriteRenderer: {fileID: 4647814237375887610}
   projectileCollider: {fileID: 8436380612568787668}
 --- !u!50 &3556341427465147548 stripped

@@ -230,6 +230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07b10912927c7f246b22446ab0060257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Plasma
+  animator: {fileID: 1767176299609279458}
   rigidBody: {fileID: 579389898649978679}
   entityData: {fileID: 0}
   healthBar: {fileID: 0}
@@ -280,6 +281,11 @@ CapsuleCollider2D:
   m_Offset: {x: -0.0022681952, y: 0.016905546}
   m_Size: {x: 1.3720438, y: 1.3720438}
   m_Direction: 0
+--- !u!95 &1767176299609279458 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7656176151515567924, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
+  m_PrefabInstance: {fileID: 8270428461589617878}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2943757466782430491 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6493105512357046733, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}

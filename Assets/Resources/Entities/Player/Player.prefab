@@ -1179,6 +1179,7 @@ MonoBehaviour:
   - {fileID: 6079927618582836151, guid: 2c2734b3e85b12f4184223d76be8356c, type: 3}
   - {fileID: 6079927618582836151, guid: 948c04e971675fd4fbe3c311af92f0fa, type: 3}
   - {fileID: 7533918726549745439, guid: 019fdc823c4c7394da714d429a4eaa5d, type: 3}
+  - {fileID: 6079927618582836151, guid: 7ebe548be5868bf4a88600a1319bcd65, type: 3}
   invincibility: 0
   isOnFire: 0
   fireDamage: 1
@@ -1204,6 +1205,7 @@ MonoBehaviour:
   - {fileID: 4674413761428591574, guid: 3bb0f60c7f8aaf24d8e1e5bf48bb31d8, type: 3}
   - {fileID: 2015299630638325686, guid: a1a29321763e4f84a94bb04cdd04f731, type: 3}
   - {fileID: 798979298692045763, guid: 03797b305e8f775499f1abc22c0f6816, type: 3}
+  - {fileID: 6055819832999248614, guid: 159519f1cc06f8c4a8f78ab00f878164, type: 3}
   currentWeaponType: 0
   currentWeapon: {fileID: 0}
   weaponRenderer: {fileID: 1226822478304895784}

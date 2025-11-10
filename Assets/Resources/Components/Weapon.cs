@@ -47,7 +47,7 @@ public class Weapon : MonoBehaviour
         if (currentAmmo > maxAmmo) currentAmmo = maxAmmo;
     }
 
-    public void Shoot(InputActionReference fireAction, Transform firePoint, int collision_layer)
+    public void Shoot(InputActionReference fireAction, Transform firePoint, int collision_layer, string fireSFX = "")
     {
         if (currentAmmo - ammoCost < 0) return;
 
@@ -55,7 +55,7 @@ public class Weapon : MonoBehaviour
         {
             if (fireMode == FireMode.FULL_AUTO)
             {
-                fullAutoShot(fireAction, firePoint, collision_layer);
+                fullAutoShot(fireAction, firePoint, collision_layer, fireSFX);
             }
             else if (fireMode == FireMode.SEMI_AUTO)
             {
@@ -113,7 +113,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    private void fullAutoShot(InputActionReference fireAction, Transform firePoint, int collision_layer)
+    private void fullAutoShot(InputActionReference fireAction, Transform firePoint, int collision_layer , string fireSFX = "")
     {
         if (fireAction.action.IsPressed())
         {
@@ -123,7 +123,9 @@ public class Weapon : MonoBehaviour
             {
                 fireTimer += 1f / fireRate;
                 ShootProjectile(firePoint, collision_layer);
-                owner.audioManager.PlayAudioSource("PeaShooterFire");
+
+                if (fireSFX.Length > 0)
+                    owner.audioManager.PlayAudioSource(fireSFX);
             }
         }
     }

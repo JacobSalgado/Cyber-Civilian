@@ -155,6 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49d19be657a4898459fbdbce43e2ca91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HammerStrike
+  animator: {fileID: -5273833432302767478}
   rigidBody: {fileID: 654723165117642773}
   entityData: {fileID: 0}
   healthBar: {fileID: 0}
@@ -162,6 +163,10 @@ MonoBehaviour:
   audioEffects:
   - {fileID: 4887229539785942901, guid: 5aad8102ec79d4e4ba54a307c0083785, type: 3}
   invincibility: 0
+  isOnFire: 0
+  fireDamage: 0
+  slowDownFactor: 0
+  isShocked: 0
   spriteRenderer: {fileID: 8704605941415564403}
   projectileCollider: {fileID: 5089658968781506575}
 --- !u!95 &-5273833432302767478

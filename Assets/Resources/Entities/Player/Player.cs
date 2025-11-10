@@ -227,7 +227,14 @@ public class Player : Entity
 
         // check fire inputs
         if (currentWeaponType < PlayerWeaponType.NONE && !isShieldBlocking & !isReloading)
-            ShootWeapon(weapons[(int)currentWeaponType], fireAction, firePoint, 6);
+        {
+            string fireSFX  = "";
+            if (currentWeaponType == PlayerWeaponType.FLAMETHROWER)
+                fireSFX = "FlamethrowerFire";
+            else fireSFX = "PeaShooterFire";
+            
+            ShootWeapon(weapons[(int)currentWeaponType], fireAction, firePoint, 6, fireSFX);
+        }
 
         // check dash inputs
         if (dashAction.action.WasPressedThisFrame() && canDash && !isDashing && currentEnergy - dashCost >= 0)

@@ -103,11 +103,11 @@ public abstract class Entity : StateManager
         healthBar.value = entityData.currentHealth;
     }
 
-    public void ShootWeapon(GameObject weapon, InputActionReference fireAction, Transform firePoint, int collision_layer)
+    public void ShootWeapon(GameObject weapon, InputActionReference fireAction, Transform firePoint, int collision_layer, string fireSFX = "")
     {
         if (weapon != null)
         {
-            weapon.GetComponent<Weapon>().Shoot(fireAction, firePoint, collision_layer);
+            weapon.GetComponent<Weapon>().Shoot(fireAction, firePoint, collision_layer, fireSFX);
         }
     }
 

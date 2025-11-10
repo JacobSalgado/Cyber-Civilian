@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &6842076742190230657
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 790778135415778919, guid: 44f83fffe9635974e91eced60e11c4c8, type: 3}
+      propertyPath: m_Name
+      value: Flamethrower
+      objectReference: {fileID: 0}
+    - target: {fileID: 3461864483126256437, guid: 44f83fffe9635974e91eced60e11c4c8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3461864483126256437, guid: 44f83fffe9635974e91eced60e11c4c8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3461864483126256437, guid: 44f83fffe9635974e91eced60e11c4c8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3461864483126256437, guid: 44f83fffe9635974e91eced60e11c4c8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3461864483126256437, guid: 44f83fffe9635974e91eced60e11c4c8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3461864483126256437, guid: 44f83fffe9635974e91eced60e11c4c8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3461864483126256437, guid: 44f83fffe9635974e91eced60e11c4c8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3461864483126256437, guid: 44f83fffe9635974e91eced60e11c4c8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3461864483126256437, guid: 44f83fffe9635974e91eced60e11c4c8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3461864483126256437, guid: 44f83fffe9635974e91eced60e11c4c8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4620524579252194416, guid: 44f83fffe9635974e91eced60e11c4c8, type: 3}
+      propertyPath: maxAmmo
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 4620524579252194416, guid: 44f83fffe9635974e91eced60e11c4c8, type: 3}
+      propertyPath: ammoCost
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4620524579252194416, guid: 44f83fffe9635974e91eced60e11c4c8, type: 3}
+      propertyPath: fireRate
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4620524579252194416, guid: 44f83fffe9635974e91eced60e11c4c8, type: 3}
+      propertyPath: projData
+      value: 
+      objectReference: {fileID: 11400000, guid: 8afe8ad5033d27740abad61188b831d6, type: 2}
+    - target: {fileID: 4620524579252194416, guid: 44f83fffe9635974e91eced60e11c4c8, type: 3}
+      propertyPath: projectile
+      value: 
+      objectReference: {fileID: 1102866200625886065, guid: 787fe6df1b0d30d41b1eca6c373908b8, type: 3}
+    - target: {fileID: 4620524579252194416, guid: 44f83fffe9635974e91eced60e11c4c8, type: 3}
+      propertyPath: currentAmmo
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 4620524579252194416, guid: 44f83fffe9635974e91eced60e11c4c8, type: 3}
+      propertyPath: infiniteAmmo
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4620524579252194416, guid: 44f83fffe9635974e91eced60e11c4c8, type: 3}
+      propertyPath: weaponSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3a14974fdba6469e9ac7efe437a615a6, type: 3}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 44f83fffe9635974e91eced60e11c4c8, type: 3}
