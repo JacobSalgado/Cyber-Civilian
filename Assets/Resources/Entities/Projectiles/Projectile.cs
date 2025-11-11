@@ -49,6 +49,7 @@ public abstract class Projectile : Entity
             if (!blocked)
             {
                 player.TakeDamage(projData.damage);
+                CheckForEffect(player);
             }
             else Debug.Log("Projectile Blocked");
 
@@ -62,6 +63,7 @@ public abstract class Projectile : Entity
         else if (attacking_layer == 6 && collision.gameObject.TryGetComponent<Enemy>(out var enemy))
         {
             enemy.TakeDamage(projData.damage);
+            CheckForEffect(enemy);
             HitEffect(collision.transform.position);
 
             if (projData.destroyOnCollision)
@@ -77,6 +79,22 @@ public abstract class Projectile : Entity
         }
     }
 
+    public void CheckForEffect(Entity entity)
+    {
+        if (projData.shocks)
+        {
+            entity.ApplyShockEffect(projData.shockDuration, projData.slowDownFactor);
+        }
+        else if (projData.setsOnFire)
+        {
+            entity.ApplyOnFireEffect(projData.burnDuration, projData.burnDamage);
+        }
+        else
+        {
+            return;
+        }
+    }
+    
     public override void EntityDie()
     {
         Destroy(gameObject);
