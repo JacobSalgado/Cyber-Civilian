@@ -60,6 +60,10 @@ public class Player : Entity
 
     [Header("==Blocking Properties==")]
     public float shieldDrainRate = 50f;
+    public float shiledShockDuration = 2f;
+    public float shieldSlowDownStrength = 0.5f;
+    public int shieldFireDamage = 1;
+    public float shiledFireDuration = 3f;
 
     //[Header("==Vortex Controller==")]
     //public PlayerVortex playerVortex;
@@ -546,18 +550,30 @@ public class Player : Entity
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
         // when vortex is active
-        if (!vortexCollider.enabled) return;
-
-        // check if enemy projectile
-        if (collision.gameObject.TryGetComponent<Projectile>(out var projectile))
+        if (vortexCollider.enabled)
         {
-            // targeting player layer
-            if (projectile.attacking_layer == 6 && absorbedCount < maxAbsorbedProjectiles)
+
+            // check if enemy projectile
+            if (collision.gameObject.TryGetComponent<Projectile>(out var projectile))
             {
-                AbsorbProjectile(projectile.gameObject);
+                // targeting player layer
+                if (projectile.attacking_layer == 6 && absorbedCount < maxAbsorbedProjectiles)
+                {
+                    AbsorbProjectile(projectile.gameObject);
+                }
+            }
+        }
+        Debug.Log("Collided with " + collision.gameObject.name);
+        if (isShieldBlocking)
+        {
+            if (collision.gameObject.TryGetComponent<Enemy>(out var enemy))
+            {
+                Debug.Log("Applied shock from shield to enemy");
+                enemy.ApplyShockEffect(shiledShockDuration, shieldSlowDownStrength);
+                enemy.ApplyOnFireEffect(shiledFireDuration, shieldFireDamage);
             }
         }
     }

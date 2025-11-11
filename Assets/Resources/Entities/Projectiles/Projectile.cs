@@ -94,13 +94,13 @@ public abstract class Projectile : Entity
             return;
         }
     }
-    
+
     public override void EntityDie()
     {
         Destroy(gameObject);
     }
 
-    public void CollisionHit()
+    public virtual void CollisionHit()
     {
         collisionHit = true;
         spriteRenderer.enabled = false;

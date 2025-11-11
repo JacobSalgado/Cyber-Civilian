@@ -32,17 +32,4 @@ public class TrapFieldActive : State
     {
 
     }
-    
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        Debug.Log("Collided");
-        Debug.Log(collision.gameObject.name);
-        if (collision.gameObject.TryGetComponent<Entity>(out var entity))
-        {
-            if (!entity.invincibility)
-            {
-                entity.ApplyShockEffect(trapField.shockDuration, trapField.slowDownStrength);
-            }
-        }
-    }
 }

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 public class TrapShot : Projectile
 {
@@ -16,9 +17,15 @@ public class TrapShot : Projectile
         InitializeStates();
     }
 
-    public override void EntityDie()
+    public void DeployField()
     {
         Instantiate(trapField, transform.position, Quaternion.identity, LevelManager.current_level.EntityList.transform);
-        base.EntityDie();
+        Debug.Log("Trap Field Deployed");
+    }
+
+    public override void CollisionHit()
+    {
+        DeployField();
+        base.CollisionHit();
     }
 }

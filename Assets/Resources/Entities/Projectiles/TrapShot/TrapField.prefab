@@ -24,6 +24,18 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.1940547
       objectReference: {fileID: 0}
+    - target: {fileID: 3736020708952019976, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3736020708952019976, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -37308357
+      objectReference: {fileID: 0}
+    - target: {fileID: 3736020708952019976, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 4756910380638058606, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
       propertyPath: m_Simulated
       value: 1
@@ -145,10 +157,10 @@ MonoBehaviour:
   isShocked: 0
   spriteRenderer: {fileID: 6178760434096457476}
   trapCollider: {fileID: 5521207800876000039}
-  shockDuration: 10
-  slowDownStrength: 0.1
+  shockDuration: 3
+  slowDownStrength: 0.5
   fadeawayTime: 1
-  lifeTime: 20
+  lifeTime: 10
 --- !u!58 &5521207800876000039
 CircleCollider2D:
   m_ObjectHideFlags: 0

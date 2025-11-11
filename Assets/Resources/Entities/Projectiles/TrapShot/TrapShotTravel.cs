@@ -8,7 +8,8 @@ public class TrapShotTravel : State
 
     public TrapShotTravel(Entity new_entity) : base(new_entity)
     {
-        trapShot = (TrapShot) new_entity;
+        trapShot = (TrapShot)new_entity;
+        lifeTime = trapShot.projData.lifeTime;
     }
 
     public override void EnterState(Dictionary<string, object> args = null)
@@ -22,6 +23,7 @@ public class TrapShotTravel : State
 
         if (lifeTime <= 0f)
         {
+            trapShot.DeployField();
             trapShot.EntityDie();
             return;
         }

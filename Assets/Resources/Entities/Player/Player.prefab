@@ -575,7 +575,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4756910380638058606, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
-      value: 128
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6015804072438323913, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
       propertyPath: rb
@@ -1015,7 +1015,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -1153,6 +1153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d88bfa90b5a9dd244bce172ca6ee8d19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
+  animator: {fileID: 0}
   rigidBody: {fileID: 8349349828730560086}
   entityData: {fileID: 11400000, guid: 6c4ca02f294d5644bad555ee4509fd1b, type: 2}
   healthBar: {fileID: 0}
@@ -1174,10 +1175,6 @@ MonoBehaviour:
   - {fileID: 6079927618582836151, guid: c8233c8d0d70501499afc825f90b59e3, type: 3}
   - {fileID: 6079927618582836151, guid: 2c2734b3e85b12f4184223d76be8356c, type: 3}
   - {fileID: 6079927618582836151, guid: 948c04e971675fd4fbe3c311af92f0fa, type: 3}
-  invincibility: 0
-  isOnFire: 0
-  fireDamage: 1
-  slowDownFactor: 0.5
   isShocked: 0
   tr: {fileID: 6616881326347800582}
   spriteRenderer: {fileID: 145288011879166512}
@@ -1209,8 +1206,15 @@ MonoBehaviour:
   dashCost: 100
   phaseCost: 1
   shieldDrainRate: 50
+  shiledShockDuration: 5
+  shieldSlowDownStrength: 0.5
+  vortexRadius: 2
+  maxAbsorbedProjectiles: 10
+  damageMultiplierPerProjectile: 0.2
+  vortexDrainRate: 30
+  vortexVisualEffect: {fileID: 0}
+  rotationSpeed: 180
   isReloading: 0
-  playerVortex: {fileID: 0}
 --- !u!114 &7781527178466087580 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6494366698852611236, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}

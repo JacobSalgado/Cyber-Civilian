@@ -25,4 +25,17 @@ public class TrapField : Entity
     {
         Destroy(gameObject);
     }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("Collided");
+        Debug.Log(collision.gameObject.name);
+        if (collision.gameObject.TryGetComponent<Player>(out var player))
+        {
+            if (!player.invincibility)
+            {
+                player.ApplyShockEffect(shockDuration, slowDownStrength);
+            }
+        }
+    }
 }
