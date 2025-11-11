@@ -290,13 +290,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e49cb0386f8c8443a574deb8e5a485c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bullet
+  animator: {fileID: 0}
   rigidBody: {fileID: 3285818949574292676}
   entityData: {fileID: 0}
   healthBar: {fileID: 0}
   audioManager: {fileID: 3871620409039239182}
   audioEffects:
   - {fileID: 4887229539785942901, guid: 35485d6ccdbdddc4897973c0b3f9a7e2, type: 3}
-  invincibility: 0
+  isShocked: 0
   spriteRenderer: {fileID: 6648264329710098594}
   projectileCollider: {fileID: 3602502542450344892}
 --- !u!212 &6648264329710098594 stripped

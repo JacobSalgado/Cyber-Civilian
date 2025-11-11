@@ -24,6 +24,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.1940547
       objectReference: {fileID: 0}
+    - target: {fileID: 4756910380638058606, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
+      propertyPath: m_Simulated
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6344234565907112943, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
       propertyPath: m_Name
       value: TrapField
@@ -34,15 +38,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7121258720370068034, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.354
+      value: 3.687619
       objectReference: {fileID: 0}
     - target: {fileID: 7121258720370068034, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.354
+      value: 3.687619
       objectReference: {fileID: 0}
     - target: {fileID: 7121258720370068034, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.354
+      value: 3.687619
       objectReference: {fileID: 0}
     - target: {fileID: 7121258720370068034, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
       propertyPath: m_LocalPosition.x
@@ -141,10 +145,10 @@ MonoBehaviour:
   isShocked: 0
   spriteRenderer: {fileID: 6178760434096457476}
   trapCollider: {fileID: 5521207800876000039}
-  shockDuration: 5
-  slowDownStrength: 0.5
+  shockDuration: 10
+  slowDownStrength: 0.1
   fadeawayTime: 1
-  lifeTime: 5
+  lifeTime: 20
 --- !u!58 &5521207800876000039
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -175,7 +179,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0

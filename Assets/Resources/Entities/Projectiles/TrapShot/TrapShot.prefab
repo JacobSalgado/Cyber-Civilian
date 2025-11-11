@@ -21,16 +21,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 11b209451e4728e479b36e785a7abb82, type: 3}
     - target: {fileID: 799086666457626503, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 799086666457626503, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
       propertyPath: m_Color.b
-      value: 0.335849
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 799086666457626503, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
       propertyPath: m_Color.g
-      value: 0.335849
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 799086666457626503, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
       propertyPath: m_Color.r
-      value: 0.335849
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 799086666457626503, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
       propertyPath: m_WasSpriteAssigned
@@ -134,7 +138,8 @@ MonoBehaviour:
   entityData: {fileID: 0}
   healthBar: {fileID: 0}
   audioManager: {fileID: 5834250468036069182}
-  audioEffects: []
+  audioEffects:
+  - {fileID: 3572093515493467742, guid: ccf81f74653d68248a1ba902f3ac707f, type: 3}
   isShocked: 0
   spriteRenderer: {fileID: 4111444457807194002}
   projectileCollider: {fileID: 4875203180298447445}
@@ -169,7 +174,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0

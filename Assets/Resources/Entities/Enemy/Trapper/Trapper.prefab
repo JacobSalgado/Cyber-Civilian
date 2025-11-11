@@ -468,13 +468,17 @@ MonoBehaviour:
   entityData: {fileID: 11400000, guid: 29bf5c85914a9c740acc47da3289496a, type: 2}
   healthBar: {fileID: 5632614513543846834}
   audioManager: {fileID: 8904659477835846501}
-  audioEffects: []
+  audioEffects:
+  - {fileID: 6079927618582836151, guid: db95ce05cfd70d543a2c26334f0b4a5d, type: 3}
+  - {fileID: 6079927618582836151, guid: d02765199b5ea62479e35d951816d46a, type: 3}
+  - {fileID: 6079927618582836151, guid: df7acd9fd5e31154e9a80473bee1c2c3, type: 3}
+  - {fileID: 6079927618582836151, guid: 12e29c631b6937344924fe7bac51f8da, type: 3}
   isShocked: 0
   firePoint: {fileID: 7286729672604182}
-  weapon: {fileID: 0}
+  weapon: {fileID: 16432950934994515, guid: c44a80ce322cf4b48886e38cb9b6a719, type: 3}
   canvas: {fileID: 1488475855081233014}
-  distanceToShoot: 9
-  distanceToMove: 15
+  distanceToShoot: 8
+  distanceToMove: 11
 --- !u!114 &8904659477835846501 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7090025075723263508, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}

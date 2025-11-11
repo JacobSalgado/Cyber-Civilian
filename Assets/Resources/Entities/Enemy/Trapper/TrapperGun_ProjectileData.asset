@@ -17,7 +17,7 @@ MonoBehaviour:
   moveSpeed: 20
   damage: 10
   hitEffect: {fileID: 6996612073667387790, guid: 73dd775d02fe8ef4cab1bbcfb652c45c, type: 3}
-  lifeTime: 0
+  lifeTime: 20
   timeToSpawn: 0
   destroyOnCollision: 1
   railshotLength: 0
