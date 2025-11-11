@@ -118,15 +118,24 @@ public class Weapon : MonoBehaviour
         if (fireAction.action.IsPressed())
         {
             fireTimer -= Time.deltaTime;
-            // Debug.Log(fireTimer); // testing how firetimer works
             if (fireTimer <= 0f)
             {
                 fireTimer += 1f / fireRate;
                 ShootProjectile(firePoint, collision_layer);
 
-                if (fireSFX.Length > 0)
-                    owner.audioManager.PlayAudioSource(fireSFX);
+                float startTime = 0.0f;
+                if (fireSFX.Equals("FlamethrowerFire"))
+                    startTime = 0.85f;
+
+                owner.audioManager.PlayAudioSource(fireSFX, startTime);
             }
+        }
+        
+        if (fireAction.action.WasReleasedThisFrame() && fireSFX.Equals("FlamethrowerFire"))
+        {
+            owner.audioManager.PauseAudioSource(fireSFX);
+            float startTime = 5.2f;
+            owner.audioManager.PlayAudioSource(fireSFX, startTime);
         }
     }
 

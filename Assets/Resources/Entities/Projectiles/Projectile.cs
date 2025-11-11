@@ -70,7 +70,7 @@ public abstract class Projectile : Entity
         }
 
         // Level Collision
-        if (collision.gameObject.layer == 0 && projData.destroyOnCollision)
+        if ((collision.gameObject.layer == 0 && projData.destroyOnCollision) || collision.gameObject.layer == 9)
         {
             //print(collision.gameObject.name);            
             HitEffect(transform.position);

@@ -23,11 +23,16 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlayAudioSource(string name)
+    public void PlayAudioSource(string name, float startTime = 0.0f)
     {
         AudioSource player = GetAudioSource(name);
-        if (player != null)
+        if (player == null) return;
+
+        if (startTime == 0.0f || (startTime > 0 && !player.isPlaying))
+        {
+            player.time = startTime;
             player.Play();
+        }
     }
 
     public void PauseAudioSource(string name)

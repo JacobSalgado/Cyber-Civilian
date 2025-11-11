@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: -3736538713012353100, guid: a788ba907d79d1e49a2f38412bff1ca8, type: 3}
       propertyPath: clip
       value: 
-      objectReference: {fileID: 8300000, guid: 33b90567e54a08842af7a320bce265a2, type: 3}
+      objectReference: {fileID: 8300000, guid: 4d118586ba73727409b39d58121c5802, type: 3}
     - target: {fileID: -3736538713012353100, guid: a788ba907d79d1e49a2f38412bff1ca8, type: 3}
       propertyPath: volume
       value: 0.6

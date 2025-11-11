@@ -54,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4620524579252194416, guid: 44f83fffe9635974e91eced60e11c4c8, type: 3}
       propertyPath: maxAmmo
-      value: 300
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 4620524579252194416, guid: 44f83fffe9635974e91eced60e11c4c8, type: 3}
       propertyPath: ammoCost
@@ -73,12 +73,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1102866200625886065, guid: 787fe6df1b0d30d41b1eca6c373908b8, type: 3}
     - target: {fileID: 4620524579252194416, guid: 44f83fffe9635974e91eced60e11c4c8, type: 3}
+      propertyPath: reloadTime
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4620524579252194416, guid: 44f83fffe9635974e91eced60e11c4c8, type: 3}
       propertyPath: currentAmmo
-      value: 300
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 4620524579252194416, guid: 44f83fffe9635974e91eced60e11c4c8, type: 3}
       propertyPath: infiniteAmmo
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4620524579252194416, guid: 44f83fffe9635974e91eced60e11c4c8, type: 3}
+      propertyPath: reloadAmount
+      value: 170
       objectReference: {fileID: 0}
     - target: {fileID: 4620524579252194416, guid: 44f83fffe9635974e91eced60e11c4c8, type: 3}
       propertyPath: weaponSprite
