@@ -6,8 +6,14 @@ public class CyberBossTravel: State
 {
     readonly CyberBoss cyberBoss;
 
-    private float checkInterval = 0.5f;
-    private float nextCheckTime;
+    //private float checkInterval = 0.5f;
+    //private float nextCheckTime;
+
+    private const float timeToStep = 0.3f;
+
+    private Vector2 directionToTarget;
+    private float deltaCount = 0f;
+    int stepCounter = 1;
 
     public CyberBossTravel(Entity new_entity) : base(new_entity)
     {
@@ -16,55 +22,57 @@ public class CyberBossTravel: State
 
     public override void EnterState(Dictionary<string, object> args = null)
     {
-        base.EnterState(args);
-        nextCheckTime = Time.time + checkInterval;
+        deltaCount = 0f;
+        stepCounter = 1;
     }
 
     public override void UpdateState()
     {
-        if (cyberBoss.Target == null)
+        if (cyberBoss.target == null)
         {
-            cyberBoss.ChangeState("Idle");
+            Debug.LogError("target not found");
             return;
         }
 
-        float distanceToTarget = cyberBoss.GetDistanceToTarget();
+        deltaCount += Time.deltaTime;
 
-        // move to target player
-        cyberBoss.MoveTowardsTarget();
-
-        // checks if we should switch states
-        if (Time.time >= nextCheckTime)
+        if (cyberBoss.PlayFootsteps(deltaCount, timeToStep, stepCounter))
         {
-            nextCheckTime = Time.time + checkInterval;
+            deltaCount = 0f;
+            stepCounter++;
+            if (stepCounter > 3) stepCounter = 1;
+        }
 
-            if (distanceToTarget <= cyberBoss.StompRange && cyberBoss.CanStompAttack())
+        float distance = cyberBoss.GetDistanceToTarget();
+        if (distance > -1f)
+        {
+            if (distance < cyberBoss.distanceToHit)
             {
-                cyberBoss.ChangeState("StompAttack");
+                cyberBoss.ChangeState("Punch");
                 return;
             }
-
-            if (distanceToTarget <= cyberBoss.AttackRange && cyberBoss.CanMissileAttack())
+            else if (distance < cyberBoss.distanceToShoot)
             {
-                // 60% chance to launch missile attack, 40% chance to keep traveling closer
-                if (Random.value > 0.4f)
-                {
-                    cyberBoss.ChangeState("MissileAttack");
-                    return;
-                }
-            }
-
-            if (distanceToTarget <= cyberBoss.StopDistance)
-            {
-                cyberBoss.ChangeState("Idle");
+                cyberBoss.ChangeState("Missile");
                 return;
             }
+            else if (distance < cyberBoss.distanceToStomp)
+            {
+                cyberBoss.ChangeState("Stomp");
+                return;
+            }
+            else if (distance < cyberBoss.distanceToMove)
+            {
+                directionToTarget = cyberBoss.GetDirectionToPosition(cyberBoss.target.transform.position);
+                cyberBoss.RotateToDirection(directionToTarget);
+                cyberBoss.rigidBody.linearVelocity = directionToTarget * cyberBoss.entityData.moveSpeed;
+            }
+            else cyberBoss.ChangeState("Idle");
         }
     }
 
     public override void ExitState(Dictionary<string, object> args = null)
     {
-        cyberBoss.StopMovement();
         base.ExitState(args);
     }
 }

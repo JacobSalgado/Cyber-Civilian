@@ -278,7 +278,7 @@ public class Player : Entity
                 canVortexBlock = true;
                 isVortexBlocking = false;
 
-                DeactivateVortex();
+                //DeactivateVortex();
 
                 EquipNewWeapon(previousWeaponType);
             }
