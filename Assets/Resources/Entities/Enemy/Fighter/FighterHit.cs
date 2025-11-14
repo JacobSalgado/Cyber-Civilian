@@ -27,12 +27,16 @@ public class FighterHit : State
 
         fighter.rigidBody.linearVelocity = Vector2.zero;
 
+        // TODO - possibly include dashing quickly at the player (can be added during rage mode)
+
         float distance = fighter.GetDistanceToTarget();
         if (distance < fighter.distanceToHit)
         {
             Vector2 dir = fighter.GetDirectionToPosition(fighter.target.gameObject.transform.position);
             fighter.RotateToDirection(dir);
             fighter.ShootWeapon(fighter.weapon, null, fighter.firePoint, 7);
+
+            // make it so the punch pushes the player as well
         }
         else if (distance < fighter.distanceToMove)
             fighter.StartCoroutine(MoveAfterDelay());

@@ -55,6 +55,7 @@ public class Player : Entity
     public int maxEnergy = 1000;
     public int energyRegen = 1;
     public int dashCost = 100;
+    public int vortexCost = 20; // when hit by projectiles
     public int phaseCost = 50;
     private const float timeToCharge = 0.25f;
 
@@ -66,9 +67,10 @@ public class Player : Entity
 
     [Header("==Vortex Properties==")]
     public float vortexRadius = 2f;
-    public int maxAbsorbedProjectiles = 10;
+    public int maxAbsorbedProjectiles = 25; // if it exceeds 25, vortex will explode and player will take damage
     public float damageMultiplierPerProjectile = 0.2f;
     public float vortexDrainRate = 30f; // Energy drained per second
+
 
     [Header("==Visual Effects==")]
     public GameObject vortexVisualEffect;
@@ -76,6 +78,8 @@ public class Player : Entity
 
     private List<Projectile> absorbedProjectiles = new List<Projectile>();
     private int absorbedCount = 0;
+    //private int absorbedTotal = 0;
+    //private int vortexExplodeLimit = 20;
     private GameObject activeVortexEffect;
     private CircleCollider2D vortexCollider;
 
@@ -84,11 +88,14 @@ public class Player : Entity
     [NonSerialized] public PlayerData playerData;
     [NonSerialized] public Slider resourceMeter;
     [NonSerialized] public TextMeshProUGUI ammoCount;
+    [NonSerialized] public TextMeshProUGUI vortexMultiplier;
     [NonSerialized] public bool updatePlayer = false;
     [NonSerialized] public Dictionary<string, object> updateArgs;
     [NonSerialized] public float damagedTimer = 0f;
     [NonSerialized] public float damagedTime = 0f;
     [NonSerialized] public int ammo;
+    [NonSerialized] public Vector2 pushedVelocity; // pushed velocity
+    [NonSerialized] public Vector2 moveVelocity = Vector2.zero; // how much player will move
     private Vector2 mousePos;
     public bool isReloading = false;
     // private float reloadTimer = 0f;
@@ -100,6 +107,12 @@ public class Player : Entity
     private bool isVortexBlocking = false;
 
     private PlayerWeaponType previousWeaponType;
+
+
+    // other push-related properties
+    public bool pushed = false;
+    const float PUSHED_TIME = 0.5f;
+    float pushTimer = 0f;
 
     public override void InitializeStates()
     {
@@ -148,6 +161,26 @@ public class Player : Entity
         vortexCollider.radius = vortexRadius;
         vortexCollider.isTrigger = true;
         vortexCollider.enabled = false; // Initially disabled
+
+        // check push timing from cyberboss
+        /*if (pushed)
+        {
+            pushTimer += Time.deltaTime;
+
+            // decrease push velocity
+            rigidBody.linearVelocity = pushedVelocity;
+            pushedVelocity *= 0.85f;
+
+            if (pushTimer > PUSHED_TIME)
+            {
+                pushTimer = 0f;
+                pushed = false;
+            }
+        }
+        else
+        {
+            rigidBody.linearVelocity = moveVelocity;
+        }*/
     }
 
     void Update()
@@ -221,7 +254,7 @@ public class Player : Entity
         }
 
         // check fire inputs
-        if (currentWeaponType < PlayerWeaponType.NONE && !isShieldBlocking & !isReloading)
+        if (currentWeaponType < PlayerWeaponType.NONE && !isShieldBlocking & !isReloading && !isVortexBlocking)
             ShootWeapon(weapons[(int)currentWeaponType], fireAction, firePoint, 6);
 
         // check dash inputs
@@ -273,15 +306,16 @@ public class Player : Entity
         // check vortex inputs
         if (vortexAction.action.WasPressedThisFrame())
         {
+            // deactive vortex and go back to previous weapon
             if (isVortexBlocking)
             {
                 canVortexBlock = true;
-                isVortexBlocking = false;
 
-                //DeactivateVortex();
+                DeactivateVortex();
 
                 EquipNewWeapon(previousWeaponType);
             }
+            // activate vortex (switch from weapon to vortex shield)
             else if (canVortexBlock && !isVortexBlocking)
             {
                 previousWeaponType = currentWeaponType;
@@ -290,7 +324,6 @@ public class Player : Entity
                 isVortexBlocking = true;
 
                 ActivateVortex();
-                EquipVortex();
             }
         }
 
@@ -323,6 +356,7 @@ public class Player : Entity
             }
         }
 
+        // vortex equipped
         if (isVortexBlocking)
         {
             //float drainAmount = playerVortex != null ? playerVortex.GetVortexDrainRate() : 30f;
@@ -346,6 +380,7 @@ public class Player : Entity
         // UI updates
         UpdateResourceMeter();
         UpdateAmmoCount();
+        UpdateVortexMultiplier();
 
         // rotate visual effect for vortex
         if (activeVortexEffect != null)
@@ -382,6 +417,11 @@ public class Player : Entity
     public void UpdateAmmoCount()
     {
         if (ammoCount && currentWeapon) ammoCount.text = $"({currentWeapon.currentAmmo}/{currentWeapon.maxAmmo})";
+    }
+
+    public void UpdateVortexMultiplier()
+    {
+        vortexMultiplier.text = "Vortex Multiplier Damage: " + GetDamageMultiplier();
     }
 
     private void ShieldStart()
@@ -472,7 +512,9 @@ public class Player : Entity
         isDashing = new_isDashing;
     }
 
-    // Shield Functions
+    // ============================
+    // SHIELD FUNCTIONS
+    // ============================
     public void EquipShield()
     {
         // change weaponrenderer sprite to a shield sprite
@@ -494,12 +536,9 @@ public class Player : Entity
         isShieldBlocking = new_isShieldBlocking;
     }
 
-    // Vortex Functions
-    public void EquipVortex()
-    {
-        // change weaponrenderer sprite to a vortex sprite
-        weaponRenderer.sprite = vortexSprite;
-    }
+    // ===========================
+    //      Vortex Functions
+    // ===========================
 
     public bool getIsVortexBlocking()
     {
@@ -508,8 +547,14 @@ public class Player : Entity
 
     public void ActivateVortex()
     {
+        // change weapon sprite to vortex shield sprite
+        weaponRenderer.sprite = vortexSprite; // equip vortex barrier
+        previousWeaponType = currentWeaponType;
+
+        isVortexBlocking = true;
+        
         vortexCollider.enabled = true;
-        absorbedCount = 0;
+        //absorbedCount = 0;
         absorbedProjectiles.Clear();
 
         // create visual effect
@@ -530,6 +575,9 @@ public class Player : Entity
         {
             Destroy(activeVortexEffect);
         }
+        isVortexBlocking = false;
+        canVortexBlock = true;
+        EquipNewWeapon(previousWeaponType); // go back to weapon player was previously holding
 
         Debug.Log("Vortex deactivated");
     }
@@ -546,25 +594,19 @@ public class Player : Entity
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        // when vortex is active
-        if (!vortexCollider.enabled) return;
-
-        // check if enemy projectile
-        if (collision.gameObject.TryGetComponent<Projectile>(out var projectile))
-        {
-            // targeting player layer
-            if (projectile.attacking_layer == 6 && absorbedCount < maxAbsorbedProjectiles)
-            {
-                AbsorbProjectile(projectile.gameObject);
-            }
-        }
-    }
-
-    private void AbsorbProjectile(GameObject projectile)
+    public void AbsorbProjectile(GameObject projectile)
     {
         absorbedCount++;
+        //absorbedTotal++;
+
+        // make a limit to how much can be absorbed and make the player take damage if it exceeds the limit
+        if (absorbedCount > maxAbsorbedProjectiles)
+        {
+            // put player taking damage here:
+            TakeDamage(100);
+            ResetAbsorbedCount();
+            DeactivateVortex();
+        }
 
         // add visual/audio feedback
 

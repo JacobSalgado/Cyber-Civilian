@@ -237,7 +237,7 @@ public class Weapon : MonoBehaviour
         { 
             int absorbedCount = player.GetAbsorbedCount();
 
-            if (absorbedCount >= 0)
+            if (absorbedCount >= 0 && player.getIsVortexBlocking())
             { 
                 // Apply damage multiplier
                 float multiplier = player.GetDamageMultiplier();

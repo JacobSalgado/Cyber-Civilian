@@ -6,7 +6,8 @@ public class CyberBoss : Enemy
 {
     [Header("==Cyber Boss Properties==")]
     public SpriteRenderer spriteRenderer;
-    public CapsuleCollider2D capsuleCollider2D;
+    public Stomp stomp;
+
     public float distanceToShoot; // missile attack
     public float distanceToMove; // travel
     public float distanceToHit; // exploding punch attack

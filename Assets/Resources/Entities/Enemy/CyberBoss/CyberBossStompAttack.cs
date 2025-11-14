@@ -5,9 +5,10 @@ using Unity.VisualScripting.FullSerializer;
 public class CyberBossStompAttack: State
 {
     readonly CyberBoss cyberBoss;
+    public Stomp stomp;
 
-    private const float TTL = 0.3f;
-    private float timer = 0f;
+    //private const float TTL = 0.3f;
+    //private float timer = 0f;
 
     [SerializeField] CircleCollider2D aoeCollider;
     [SerializeField] private float shockwaveSpeed = 10f;
@@ -26,80 +27,30 @@ public class CyberBossStompAttack: State
     public CyberBossStompAttack(Entity new_entity) : base(new_entity)
     {
         cyberBoss = (CyberBoss) new_entity;
+        //aoeCollider = cyberBoss.capsuleCollider2D;
+
+       // stomp = cyberBoss.stomp;
+
     }
 
     public override void EnterState(Dictionary<string, object> args = null)
     {
-        base.EnterState(args);
-
-        aoeCollider.enabled = false;
-        isShockwaveActive = false;
-        currentRadius = 0f;
-
-        EmitStomp(); // stomp happens upon entering
+        cyberBoss.rigidBody.linearVelocity = Vector2.zero;
+        cyberBoss.stomp.EmitPush();
     }
 
     public override void UpdateState()
     {
-        cyberBoss.rigidBody.linearVelocity = Vector2.zero; // cyberboss stays still
-
-        if (isShockwaveActive)
-        { 
-            // expand the shockwave
-            currentRadius += shockwaveSpeed * Time.deltaTime;
-            aoeCollider.radius = currentRadius;
-
-            // stop when reached max radius
-            if (currentRadius >= maxShockwaveRadius)
-            {
-                isShockwaveActive = false;
-                aoeCollider.enabled = false;
-                // hitTargets.Clear();
-            }
-        }
-
-        /*if (aoeCollider.enabled)
+        if (!cyberBoss.stomp.aoeCollider.enabled)
         {
-            timer += Time.deltaTime;
-            if (timer > TTL)
-            {
-                timer = 0f;
-                aoeCollider.enabled = false;
-            }
-        }*/
+            cyberBoss.ChangeState("Idle");
+       }
     }
 
-    public void EmitStomp()
-    {
-        // enable aoe collider
-        //if (!aoeCollider.enabled) 
-        //    aoeCollider.enabled = true;
-
-        if (!isShockwaveActive)
-        {
-            isShockwaveActive = true;
-            currentRadius = 0.5f; // start with small radius
-            aoeCollider.radius = currentRadius;
-            aoeCollider.enabled = true;
-        }
-    }
-
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        // initialize stomp velocity - looking for player
-        if (collision.gameObject.TryGetComponent<Player>(out var player))
-        {
-            player.pushed = true; // player has been pushed
-            Vector2 pushDirection = player.GetDirectionToPosition(cyberBoss.transform.position);
-            player.pushedVelocity = pushForce * pushDirection;
-        }
-    }
 
     public override void ExitState(Dictionary<string, object> args = null)
     {
-        base.ExitState(args);
-        isShockwaveActive = false;
-        aoeCollider.enabled = false;
+
     }
 
 }

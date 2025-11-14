@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f178c92934891fc41a88f78970ce1529, type: 3}
-  m_Name: CyberBoss_ProjectileData
+  m_Name: HomingMissile_ProjectileData
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileData
   currentHealth: 0
   maxHealth: 0
   moveSpeed: 0
-  damage: 80
+  damage: 120
   hitEffect: {fileID: 6996612073667387790, guid: 73dd775d02fe8ef4cab1bbcfb652c45c, type: 3}
-  lifeTime: 0.12
-  timeToSpawn: 0
+  lifeTime: 0.25
+  timeToSpawn: 1.75
   destroyOnCollision: 0
-  railshotLength: 0
-  fadeawayTime: 0
+  railshotLength: 20
+  fadeawayTime: 0.15
   homing: 1
-  rotateSpeed: 10
+  rotateSpeed: 300
   trackingStrength: 5
   setsOnFire: 0
   burnDuration: 0

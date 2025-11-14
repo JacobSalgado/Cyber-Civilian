@@ -53,6 +53,8 @@ public abstract class Entity : StateManager
         {
             TakeDamage(fireDamage);
         }
+
+        print(current_state);
     }
 
     /* GENERAL ENTITY FUNCTIONS */
