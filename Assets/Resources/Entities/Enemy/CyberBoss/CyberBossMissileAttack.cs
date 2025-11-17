@@ -1,5 +1,6 @@
-using UnityEngine;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
 
 public class CyberBossMissileAttack: State
 {
@@ -38,6 +39,20 @@ public class CyberBossMissileAttack: State
         }
 
         cyberBoss.ShootWeapon(cyberBoss.weapon, null, cyberBoss.firePoint, 7);
+
+
+        // --- Change States After Attack ---
+        
+        if (distanceToTarget < cyberBoss.distanceToMove)
+        {
+            cyberBoss.ChangeState("Travel");
+            return;
+        }
+        else
+        {
+            cyberBoss.ChangeState("Idle");
+            return;
+        }
     }
 
     public override void ExitState(Dictionary<string, object> args = null)

@@ -36,17 +36,17 @@ public class CyberBossPunchAttack : State
         }
         else if (distance < cyberBoss.distanceToMove)
         {
-            cyberBoss.StartCoroutine(MoveAfterDelay());
+            cyberBoss.ChangeState("Travel");
         }
         else
         {
-            cyberBoss.ChangeState("Idle");
+            cyberBoss.ChangeState("Travel");
         }
     }
 
-    private IEnumerator MoveAfterDelay()
+    /*private IEnumerator MoveAfterDelay()
     {
         yield return new WaitForSeconds(0.5f);
         cyberBoss.ChangeState("Move");
-    }
+    }*/
 }

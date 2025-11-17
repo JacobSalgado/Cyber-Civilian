@@ -268,8 +268,10 @@ MonoBehaviour:
   stomp: {fileID: 7418802895093423458}
   distanceToShoot: 10
   distanceToMove: 25
-  distanceToHit: -1
+  distanceToHit: 2
   distanceToStomp: 15
+  seePlayerTimer: 0
+  timeToSeePlayer: 1
 --- !u!70 &3464978359531780074
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

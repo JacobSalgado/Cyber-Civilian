@@ -43,10 +43,15 @@ public class CyberBossTravel: State
             if (stepCounter > 3) stepCounter = 1;
         }
 
+        //if (!cyberBoss.HasSeenPlayerLongEnough)
+        //{
+        //    cyberBoss.ChangeState("Idle");
+        //    return;
+        //}
+
         float distance = cyberBoss.GetDistanceToTarget();
-        if (distance > -1f)
-        {
-            if (distance < cyberBoss.distanceToHit)
+        
+            if (distance <= cyberBoss.distanceToHit)
             {
                 cyberBoss.ChangeState("Punch");
                 return;
@@ -68,7 +73,7 @@ public class CyberBossTravel: State
                 cyberBoss.rigidBody.linearVelocity = directionToTarget * cyberBoss.entityData.moveSpeed;
             }
             else cyberBoss.ChangeState("Idle");
-        }
+        
     }
 
     public override void ExitState(Dictionary<string, object> args = null)

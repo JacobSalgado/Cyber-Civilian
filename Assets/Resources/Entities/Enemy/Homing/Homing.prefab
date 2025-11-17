@@ -89,11 +89,8 @@ MonoBehaviour:
   slowDownFactor: 0
   isShocked: 0
   firePoint: {fileID: 9067754228479286182}
-  weapon: {fileID: 321702182344287646}
+  weapon: {fileID: 6894637301577557660, guid: 3010bdca4c2402f4fae32d66d3442f03, type: 3}
   canvas: {fileID: 0}
-  homingSpeed: 5
-  rotationSpeed: 180
-  detectionRange: 10
   distanceToShoot: 6
   distanceToMove: 2
 --- !u!50 &2197234482957794847 stripped
