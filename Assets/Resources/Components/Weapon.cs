@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -107,6 +107,31 @@ public class Weapon : MonoBehaviour
                         isCharging = false;
                         fireTimer = 0f;
                     }
+
+                    break;
+
+                case FireMode.LOCK_ON:
+                    /*if (!isCharging)
+                    {
+                        isCharging = true;
+                        fireTimer = 0f;
+                        // put audiomanager here
+                    }
+
+                    if (isCharging) fireTimer += Time.deltaTime;
+
+                    if (fireTimer >= projData.timeToSpawn)
+                    {
+                        ShootProjectile(firePoint, collision_layer);
+                        ShootProjectile(firePoint, collision_layer);
+                        ShootProjectile(firePoint, collision_layer);
+                        // audiomanager here
+                        isCharging = false;
+                        fireTimer = 0f;
+                    }*/
+
+                    Missile missile = (Missile) ShootProjectile(firePoint, collision_layer);
+                    missile.target = LevelManager.player.gameObject.transform;
 
                     break;
             }
@@ -248,7 +273,7 @@ public class Weapon : MonoBehaviour
         { 
             int absorbedCount = player.GetAbsorbedCount();
 
-            if (absorbedCount > 0)
+            if (absorbedCount >= 0 && player.getIsVortexBlocking())
             { 
                 // Apply damage multiplier
                 float multiplier = player.GetDamageMultiplier();

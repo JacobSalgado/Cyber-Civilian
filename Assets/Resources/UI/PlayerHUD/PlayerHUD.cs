@@ -8,6 +8,7 @@ public class PlayerHUD : MonoBehaviour
     public Slider healthSlider;
     public Slider resourceSlider;
     public TextMeshProUGUI ammoCountText;
+    public TextMeshProUGUI vortexMultiplierText;
 
     /*
     TODO:

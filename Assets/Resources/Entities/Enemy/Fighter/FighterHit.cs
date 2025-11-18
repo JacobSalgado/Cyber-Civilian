@@ -26,6 +26,8 @@ public class FighterHit : State
 
         fighter.moveVelocity = Vector2.zero;
 
+        // TODO - possibly include dashing quickly at the player (can be added during rage mode)
+
         float distance = fighter.GetDistanceToTarget();
         if (distance < fighter.distanceToHit)
         {
