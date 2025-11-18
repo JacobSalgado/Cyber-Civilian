@@ -8,6 +8,8 @@ public class CyberBoss : Enemy
     public SpriteRenderer spriteRenderer;
     public Stomp stomp;
 
+    public GameObject[] weaponsList;
+
     public float distanceToShoot = 10f; // missile attack
     public float distanceToMove = 25f; // travel
     public float distanceToHit = 2f; // exploding punch attack

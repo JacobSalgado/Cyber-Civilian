@@ -111,6 +111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Stomp
   aoeCollider: {fileID: 8935194537158849570}
   force: 1
+  rigidbody2D: {fileID: 423815992907518796}
 --- !u!1001 &1337654423169088360
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -266,6 +267,10 @@ MonoBehaviour:
   canvas: {fileID: 2292065971395210351}
   spriteRenderer: {fileID: 1805163559450772944}
   stomp: {fileID: 7418802895093423458}
+  weaponsList:
+  - {fileID: 6579814461523234674, guid: a6dd45164a0575a4c9c660b661d68099, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
   distanceToShoot: 10
   distanceToMove: 25
   distanceToHit: 2

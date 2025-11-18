@@ -8,10 +8,14 @@ public class Stomp : MonoBehaviour
     public CircleCollider2D aoeCollider;
     [SerializeField] float force = 1f;
 
+    public Rigidbody2D rigidbody2D;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         aoeCollider.enabled = false;    
+
+        rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -25,8 +29,11 @@ public class Stomp : MonoBehaviour
             {
                 timer = 0f;
                 aoeCollider.enabled = false;
+                rigidbody2D.linearVelocity = new Vector2(20, 10);
             }
         }
+
+        
     }
 
     public void EmitPush()
@@ -42,6 +49,7 @@ public class Stomp : MonoBehaviour
         {
             //player.pushed = true;
             Vector2 pushDirection = player.GetDirectionToPosition(gameObject.transform.position);
+            player.TakeDamage(200); // make player take damage if stomp aoe collides with them
             //player.pushedVelocity = -force * pushDirection;
         }
     }

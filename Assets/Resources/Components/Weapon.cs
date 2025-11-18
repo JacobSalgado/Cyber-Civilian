@@ -129,7 +129,10 @@ public class Weapon : MonoBehaviour
                         isCharging = false;
                         fireTimer = 0f;
                     }*/
-                    ShootProjectile(firePoint, collision_layer);
+
+                    Missile missile = (Missile) ShootProjectile(firePoint, collision_layer);
+                    missile.target = LevelManager.player.gameObject.transform;
+
                     break;
             }
         }

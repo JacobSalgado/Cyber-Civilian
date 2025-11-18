@@ -93,8 +93,8 @@ MonoBehaviour:
   isShocked: 0
   firePoint: {fileID: 9067754228479286182}
   weapon: {fileID: 6894637301577557660, guid: 3010bdca4c2402f4fae32d66d3442f03, type: 3}
-  canvas: {fileID: 0}
-  spriteRenderer: {fileID: 0}
+  canvas: {fileID: 7595005997977222086}
+  spriteRenderer: {fileID: 8044791079203639929}
   capsuleCollider: {fileID: 8284027357278030350}
   distanceToShoot: 10
   distanceToMove: 15
@@ -162,6 +162,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
+--- !u!1 &7595005997977222086 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 963559520040949511, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+  m_PrefabInstance: {fileID: 7221981530428026049}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &8044791079203639929 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 836956141584006840, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+  m_PrefabInstance: {fileID: 7221981530428026049}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9067754228479286182 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1868575608633948007, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}

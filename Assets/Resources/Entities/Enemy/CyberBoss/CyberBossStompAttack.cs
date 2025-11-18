@@ -5,7 +5,7 @@ using Unity.VisualScripting.FullSerializer;
 public class CyberBossStompAttack: State
 {
     readonly CyberBoss cyberBoss;
-    public Stomp stomp;
+    //public Stomp stomp;
 
     //private const float TTL = 0.3f;
     //private float timer = 0f;
