@@ -13,10 +13,10 @@ public abstract class Entity : StateManager
     public Slider healthBar;
     public AudioManager audioManager;
     public AudioEffect[] audioEffects;
-    public bool invincibility = false;
-    public bool isOnFire = false;
-    public int fireDamage;
-    public float slowDownFactor;
+    [NonSerialized] public bool invincibility = false;
+    [NonSerialized] public bool isOnFire = false;
+    [NonSerialized] public int fireDamage;
+    [NonSerialized] public float slowDownFactor;
     public bool isShocked = false;
     private float originalMoveSpeed;
 

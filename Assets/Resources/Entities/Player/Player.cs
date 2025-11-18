@@ -64,7 +64,11 @@ public class Player : Entity
     private const float timeToCharge = 0.25f;
 
     [Header("==Blocking Properties==")]
-    public int shieldDrainRate = 50;
+    public float shieldDrainRate = 50f;
+    public float shiledShockDuration = 2f;
+    public float shieldSlowDownStrength = 0.5f;
+    public int shieldFireDamage = 1;
+    public float shiledFireDuration = 3f;
 
     //[Header("==Vortex Controller==")]
     //public PlayerVortex playerVortex;
@@ -627,6 +631,37 @@ public class Player : Entity
         Debug.Log($"Absorbed projectile! Count: {absorbedCount}");
     }
 
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        // when vortex is active
+        if (vortexCollider.enabled)
+        {
+            // check if enemy projectile
+            if (collision.gameObject.TryGetComponent<Projectile>(out var projectile))
+            {
+                // targeting player layer
+                if (projectile.attacking_layer == 6 && absorbedCount < maxAbsorbedProjectiles)
+                {
+                    AbsorbProjectile(projectile.gameObject);
+                }
+            }
+        }
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("Collided with " + collision.gameObject.name);
+        if (isShieldBlocking)
+        {
+            if (collision.gameObject.TryGetComponent<Enemy>(out var enemy))
+            {
+                Debug.Log("Applied shock from shield to enemy");
+                enemy.ApplyShockEffect(shiledShockDuration, shieldSlowDownStrength);
+                enemy.ApplyOnFireEffect(shiledFireDuration, shieldFireDamage);
+            }
+        }
+    }
+    
     public float GetDamageMultiplier()
     {
         float multiplier = 1f + (absorbedCount * damageMultiplierPerProjectile);

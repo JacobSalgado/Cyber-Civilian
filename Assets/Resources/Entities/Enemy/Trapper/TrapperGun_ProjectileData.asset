@@ -10,24 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f178c92934891fc41a88f78970ce1529, type: 3}
-  m_Name: PlasmaRevolver_Data
+  m_Name: TrapperGun_ProjectileData
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileData
   currentHealth: 0
   maxHealth: 0
-  moveSpeed: 35
-  damage: 100
+  moveSpeed: 20
+  damage: 10
   hitEffect: {fileID: 6996612073667387790, guid: 73dd775d02fe8ef4cab1bbcfb652c45c, type: 3}
-  lifeTime: 0
+  lifeTime: 3
   timeToSpawn: 0
   destroyOnCollision: 1
-  railshotLength: 10
-  fadeawayTime: 1
+  railshotLength: 0
+  fadeawayTime: 0
   homing: 0
   rotateSpeed: 0
   trackingStrength: 0
   setsOnFire: 0
   burnDuration: 0
   burnDamage: 0
-  shocks: 1
-  shockDuration: 5
-  slowDownFactor: 0.1
+  shocks: 0
+  shockDuration: 0
+  slowDownFactor: 0

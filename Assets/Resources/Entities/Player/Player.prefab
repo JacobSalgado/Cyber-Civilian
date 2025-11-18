@@ -575,7 +575,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4756910380638058606, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
-      value: 128
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6015804072438323913, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
       propertyPath: rb
@@ -1219,6 +1219,10 @@ MonoBehaviour:
   phaseCost: 1
   pushCost: 200
   shieldDrainRate: 50
+  shiledShockDuration: 5
+  shieldSlowDownStrength: 0.5
+  shieldFireDamage: 1
+  shiledFireDuration: 3
   vortexRadius: 2
   maxAbsorbedProjectiles: 10
   damageMultiplierPerProjectile: 0.2
