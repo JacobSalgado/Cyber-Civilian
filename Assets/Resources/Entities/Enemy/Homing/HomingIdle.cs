@@ -23,9 +23,14 @@ public class HomingIdle : State
             Debug.LogError("Target not found");
             return;
         }
+
         float distanceToTarget = homing.GetDistanceToTarget();
+
         homing.rigidBody.linearVelocity = Vector2.zero;
-        if (distanceToTarget < homing.distanceToMove)
+
+        if (distanceToTarget < homing.distanceToShoot)
+            homing.ChangeState("Shoot");
+        else if (distanceToTarget > homing.distanceToShoot)
             homing.ChangeState("Move");
     }
 }

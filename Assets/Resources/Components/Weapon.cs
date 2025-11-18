@@ -109,6 +109,28 @@ public class Weapon : MonoBehaviour
                     }
 
                     break;
+
+                case FireMode.LOCK_ON:
+                    /*if (!isCharging)
+                    {
+                        isCharging = true;
+                        fireTimer = 0f;
+                        // put audiomanager here
+                    }
+
+                    if (isCharging) fireTimer += Time.deltaTime;
+
+                    if (fireTimer >= projData.timeToSpawn)
+                    {
+                        ShootProjectile(firePoint, collision_layer);
+                        ShootProjectile(firePoint, collision_layer);
+                        ShootProjectile(firePoint, collision_layer);
+                        // audiomanager here
+                        isCharging = false;
+                        fireTimer = 0f;
+                    }*/
+                    ShootProjectile(firePoint, collision_layer);
+                    break;
             }
         }
     }

@@ -59,6 +59,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6939848692803389791, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       insertIndex: -1
       addedObject: {fileID: -2758831885036945596}
+    - targetCorrespondingSourceObject: {fileID: 6939848692803389791, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8284027357278030350}
   m_SourcePrefab: {fileID: 100100000, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
 --- !u!1 &321702182344287646 stripped
 GameObject:
@@ -81,7 +84,7 @@ MonoBehaviour:
   rigidBody: {fileID: 2197234482957794847}
   entityData: {fileID: 11400000, guid: 5d50e9e7baf52e647a5d13dca2f41059, type: 2}
   healthBar: {fileID: 3739624171282758146}
-  audioManager: {fileID: 0}
+  audioManager: {fileID: 458652263754298069}
   audioEffects: []
   invincibility: 0
   isOnFire: 0
@@ -91,8 +94,58 @@ MonoBehaviour:
   firePoint: {fileID: 9067754228479286182}
   weapon: {fileID: 6894637301577557660, guid: 3010bdca4c2402f4fae32d66d3442f03, type: 3}
   canvas: {fileID: 0}
-  distanceToShoot: 6
-  distanceToMove: 2
+  spriteRenderer: {fileID: 0}
+  capsuleCollider: {fileID: 8284027357278030350}
+  distanceToShoot: 10
+  distanceToMove: 15
+--- !u!70 &8284027357278030350
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 321702182344287646}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1, y: 2}
+  m_Direction: 0
+--- !u!114 &458652263754298069 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7090025075723263508, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+  m_PrefabInstance: {fileID: 7221981530428026049}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 321702182344287646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96f92c722d18c55418d7a4ec61ba0933, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioManager
 --- !u!50 &2197234482957794847 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 8811157356989125342, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}

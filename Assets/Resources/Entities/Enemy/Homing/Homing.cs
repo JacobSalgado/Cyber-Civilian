@@ -3,6 +3,10 @@ using System;
 
 public class Homing : Enemy
 {
+    [Header("==Homing GameObjects==")]
+    public SpriteRenderer spriteRenderer;
+    public CapsuleCollider2D capsuleCollider;
+    
     [Header("==Homing Properties==")]
     public float distanceToShoot;
     public float distanceToMove;
