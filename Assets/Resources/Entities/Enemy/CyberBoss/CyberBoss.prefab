@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 423815992907518796}
   - component: {fileID: 8935194537158849570}
   - component: {fileID: 7418802895093423458}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Stomp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
+  m_Radius: 2.07
 --- !u!114 &7418802895093423458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,9 +109,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f66d9a9d9e6096a4a8f61840cf294d16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Stomp
+  moveSpeed: 4
+  maxShockwaveRadius: 20
+  pushForce: 15
   aoeCollider: {fileID: 8935194537158849570}
-  force: 1
-  rigidbody2D: {fileID: 423815992907518796}
+  rigidBody: {fileID: 423815992907518796}
 --- !u!1001 &1337654423169088360
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -265,6 +267,7 @@ MonoBehaviour:
   firePoint: {fileID: 828325889361890319}
   weapon: {fileID: 6579814461523234674, guid: a6dd45164a0575a4c9c660b661d68099, type: 3}
   canvas: {fileID: 2292065971395210351}
+  pushed: 0
   spriteRenderer: {fileID: 1805163559450772944}
   stomp: {fileID: 7418802895093423458}
   weaponsList:

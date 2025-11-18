@@ -115,7 +115,7 @@ public class Player : Entity
     // other push-related properties
     public bool pushed = false;
     const float PUSHED_TIME = 0.5f;
-    float pushTimer = 0f;
+    //float pushTimer = 0f;
 
     public override void InitializeStates()
     {

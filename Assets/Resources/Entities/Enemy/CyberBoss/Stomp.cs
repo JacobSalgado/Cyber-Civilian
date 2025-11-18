@@ -1,39 +1,52 @@
+using System;
 using UnityEngine;
 
 public class Stomp : MonoBehaviour
 {
-    private const float TTL = 0.3f;
+    private const float TTL = 3.5f;
     private float timer = 0f;
 
-    public CircleCollider2D aoeCollider;
-    [SerializeField] float force = 1f;
+    [SerializeField] float moveSpeed = 4f;
+    
+    [SerializeField] private float maxShockwaveRadius = 20f;
+    [SerializeField] private float pushForce = 15f;
 
-    public Rigidbody2D rigidbody2D;
+    [NonSerialized] public float startRadius = 0f;
+    [SerializeField] private float maxRadius = 6f;
+    [SerializeField] private float radiusIncRate = 0.4f;
+
+    public CircleCollider2D aoeCollider;
+    public Rigidbody2D rigidBody;
+
+    // hashset if we want to make it so the aoe affects other enemies as well
+    // private HashSet<Collider2D> hitTargets = new HashSet<Collider2D>();
+
+    [NonSerialized] public Vector2 directionToPlayer = Vector2.zero;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        aoeCollider.enabled = false;    
-
-        rigidbody2D = GetComponent<Rigidbody2D>();
+        aoeCollider.enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        gameObject.transform.localPosition = Vector2.zero;
         if (aoeCollider.enabled)
         {
             timer += Time.deltaTime;
+            if (aoeCollider.radius < maxRadius)
+                aoeCollider.radius += Time.deltaTime * radiusIncRate;
+
+            rigidBody.linearVelocity = moveSpeed * directionToPlayer;
+            
             if (timer > TTL)
             {
                 timer = 0f;
                 aoeCollider.enabled = false;
-                rigidbody2D.linearVelocity = new Vector2(20, 10);
             }
         }
-
-        
+        else gameObject.transform.localPosition = Vector2.zero;
     }
 
     public void EmitPush()
