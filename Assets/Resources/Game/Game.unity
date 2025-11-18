@@ -290,8 +290,8 @@ MonoBehaviour:
   audioManager: {fileID: 476967450}
   pauseMenu: {fileID: 1121848291}
   levelList:
-  - levelTwo
   - levelOne
+  - levelTwo
   startingState: 0
   BGM:
   - {fileID: 6554651378409300978, guid: bde6bcc18be375e449f6f1b6681824bc, type: 3}

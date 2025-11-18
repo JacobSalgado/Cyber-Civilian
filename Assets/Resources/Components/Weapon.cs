@@ -130,10 +130,15 @@ public class Weapon : MonoBehaviour
 
     private void semiAutoShot(InputActionReference fireAction, Transform firePoint, int collision_layer)
     {
+        fireTimer -= Time.deltaTime;
         if (fireAction.action.WasPressedThisFrame())
         {
-            ShootProjectile(firePoint, collision_layer);
-            //owner.audioManager.PlayAudioSource("");
+            if (fireTimer <= 0f)
+            {
+                fireTimer += 1f/fireRate;
+                ShootProjectile(firePoint, collision_layer);
+                //owner.audioManager.PlayAudioSource("");
+            }
         }
     }
 

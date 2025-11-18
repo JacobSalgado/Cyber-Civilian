@@ -1015,7 +1015,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -1208,6 +1208,8 @@ MonoBehaviour:
   shieldDrainRate: 50
   shiledShockDuration: 5
   shieldSlowDownStrength: 0.5
+  shieldFireDamage: 1
+  shiledFireDuration: 3
   vortexRadius: 2
   maxAbsorbedProjectiles: 10
   damageMultiplierPerProjectile: 0.2

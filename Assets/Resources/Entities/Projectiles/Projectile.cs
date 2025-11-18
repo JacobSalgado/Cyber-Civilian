@@ -26,7 +26,7 @@ public abstract class Projectile : Entity
             EntityDie();
     }
 
-    public void OnTriggerEnter2D(Collider2D collision)
+    public virtual void OnTriggerEnter2D(Collider2D collision)
     {
         // Player Collision
         if (attacking_layer == 7 && collision.gameObject.TryGetComponent<Player>(out var player))
