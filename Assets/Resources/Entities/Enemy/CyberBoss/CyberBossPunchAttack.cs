@@ -14,12 +14,18 @@ public class CyberBossPunchAttack : State
     public override void EnterState(Dictionary<string, object> args = null)
     {
         base.EnterState(args);
+        cyberBoss.punch.EmitPunch();
         cyberBoss.PlayAnim("Punch");
     }
 
     public override void UpdateState()
     {
-        if (cyberBoss.target == null)
+        if (!cyberBoss.punch.punchCollider.enabled)
+        {
+            cyberBoss.ChangeState("Travel");
+        }
+        
+        /*if (cyberBoss.target == null)
         {
             Debug.Log("Target not found");
             return;
@@ -41,12 +47,6 @@ public class CyberBossPunchAttack : State
         else
         {
             cyberBoss.ChangeState("Travel");
-        }
+        }*/
     }
-
-    /*private IEnumerator MoveAfterDelay()
-    {
-        yield return new WaitForSeconds(0.5f);
-        cyberBoss.ChangeState("Move");
-    }*/
 }

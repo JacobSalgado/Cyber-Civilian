@@ -22,7 +22,7 @@ public class CyberBossStompAttack: State
     {
         if (!cyberBoss.stomp.aoeCollider.enabled)
         {
-            cyberBoss.ChangeState("Idle");
+            cyberBoss.ChangeState("Travel");
         }
     }
 

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -39,6 +40,9 @@ public class Weapon : MonoBehaviour
     private bool isCharging = false;
     private bool isCharged = false;
     private string[] layerMask = { "Enemy" };
+
+    [SerializeField] private int maxLockOnShots = 3;
+    [SerializeField] private float lockOnCooldown = 1f;
 
     void Start()
     {
@@ -111,28 +115,23 @@ public class Weapon : MonoBehaviour
                     break;
 
                 case FireMode.LOCK_ON:
-                    /*if (!isCharging)
+                    fireTimer -= Time.deltaTime;
+
+                    if (fireTimer <= 0f)
                     {
-                        isCharging = true;
-                        fireTimer = 0f;
-                        // put audiomanager here
+                        // enemy fires at player
+                        Transform target = LevelManager.player.gameObject.transform;
+
+                        int shotsToFire = Mathf.Min(maxLockOnShots, 1); // one target, 2 missile for now
+                        for (int i = 0; i < shotsToFire; i++)
+                        {
+                            // put audio manager here
+
+                            Missile missile = (Missile)ShootProjectile(firePoint, collision_layer);
+                            missile.target = LevelManager.player.gameObject.transform;
+                        }
+                        fireTimer = lockOnCooldown; // reset cooldown
                     }
-
-                    if (isCharging) fireTimer += Time.deltaTime;
-
-                    if (fireTimer >= projData.timeToSpawn)
-                    {
-                        ShootProjectile(firePoint, collision_layer);
-                        ShootProjectile(firePoint, collision_layer);
-                        ShootProjectile(firePoint, collision_layer);
-                        // audiomanager here
-                        isCharging = false;
-                        fireTimer = 0f;
-                    }*/
-
-                    Missile missile = (Missile) ShootProjectile(firePoint, collision_layer);
-                    missile.target = LevelManager.player.gameObject.transform;
-
                     break;
             }
         }
