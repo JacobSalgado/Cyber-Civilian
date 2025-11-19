@@ -22,6 +22,7 @@ public class CyberBossTravel: State
 
     public override void EnterState(Dictionary<string, object> args = null)
     {
+        Debug.Log("In travel state");
         deltaCount = 0f;
         stepCounter = 1;
     }
@@ -50,23 +51,27 @@ public class CyberBossTravel: State
         //}
 
         float distance = cyberBoss.GetDistanceToTarget();
-        
-            if (distance <= cyberBoss.distanceToHit)
-            {
-                cyberBoss.ChangeState("Punch");
-                return;
-            }
-            else if (distance < cyberBoss.distanceToShoot)
-            {
-                cyberBoss.ChangeState("Missile");
-                return;
-            }
-            else if (distance < cyberBoss.distanceToStomp)
-            {
-                cyberBoss.ChangeState("Stomp");
-                return;
-            }
-            else if (distance < cyberBoss.distanceToMove)
+
+        directionToTarget = cyberBoss.GetDirectionToPosition(cyberBoss.target.transform.position);
+        cyberBoss.RotateToDirection(directionToTarget);
+        cyberBoss.rigidBody.linearVelocity = directionToTarget * cyberBoss.entityData.moveSpeed;
+
+        /*if (distance <= cyberBoss.distanceToHit)
+        {
+            cyberBoss.ChangeState("Punch");
+            return;
+        }
+        else if (distance < cyberBoss.distanceToShoot)
+        {
+            cyberBoss.ChangeState("Missile");
+            return;
+        }
+        else if (distance < cyberBoss.distanceToStomp)
+        {
+            cyberBoss.ChangeState("Stomp");
+            return;
+        }*/
+        if (distance < cyberBoss.distanceToMove)
             {
                 directionToTarget = cyberBoss.GetDirectionToPosition(cyberBoss.target.transform.position);
                 cyberBoss.RotateToDirection(directionToTarget);

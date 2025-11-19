@@ -26,9 +26,9 @@ public class CyberBoss : Enemy
     {
         AddState("Idle", new CyberBossIdle(this));
         AddState("Travel", new CyberBossTravel(this));
-        AddState("Missile", new CyberBossMissileAttack(this));
-        AddState("Stomp", new CyberBossStompAttack(this));
-        AddState("Punch", new CyberBossPunchAttack(this));
+        //AddState("Missile", new CyberBossMissileAttack(this));
+        //AddState("Stomp", new CyberBossStompAttack(this));
+        //AddState("Punch", new CyberBossPunchAttack(this));
 
         ChangeState("Idle");
     }

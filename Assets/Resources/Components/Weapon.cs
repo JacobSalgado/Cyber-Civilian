@@ -41,7 +41,7 @@ public class Weapon : MonoBehaviour
     private bool isCharged = false;
     private string[] layerMask = { "Enemy" };
 
-    [SerializeField] private int maxLockOnShots = 3;
+    [SerializeField] private int maxLockOnShots = 4;
     [SerializeField] private float lockOnCooldown = 1f;
 
     void Start()
@@ -122,7 +122,7 @@ public class Weapon : MonoBehaviour
                         // enemy fires at player
                         Transform target = LevelManager.player.gameObject.transform;
 
-                        int shotsToFire = Mathf.Min(maxLockOnShots, 1); // one target, 2 missile for now
+                        int shotsToFire = UnityEngine.Random.Range(1, maxLockOnShots); // fires between 1-3 shots randomly
                         for (int i = 0; i < shotsToFire; i++)
                         {
                             // put audio manager here

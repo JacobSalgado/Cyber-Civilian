@@ -12,6 +12,7 @@ public class CyberBossStompAttack: State
 
     public override void EnterState(Dictionary<string, object> args = null)
     {
+        Debug.Log("In Stomp state");
         cyberBoss.moveVelocity = Vector2.zero;
         cyberBoss.stomp.directionToPlayer = cyberBoss.GetDirectionToPosition(cyberBoss.target.position);
         cyberBoss.stomp.startRadius = cyberBoss.stomp.aoeCollider.radius;
