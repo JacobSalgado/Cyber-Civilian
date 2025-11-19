@@ -39,13 +39,13 @@ public class CyberBossIdle: State
 
         float distanceToTarget = cyberBoss.GetDistanceToTarget();
 
-        /*if (distanceToTarget <= cyberBoss.distanceToHit)
+        if (distanceToTarget <= cyberBoss.distanceToHit)
             cyberBoss.ChangeState("Punch");
+        else if (distanceToTarget < cyberBoss.distanceToStomp)
+            cyberBoss.ChangeState("Stomp");
         else if (distanceToTarget < cyberBoss.distanceToShoot)
             cyberBoss.ChangeState("Missile");
-        else if (distanceToTarget < cyberBoss.distanceToStomp)
-            cyberBoss.ChangeState("Stomp");*/
-        if (distanceToTarget < cyberBoss.distanceToMove)
+        else if (distanceToTarget < cyberBoss.distanceToMove)
             cyberBoss.ChangeState("Travel");
     }
 

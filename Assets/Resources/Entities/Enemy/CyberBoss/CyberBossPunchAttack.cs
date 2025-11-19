@@ -13,14 +13,18 @@ public class CyberBossPunchAttack : State
 
     public override void EnterState(Dictionary<string, object> args = null)
     {
+        Vector2 punchDirection = cyberBoss.GetDirectionToPosition(cyberBoss.target.transform.position);
+        
         Debug.Log("In punch state");
         base.EnterState(args);
-        cyberBoss.punch.EmitPunch();
+        cyberBoss.punch.EmitPunch(punchDirection);
         cyberBoss.PlayAnim("Punch");
     }
 
     public override void UpdateState()
     {
+        Debug.Log("in travel State");
+
         if (!cyberBoss.punch.punchCollider.enabled)
         {
             cyberBoss.ChangeState("Travel");

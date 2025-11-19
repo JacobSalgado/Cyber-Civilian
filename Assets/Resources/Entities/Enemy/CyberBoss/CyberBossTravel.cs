@@ -29,6 +29,8 @@ public class CyberBossTravel: State
 
     public override void UpdateState()
     {
+        Debug.Log("cyberboss travel state");
+        
         if (cyberBoss.target == null)
         {
             Debug.LogError("target not found");
@@ -52,13 +54,14 @@ public class CyberBossTravel: State
 
         float distance = cyberBoss.GetDistanceToTarget();
 
-        directionToTarget = cyberBoss.GetDirectionToPosition(cyberBoss.target.transform.position);
-        cyberBoss.RotateToDirection(directionToTarget);
-        cyberBoss.rigidBody.linearVelocity = directionToTarget * cyberBoss.entityData.moveSpeed;
-
-        /*if (distance <= cyberBoss.distanceToHit)
+        if (distance <= cyberBoss.distanceToHit)
         {
             cyberBoss.ChangeState("Punch");
+            return;
+        }
+        else if (distance < cyberBoss.distanceToStomp)
+        {
+            cyberBoss.ChangeState("Stomp");
             return;
         }
         else if (distance < cyberBoss.distanceToShoot)
@@ -66,18 +69,13 @@ public class CyberBossTravel: State
             cyberBoss.ChangeState("Missile");
             return;
         }
-        else if (distance < cyberBoss.distanceToStomp)
-        {
-            cyberBoss.ChangeState("Stomp");
-            return;
-        }*/
-        if (distance < cyberBoss.distanceToMove)
+        else if (distance < cyberBoss.distanceToMove)
             {
                 directionToTarget = cyberBoss.GetDirectionToPosition(cyberBoss.target.transform.position);
                 cyberBoss.RotateToDirection(directionToTarget);
                 cyberBoss.rigidBody.linearVelocity = directionToTarget * cyberBoss.entityData.moveSpeed;
             }
-            else cyberBoss.ChangeState("Idle");
+        else cyberBoss.ChangeState("Idle");
         
     }
 
