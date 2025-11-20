@@ -15,7 +15,7 @@ public class CyberBossStompAttack: State
         Debug.Log("In Stomp state");
         cyberBoss.moveVelocity = Vector2.zero;
         cyberBoss.stomp.directionToPlayer = cyberBoss.GetDirectionToPosition(cyberBoss.target.position);
-        cyberBoss.stomp.startRadius = cyberBoss.stomp.aoeCollider.radius;
+        cyberBoss.stomp.startScale = cyberBoss.stomp.gameObject.transform.localScale;
         cyberBoss.stomp.EmitPush();
     }
 
@@ -29,7 +29,8 @@ public class CyberBossStompAttack: State
 
     public override void ExitState(Dictionary<string, object> args = null)
     {
-        cyberBoss.stomp.aoeCollider.radius = cyberBoss.stomp.startRadius;
+        cyberBoss.SetCooldown(4.0f);
+        cyberBoss.stomp.gameObject.transform.localScale = cyberBoss.stomp.startScale;
     }
 
 }

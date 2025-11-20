@@ -14,7 +14,7 @@ public class CyberBossIdle: State
     public override void EnterState(Dictionary<string, object> args = null)
     {
         Debug.Log("In Idle state");
-        cyberBoss.rigidBody.linearVelocity = Vector2.zero;
+        cyberBoss.moveVelocity = Vector2.zero;
         //cyberBoss.PlayAnim("Idle");
     }
 
@@ -22,14 +22,13 @@ public class CyberBossIdle: State
     {
         cyberBoss.UpdateVision(); // raycast vision to lock on player
 
-
         if (cyberBoss.target == null)
         {
             Debug.LogError("Target not found");
             return;
         }
 
-        cyberBoss.rigidBody.linearVelocity = Vector2.zero; // cyberboss stays still
+        cyberBoss.moveVelocity = Vector2.zero; // cyberboss stays still
 
         if (cyberBoss.HasSeenPlayerLongEnough)
         {
@@ -39,18 +38,18 @@ public class CyberBossIdle: State
 
         float distanceToTarget = cyberBoss.GetDistanceToTarget();
 
-        if (distanceToTarget <= cyberBoss.distanceToHit)
+        if (distanceToTarget <= cyberBoss.distanceToHit && !cyberBoss.inCooldown)
             cyberBoss.ChangeState("Punch");
-        else if (distanceToTarget < cyberBoss.distanceToStomp)
+        else if (distanceToTarget < cyberBoss.distanceToStomp && !cyberBoss.inCooldown)
             cyberBoss.ChangeState("Stomp");
-        else if (distanceToTarget < cyberBoss.distanceToShoot)
+        else if (distanceToTarget < cyberBoss.distanceToShoot && !cyberBoss.inCooldown)
             cyberBoss.ChangeState("Missile");
-        else if (distanceToTarget < cyberBoss.distanceToMove)
+        else if (distanceToTarget < cyberBoss.distanceToMove && !cyberBoss.inCooldown)
             cyberBoss.ChangeState("Travel");
     }
 
     public override void ExitState(Dictionary<string, object> args = null)
     {
-        base.ExitState(args);
+        
     }
 }

@@ -8,6 +8,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 836956141584006840, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_Color.b
+      value: 0.58956945
+      objectReference: {fileID: 0}
+    - target: {fileID: 836956141584006840, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_Color.g
+      value: 0.78113204
+      objectReference: {fileID: 0}
+    - target: {fileID: 836956141584006840, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_Color.r
+      value: 0.092851505
+      objectReference: {fileID: 0}
     - target: {fileID: 6527896415030157554, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -86,10 +98,6 @@ MonoBehaviour:
   healthBar: {fileID: 3739624171282758146}
   audioManager: {fileID: 458652263754298069}
   audioEffects: []
-  invincibility: 0
-  isOnFire: 0
-  fireDamage: 0
-  slowDownFactor: 0
   isShocked: 0
   firePoint: {fileID: 9067754228479286182}
   weapon: {fileID: 6894637301577557660, guid: 3010bdca4c2402f4fae32d66d3442f03, type: 3}

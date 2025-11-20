@@ -54,33 +54,33 @@ public class CyberBossTravel: State
 
         float distance = cyberBoss.GetDistanceToTarget();
 
-        if (distance <= cyberBoss.distanceToHit)
+        if (distance <= cyberBoss.distanceToHit && !cyberBoss.inCooldown)
         {
             cyberBoss.ChangeState("Punch");
             return;
         }
-        else if (distance < cyberBoss.distanceToStomp)
+        else if (distance < cyberBoss.distanceToStomp && !cyberBoss.inCooldown)
         {
             cyberBoss.ChangeState("Stomp");
             return;
         }
-        else if (distance < cyberBoss.distanceToShoot)
+        else if (distance < cyberBoss.distanceToShoot && !cyberBoss.inCooldown)
         {
             cyberBoss.ChangeState("Missile");
             return;
         }
         else if (distance < cyberBoss.distanceToMove)
-            {
-                directionToTarget = cyberBoss.GetDirectionToPosition(cyberBoss.target.transform.position);
-                cyberBoss.RotateToDirection(directionToTarget);
-                cyberBoss.rigidBody.linearVelocity = directionToTarget * cyberBoss.entityData.moveSpeed;
-            }
+        {
+            directionToTarget = cyberBoss.GetDirectionToPosition(cyberBoss.target.transform.position);
+            cyberBoss.RotateToDirection(directionToTarget);
+            cyberBoss.moveVelocity = directionToTarget * cyberBoss.entityData.moveSpeed;
+        }
         else cyberBoss.ChangeState("Idle");
         
     }
 
     public override void ExitState(Dictionary<string, object> args = null)
     {
-        base.ExitState(args);
+        cyberBoss.moveVelocity = Vector2.zero;
     }
 }

@@ -115,23 +115,11 @@ public class Weapon : MonoBehaviour
                     break;
 
                 case FireMode.LOCK_ON:
-                    fireTimer -= Time.deltaTime;
-
-                    if (fireTimer <= 0f)
-                    {
-                        // enemy fires at player
-                        Transform target = LevelManager.player.gameObject.transform;
-
-                        int shotsToFire = UnityEngine.Random.Range(1, maxLockOnShots); // fires between 1-3 shots randomly
-                        for (int i = 0; i < shotsToFire; i++)
-                        {
-                            // put audio manager here
-
-                            Missile missile = (Missile)ShootProjectile(firePoint, collision_layer);
-                            missile.target = LevelManager.player.gameObject.transform;
-                        }
-                        fireTimer = lockOnCooldown; // reset cooldown
-                    }
+                    // enemy fires at player
+                    Missile missile = (Missile) ShootProjectile(firePoint, collision_layer);
+                    missile.target = LevelManager.player.gameObject.transform;
+                    missile.gameObject.SetActive(true);
+                    
                     break;
             }
         }

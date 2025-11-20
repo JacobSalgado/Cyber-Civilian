@@ -66678,8 +66678,8 @@ MonoBehaviour:
   m_ShadowMesh:
     m_Mesh: {fileID: 0}
     m_LocalBounds:
-      m_Center: {x: -34.5, y: -7.5, z: 0}
-      m_Extent: {x: 32.64, y: 21.64, z: 0}
+      m_Center: {x: -35.5, y: 5.5, z: 0}
+      m_Extent: {x: 31.64, y: 17.64, z: 0}
     m_EdgeProcessing: 1
     m_TrimEdge: 0
     m_FlipX: 0
@@ -143391,7 +143391,7 @@ PrefabInstance:
       objectReference: {fileID: 93138786610205521}
     - target: {fileID: 7205215515983607880, guid: 512edb4db613d9045b2de37832b2b10f, type: 3}
       propertyPath: levelObjective
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7205215515983607880, guid: 512edb4db613d9045b2de37832b2b10f, type: 3}
       propertyPath: enemyKilledGoal
@@ -143566,7 +143566,7 @@ PrefabInstance:
     - target: {fileID: -4032455514951249693, guid: cd7cca92be2028d4d8d1fde642a90b14, type: 3}
       propertyPath: enemyPrefab
       value: 
-      objectReference: {fileID: 8277341247211336247, guid: 006a2e98a173261448fe194fb5a7649d, type: 3}
+      objectReference: {fileID: 321702182344287646, guid: 9a6b09caaffd34944b4237b878ff6604, type: 3}
     - target: {fileID: -4032455514951249693, guid: cd7cca92be2028d4d8d1fde642a90b14, type: 3}
       propertyPath: spawnCondition
       value: 0
@@ -143577,7 +143577,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4032455514951249693, guid: cd7cca92be2028d4d8d1fde642a90b14, type: 3}
       propertyPath: repeatableSpawn
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5861787467815066543, guid: cd7cca92be2028d4d8d1fde642a90b14, type: 3}
       propertyPath: m_Name

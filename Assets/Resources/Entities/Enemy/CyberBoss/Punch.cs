@@ -1,19 +1,19 @@
-using JetBrains.Annotations;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class Punch : MonoBehaviour
 {
-    private const float TTL = 1f;
+    private const float TTL = 0.2f;
     private float timer = 0f;
 
     public CircleCollider2D punchCollider;
     public Rigidbody2D punchRigidbody;
+    public SpriteRenderer spriteRenderer;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         punchCollider.enabled = false;
+        spriteRenderer.enabled = false;
     }
 
     // Update is called once per frame
@@ -23,24 +23,21 @@ public class Punch : MonoBehaviour
         {
             timer += Time.deltaTime;
 
-            //punchRigidbody.linearVelocity = move
-
             if (timer >= TTL)
             {
                 timer = 0f;
                 punchCollider.enabled = false;
+                spriteRenderer.enabled = false;
             }
         }
     }
 
-    public void EmitPunch(Vector2 punchDirection)
+    public void EmitPunch()
     {
         if (!punchCollider.enabled)
         {
-            float punchReach = 1.5f;
-            transform.localPosition = punchDirection.normalized * punchReach;
-
             punchCollider.enabled = true;
+            spriteRenderer.enabled = true;
             timer = 0f;
         } 
     }
@@ -51,8 +48,7 @@ public class Punch : MonoBehaviour
         if (collision.gameObject.TryGetComponent<Player>(out var player))
         {
             player.TakeDamage(50);
-            ApplyKnockback(player);
-            punchCollider.enabled = false;
+            //ApplyKnockback(player);
         }
     }
 

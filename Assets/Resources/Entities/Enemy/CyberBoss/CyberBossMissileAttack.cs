@@ -7,8 +7,12 @@ public class CyberBossMissileAttack: State
     readonly CyberBoss cyberBoss;
     private readonly Weapon missileWeapon;
 
-    private const float minimumShootTime = 1f; // control shooting time
-    private float timer = 0f;
+    private int shotCounter = 0;
+    private int maxShots = 5;
+
+
+    private float shotTimer = 0f;
+    private const float shootTime = 0.35f;
 
     public CyberBossMissileAttack(Entity new_entity) : base(new_entity)
     {
@@ -18,7 +22,8 @@ public class CyberBossMissileAttack: State
 
     public override void EnterState(Dictionary<string, object> args = null)
     {
-        base.EnterState(args);
+        shotCounter = 0;
+        shotTimer = 0f;
         Debug.Log("In Missile state");
     }
 
@@ -32,21 +37,10 @@ public class CyberBossMissileAttack: State
         }
 
         cyberBoss.moveVelocity = Vector2.zero;
-        timer += Time.deltaTime;
-
         float distanceToTarget = cyberBoss.GetDistanceToTarget();
 
-        if (distanceToTarget < cyberBoss.distanceToShoot)
+        if (shotCounter >= maxShots) // --- Change States After Attack ---
         {
-            Vector2 dir = cyberBoss.GetDirectionToPosition(cyberBoss.target.gameObject.transform.position);
-            cyberBoss.RotateToDirection(dir);
-
-            cyberBoss.ShootWeapon(cyberBoss.weapon, null, cyberBoss.firePoint, 7);
-        }
-        else if (timer > minimumShootTime)
-        {
-            // --- Change States After Attack ---
-
             if (distanceToTarget < cyberBoss.distanceToMove)
             {
                 cyberBoss.ChangeState("Travel");
@@ -57,11 +51,27 @@ public class CyberBossMissileAttack: State
                 cyberBoss.ChangeState("Idle");
                 return;
             }
-        }   
+        }
+
+        shotTimer += Time.deltaTime;
+        if (distanceToTarget < cyberBoss.distanceToShoot)
+        {
+            Vector2 dir = cyberBoss.GetDirectionToPosition(cyberBoss.target.gameObject.transform.position);
+            cyberBoss.RotateToDirection(dir);
+
+            if (shotTimer > shootTime)
+            {
+                cyberBoss.ShootWeapon(cyberBoss.weapon, null, cyberBoss.firePoint, 7);
+                shotTimer = 0f;
+                shotCounter++;
+                Debug.Log(shotCounter);
+            }
+        }
+
     }
 
     public override void ExitState(Dictionary<string, object> args = null)
     {
-        base.ExitState(args);
+        cyberBoss.SetCooldown(4.0f);
     }
 }

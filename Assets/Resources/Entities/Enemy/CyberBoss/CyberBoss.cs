@@ -1,6 +1,5 @@
 using UnityEngine;
-using System.Collections.Generic;
-using System.Collections;
+using System;
 
 public class CyberBoss : Enemy
 {
@@ -16,10 +15,16 @@ public class CyberBoss : Enemy
     public float distanceToHit = 3f; // exploding punch attack
     public float distanceToStomp = 12f; // stomp attack
 
+    public float punchSpeed = 3.0f;
+
     //------- Locking onto player -----------
     public float seePlayerTimer = 0f;
     public float timeToSeePlayer = 1.0f;
 
+    [NonSerialized] public float cooldownTime = 0f;
+    [NonSerialized] public float cooldownEnd = 0f;
+
+    [NonSerialized] public bool inCooldown = true;
     public bool HasSeenPlayerLongEnough => seePlayerTimer >= timeToSeePlayer;
 
     public override void InitializeStates()
@@ -37,6 +42,22 @@ public class CyberBoss : Enemy
     {
         base.Start();
         InitializeStates();
+    }
+
+    public override void FixedUpdate()
+    {
+        base.FixedUpdate();
+
+        if (inCooldown)
+        {
+            cooldownTime += Time.deltaTime;
+            if (cooldownTime > cooldownEnd)
+            {
+                inCooldown = false;
+                cooldownTime = 0f;
+                cooldownEnd = 0f;
+            }
+        }
     }
 
     public bool CanSeePlayer() // Function for cyberboss to lock onto player
@@ -62,4 +83,11 @@ public class CyberBoss : Enemy
         }
     }
     
+
+    public void SetCooldown(float newCooldown)
+    {
+        inCooldown = true;
+        cooldownTime = 0f;
+        cooldownEnd = newCooldown;
+    }
 }

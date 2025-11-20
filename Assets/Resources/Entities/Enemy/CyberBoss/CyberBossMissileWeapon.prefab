@@ -71,7 +71,7 @@ PrefabInstance:
     - target: {fileID: 4620524579252194416, guid: 44f83fffe9635974e91eced60e11c4c8, type: 3}
       propertyPath: projectile
       value: 
-      objectReference: {fileID: 8277341247211336247, guid: 006a2e98a173261448fe194fb5a7649d, type: 3}
+      objectReference: {fileID: 2765093879465672972, guid: 45966b92401f65a4f8a01f48995150f6, type: 3}
     - target: {fileID: 4620524579252194416, guid: 44f83fffe9635974e91eced60e11c4c8, type: 3}
       propertyPath: reloadTime
       value: 0.5
@@ -82,7 +82,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4620524579252194416, guid: 44f83fffe9635974e91eced60e11c4c8, type: 3}
       propertyPath: infiniteAmmo
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
