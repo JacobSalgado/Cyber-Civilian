@@ -16,7 +16,7 @@ public class TrapperShoot : State
 
     public override void EnterState(Dictionary<string, object> args = null)
     {
-        trapper.rigidBody.linearVelocity = Vector2.zero;
+        trapper.moveVelocity = Vector2.zero;
         timer = 0f;
         trapper.PlayAnim("Idle");
     }
@@ -29,7 +29,7 @@ public class TrapperShoot : State
             return;
         }
 
-        trapper.rigidBody.linearVelocity = Vector2.zero;
+        trapper.moveVelocity = Vector2.zero;
         timer += Time.deltaTime;
 
         float distance = trapper.GetDistanceToTarget();
@@ -55,7 +55,7 @@ public class TrapperShoot : State
 
     private IEnumerator DelayAfterShock()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         trapper.ChangeState("Idle");
     }
     

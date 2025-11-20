@@ -143566,7 +143566,7 @@ PrefabInstance:
     - target: {fileID: -4032455514951249693, guid: cd7cca92be2028d4d8d1fde642a90b14, type: 3}
       propertyPath: enemyPrefab
       value: 
-      objectReference: {fileID: 8277341247211336247, guid: 006a2e98a173261448fe194fb5a7649d, type: 3}
+      objectReference: {fileID: 8770807821078955054, guid: 467812e5b6ea6264da3ed66a3eb13679, type: 3}
     - target: {fileID: -4032455514951249693, guid: cd7cca92be2028d4d8d1fde642a90b14, type: 3}
       propertyPath: spawnCondition
       value: 0

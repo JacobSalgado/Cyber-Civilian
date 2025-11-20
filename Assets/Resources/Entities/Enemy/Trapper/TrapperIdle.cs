@@ -12,7 +12,7 @@ public class TrapperIdle : State
 
     public override void EnterState(Dictionary<string, object> args = null)
     {
-        trapper.rigidBody.linearVelocity = Vector2.zero;
+        trapper.moveVelocity = Vector2.zero;
         trapper.PlayAnim("Idle");
     }
 
@@ -31,7 +31,7 @@ public class TrapperIdle : State
             return;
         }
         
-        trapper.rigidBody.linearVelocity = Vector2.zero;
+        trapper.moveVelocity = Vector2.zero;
          
         if (distanceToTarget < trapper.distanceToShoot)
             trapper.ChangeState("Shoot");

@@ -9,6 +9,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 799086666457626503, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 799086666457626503, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
       propertyPath: m_Size.x
       value: 1.55
       objectReference: {fileID: 0}
@@ -54,11 +58,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6493105512357046733, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 96685
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6493105512357046733, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -52707
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6493105512357046733, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -145,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e68c832f7459d314a90497c129d7f58e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TrapShot
-  animator: {fileID: 0}
+  animator: {fileID: 6365862541168117537}
   rigidBody: {fileID: 5247884545579191284}
   entityData: {fileID: 0}
   healthBar: {fileID: 0}
@@ -190,6 +194,11 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.4166326, y: 0.004137109}
+  m_Offset: {x: -0.44, y: 0}
   m_Size: {x: 1.0156254, y: 0.55859643}
   m_Direction: 1
+--- !u!95 &6365862541168117537 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7656176151515567924, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
+  m_PrefabInstance: {fileID: 3609676769359925269}
+  m_PrefabAsset: {fileID: 0}

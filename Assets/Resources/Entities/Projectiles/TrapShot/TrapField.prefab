@@ -157,10 +157,10 @@ MonoBehaviour:
   isShocked: 0
   spriteRenderer: {fileID: 6178760434096457476}
   trapCollider: {fileID: 5521207800876000039}
-  shockDuration: 3
+  shockDuration: 2.5
   slowDownStrength: 0.5
   fadeawayTime: 1
-  lifeTime: 10
+  lifeTime: 4.5
 --- !u!58 &5521207800876000039
 CircleCollider2D:
   m_ObjectHideFlags: 0

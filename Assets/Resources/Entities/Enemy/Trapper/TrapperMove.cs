@@ -18,7 +18,7 @@ public class TrapperMove : State
 
     public TrapperMove(Entity new_entity) : base(new_entity)
     {
-        trapper = (Trapper)new_entity;
+        trapper = (Trapper) new_entity;
     }
 
     public override void EnterState(Dictionary<string, object> args = null)
@@ -58,7 +58,7 @@ public class TrapperMove : State
             {
                 directionToTarget = trapper.GetDirectionToPosition(trapper.target.transform.position);
                 trapper.RotateToDirection(directionToTarget);
-                trapper.rigidBody.linearVelocity = directionToTarget * trapper.entityData.moveSpeed;
+                trapper.moveVelocity = directionToTarget * trapper.entityData.moveSpeed;
             }
             else trapper.ChangeState("Idle");
         }

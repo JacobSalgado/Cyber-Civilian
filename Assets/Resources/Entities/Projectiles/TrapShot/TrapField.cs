@@ -28,8 +28,8 @@ public class TrapField : Entity
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Collided");
-        Debug.Log(collision.gameObject.name);
+        //Debug.Log("Collided");
+        //Debug.Log(collision.gameObject.name);
         if (collision.gameObject.TryGetComponent<Player>(out var player))
         {
             if (!player.invincibility)
