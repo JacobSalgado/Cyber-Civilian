@@ -23,5 +23,6 @@ public class Fighter : Enemy
     {
         base.Start();
         InitializeStates();
+        type = EnemyTypes.MANTIS;
     }
 }

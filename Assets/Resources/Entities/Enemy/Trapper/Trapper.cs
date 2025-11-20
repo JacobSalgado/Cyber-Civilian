@@ -19,5 +19,6 @@ public class Trapper : Enemy
     {
         base.Start();
         InitializeStates();
+        type = EnemyTypes.TRAPPER;
     }
 }

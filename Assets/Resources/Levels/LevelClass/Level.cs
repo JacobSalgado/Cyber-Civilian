@@ -7,7 +7,8 @@ public class Level : MonoBehaviour
     {
         KILL_ALL_ENEMIES,
         ENEMY_COUNT,
-        REACH_EXIT
+        REACH_EXIT,
+        DEFEAT_BOSS,
     }
 
     [Header("==Necessary Level GameObjects==")]
@@ -20,6 +21,7 @@ public class Level : MonoBehaviour
     public LevelObjective levelObjective;
     public int enemyKilledGoal;
     [NonSerialized] public bool isExitReached = false;
+    [NonSerialized] public GameObject cyberBoss = null;
     
     void Start()
     {
@@ -33,6 +35,10 @@ public class Level : MonoBehaviour
                 EnemySpawn enemySpawn = child.gameObject.GetComponent<EnemySpawn>();
                 enemySpawn.repeatableSpawn = false;
             }
+        }
+        else if (levelObjective == LevelObjective.DEFEAT_BOSS)
+        {
+            cyberBoss = EntityList.transform.Find("CyberBoss").gameObject;
         }
 
         if (enemyKilledGoal < 0) enemyKilledGoal = 0;

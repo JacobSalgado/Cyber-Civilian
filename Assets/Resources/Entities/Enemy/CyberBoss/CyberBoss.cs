@@ -42,6 +42,7 @@ public class CyberBoss : Enemy
     {
         base.Start();
         InitializeStates();
+        type = EnemyTypes.CYBERBOSS;
     }
 
     public override void FixedUpdate()

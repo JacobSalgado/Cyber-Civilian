@@ -33,6 +33,8 @@ public class Sniper : Enemy
         base.Start();
         InitializeStates();
 
+        type = EnemyTypes.CRAB;
+
         healthCanvas = canvas.GetComponent<Canvas>();
 
         // NOTE: distanceToShoot for sniper is determined by given railshot length

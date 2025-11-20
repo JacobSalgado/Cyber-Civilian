@@ -27,5 +27,6 @@ public class Homing : Enemy
     {
         base.Start();
         InitializeStates();
+        type = EnemyTypes.HOMING;
     }  
 }

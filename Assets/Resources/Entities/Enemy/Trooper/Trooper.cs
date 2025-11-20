@@ -19,5 +19,6 @@ public class Trooper : Enemy
     {
         base.Start();
         InitializeStates();
+        type = EnemyTypes.SHARK;
     }
 }

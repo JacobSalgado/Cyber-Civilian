@@ -39,10 +39,7 @@ public class Weapon : MonoBehaviour
     [NonSerialized] public List<Transform> targets = new List<Transform> { };
     private bool isCharging = false;
     private bool isCharged = false;
-    private string[] layerMask = { "Enemy" };
-
-    [SerializeField] private int maxLockOnShots = 4;
-    [SerializeField] private float lockOnCooldown = 1f;
+    private readonly string[] layerMask = { "Enemy" };
 
     void Start()
     {

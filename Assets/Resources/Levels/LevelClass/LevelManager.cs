@@ -94,6 +94,10 @@ public static class LevelManager
         {
             isLevelCompleted = current_level.isExitReached;
         }
+        else if (current_level.levelObjective == Level.LevelObjective.DEFEAT_BOSS)
+        {
+            isLevelCompleted = !current_level.cyberBoss;
+        }
     }
 
     public static void Close()

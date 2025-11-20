@@ -1,7 +1,6 @@
 using System;
-using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
-using UnityEngine.Windows.Speech;
 
 public class EnemySpawn : MonoBehaviour
 {
@@ -12,7 +11,7 @@ public class EnemySpawn : MonoBehaviour
     }
 
     [Header("==Necessary GameObjects==")]
-    public GameObject enemyPrefab;
+    public Enemy.EnemyTypes typeToSpawn;
     public EnemySpawnCondition spawnCondition = EnemySpawnCondition.IMMEDIATE;
     public bool repeatableSpawn = false;
     public float timeTilRespawn; // only checked if repeatableSpawn is true
@@ -32,28 +31,57 @@ public class EnemySpawn : MonoBehaviour
             respawnTimer += Time.deltaTime;
             if (respawnTimer > timeTilRespawn)
             {
-                Spawn();
+                StartCoroutine(_Spawn());
                 respawnTimer = 0.0f;
             }
         }
     }
-    
+
     public void Spawn()
     {
-        if (enemyPrefab == null)
+        StartCoroutine(_Spawn());
+    }
+
+    private IEnumerator _Spawn()
+    {
+        string enemyPrefabPath = "Entities/Enemy/";
+
+        // TODO: change enemy names
+        string enemyName = typeToSpawn switch
         {
-            Debug.LogError("No enemy assigned");
-            return;
-        }
+            Enemy.EnemyTypes.SHARK => "Trooper",
+            Enemy.EnemyTypes.CRAB => "Sniper",
+            Enemy.EnemyTypes.MANTIS => "Fighter",
+            Enemy.EnemyTypes.TRAPPER => "Trapper",
+            Enemy.EnemyTypes.HOMING => "Homing",
+            Enemy.EnemyTypes.CYBERBOSS => "CyberBoss",
+            _ => "",
+        };
+        enemyPrefabPath += enemyName + "/" + enemyName;
+
+        Debug.Log(enemyPrefabPath);
 
         if (spawnCondition == EnemySpawnCondition.TIMED)
         {
             // TODO: check conditions here
         }
 
-        enemy = Instantiate(enemyPrefab, transform.position, transform.rotation, LevelManager.current_level.EntityList.transform).GetComponent<Enemy>();
+        ResourceRequest request = Resources.LoadAsync<GameObject>(enemyPrefabPath);
+        while (!request.isDone)
+        {
+            //Debug.Log("loading game over prefab");
+            yield return null;
+        }
+
+        yield return StartCoroutine(SpawnEnemy(request.asset as GameObject));
 
         isSpawned = true;
         respawnTimer = 0;
+    }
+    
+    private IEnumerator SpawnEnemy(GameObject prefab)
+    {
+        enemy = Instantiate(prefab, transform.position, transform.rotation, LevelManager.current_level.EntityList.transform).GetComponent<Enemy>();
+        yield return null;
     }
 }

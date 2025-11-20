@@ -3,6 +3,16 @@ using UnityEngine;
 
 public abstract class Enemy : Entity
 {
+    public enum EnemyTypes
+    {
+        SHARK,
+        CRAB,
+        MANTIS,
+        TRAPPER,
+        HOMING,
+        CYBERBOSS,
+    }
+
     [Header("==Enemy GameObjects==")]
     public Transform firePoint;
     public GameObject weapon;
@@ -13,7 +23,8 @@ public abstract class Enemy : Entity
 
     // Non-Serialized Vars
     [NonSerialized] public Transform target; // following the player
-    public bool pushed = false;
+    [NonSerialized] public EnemyTypes type;
+    [NonSerialized] public bool pushed = false;
     const float PUSHED_TIME = 0.5f;
     float pushTimer = 0f;
 
