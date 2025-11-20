@@ -7,6 +7,9 @@ public class CyberBossMissileAttack: State
     readonly CyberBoss cyberBoss;
     private readonly Weapon missileWeapon;
 
+    private const float minimumShootTime = 1f; // control shooting time
+    private float timer = 0f;
+
     public CyberBossMissileAttack(Entity new_entity) : base(new_entity)
     {
         cyberBoss = (CyberBoss) new_entity;
@@ -16,7 +19,7 @@ public class CyberBossMissileAttack: State
     public override void EnterState(Dictionary<string, object> args = null)
     {
         base.EnterState(args);
-
+        Debug.Log("In Missile state");
     }
 
     public override void UpdateState()
@@ -28,6 +31,9 @@ public class CyberBossMissileAttack: State
             return;
         }
 
+        cyberBoss.moveVelocity = Vector2.zero;
+        timer += Time.deltaTime;
+
         float distanceToTarget = cyberBoss.GetDistanceToTarget();
 
         if (distanceToTarget < cyberBoss.distanceToShoot)
@@ -37,22 +43,21 @@ public class CyberBossMissileAttack: State
 
             cyberBoss.ShootWeapon(cyberBoss.weapon, null, cyberBoss.firePoint, 7);
         }
-
-        cyberBoss.ShootWeapon(cyberBoss.weapon, null, cyberBoss.firePoint, 7);
-
-
-        // --- Change States After Attack ---
-        
-        if (distanceToTarget < cyberBoss.distanceToMove)
+        else if (timer > minimumShootTime)
         {
-            cyberBoss.ChangeState("Travel");
-            return;
-        }
-        else
-        {
-            cyberBoss.ChangeState("Idle");
-            return;
-        }
+            // --- Change States After Attack ---
+
+            if (distanceToTarget < cyberBoss.distanceToMove)
+            {
+                cyberBoss.ChangeState("Travel");
+                return;
+            }
+            else
+            {
+                cyberBoss.ChangeState("Idle");
+                return;
+            }
+        }   
     }
 
     public override void ExitState(Dictionary<string, object> args = null)

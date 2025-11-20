@@ -13,40 +13,22 @@ public class CyberBossPunchAttack : State
 
     public override void EnterState(Dictionary<string, object> args = null)
     {
+        Vector2 punchDirection = cyberBoss.GetDirectionToPosition(cyberBoss.target.transform.position);
+        
+        Debug.Log("In punch state");
         base.EnterState(args);
+        cyberBoss.punch.EmitPunch(punchDirection);
         cyberBoss.PlayAnim("Punch");
     }
 
     public override void UpdateState()
     {
-        if (cyberBoss.target == null)
-        {
-            Debug.Log("Target not found");
-            return;
-        }
+        Debug.Log("in travel State");
 
-        cyberBoss.rigidBody.linearVelocity = Vector2.zero;
-
-        float distance = cyberBoss.GetDistanceToTarget();
-        if (distance < cyberBoss.distanceToHit)
-        {
-            Vector2 dir = cyberBoss.GetDirectionToPosition(cyberBoss.target.gameObject.transform.position);
-            cyberBoss.RotateToDirection(dir);
-            cyberBoss.ShootWeapon(cyberBoss.weapon, null, cyberBoss.firePoint, 7);
-        }
-        else if (distance < cyberBoss.distanceToMove)
+        if (!cyberBoss.punch.punchCollider.enabled)
         {
             cyberBoss.ChangeState("Travel");
         }
-        else
-        {
-            cyberBoss.ChangeState("Travel");
-        }
+      
     }
-
-    /*private IEnumerator MoveAfterDelay()
-    {
-        yield return new WaitForSeconds(0.5f);
-        cyberBoss.ChangeState("Move");
-    }*/
 }

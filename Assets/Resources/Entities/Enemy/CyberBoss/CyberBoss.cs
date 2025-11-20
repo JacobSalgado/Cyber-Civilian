@@ -7,13 +7,14 @@ public class CyberBoss : Enemy
     [Header("==Cyber Boss Properties==")]
     public SpriteRenderer spriteRenderer;
     public Stomp stomp;
+    public Punch punch;
 
     public GameObject[] weaponsList;
 
-    public float distanceToShoot = 10f; // missile attack
-    public float distanceToMove = 25f; // travel
-    public float distanceToHit = 2f; // exploding punch attack
-    public float distanceToStomp = 15f; // stomp attack
+    public float distanceToShoot = 20f; // missile attack
+    public float distanceToMove = 30f; // travel
+    public float distanceToHit = 3f; // exploding punch attack
+    public float distanceToStomp = 12f; // stomp attack
 
     //------- Locking onto player -----------
     public float seePlayerTimer = 0f;
@@ -25,9 +26,9 @@ public class CyberBoss : Enemy
     {
         AddState("Idle", new CyberBossIdle(this));
         AddState("Travel", new CyberBossTravel(this));
-        //AddState("Missile", new CyberBossMissileAttack(this));
+        AddState("Missile", new CyberBossMissileAttack(this));
         AddState("Stomp", new CyberBossStompAttack(this));
-        //AddState("Punch", new CyberBossPunchAttack(this));
+        AddState("Punch", new CyberBossPunchAttack(this));
 
         ChangeState("Idle");
     }

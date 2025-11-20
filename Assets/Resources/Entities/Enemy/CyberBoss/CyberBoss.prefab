@@ -112,8 +112,121 @@ MonoBehaviour:
   moveSpeed: 4
   maxShockwaveRadius: 20
   pushForce: 15
+  maxRadius: 6
+  radiusIncRate: 0.4
   aoeCollider: {fileID: 8935194537158849570}
   rigidBody: {fileID: 423815992907518796}
+--- !u!1 &4116149950389406107
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5483728133297760575}
+  - component: {fileID: 7316356902578904390}
+  - component: {fileID: 2168450474968927489}
+  - component: {fileID: 3117823128212804980}
+  m_Layer: 0
+  m_Name: Punch
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5483728133297760575
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4116149950389406107}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.6666667, y: 0.6666667, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5190383900300549018}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &7316356902578904390
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4116149950389406107}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!58 &2168450474968927489
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4116149950389406107}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.39918327, y: 0.12388456}
+  m_Radius: 1.0230678
+--- !u!114 &3117823128212804980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4116149950389406107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ed0242a6d30fef4194a87e8589ddce3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Punch
+  punchCollider: {fileID: 2168450474968927489}
+  punchRigidbody: {fileID: 0}
 --- !u!1001 &1337654423169088360
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -180,6 +293,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6527896415030157554, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1722498154317575960}
+    - targetCorrespondingSourceObject: {fileID: 6527896415030157554, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5483728133297760575}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6939848692803389791, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       insertIndex: -1
@@ -270,14 +386,15 @@ MonoBehaviour:
   pushed: 0
   spriteRenderer: {fileID: 1805163559450772944}
   stomp: {fileID: 7418802895093423458}
+  punch: {fileID: 3117823128212804980}
   weaponsList:
   - {fileID: 6579814461523234674, guid: a6dd45164a0575a4c9c660b661d68099, type: 3}
   - {fileID: 0}
   - {fileID: 0}
-  distanceToShoot: 10
-  distanceToMove: 25
-  distanceToHit: 2
-  distanceToStomp: 15
+  distanceToShoot: 20
+  distanceToMove: 30
+  distanceToHit: 3
+  distanceToStomp: 12
   seePlayerTimer: 0
   timeToSeePlayer: 1
 --- !u!70 &3464978359531780074

@@ -13,6 +13,7 @@ public class CyberBossIdle: State
 
     public override void EnterState(Dictionary<string, object> args = null)
     {
+        Debug.Log("In Idle state");
         cyberBoss.rigidBody.linearVelocity = Vector2.zero;
         //cyberBoss.PlayAnim("Idle");
     }
@@ -38,12 +39,12 @@ public class CyberBossIdle: State
 
         float distanceToTarget = cyberBoss.GetDistanceToTarget();
 
-        //if (distanceToTarget <= cyberBoss.distanceToHit)
-            //cyberBoss.ChangeState("Punch");
-        //else if (distanceToTarget < cyberBoss.distanceToShoot)
-            //cyberBoss.ChangeState("Missile");
-        if (distanceToTarget < cyberBoss.distanceToStomp)
+        if (distanceToTarget <= cyberBoss.distanceToHit)
+            cyberBoss.ChangeState("Punch");
+        else if (distanceToTarget < cyberBoss.distanceToStomp)
             cyberBoss.ChangeState("Stomp");
+        else if (distanceToTarget < cyberBoss.distanceToShoot)
+            cyberBoss.ChangeState("Missile");
         else if (distanceToTarget < cyberBoss.distanceToMove)
             cyberBoss.ChangeState("Travel");
     }
