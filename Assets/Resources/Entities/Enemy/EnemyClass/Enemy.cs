@@ -84,6 +84,7 @@ public abstract class Enemy : Entity
     public override void EntityDie()
     {
         LevelManager.enemyKilledCounter += 1;
+        LevelManager.player.SetHealth(LevelManager.player.playerData.currentHealth + 70); // TODO: do something cooler
         Destroy(gameObject);
     }
 }

@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using System.Collections;
 
 public class CyberBossTravel: State
 {
@@ -9,7 +8,7 @@ public class CyberBossTravel: State
     //private float checkInterval = 0.5f;
     //private float nextCheckTime;
 
-    private const float timeToStep = 0.3f;
+    private const float timeToStep = 0.5f;
 
     private Vector2 directionToTarget;
     private float deltaCount = 0f;

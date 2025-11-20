@@ -17,6 +17,7 @@ public class CyberBossStompAttack: State
         cyberBoss.stomp.directionToPlayer = cyberBoss.GetDirectionToPosition(cyberBoss.target.position);
         cyberBoss.stomp.startScale = cyberBoss.stomp.gameObject.transform.localScale;
         cyberBoss.stomp.EmitPush();
+        cyberBoss.audioManager.PlayAudioSource("Stomp");
     }
 
     public override void UpdateState()

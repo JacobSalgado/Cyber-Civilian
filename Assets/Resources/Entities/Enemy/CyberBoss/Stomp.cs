@@ -53,6 +53,7 @@ public class Stomp : MonoBehaviour
                 timer = 0f;
                 aoeCollider.enabled = false;
                 spriteRenderer.enabled = false;
+                rigidBody.linearVelocity = Vector2.zero;
             }
         }
         else gameObject.transform.localPosition = Vector2.zero;

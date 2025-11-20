@@ -10493,6 +10493,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4916823724006355693, guid: 5fb676e0a7b43614d826979a01768f60, type: 3}
     - target: {fileID: -4032455514951249693, guid: cd7cca92be2028d4d8d1fde642a90b14, type: 3}
+      propertyPath: typeToSpawn
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -4032455514951249693, guid: cd7cca92be2028d4d8d1fde642a90b14, type: 3}
       propertyPath: timeTilRespawn
       value: 1
       objectReference: {fileID: 0}
@@ -10744,7 +10748,7 @@ PrefabInstance:
       objectReference: {fileID: 6554793732433315379}
     - target: {fileID: 7205215515983607880, guid: 512edb4db613d9045b2de37832b2b10f, type: 3}
       propertyPath: levelObjective
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7205215515983607880, guid: 512edb4db613d9045b2de37832b2b10f, type: 3}
       propertyPath: enemyKilledGoal

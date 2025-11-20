@@ -1,13 +1,18 @@
+using System;
 using UnityEngine;
 
 public class Punch : MonoBehaviour
 {
     private const float TTL = 0.2f;
     private float timer = 0f;
+    [SerializeField] private Transform initialLocalPosition;
 
+    public float punchSpeed = 3.0f;
     public CircleCollider2D punchCollider;
     public Rigidbody2D punchRigidbody;
     public SpriteRenderer spriteRenderer;
+
+    [NonSerialized] public Vector2 directionToPlayer = Vector2.zero;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,10 +24,12 @@ public class Punch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        gameObject.transform.position = initialLocalPosition.position;
         if (punchCollider.enabled)
         {
             timer += Time.deltaTime;
 
+            //punchRigidbody.linearVelocity = punchSpeed * directionToPlayer;
             if (timer >= TTL)
             {
                 timer = 0f;
@@ -30,6 +37,7 @@ public class Punch : MonoBehaviour
                 spriteRenderer.enabled = false;
             }
         }
+        //else gameObject.transform.localPosition = Vector2.zero;
     }
 
     public void EmitPunch()
@@ -44,7 +52,7 @@ public class Punch : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        print(collision.gameObject.name);
+        //print(collision.gameObject.name);
         if (collision.gameObject.TryGetComponent<Player>(out var player))
         {
             player.TakeDamage(50);

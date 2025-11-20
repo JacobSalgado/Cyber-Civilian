@@ -176,7 +176,7 @@ MonoBehaviour:
   - {fileID: 6079927618582836151, guid: b2cefede146407c4f824b7080112c3ad, type: 3}
   - {fileID: 6079927618582836151, guid: b39da1b4b388c0a44b357627e1571da2, type: 3}
   - {fileID: 6079927618582836151, guid: 204b9ecca0f9a564aae556ffaaf4f870, type: 3}
-  invincibility: 0
+  isShocked: 0
   firePoint: {fileID: 4439943555385396437}
   weapon: {fileID: 1157213995312190472, guid: f4f07c3e278a0334fad700404b5b7fe0, type: 3}
   canvas: {fileID: 2966775912804215989}

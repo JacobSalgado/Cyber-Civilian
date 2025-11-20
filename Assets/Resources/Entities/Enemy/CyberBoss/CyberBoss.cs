@@ -15,8 +15,6 @@ public class CyberBoss : Enemy
     public float distanceToHit = 3f; // exploding punch attack
     public float distanceToStomp = 12f; // stomp attack
 
-    public float punchSpeed = 3.0f;
-
     //------- Locking onto player -----------
     public float seePlayerTimer = 0f;
     public float timeToSeePlayer = 1.0f;

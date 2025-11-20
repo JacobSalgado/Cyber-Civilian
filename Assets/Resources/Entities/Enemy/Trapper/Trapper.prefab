@@ -290,7 +290,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8811157356989125342, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
-      value: 64
+      value: 192
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
@@ -481,7 +481,6 @@ MonoBehaviour:
   firePoint: {fileID: 7286729672604182}
   weapon: {fileID: 16432950934994515, guid: c44a80ce322cf4b48886e38cb9b6a719, type: 3}
   canvas: {fileID: 1488475855081233014}
-  pushed: 0
   distanceToShoot: 12
   distanceToMove: 22
 --- !u!114 &8904659477835846501 stripped

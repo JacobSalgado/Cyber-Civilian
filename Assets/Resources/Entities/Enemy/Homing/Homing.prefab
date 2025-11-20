@@ -24,6 +24,14 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.092851505
       objectReference: {fileID: 0}
+    - target: {fileID: 6474276062370758235, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6474276062370758235, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6527896415030157554, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -74,7 +82,7 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: b6dd1c91d55b9a643b7fbbecec1d6b33, type: 2}
     - target: {fileID: 8811157356989125342, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
-      value: 64
+      value: 192
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -109,12 +117,12 @@ MonoBehaviour:
   entityData: {fileID: 11400000, guid: 5d50e9e7baf52e647a5d13dca2f41059, type: 2}
   healthBar: {fileID: 3739624171282758146}
   audioManager: {fileID: 458652263754298069}
-  audioEffects: []
+  audioEffects:
+  - {fileID: 6079927618582836151, guid: 50c260c082aef7644b409f05dbe9d4c7, type: 3}
   isShocked: 0
   firePoint: {fileID: 9067754228479286182}
   weapon: {fileID: 6894637301577557660, guid: 3010bdca4c2402f4fae32d66d3442f03, type: 3}
   canvas: {fileID: 7595005997977222086}
-  pushed: 0
   spriteRenderer: {fileID: 8044791079203639929}
   capsuleCollider: {fileID: 8284027357278030350}
   distanceToShoot: 14

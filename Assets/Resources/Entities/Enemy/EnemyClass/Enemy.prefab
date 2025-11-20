@@ -286,7 +286,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4756910380638058606, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
-      value: 0
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 6086762081228105543, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.size

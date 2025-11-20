@@ -286,6 +286,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ed0242a6d30fef4194a87e8589ddce3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Punch
+  initialLocalPosition: {fileID: 8331401517711060881}
+  punchSpeed: 3
   punchCollider: {fileID: 2168450474968927489}
   punchRigidbody: {fileID: 7316356902578904390}
   spriteRenderer: {fileID: 2819921774195636407}
@@ -347,6 +349,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &5680406463214280703
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8331401517711060881}
+  m_Layer: 7
+  m_Name: PunchPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8331401517711060881
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5680406463214280703}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.392, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5190383900300549018}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1337654423169088360
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -443,10 +476,6 @@ PrefabInstance:
       propertyPath: m_Mass
       value: 1000000
       objectReference: {fileID: 0}
-    - target: {fileID: 8811157356989125342, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
-      propertyPath: m_ExcludeLayers.m_Bits
-      value: 64
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -456,6 +485,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6527896415030157554, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5483728133297760575}
+    - targetCorrespondingSourceObject: {fileID: 6527896415030157554, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8331401517711060881}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6939848692803389791, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       insertIndex: -1
@@ -535,11 +567,15 @@ MonoBehaviour:
   audioManager: {fileID: 8139299346322679164}
   audioEffects:
   - {fileID: 6079927618582836151, guid: 546c44fac25bbab4895e775be4e72f42, type: 3}
+  - {fileID: 6079927618582836151, guid: f0c3a0a3167d9ba43aa0572efb3e1876, type: 3}
+  - {fileID: 6079927618582836151, guid: 34ab14b1e3de66d49b848ced13c61e5e, type: 3}
+  - {fileID: 6079927618582836151, guid: 8c814326181eda740a6720d3f97e0f37, type: 3}
+  - {fileID: 6079927618582836151, guid: 6066e53a3454d88428d6c2bd123387e8, type: 3}
+  - {fileID: 6079927618582836151, guid: 362b9e346bbb2b44791590d1a965f6d8, type: 3}
   isShocked: 0
   firePoint: {fileID: 828325889361890319}
   weapon: {fileID: 6579814461523234674, guid: a6dd45164a0575a4c9c660b661d68099, type: 3}
   canvas: {fileID: 2292065971395210351}
-  pushed: 0
   spriteRenderer: {fileID: 1805163559450772944}
   stomp: {fileID: 7418802895093423458}
   punch: {fileID: 3117823128212804980}
@@ -549,7 +585,6 @@ MonoBehaviour:
   distanceToMove: 30
   distanceToHit: 4.5
   distanceToStomp: 11
-  punchSpeed: 5
   seePlayerTimer: 0
   timeToSeePlayer: 1
 --- !u!70 &3464978359531780074

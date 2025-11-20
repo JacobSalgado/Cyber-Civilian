@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -116,6 +115,7 @@ public class Weapon : MonoBehaviour
                     Missile missile = (Missile) ShootProjectile(firePoint, collision_layer);
                     missile.target = LevelManager.player.gameObject.transform;
                     missile.gameObject.SetActive(true);
+                    owner.audioManager.PlayAudioSource("Shoot");
                     
                     break;
             }

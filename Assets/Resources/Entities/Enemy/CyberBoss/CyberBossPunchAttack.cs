@@ -15,15 +15,16 @@ public class CyberBossPunchAttack : State
     {
         punchDirection = cyberBoss.GetDirectionToPosition(cyberBoss.target.transform.position);
         cyberBoss.RotateToDirection(punchDirection);
+        cyberBoss.punch.directionToPlayer = punchDirection;
         cyberBoss.punch.EmitPunch();
         Debug.Log("In punch state");
+        cyberBoss.audioManager.PlayAudioSource("Punch");
         //cyberBoss.PlayAnim("Punch");
     }
 
     public override void UpdateState()
     {
-        cyberBoss.moveVelocity = cyberBoss.punchSpeed * punchDirection;
-        cyberBoss.punch.punchRigidbody.linearVelocity = cyberBoss.punchSpeed * punchDirection;
+        cyberBoss.moveVelocity = cyberBoss.punch.punchSpeed * punchDirection;
         if (!cyberBoss.punch.punchCollider.enabled)
         {
             cyberBoss.ChangeState("Travel");
@@ -33,7 +34,6 @@ public class CyberBossPunchAttack : State
     public override void ExitState(Dictionary<string, object> args = null)
     {
         cyberBoss.moveVelocity = Vector2.zero;
-        cyberBoss.punch.punchRigidbody.linearVelocity = Vector2.zero;
-        cyberBoss.SetCooldown(1.2f);
+        cyberBoss.SetCooldown(0.5f);
     }
 }
