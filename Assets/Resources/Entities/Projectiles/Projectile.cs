@@ -23,7 +23,8 @@ public abstract class Projectile : Entity
     {
         if (collisionHit) timer += Time.deltaTime;
 
-        if (audioManager.audioEffects.ContainsKey("Impact") && timer > audioManager.audioEffects["Impact"].clip.length)
+        if ((!audioManager.audioEffects.ContainsKey("Impact") && collisionHit) || 
+             audioManager.audioEffects.ContainsKey("Impact") && timer > audioManager.audioEffects["Impact"].clip.length)
             EntityDie();
     }
 

@@ -31,7 +31,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Trooper_AnimatorController
+  m_Name: Homing_AnimatorController
   serializedVersion: 5
   m_AnimatorParameters: []
   m_AnimatorLayers:
@@ -67,7 +67,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: fa248e12e7c85bf4492df44348d9bb49, type: 2}
+  m_Motion: {fileID: 7400000, guid: 07d1dd6d4f25b484a87bf5c99f7b8c50, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -93,7 +93,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 8f251a93ad5325f4a9fec47886300c76, type: 2}
+  m_Motion: {fileID: 7400000, guid: e4eae9efdde86394fb2ad9fc82dd7b0c, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

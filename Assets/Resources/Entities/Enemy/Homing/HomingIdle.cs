@@ -12,7 +12,7 @@ public class HomingIdle : State
 
     public override void EnterState(Dictionary<string, object> args = null)
     {
-        homing.rigidBody.linearVelocity = Vector2.zero;
+        homing.moveVelocity = Vector2.zero;
         homing.PlayAnim("Idle");
     }
 
@@ -24,13 +24,12 @@ public class HomingIdle : State
             return;
         }
 
+        homing.moveVelocity = Vector2.zero;
+
         float distanceToTarget = homing.GetDistanceToTarget();
-
-        homing.rigidBody.linearVelocity = Vector2.zero;
-
         if (distanceToTarget < homing.distanceToShoot)
             homing.ChangeState("Shoot");
-        else if (distanceToTarget > homing.distanceToShoot)
+        else if (distanceToTarget < homing.distanceToMove)
             homing.ChangeState("Move");
     }
 }

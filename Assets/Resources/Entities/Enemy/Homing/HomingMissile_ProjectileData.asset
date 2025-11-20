@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileData
   currentHealth: 0
   maxHealth: 0
-  moveSpeed: 15
-  damage: 120
+  moveSpeed: 9
+  damage: 60
   hitEffect: {fileID: 6996612073667387790, guid: 73dd775d02fe8ef4cab1bbcfb652c45c, type: 3}
-  lifeTime: 0.25
-  timeToSpawn: 1.75
+  lifeTime: 1.5
+  timeToSpawn: 0
   destroyOnCollision: 1
   railshotLength: 0
   fadeawayTime: 0

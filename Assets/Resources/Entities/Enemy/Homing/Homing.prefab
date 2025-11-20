@@ -9,6 +9,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 836956141584006840, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 2195191635609960088, guid: 74796b59104f4fa44aa04ba825f61ddb, type: 3}
+    - target: {fileID: 836956141584006840, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       propertyPath: m_Color.b
       value: 0.58956945
       objectReference: {fileID: 0}
@@ -64,6 +68,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Homing
       objectReference: {fileID: 0}
+    - target: {fileID: 7695430886738632203, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: b6dd1c91d55b9a643b7fbbecec1d6b33, type: 2}
+    - target: {fileID: 8811157356989125342, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -105,8 +117,8 @@ MonoBehaviour:
   pushed: 0
   spriteRenderer: {fileID: 8044791079203639929}
   capsuleCollider: {fileID: 8284027357278030350}
-  distanceToShoot: 10
-  distanceToMove: 15
+  distanceToShoot: 14
+  distanceToMove: 22
 --- !u!70 &8284027357278030350
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

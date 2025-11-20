@@ -4,6 +4,7 @@ using UnityEngine;
 public class MissileTravel: State
 {
     readonly Missile missile;
+    float lifeTimer = 0f;
 
     public MissileTravel(Entity new_entity) : base(new_entity)
     {
@@ -12,11 +13,22 @@ public class MissileTravel: State
 
     public override void EnterState(Dictionary<string, object> args = null)
     {
-        
+        lifeTimer = 0f;
     }
 
     public override void UpdateState()
     {
+        if (missile.projData.lifeTime > 0)
+        {
+            lifeTimer += Time.deltaTime;
+            if (lifeTimer > missile.projData.lifeTime && missile.projectileCollider.enabled)
+            {
+                missile.CollisionHit();
+                missile.HitEffect(missile.transform.position);
+                return;
+            }
+        }
+
         if (missile.projData.homing && missile.target != null)
         {
             Vector2 direction = missile.GetDirectionToPosition(missile.target.position);

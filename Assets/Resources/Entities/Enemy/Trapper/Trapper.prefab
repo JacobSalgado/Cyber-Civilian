@@ -171,18 +171,18 @@ PrefabInstance:
     - target: {fileID: 836956141584006840, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 2195191635609960088, guid: c1a23fe6ac8854842867efb1d31ac2c7, type: 3}
+      objectReference: {fileID: 2195191635609960088, guid: 8ec0d7e7f114e084d9e097f214ab7418, type: 3}
     - target: {fileID: 836956141584006840, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       propertyPath: m_Color.b
-      value: 0.7207546
+      value: 0.54905653
       objectReference: {fileID: 0}
     - target: {fileID: 836956141584006840, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       propertyPath: m_Color.g
-      value: 0.03127795
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 836956141584006840, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       propertyPath: m_Color.r
-      value: 0.22545923
+      value: 0.96412945
       objectReference: {fileID: 0}
     - target: {fileID: 836956141584006840, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       propertyPath: m_WasSpriteAssigned
@@ -439,7 +439,7 @@ Animator:
   m_GameObject: {fileID: 8770807821078955054}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6e8ff7edc8052e04ea90897b56e7b830, type: 2}
+  m_Controller: {fileID: 9100000, guid: a57f0fd60ef2a1a4e98e465abf880a5c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -477,6 +477,7 @@ MonoBehaviour:
   firePoint: {fileID: 7286729672604182}
   weapon: {fileID: 16432950934994515, guid: c44a80ce322cf4b48886e38cb9b6a719, type: 3}
   canvas: {fileID: 1488475855081233014}
+  pushed: 0
   distanceToShoot: 8
   distanceToMove: 11
 --- !u!114 &8904659477835846501 stripped

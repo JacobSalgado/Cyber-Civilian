@@ -15,7 +15,7 @@ public class CyberBossIdle: State
     {
         Debug.Log("In Idle state");
         cyberBoss.moveVelocity = Vector2.zero;
-        //cyberBoss.PlayAnim("Idle");
+        cyberBoss.PlayAnim("Idle");
     }
 
     public override void UpdateState()
@@ -50,6 +50,6 @@ public class CyberBossIdle: State
 
     public override void ExitState(Dictionary<string, object> args = null)
     {
-        
+        cyberBoss.PlayAnim("Walk"); // NOTE: fix later to accomdate for more animations
     }
 }

@@ -18,7 +18,7 @@ public class HomingMove : State
 
     public override void EnterState(System.Collections.Generic.Dictionary<string, object> args = null)
     {
-    
+        homing.PlayAnim("Walk");
     }
 
     public override void UpdateState()
@@ -50,7 +50,7 @@ public class HomingMove : State
             {
                 directionToTarget = homing.GetDirectionToPosition(homing.target.transform.position);
                 homing.RotateToDirection(directionToTarget);
-                homing.rigidBody.linearVelocity = directionToTarget * homing.entityData.moveSpeed;
+                homing.moveVelocity = directionToTarget * homing.entityData.moveSpeed;
             }
             else homing.ChangeState("Idle");
         }
@@ -58,7 +58,7 @@ public class HomingMove : State
 
     public override void ExitState(Dictionary<string, object> args = null)
     {
-        homing.rigidBody.linearVelocity = Vector2.zero;
+        homing.moveVelocity = Vector2.zero;
     }
 
 }

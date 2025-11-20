@@ -5,17 +5,17 @@ using System.Threading;
 public class HomingShoot : State
 {
     readonly Homing homing;
-    private readonly Weapon homingMissile;
 
+    private const float timeToShoot = 0.35f;
     private const float minimumShootTime = 1.9f;
     private float timer;
+    private float shootTimer = 0f;
 
     public HomingShoot(Entity new_entity) : base(new_entity)
     {
         homing = (Homing)new_entity;
-        homingMissile = homing.weapon.GetComponent<Weapon>();
         timer = 0f;
-        // Play Anim here
+        shootTimer = 0f;
     }
 
     public override void UpdateState()
@@ -26,17 +26,21 @@ public class HomingShoot : State
             return;
         }
 
-        homing.rigidBody.linearVelocity = Vector2.zero;
+        homing.moveVelocity = Vector2.zero;
+        shootTimer += Time.deltaTime;
         timer += Time.deltaTime;
 
         float distanceToTarget = homing.GetDistanceToTarget();
-
         if (distanceToTarget < homing.distanceToShoot)
         {
             Vector2 dir = homing.GetDirectionToPosition(homing.target.gameObject.transform.position);
             homing.RotateToDirection(dir);
 
-            homing.ShootWeapon(homing.weapon, null, homing.firePoint, 7);
+            if (shootTimer > timeToShoot)
+            {
+                homing.ShootWeapon(homing.weapon, null, homing.firePoint, 7);
+                shootTimer = 0f;
+            }
         }
         else if (timer > minimumShootTime)
         {
