@@ -35,13 +35,13 @@ public class Player : Entity
     public InputActionReference reloadAction;
     public InputActionReference vortexAction;
     public InputActionReference pushAction;
-    private PlayerInput inputManager;
+    [SerializeField] private PlayerInputManager inputManager;
 
     [Header("==Weapon Properties==")]
     public Transform firePoint;
-    [SerializeField] public GameObject[] weapons;
+    public GameObject[] weapons;
     public PlayerWeaponType currentWeaponType = PlayerWeaponType.BULLET;
-    public Weapon currentWeapon;
+    [NonSerialized] public Weapon currentWeapon;
     public SpriteRenderer weaponRenderer; // Renderer for switching weapon sprites
 
     [Header("==Dashing Properties==")]
@@ -206,12 +206,24 @@ public class Player : Entity
             }
         }
 
+        // update mouse position
+        mousePos = cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+
+        // check for weaponKeybind input
+        if (weaponKeybindsAction.action.WasPressedThisFrame())
+        {
+            inputManager.currentInputType = PlayerInputManager.InputType.EQUIP_WEAPON;
+        }
+
         // reloading
         currentWeapon = weapons[(int)currentWeaponType].GetComponent<Weapon>();
         ammo = currentWeapon.currentAmmo;
-        if (ammo <= 0) Debug.Log("No ammo, reload!");
-        if (reloadAction.action.WasPressedThisFrame() && ammo < currentWeapon.maxAmmo && !isReloading && !isShieldBlocking && !isDashing)
-            Reload();
+        //if (ammo <= 0) Debug.Log("No ammo, reload!");
+        if (reloadAction.action.WasPressedThisFrame() && 
+            inputManager.currentInputType == PlayerInputManager.InputType.NONE
+        ) {
+            inputManager.currentInputType = PlayerInputManager.InputType.RELOAD_WEAPON;
+        }
     
         // Check for long reload for weapons that support it
         // Currently works bad
@@ -238,40 +250,11 @@ public class Player : Entity
         }
         */
 
-        // update mouse position
-        mousePos = cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-
-        // check for weaponKeybind input
-        if (weaponKeybindsAction.action.WasPressedThisFrame())
-        {
-            // Resets from previously having the shield
-            canShieldBlock = true;
-            isShieldBlocking = false;
-            invincibility = false;
-
-            // check which button was pressed in the actionMap
-            PlayerWeaponType new_weapon_type;
-            string action = weaponKeybindsAction.action.activeControl.name;
-
-            if (string.Compare(action, "q") != 0)
-            {
-                int num_key = int.Parse(action);
-                new_weapon_type = (PlayerWeaponType)(num_key - 1);
-            }
-            else new_weapon_type = (PlayerWeaponType)(((int)currentWeaponType + 1) % weapons.Length);
-
-            EquipNewWeapon(new_weapon_type);
-        }
-
         // check fire inputs
-        if (currentWeaponType < PlayerWeaponType.NONE && !isShieldBlocking & !isReloading && !isVortexBlocking)
-        {
-            string fireSFX  = "";
-            if (currentWeaponType == PlayerWeaponType.FLAMETHROWER)
-                fireSFX = "FlamethrowerFire";
-            else fireSFX = "PeaShooterFire";
-            
-            ShootWeapon(weapons[(int)currentWeaponType], fireAction, firePoint, 6, fireSFX);
+        if (currentWeaponType < PlayerWeaponType.NONE &&
+            inputManager.currentInputType == PlayerInputManager.InputType.NONE
+        ) {
+            inputManager.currentInputType = PlayerInputManager.InputType.FIRE_WEAPON;
         }
 
         // check dash inputs
@@ -492,21 +475,6 @@ public class Player : Entity
             gameObject.layer = 6;
             Debug.Log("Change state to normal");
         }
-    }
-
-    private void Reload()
-    {
-        isReloading = true;
-        
-        // TO-DO: play reload animation here
-        StartCoroutine(reloadCoroutine());
-    }
-
-    private IEnumerator reloadCoroutine()
-    {
-        yield return new WaitForSeconds(currentWeapon.reloadTime);
-        currentWeapon.ReloadWeapon();
-        isReloading = false;
     }
 
     public void changeSpriteAlpha(SpriteRenderer sr, float new_alpha)
