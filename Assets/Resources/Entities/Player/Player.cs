@@ -35,6 +35,7 @@ public class Player : Entity
     public InputActionReference reloadAction;
     public InputActionReference vortexAction;
     public InputActionReference pushAction;
+    private PlayerInput inputManager;
 
     [Header("==Weapon Properties==")]
     public Transform firePoint;
@@ -145,6 +146,7 @@ public class Player : Entity
         InitializeStates();
         tr.emitting = false;
 
+        // Create copy of weapon GameObject and ensure owner is the player
         for (int i = 0; i < weapons.Length; i++)
         {
             weapons[i] = Instantiate(weapons[i], transform);
@@ -153,6 +155,7 @@ public class Player : Entity
 
         EquipNewWeapon(currentWeaponType);
 
+        // Update this specific player instance to match the player instance from the previous level
         if (updatePlayer && playerData != null)
         {
             playerData.currentHealth = (int)updateArgs["currentPlayerHealth"];
@@ -494,6 +497,7 @@ public class Player : Entity
     private void Reload()
     {
         isReloading = true;
+        
         // TO-DO: play reload animation here
         StartCoroutine(reloadCoroutine());
     }
