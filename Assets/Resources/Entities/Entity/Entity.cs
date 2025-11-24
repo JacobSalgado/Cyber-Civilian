@@ -128,6 +128,13 @@ public abstract class Entity : StateManager
         animator.Play(name);
     }
 
+    public void ChangeSpriteAlpha(SpriteRenderer sr, float new_alpha)
+    {
+        Color tempColor = sr.color;
+        tempColor.a = new_alpha;
+        sr.color = tempColor;
+    }
+
     public void ApplyOnFireEffect(float duration, int damage)
     {
         if (isOnFire) return;

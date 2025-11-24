@@ -14,19 +14,16 @@ public class PlayerDash : State
 
     public override void EnterState(Dictionary<string, object> args = null)
     {
-        player.rigidBody.linearVelocity = Vector2.zero;
+        player.moveVelocity = Vector2.zero;
         velocity = player.moveAction.action.ReadValue<Vector2>();
         player.tr.emitting = true;
-        player.StartCoroutine(initiateDash());
+        player.isDashing = true;
+        player.StartCoroutine(InitiateDash());
     }
 
     public override void UpdateState()
     {
-        if (player.getIsDashing())
-        {
-            player.rigidBody.linearVelocity = player.dashPower * player.entityData.moveSpeed * velocity.normalized;
-            return;
-        }
+        player.moveVelocity = player.dashPower * player.entityData.moveSpeed * velocity.normalized;
     }
 
     public override void ExitState(Dictionary<string, object> args = null)
@@ -34,24 +31,23 @@ public class PlayerDash : State
 
     }
 
-    private IEnumerator initiateDash()
+    private IEnumerator InitiateDash()
     {
         player.audioManager.PlayAudioSource("Dashing");
         yield return player.StartCoroutine(Dash());
-        player.ChangeState("Move");
     }
     private IEnumerator Dash()
     {
         yield return new WaitForSeconds(player.dashTime);
         player.tr.emitting = false;
-        player.setIsDashing(false);
         player.invincibility = false;
+        player.ChangeState("Idle");
         player.StartCoroutine(DashCooldown());
     }
 
     private IEnumerator DashCooldown()
     {
         yield return new WaitForSeconds(player.dashCooldown);
-        player.setCanDash(true);
+        player.isDashing = false;
     }
 }

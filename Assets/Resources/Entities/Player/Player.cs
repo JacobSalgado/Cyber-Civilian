@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -22,10 +21,13 @@ public class Player : Entity
     public TrailRenderer tr; // Used to create dashing effect
     public SpriteRenderer spriteRenderer;
     public Sprite shieldSprite;
-    public Sprite vortexSprite;
     public PlayerPush pushAbility;
+    public PlayerPhase phaseAbility;
+    public PlayerShield shieldAbility;
+    public PlayerVortex vortexAbility;
+    [SerializeField] private PlayerInputManager inputManager;
 
-    [Header("==Controls==")]
+    [Header("==Input Maps==")]
     public InputActionReference moveAction;
     public InputActionReference fireAction;
     public InputActionReference dashAction;
@@ -35,22 +37,25 @@ public class Player : Entity
     public InputActionReference reloadAction;
     public InputActionReference vortexAction;
     public InputActionReference pushAction;
-    [SerializeField] private PlayerInputManager inputManager;
 
     [Header("==Weapon Properties==")]
+    [NonSerialized] public Weapon currentWeapon;
     public Transform firePoint;
     public GameObject[] weapons;
     public PlayerWeaponType currentWeaponType = PlayerWeaponType.BULLET;
-    [NonSerialized] public Weapon currentWeapon;
     public SpriteRenderer weaponRenderer; // Renderer for switching weapon sprites
 
     [Header("==Dashing Properties==")]
     public float dashPower = 2f;
     public float dashTime = 0.2f;
     public float dashCooldown = 1f;
-    private bool canDash = true;
-    private bool isDashing = false;
-    private bool isPhasing = false;
+
+    /* Input Action Flags */
+    [NonSerialized] public bool isDashing = false;
+    [NonSerialized] public bool isPhasing = false;
+    [NonSerialized] public bool isReloading = false;
+    [NonSerialized] public bool isShielding = false;
+    [NonSerialized] public bool isVortexing = false;
 
     [Header("==Resource Properties==")]
     // TODO: set resource regen timer
@@ -58,69 +63,53 @@ public class Player : Entity
     public int maxEnergy = 1000;
     public int energyRegen = 1;
     public int dashCost = 100;
-    public int vortexCost = 20; // when hit by projectiles
-    public int phaseCost = 50;
+    public int shieldDrainRate = 50;
+    public int phaseDrainRate = 50;
     public int pushCost = 200;
-
-    private const float timeToCharge = 0.25f;
+    public int vortexCost = 40;
+    public int vortexDrainRate = 60;
 
     [Header("==Blocking Properties==")]
-    public float shieldDrainRate = 50f;
-    public float shiledShockDuration = 2f;
+    public float shieldShockDuration = 2f;
     public float shieldSlowDownStrength = 0.5f;
     public int shieldFireDamage = 1;
-    public float shiledFireDuration = 3f;
+    public float shieldFireDuration = 3f;
 
     //[Header("==Vortex Controller==")]
     //public PlayerVortex playerVortex;
 
-    [Header("==Vortex Properties==")]
-    public float vortexRadius = 2f;
-    public int maxAbsorbedProjectiles = 25; // if it exceeds 25, vortex will explode and player will take damage
-    public float damageMultiplierPerProjectile = 0.2f;
-    public int vortexDrainRate = 30; // Energy drained per second
-
     [Header("==Visual Effects==")]
     public GameObject vortexVisualEffect;
-    public float rotationSpeed = 180f;
-
-    private List<Projectile> absorbedProjectiles = new List<Projectile>();
-    private int absorbedCount = 0;
-    //private int absorbedTotal = 0;
-    //private int vortexExplodeLimit = 20;
-    private GameObject activeVortexEffect;
-    private CircleCollider2D vortexCollider;
 
     // NonSerialized variables
     [NonSerialized] public Camera cam;
     [NonSerialized] public PlayerData playerData;
     [NonSerialized] public Slider resourceMeter;
-    [NonSerialized] public TextMeshProUGUI ammoCount;
-    [NonSerialized] public TextMeshProUGUI vortexMultiplier;
+    [NonSerialized] public TextMeshProUGUI ammoCountText;
+    [NonSerialized] public TextMeshProUGUI vortexMultiplierText;
+
     [NonSerialized] public bool updatePlayer = false;
     [NonSerialized] public Dictionary<string, object> updateArgs;
+
     [NonSerialized] public float damagedTimer = 0f;
     [NonSerialized] public float damagedTime = 0f;
-    [NonSerialized] public int ammo;
+
+    bool bonusDamageSet = false;
+    bool bonusDamageApplied = false;
+    float bonusDamageTimer = 0f;
+    float bonusDamageMultiplier = 1f;
+    const float BONUS_DAMAGE_TIME = 3.0f;
+
+    //[NonSerialized] public int ammo;
     [NonSerialized] public Vector2 pushedVelocity; // pushed velocity
     [NonSerialized] public Vector2 moveVelocity = Vector2.zero; // how much player will move
     private Vector2 mousePos;
-    public bool isReloading = false;
-    // private float reloadTimer = 0f;
-
-    private bool canShieldBlock = true;
-    private bool isShieldBlocking = false;
-
-    private bool canVortexBlock = true;
-    private bool isVortexBlocking = false;
-
     private PlayerWeaponType previousWeaponType;
 
-
     // other push-related properties
-    public bool pushed = false;
+    [NonSerialized] public bool pushed = false;
+    private float pushTimer = 0.0f;
     const float PUSHED_TIME = 0.5f;
-    //float pushTimer = 0f;
 
     public override void InitializeStates()
     {
@@ -166,12 +155,6 @@ public class Player : Entity
             updateArgs = null;
         }
 
-        // create vortex collider
-        vortexCollider = gameObject.AddComponent<CircleCollider2D>();
-        vortexCollider.radius = vortexRadius;
-        vortexCollider.isTrigger = true;
-        vortexCollider.enabled = false; // Initially disabled
-
         // check push timing from cyberboss
         /*if (pushed)
         {
@@ -195,6 +178,9 @@ public class Player : Entity
 
     void Update()
     {
+        currentWeapon = weapons[(int)currentWeaponType].GetComponent<Weapon>();
+
+        // damage timing for DamagedSFX
         if (isDamaged)
         {
             damagedTimer += Time.deltaTime;
@@ -206,21 +192,32 @@ public class Player : Entity
             }
         }
 
+        // applying bonus damage from Vortex ability
+        if (!isVortexing && bonusDamageSet)
+        {
+            if (!bonusDamageApplied) {
+                currentWeapon.projData.damage = (int) Math.Ceiling((float) currentWeapon.projData.damage * bonusDamageMultiplier);
+                bonusDamageApplied = true;
+            }
+
+            if (bonusDamageTimer > BONUS_DAMAGE_TIME)
+            {
+                bonusDamageMultiplier = 1f;
+                bonusDamageTimer = 0f;
+                bonusDamageSet = false;
+                bonusDamageApplied = false;
+            }
+
+            bonusDamageTimer += Time.deltaTime;
+        }
+
         // update mouse position
         mousePos = cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 
-        // check for weaponKeybind input
-        if (weaponKeybindsAction.action.WasPressedThisFrame())
-        {
-            inputManager.currentInputType = PlayerInputManager.InputType.EQUIP_WEAPON;
-        }
-
         // reloading
-        currentWeapon = weapons[(int)currentWeaponType].GetComponent<Weapon>();
-        ammo = currentWeapon.currentAmmo;
         //if (ammo <= 0) Debug.Log("No ammo, reload!");
         if (reloadAction.action.WasPressedThisFrame() && 
-            inputManager.currentInputType == PlayerInputManager.InputType.NONE
+            inputManager.CanReload
         ) {
             inputManager.currentInputType = PlayerInputManager.InputType.RELOAD_WEAPON;
         }
@@ -250,74 +247,47 @@ public class Player : Entity
         }
         */
 
+        // check for weaponKeybind input
+        if (weaponKeybindsAction.action.WasPressedThisFrame() &&
+            inputManager.CanEquip
+        ) {
+            inputManager.currentInputType = PlayerInputManager.InputType.EQUIP_WEAPON;
+        }
+
         // check fire inputs
         if (currentWeaponType < PlayerWeaponType.NONE &&
-            inputManager.currentInputType == PlayerInputManager.InputType.NONE
+            inputManager.CanFire &&
+            (fireAction.action.IsPressed() || fireAction.action.WasReleasedThisFrame())
         ) {
             inputManager.currentInputType = PlayerInputManager.InputType.FIRE_WEAPON;
         }
 
         // check dash inputs
-        if (dashAction.action.WasPressedThisFrame() && canDash && !isDashing && currentEnergy - dashCost >= 0)
-        {
-            canDash = false;
-            isDashing = true;
-            invincibility = true;
+        if (dashAction.action.WasPressedThisFrame() && 
+            (currentEnergy - dashCost) >= 0 &&
+            !isDashing
+        ) {
             currentEnergy -= dashCost;
+            invincibility = true;
             ChangeState("Dash");
         }
 
-        // NOTE: for all player abilities except Dash, turn off/stop other abilities first
-        // ability use should be mutually-exclusive (if you perform one, you can't do the others)
-
         // check phase inputs
-        if (phaseAction.action.WasPressedThisFrame() && !isPhasing && currentEnergy - phaseCost >= 0)
+        if (phaseAction.action.WasPressedThisFrame())
         {
-            if (isShieldBlocking) ShieldEnd();
-
-            Phase(true);
-        }
-        else if (phaseAction.action.WasPressedThisFrame() && isPhasing)
-        {
-            Phase(false);
+            inputManager.currentInputType = PlayerInputManager.InputType.PHASE;
         }
 
         // check shield inputs
         if (shieldAction.action.WasPressedThisFrame())
         {
-            Shield();
+            inputManager.currentInputType = PlayerInputManager.InputType.SHIELD;
         }
 
         // check vortex inputs
         if (vortexAction.action.WasPressedThisFrame())
         {
-            // deactive vortex and go back to previous weapon
-            if (isVortexBlocking)
-            {
-                canVortexBlock = true;
-
-                DeactivateVortex();
-
-                EquipNewWeapon(previousWeaponType);
-            }
-            // activate vortex (switch from weapon to vortex shield)
-            else if (canVortexBlock && !isVortexBlocking)
-            {
-                previousWeaponType = currentWeaponType;
-
-                canVortexBlock = false;
-                isVortexBlocking = true;
-
-                ActivateVortex();
-            }
-        }
-
-        // push input checks
-        if (pushAction.action.WasPressedThisFrame() && currentEnergy - pushCost >= 0)
-        {
-            audioManager.PlayAudioSource("Push");
-            currentEnergy -= pushCost;
-            pushAbility.EmitPush();
+            inputManager.currentInputType = PlayerInputManager.InputType.VORTEX;
         }
 
         // push input checks
@@ -329,65 +299,16 @@ public class Player : Entity
         }
 
         // regenerate energy
-        if (currentEnergy < 1000 && !isShieldBlocking && !isPhasing)
+        if (currentEnergy < 1000 && !isShielding && !isPhasing && !isVortexing)
         {
             currentEnergy += energyRegen;
             if (currentEnergy > 1000) currentEnergy = 1000;
-        }
-
-        /* energy costs for abilities */
-        if (isPhasing)
-        {
-            if (currentEnergy <= 0)
-                Phase(false);
-            else
-                currentEnergy -= phaseCost;
-        }
-
-        if (isShieldBlocking)
-        {
-            currentEnergy -= Mathf.RoundToInt(shieldDrainRate * Time.deltaTime);
-            if (currentEnergy <= 0)
-            {
-                currentEnergy = 0;
-                canShieldBlock = true; // reset for when resource regenerates
-                isShieldBlocking = false;
-                // switch from shield to gun
-                EquipNewWeapon(previousWeaponType);
-            }
-        }
-
-        // vortex equipped
-        if (isVortexBlocking)
-        {
-            //float drainAmount = playerVortex != null ? playerVortex.GetVortexDrainRate() : 30f;
-            float drainAmount = GetVortexDrainRate();
-
-            currentEnergy -= Mathf.RoundToInt(drainAmount * Time.deltaTime);
-
-            if (currentEnergy <= 0)
-            { 
-                currentEnergy = 0;
-                canVortexBlock = true; // reset for when resource regenerates
-                isVortexBlocking = false;
-
-                // deactivate vortex
-                DeactivateVortex();
-
-                EquipNewWeapon(previousWeaponType);
-            }
         }
 
         // UI updates
         UpdateResourceMeter();
         UpdateAmmoCount();
         UpdateVortexMultiplier();
-
-        // rotate visual effect for vortex
-        if (activeVortexEffect != null)
-        {
-            activeVortexEffect.transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
-        }
     }
 
     public override void FixedUpdate()
@@ -397,6 +318,23 @@ public class Player : Entity
         // update rotation
         Vector2 dir = GetDirectionToPosition(mousePos);
         RotateToDirection(dir);
+
+        // apply knockback velocity
+        if (pushed)
+        {
+            pushTimer += Time.deltaTime;
+
+            // decrease knockback velocity
+            rigidBody.linearVelocity = pushedVelocity;
+            pushedVelocity *= 0.85f;
+
+            if (pushTimer > PUSHED_TIME)
+            {
+                pushTimer = 0f;
+                pushed = false;
+            }
+        }
+        else rigidBody.linearVelocity = moveVelocity;
     }
 
     public void EquipNewWeapon(PlayerWeaponType newWeaponType)
@@ -417,156 +355,66 @@ public class Player : Entity
 
     public void UpdateAmmoCount()
     {
-        if (ammoCount && currentWeapon) ammoCount.text = $"({currentWeapon.currentAmmo}/{currentWeapon.maxAmmo})";
+        if (ammoCountText && currentWeapon) ammoCountText.text = $"({currentWeapon.currentAmmo}/{currentWeapon.maxAmmo})";
     }
 
     public void UpdateVortexMultiplier()
     {
-        vortexMultiplier.text = "Vortex Multiplier Damage: " + GetDamageMultiplier();
-    }
-
-    private void ShieldStart()
-    {
-        previousWeaponType = currentWeaponType;
-
-        audioManager.PlayAudioSource("ShieldStart");
-        canShieldBlock = false;
-        isShieldBlocking = true;
-        EquipShield();
-    }
-
-    private void ShieldEnd()
-    {
-        audioManager.PlayAudioSource("ShieldEnd");
-        canShieldBlock = true;
-        isShieldBlocking = false;
-        EquipNewWeapon(previousWeaponType);
-    }
-
-    public void Shield()
-    {
-        if (isShieldBlocking)
-        {
-            ShieldEnd();
-        }
-        else if (canShieldBlock && !isShieldBlocking)
-        {
-            ShieldStart();
-        }
-    }
-
-    public void Phase(bool activate)
-    {
-        if (activate)
-        {
-            audioManager.PlayAudioSource("PhaseStart");
-            isPhasing = true;
-            changeSpriteAlpha(spriteRenderer, 0.35f);
-            changeSpriteAlpha(weaponRenderer, 0.35f);
-            gameObject.layer = 3;
-            Debug.Log("Change state to phasing");
-        }
-        else
-        {
-            audioManager.PlayAudioSource("PhaseEnd");
-            isPhasing = false;
-            changeSpriteAlpha(spriteRenderer, 1f);
-            changeSpriteAlpha(weaponRenderer, 1f);
-            gameObject.layer = 6;
-            Debug.Log("Change state to normal");
-        }
-    }
-
-    public void changeSpriteAlpha(SpriteRenderer sr, float new_alpha)
-    {
-        Color tempColor = sr.color;
-        tempColor.a = new_alpha;
-        sr.color = tempColor;
-    }
-
-    public bool getIsDashing()
-    {
-        return isDashing;
-    }
-
-    public void setCanDash(bool new_canDash)
-    {
-        canDash = new_canDash;
-    }
-
-    public void setIsDashing(bool new_isDashing)
-    {
-        isDashing = new_isDashing;
+        vortexMultiplierText.text = "Vortex Multiplier Damage: " + bonusDamageMultiplier;
     }
 
     // ============================
     // SHIELD FUNCTIONS
     // ============================
-    public void EquipShield()
+    public void EquipShield(bool playAudio = true)
     {
         // change weaponrenderer sprite to a shield sprite
+        previousWeaponType = currentWeaponType;
         weaponRenderer.sprite = shieldSprite;
+        isShielding = true;
+
+        if (playAudio)
+            audioManager.PlayAudioSource("ShieldStart");
     }
 
-    public bool getIsShieldBlocking()
+    public void UnequipShield(bool playAudio = true)
     {
-        return isShieldBlocking;
-    }
+        EquipNewWeapon(previousWeaponType);
+        isShielding = false;
 
-    public void setCanShieldBlock(bool new_canShieldBlock)
-    {
-        isShieldBlocking = new_canShieldBlock;
-    }
-
-    public void setIsShieldBlocking(bool new_isShieldBlocking)
-    {
-        isShieldBlocking = new_isShieldBlocking;
+        if (playAudio)
+            audioManager.PlayAudioSource("ShieldEnd");
     }
 
     // ===========================
     //      Vortex Functions
     // ===========================
 
-    public bool getIsVortexBlocking()
-    {
-        return isVortexBlocking;
-    }
-
-    public void ActivateVortex()
+    public void StartVortex(bool playAudio = true)
     {
         // change weapon sprite to vortex shield sprite
-        weaponRenderer.sprite = vortexSprite; // equip vortex barrier
         previousWeaponType = currentWeaponType;
-
-        isVortexBlocking = true;
-        
-        vortexCollider.enabled = true;
-        //absorbedCount = 0;
-        absorbedProjectiles.Clear();
-
-        // create visual effect
-        if (vortexVisualEffect != null)
-        {
-            activeVortexEffect = Instantiate(vortexVisualEffect, transform);
-        }
-
-        Debug.Log("Vortex activated");
+        isVortexing = true;
+        // if (playAudio)
+        // audioManager.PlayAudioSource("VortexStart");
     }
 
-    public void DeactivateVortex()
+    public void StopVortex(float damageMultipler, bool playAudio = true)
     {
-        vortexCollider.enabled = false;
-
-        // destroy visual effect
-        if (activeVortexEffect != null)
+        EquipNewWeapon(previousWeaponType);
+        isVortexing = false;
+        
+        if (damageMultipler > 1.0f)
         {
-            Destroy(activeVortexEffect);
-        }
-        isVortexBlocking = false;
-        canVortexBlock = true;
-        EquipNewWeapon(previousWeaponType); // go back to weapon player was previously holding
+            bonusDamageMultiplier = damageMultipler;
+            bonusDamageTimer = 0f;
+            bonusDamageSet = true;
+            bonusDamageApplied = false;
 
-        Debug.Log("Vortex deactivated");
+        }
+
+        // if (playAudio)
+        // audioManager.PlayAudioSource("VortexEnd");
     }
 
     public override void GotDamaged()
@@ -581,79 +429,17 @@ public class Player : Entity
         }
     }
 
-    public void AbsorbProjectile(GameObject projectile)
-    {
-        absorbedCount++;
-        //absorbedTotal++;
-
-        // make a limit to how much can be absorbed and make the player take damage if it exceeds the limit
-        if (absorbedCount > maxAbsorbedProjectiles)
-        {
-            // put player taking damage here:
-            TakeDamage(100);
-            ResetAbsorbedCount();
-            DeactivateVortex();
-        }
-
-        // add visual/audio feedback
-
-        Destroy(projectile);
-
-
-        Debug.Log($"Absorbed projectile! Count: {absorbedCount}");
-    }
-
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        // when vortex is active
-        if (vortexCollider.enabled)
-        {
-            // check if enemy projectile
-            if (collision.gameObject.TryGetComponent<Projectile>(out var projectile))
-            {
-                // targeting player layer
-                if (projectile.attacking_layer == 6 && absorbedCount < maxAbsorbedProjectiles)
-                {
-                    AbsorbProjectile(projectile.gameObject);
-                }
-            }
-        }
-    }
-
-    public void OnCollisionEnter2D(Collision2D collision)
-    {
-        //Debug.Log("Collided with " + collision.gameObject.name);
-        if (isShieldBlocking)
-        {
-            if (collision.gameObject.TryGetComponent<Enemy>(out var enemy))
-            {
-                Debug.Log("Applied shock from shield to enemy");
-                enemy.ApplyShockEffect(shiledShockDuration, shieldSlowDownStrength);
-                enemy.ApplyOnFireEffect(shiledFireDuration, shieldFireDamage);
-            }
-        }
-    }
-    
-    public float GetDamageMultiplier()
-    {
-        float multiplier = 1f + (absorbedCount * damageMultiplierPerProjectile);
-        return multiplier;
-    }
-
-    public int GetAbsorbedCount()
-    {
-        return absorbedCount;
-    }
-
-    public void ResetAbsorbedCount()
-    {
-        absorbedCount = 0;
-
-        // add UI reset and then visual effects here
-    }
-
-    public float GetVortexDrainRate()
-    {
-        return vortexDrainRate;
-    }
+    // public void OnCollisionEnter2D(Collision2D collision)
+    // {
+    //     //Debug.Log("Collided with " + collision.gameObject.name);
+    //     // if (isShieldBlocking)
+    //     // {
+    //     //     if (collision.gameObject.TryGetComponent<Enemy>(out var enemy))
+    //     //     {
+    //     //         Debug.Log("Applied shock from shield to enemy");
+    //     //         enemy.ApplyShockEffect(shiledShockDuration, shieldSlowDownStrength);
+    //     //         enemy.ApplyOnFireEffect(shiledFireDuration, shieldFireDamage);
+    //     //     }
+    //     // }
+    // }
 }

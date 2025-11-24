@@ -32,20 +32,10 @@ public abstract class Projectile : Entity
     {
         // Player Collision
         if (attacking_layer == 7 && collision.gameObject.TryGetComponent<Player>(out var player))
-        {
-            if (player.getIsVortexBlocking())
-            {
-                Debug.Log("Projectile absorbed by vortex");
-
-                player.AbsorbProjectile(gameObject);
-                player.currentEnergy -= player.vortexCost; // resource meter drains even more when hit by projectiles
-                CollisionHit();
-                return;
-            }
-            
+        {         
             bool blocked = false;
 
-            if (player.getIsShieldBlocking())
+            if (player.isShielding)
             {
                 // Player's forward direction (the direction they are facing)
                 Vector2 playerForward = -player.firePoint.right.normalized;

@@ -49,8 +49,6 @@ public class Weapon : MonoBehaviour
 
     public void Shoot(InputActionReference fireAction, Transform firePoint, int collision_layer, string fireSFX = "")
     {
-        if (currentAmmo - ammoCost < 0) return;
-
         if (fireAction != null) // player shooting
         {
             if (fireMode == FireMode.FULL_AUTO)
@@ -63,7 +61,7 @@ public class Weapon : MonoBehaviour
             }
             else if (fireMode == FireMode.CHARGE)
             {
-                chargeShot(fireAction, firePoint, collision_layer);
+                PlayerChargeShot(fireAction, firePoint, collision_layer);
             }
             else if (fireMode == FireMode.LOCK_ON)
             {
@@ -162,7 +160,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    private void chargeShot(InputActionReference fireAction, Transform firePoint, int collision_layer)
+    private void PlayerChargeShot(InputActionReference fireAction, Transform firePoint, int collision_layer)
     {
         // Start charging when the player holds the button
         if (fireAction.action.IsPressed())
@@ -258,21 +256,21 @@ public class Weapon : MonoBehaviour
         proj.attacking_layer = receiving_layer;
 
         // Vortex damage booster when player is active with vortex
-        if (owner is Player player)
-        { 
-            int absorbedCount = player.GetAbsorbedCount();
+        // if (owner is Player player)
+        // { 
+        //     int absorbedCount = player.GetAbsorbedCount();
 
-            if (absorbedCount >= 0 && player.getIsVortexBlocking())
-            { 
-                // Apply damage multiplier
-                float multiplier = player.GetDamageMultiplier();
-                int originalDamage = proj.projData.damage;
-                int boostedDamage = Mathf.RoundToInt(originalDamage * multiplier);
-                proj.projData.damage = boostedDamage;
+        //     if (absorbedCount >= 0 && player.getIsVortexBlocking())
+        //     { 
+        //         // Apply damage multiplier
+        //         float multiplier = player.GetDamageMultiplier();
+        //         int originalDamage = proj.projData.damage;
+        //         int boostedDamage = Mathf.RoundToInt(originalDamage * multiplier);
+        //         proj.projData.damage = boostedDamage;
 
-                Debug.Log($"Vortex boost! Damage: {originalDamage} -> {boostedDamage} (x{multiplier:F2}, absorbed: {absorbedCount}");
-            }
-        }
+        //         Debug.Log($"Vortex boost! Damage: {originalDamage} -> {boostedDamage} (x{multiplier:F2}, absorbed: {absorbedCount}");
+        //     }
+        // }
 
         proj.gameObject.SetActive(active);
 

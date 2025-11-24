@@ -59,7 +59,7 @@ public class EnemySpawn : MonoBehaviour
         };
         enemyPrefabPath += enemyName + "/" + enemyName;
 
-        Debug.Log(enemyPrefabPath);
+        //Debug.Log(enemyPrefabPath);
 
         if (spawnCondition == EnemySpawnCondition.TIMED)
         {
