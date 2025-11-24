@@ -20,7 +20,6 @@ public class Player : Entity
     [Header("==Necessary GameObjects==")]
     public TrailRenderer tr; // Used to create dashing effect
     public SpriteRenderer spriteRenderer;
-    public Sprite shieldSprite;
     public PlayerPush pushAbility;
     public PlayerPhase phaseAbility;
     public PlayerShield shieldAbility;
@@ -370,7 +369,7 @@ public class Player : Entity
     {
         // change weaponrenderer sprite to a shield sprite
         previousWeaponType = currentWeaponType;
-        weaponRenderer.sprite = shieldSprite;
+        weaponRenderer.enabled = false;
         isShielding = true;
 
         if (playAudio)
@@ -380,6 +379,7 @@ public class Player : Entity
     public void UnequipShield(bool playAudio = true)
     {
         EquipNewWeapon(previousWeaponType);
+        weaponRenderer.enabled = true;
         isShielding = false;
 
         if (playAudio)

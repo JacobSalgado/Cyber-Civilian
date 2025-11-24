@@ -33,27 +33,8 @@ public abstract class Projectile : Entity
         // Player Collision
         if (attacking_layer == 7 && collision.gameObject.TryGetComponent<Player>(out var player))
         {         
-            bool blocked = false;
-
-            if (player.isShielding)
-            {
-                // Player's forward direction (the direction they are facing)
-                Vector2 playerForward = -player.firePoint.right.normalized;
-
-                // Direction from player to projectile
-                Vector2 toProjectile = (transform.position - player.transform.position).normalized;
-
-                float dot = Vector2.Dot(playerForward, toProjectile);
-
-                blocked = dot > Mathf.Cos(45f * Mathf.Deg2Rad);
-            }
-
-            if (!blocked)
-            {
-                player.TakeDamage(projData.damage);
-                CheckForEffect(player);
-            }
-            else Debug.Log("Projectile Blocked");
+            player.TakeDamage(projData.damage);
+            CheckForEffect(player);
 
             // Destroy projectile if necessary (blocked or hit)
             HitEffect(collision.transform.position);
