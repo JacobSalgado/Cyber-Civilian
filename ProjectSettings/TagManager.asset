@@ -18,10 +18,9 @@ TagManager:
   - Projectiles
   - LevelBoundry
   - PlayerPush
-  - BossStomp
-  - 
-  - 
-  - 
+  - BossAttack
+  - PlayerVortex
+  - PlayerShield
   - 
   - 
   - 
