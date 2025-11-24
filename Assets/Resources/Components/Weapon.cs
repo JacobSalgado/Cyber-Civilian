@@ -165,19 +165,24 @@ public class Weapon : MonoBehaviour
         // Start charging when the player holds the button
         if (fireAction.action.IsPressed())
         {
+            Player player = (Player) owner;
+
             if (!isCharging)
             {
                 isCharging = true;
                 isCharged = false;
                 fireTimer = 0f;
+                player.chargeMeter.TurnOnMeter(ChargeMeter.MeterType.RAILGUN_CHARGE, 0f, projData.timeToSpawn);
                 //Debug.Log("Started charging");
             }
 
             //Debug.Log($"Charging... {fireTimer:F2}s");
             fireTimer += Time.deltaTime; // Increment charge timer while holding
-            
+            player.chargeMeter.UpdateMeter(fireTimer);
+
             if (fireTimer > projData.timeToSpawn && !isCharged)
             {
+                player.chargeMeter.TurnOffMeter();
                 owner.audioManager.PlayAudioSource("RailgunCharged");
                 isCharged = true;
             }

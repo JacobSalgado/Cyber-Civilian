@@ -40,6 +40,9 @@ public class PlayerInputManager : MonoBehaviour
                 break;
 
             case InputType.EQUIP_WEAPON:
+                if (_player.isShielding) _player.shieldAbility.Shield(false, false);
+                else if (_player.isVortexing) _player.vortexAbility.EmitVortex(false, false);
+
                 EquipWeapon();
                 break;
 
@@ -105,13 +108,6 @@ public class PlayerInputManager : MonoBehaviour
 
     private void EquipWeapon()
     {
-        /** 
-        // Resets from previously having the shield
-        canShieldBlock = true;
-        isShieldBlocking = false;
-        invincibility = false;
-        */
-
         Player.PlayerWeaponType new_weapon_type;
         string action = _player.weaponKeybindsAction.action.activeControl.name;
 

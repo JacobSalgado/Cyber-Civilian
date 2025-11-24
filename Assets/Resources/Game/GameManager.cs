@@ -281,7 +281,6 @@ public class GameManager : StateManager
         player.UpdateAmmoCount();
 
         player.vortexMultiplierText = hud.vortexMultiplierText;
-        player.UpdateVortexMultiplier();
 
         yield return null;
     }

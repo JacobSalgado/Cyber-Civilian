@@ -22,14 +22,20 @@ public class PlayerVortex : MonoBehaviour
     void Update()
     {
         gameObject.transform.localPosition = Vector2.zero;
+        gameObject.transform.localRotation = Quaternion.identity;
         if (_player.isVortexing)
         {
             if (_player.currentEnergy <= 0)
             {
                 EmitVortex(true);
+                _player.chargeMeter.TurnOffMeter();
                 return;    
             }
-            else _player.currentEnergy -= (int) Math.Ceiling(_player.vortexDrainRate * Time.deltaTime);
+            else {
+                _player.currentEnergy -= (int) Math.Ceiling(_player.vortexDrainRate * Time.deltaTime);
+
+                _player.chargeMeter.UpdateMeter(_player.currentEnergy);
+            }
         } 
     }
 

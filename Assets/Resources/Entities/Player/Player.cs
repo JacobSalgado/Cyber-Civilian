@@ -20,6 +20,7 @@ public class Player : Entity
     [Header("==Necessary GameObjects==")]
     public TrailRenderer tr; // Used to create dashing effect
     public SpriteRenderer spriteRenderer;
+    public ChargeMeter chargeMeter;
     public PlayerPush pushAbility;
     public PlayerPhase phaseAbility;
     public PlayerShield shieldAbility;
@@ -93,9 +94,9 @@ public class Player : Entity
     [NonSerialized] public float damagedTimer = 0f;
     [NonSerialized] public float damagedTime = 0f;
 
-    bool bonusDamageSet = false;
+    [NonSerialized] public bool bonusDamageSet = false;
     bool bonusDamageApplied = false;
-    float bonusDamageTimer = 0f;
+     [NonSerialized] public float bonusDamageTimer = 0f;
     float bonusDamageMultiplier = 1f;
     const float BONUS_DAMAGE_TIME = 3.0f;
 
@@ -153,26 +154,6 @@ public class Player : Entity
             updatePlayer = false;
             updateArgs = null;
         }
-
-        // check push timing from cyberboss
-        /*if (pushed)
-        {
-            pushTimer += Time.deltaTime;
-
-            // decrease push velocity
-            rigidBody.linearVelocity = pushedVelocity;
-            pushedVelocity *= 0.85f;
-
-            if (pushTimer > PUSHED_TIME)
-            {
-                pushTimer = 0f;
-                pushed = false;
-            }
-        }
-        else
-        {
-            rigidBody.linearVelocity = moveVelocity;
-        }*/
     }
 
     void Update()
@@ -194,6 +175,7 @@ public class Player : Entity
         // applying bonus damage from Vortex ability
         if (!isVortexing && bonusDamageSet)
         {
+            chargeMeter.UpdateMeter(bonusDamageTimer);
             if (!bonusDamageApplied) {
                 currentWeapon.projData.damage = (int) Math.Ceiling((float) currentWeapon.projData.damage * bonusDamageMultiplier);
                 bonusDamageApplied = true;
@@ -307,7 +289,6 @@ public class Player : Entity
         // UI updates
         UpdateResourceMeter();
         UpdateAmmoCount();
-        UpdateVortexMultiplier();
     }
 
     public override void FixedUpdate()
@@ -357,11 +338,6 @@ public class Player : Entity
         if (ammoCountText && currentWeapon) ammoCountText.text = $"({currentWeapon.currentAmmo}/{currentWeapon.maxAmmo})";
     }
 
-    public void UpdateVortexMultiplier()
-    {
-        vortexMultiplierText.text = "Vortex Multiplier Damage: " + bonusDamageMultiplier;
-    }
-
     // ============================
     // SHIELD FUNCTIONS
     // ============================
@@ -395,6 +371,9 @@ public class Player : Entity
         // change weapon sprite to vortex shield sprite
         previousWeaponType = currentWeaponType;
         isVortexing = true;
+
+        chargeMeter.TurnOnMeter(ChargeMeter.MeterType.VORTEX_ABSORB, currentEnergy, maxEnergy);
+
         // if (playAudio)
         // audioManager.PlayAudioSource("VortexStart");
     }
@@ -410,8 +389,11 @@ public class Player : Entity
             bonusDamageTimer = 0f;
             bonusDamageSet = true;
             bonusDamageApplied = false;
+            vortexMultiplierText.text = "Vortex Multiplier Damage: " + bonusDamageMultiplier;
 
+            chargeMeter.TurnOnMeter(ChargeMeter.MeterType.BONUS_DAMAGE, 0f, BONUS_DAMAGE_TIME);
         }
+        else chargeMeter.TurnOffMeter();
 
         // if (playAudio)
         // audioManager.PlayAudioSource("VortexEnd");
