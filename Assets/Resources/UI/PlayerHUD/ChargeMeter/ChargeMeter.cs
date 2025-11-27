@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,19 +22,21 @@ public class ChargeMeter : MonoBehaviour
     public Slider slider;
     public Image fillImage;
     public TextMeshProUGUI sliderText;
+    [SerializeField] private Player _player;
 
     private MeterType type;
+    private Vector3 offset = Vector2.zero;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         gameObject.SetActive(false);
+        offset = gameObject.transform.localPosition;
     }
 
     void Update()
     {
-        gameObject.transform.rotation = Quaternion.identity;
-        gameObject.transform.localRotation = Quaternion.identity;
+        gameObject.transform.SetPositionAndRotation(_player.gameObject.transform.position + offset, Quaternion.identity);
     }
 
     public void UpdateMeter(float current)
@@ -49,6 +50,8 @@ public class ChargeMeter : MonoBehaviour
         slider.value = current;
         slider.maxValue = max;
         sliderText.text = meterTexts[this.type];
+
+        gameObject.transform.SetPositionAndRotation(_player.gameObject.transform.position + offset, Quaternion.identity);
         gameObject.SetActive(true);
     }
 

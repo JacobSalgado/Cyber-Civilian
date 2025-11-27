@@ -162,11 +162,11 @@ public class Weapon : MonoBehaviour
 
     private void PlayerChargeShot(InputActionReference fireAction, Transform firePoint, int collision_layer)
     {
+        Player player = (Player) owner;
+        
         // Start charging when the player holds the button
         if (fireAction.action.IsPressed())
         {
-            Player player = (Player) owner;
-
             if (!isCharging)
             {
                 isCharging = true;
@@ -189,11 +189,14 @@ public class Weapon : MonoBehaviour
         }
 
         // Fire when player releases the button
-        if (isCharged && fireAction.action.WasReleasedThisFrame())
+        if (fireAction.action.WasReleasedThisFrame())
         {
-            //Debug.Log($"Released at {fireTimer:F2}s");
-            ShootProjectile(firePoint, collision_layer);
-            owner.audioManager.PlayAudioSource("RailgunFire");
+            if (isCharged){
+                //Debug.Log($"Released at {fireTimer:F2}s");
+                ShootProjectile(firePoint, collision_layer);
+                owner.audioManager.PlayAudioSource("RailgunFire");
+            }
+            player.chargeMeter.TurnOffMeter();
             isCharging = false; // Reset for next charge
 
             fireTimer = 0f;

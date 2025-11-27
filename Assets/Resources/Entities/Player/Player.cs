@@ -61,7 +61,7 @@ public class Player : Entity
     // TODO: set resource regen timer
     public int currentEnergy = 1000;
     public int maxEnergy = 1000;
-    public int energyRegen = 1;
+    public int energyRegen = 10;
     public int dashCost = 100;
     public int shieldDrainRate = 50;
     public int phaseDrainRate = 50;
@@ -177,7 +177,7 @@ public class Player : Entity
         {
             chargeMeter.UpdateMeter(bonusDamageTimer);
             if (!bonusDamageApplied) {
-                currentWeapon.projData.damage = (int) Math.Ceiling((float) currentWeapon.projData.damage * bonusDamageMultiplier);
+                currentWeapon.projData.damage = (int) Math.Ceiling(currentWeapon.projData.damage * bonusDamageMultiplier);
                 bonusDamageApplied = true;
             }
 
@@ -280,15 +280,16 @@ public class Player : Entity
         }
 
         // regenerate energy
-        if (currentEnergy < 1000 && !isShielding && !isPhasing && !isVortexing)
+        if (currentEnergy < maxEnergy && !isShielding && !isPhasing && !isVortexing)
         {
             currentEnergy += energyRegen;
-            if (currentEnergy > 1000) currentEnergy = 1000;
+            if (currentEnergy > maxEnergy) currentEnergy = maxEnergy;
         }
 
-        // UI updates
+        /* UI updates */
         UpdateResourceMeter();
-        UpdateAmmoCount();
+        UpdateAmmoCountText();
+        UpdateVortexMultiplierText();
     }
 
     public override void FixedUpdate()
@@ -333,9 +334,14 @@ public class Player : Entity
         resourceMeter.value = currentEnergy;
     }
 
-    public void UpdateAmmoCount()
+    public void UpdateAmmoCountText()
     {
         if (ammoCountText && currentWeapon) ammoCountText.text = $"({currentWeapon.currentAmmo}/{currentWeapon.maxAmmo})";
+    }
+
+    public void UpdateVortexMultiplierText()
+    {
+        vortexMultiplierText.text = "Vortex Multiplier Damage: " + bonusDamageMultiplier;
     }
 
     // ============================
@@ -389,7 +395,6 @@ public class Player : Entity
             bonusDamageTimer = 0f;
             bonusDamageSet = true;
             bonusDamageApplied = false;
-            vortexMultiplierText.text = "Vortex Multiplier Damage: " + bonusDamageMultiplier;
 
             chargeMeter.TurnOnMeter(ChargeMeter.MeterType.BONUS_DAMAGE, 0f, BONUS_DAMAGE_TIME);
         }
