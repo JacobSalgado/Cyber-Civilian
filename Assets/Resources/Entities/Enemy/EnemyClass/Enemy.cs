@@ -18,9 +18,6 @@ public abstract class Enemy : Entity
     public GameObject weapon;
     public GameObject canvas;
 
-    [NonSerialized] public Vector2 pushedVelocity;
-    [NonSerialized] public Vector2 moveVelocity = Vector2.zero;
-
     // Non-Serialized Vars
     [NonSerialized] public Transform target; // following the player
     [NonSerialized] public EnemyTypes type;

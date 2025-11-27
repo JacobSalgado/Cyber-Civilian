@@ -18,16 +18,18 @@ public class Player : Entity
     }
 
     [Header("==Necessary GameObjects==")]
-    public TrailRenderer tr; // Used to create dashing effect
+    public TrailRenderer trailRenderer; // Used to create dashing effect
     public SpriteRenderer spriteRenderer;
     public ChargeMeter chargeMeter;
+
+    [Header("Ability GameObjects")]
     public PlayerPush pushAbility;
     public PlayerPhase phaseAbility;
     public PlayerShield shieldAbility;
     public PlayerVortex vortexAbility;
-    [SerializeField] private PlayerInputManager inputManager;
 
     [Header("==Input Maps==")]
+    [SerializeField] private PlayerInputManager inputManager;
     public InputActionReference moveAction;
     public InputActionReference fireAction;
     public InputActionReference dashAction;
@@ -58,52 +60,37 @@ public class Player : Entity
     [NonSerialized] public bool isVortexing = false;
 
     [Header("==Resource Properties==")]
-    // TODO: set resource regen timer
     public int currentEnergy = 1000;
     public int maxEnergy = 1000;
     public int energyRegen = 10;
     public int dashCost = 100;
-    public int shieldDrainRate = 50;
-    public int phaseDrainRate = 50;
     public int pushCost = 200;
-    public int vortexCost = 40;
-    public int vortexDrainRate = 60;
 
-    [Header("==Blocking Properties==")]
-    public float shieldShockDuration = 2f;
-    public float shieldSlowDownStrength = 0.5f;
-    public int shieldFireDamage = 1;
-    public float shieldFireDuration = 3f;
-
-    //[Header("==Vortex Controller==")]
-    //public PlayerVortex playerVortex;
-
-    [Header("==Visual Effects==")]
-    public GameObject vortexVisualEffect;
-
-    // NonSerialized variables
+    /* NonSerialized variables */
+    // Assigned during runtime
     [NonSerialized] public Camera cam;
     [NonSerialized] public PlayerData playerData;
     [NonSerialized] public Slider resourceMeter;
     [NonSerialized] public TextMeshProUGUI ammoCountText;
     [NonSerialized] public TextMeshProUGUI vortexMultiplierText;
+    private Vector2 mousePos;
 
+    // Update parameters
     [NonSerialized] public bool updatePlayer = false;
     [NonSerialized] public Dictionary<string, object> updateArgs;
 
+    // "Damaged" variables for "Damaged" SFX
     [NonSerialized] public float damagedTimer = 0f;
     [NonSerialized] public float damagedTime = 0f;
 
+    // Bonus Damage is received from Vortex Ability
     [NonSerialized] public bool bonusDamageSet = false;
-    bool bonusDamageApplied = false;
-     [NonSerialized] public float bonusDamageTimer = 0f;
-    float bonusDamageMultiplier = 1f;
-    const float BONUS_DAMAGE_TIME = 3.0f;
-
-    //[NonSerialized] public int ammo;
-    [NonSerialized] public Vector2 pushedVelocity; // pushed velocity
-    [NonSerialized] public Vector2 moveVelocity = Vector2.zero; // how much player will move
-    private Vector2 mousePos;
+    private float bonusDamageTimer = 0f;
+    private bool bonusDamageApplied = false;
+    private float bonusDamageMultiplier = 1f;
+    private const float BONUS_DAMAGE_TIME = 3.0f;
+    
+    // Container for resetting previous weapon after finishing certain abilities
     private PlayerWeaponType previousWeaponType;
 
     // other push-related properties
@@ -133,7 +120,7 @@ public class Player : Entity
         //Debug.Log(playerData.test);
 
         InitializeStates();
-        tr.emitting = false;
+        trailRenderer.emitting = false;
 
         // Create copy of weapon GameObject and ensure owner is the player
         for (int i = 0; i < weapons.Length; i++)
@@ -175,10 +162,10 @@ public class Player : Entity
         // applying bonus damage from Vortex ability
         if (!isVortexing && bonusDamageSet)
         {
-            if (!bonusDamageApplied) {
-                currentWeapon.projData.damage = (int) Math.Ceiling(currentWeapon.projData.damage * bonusDamageMultiplier);
-                bonusDamageApplied = true;
-            }
+            // if (!bonusDamageApplied) {
+            //     currentWeapon.projData.damage = (int) Math.Ceiling(currentWeapon.projData.damage * bonusDamageMultiplier);
+            //     bonusDamageApplied = true;
+            // }
 
             if (bonusDamageTimer > BONUS_DAMAGE_TIME)
             {
@@ -270,7 +257,7 @@ public class Player : Entity
             inputManager.currentInputType = PlayerInputManager.InputType.VORTEX;
         }
 
-        // push input checks
+        // check push inputs
         if (pushAction.action.WasPressedThisFrame() && currentEnergy - pushCost >= 0)
         {
             audioManager.PlayAudioSource("Push");
@@ -281,7 +268,7 @@ public class Player : Entity
         // regenerate energy
         if (currentEnergy < maxEnergy && !isShielding && !isPhasing && !isVortexing)
         {
-            currentEnergy += energyRegen;
+            currentEnergy += (int) Math.Ceiling(energyRegen * Time.deltaTime);
             if (currentEnergy > maxEnergy) currentEnergy = maxEnergy;
         }
 

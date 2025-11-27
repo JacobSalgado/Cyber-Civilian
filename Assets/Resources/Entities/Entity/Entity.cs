@@ -23,6 +23,10 @@ public abstract class Entity : StateManager
     [NonSerialized] public bool isDamaged = false;
     [NonSerialized] public bool isDead = false;
 
+    // Movement values
+    [NonSerialized] public Vector2 moveVelocity = Vector2.zero;
+    [NonSerialized] public Vector2 pushedVelocity = Vector2.zero;
+
     /* VIRTUAL/ABSTRACT ENTITY FUNCTIONS */
     public abstract void EntityDie();
     public virtual void InitializeStates() { }
@@ -53,6 +57,8 @@ public abstract class Entity : StateManager
         {
             TakeDamage(fireDamage);
         }
+
+        // movement checks
 
         //print(current_state);
     }

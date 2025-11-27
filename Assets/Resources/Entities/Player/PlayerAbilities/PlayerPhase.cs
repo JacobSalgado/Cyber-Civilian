@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class PlayerPhase : MonoBehaviour
 {
-    public Player _player;
+    [SerializeField] private Player _player;
+    [SerializeField] private int phaseDrainRate = 50;
 
     // Update is called once per frame
     void Update()
@@ -11,7 +12,7 @@ public class PlayerPhase : MonoBehaviour
         if (_player.isPhasing)
         {
             if (_player.currentEnergy <= 0) Phase(false);
-            else _player.currentEnergy -= (int) Math.Ceiling(_player.phaseDrainRate * Time.deltaTime);
+            else _player.currentEnergy -= (int) Math.Ceiling(phaseDrainRate * Time.deltaTime);
         }
     }
 
@@ -35,5 +36,10 @@ public class PlayerPhase : MonoBehaviour
             _player.gameObject.layer = 6;
             //Debug.Log("Change state to normal");
         }
+    }
+
+    public bool CanActivate()
+    {
+        return _player.currentEnergy - phaseDrainRate >= 0;
     }
 }

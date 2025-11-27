@@ -1750,7 +1750,7 @@ MonoBehaviour:
   - {fileID: 7533918726549745439, guid: 019fdc823c4c7394da714d429a4eaa5d, type: 3}
   - {fileID: 6079927618582836151, guid: 7ebe548be5868bf4a88600a1319bcd65, type: 3}
   isShocked: 0
-  tr: {fileID: 6616881326347800582}
+  trailRenderer: {fileID: 6616881326347800582}
   spriteRenderer: {fileID: 145288011879166512}
   chargeMeter: {fileID: 7965485974599497560}
   pushAbility: {fileID: 272903368349041405}

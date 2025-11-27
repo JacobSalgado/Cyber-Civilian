@@ -6,8 +6,10 @@ public class PlayerVortex : MonoBehaviour
     [SerializeField] private Player _player;
     [SerializeField] CircleCollider2D aoe;
     [SerializeField] SpriteRenderer spriteRenderer;
-    [SerializeField] private int selfExplosionDamage = 250;
+    [SerializeField] private int vortexDrainRate = 60;
+    [SerializeField] private int absorbCost = 40;
     [SerializeField] private int maxAbsorbedProjectiles = 25;  // if exceeded, vortex will explode and player will take selfExplosionDamage
+    [SerializeField] private int selfExplosionDamage = 250;
     [SerializeField] private float damageMultiplierPerProjectile = 0.2f;
 
     private int absorbedCount = 0;
@@ -21,16 +23,14 @@ public class PlayerVortex : MonoBehaviour
 
     void Update()
     {
-        gameObject.transform.SetLocalPositionAndRotation(Vector2.zero, Quaternion.identity);
         if (_player.isVortexing)
         {
             if (_player.currentEnergy <= 0)
             {
-                EmitVortex(true);
-                return;    
+                EmitVortex(absorbedCount > 0);
             }
             else {
-                _player.currentEnergy -= (int) Math.Ceiling(_player.vortexDrainRate * Time.deltaTime);
+                _player.currentEnergy -= (int) Math.Ceiling(vortexDrainRate * Time.deltaTime);
             }
         } 
     }
@@ -51,9 +51,9 @@ public class PlayerVortex : MonoBehaviour
             if (applyMulitpler)
             {
                 damageMultiplier += absorbedCount * damageMultiplierPerProjectile;
-                _player.StopVortex(damageMultiplier, playAudio);
             }
-            else _player.isVortexing = false;
+            
+            _player.StopVortex(damageMultiplier, playAudio);
 
             // reset values
             aoe.enabled = false;
@@ -63,6 +63,11 @@ public class PlayerVortex : MonoBehaviour
             
             // TODO: stop visual effect
         }
+    }
+
+    public bool CanActivate()
+    {
+        return _player.currentEnergy - vortexDrainRate >= 0;
     }
 
     public void AbsorbProjectile()
@@ -89,7 +94,7 @@ public class PlayerVortex : MonoBehaviour
             if (proj.attacking_layer == 7)
             {
                 Debug.Log("Projectile absorbed by vortex");
-                _player.currentEnergy -= _player.vortexCost;
+                _player.currentEnergy -= absorbCost;
                 AbsorbProjectile();
                 proj.CollisionHit();
             }

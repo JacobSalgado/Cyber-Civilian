@@ -3,9 +3,17 @@ using UnityEngine;
 
 public class PlayerShield : MonoBehaviour
 {
+    [Header("==Necessary GameObjects==")]
     [SerializeField] private Player _player;
     [SerializeField] CircleCollider2D aoe;
     [SerializeField] SpriteRenderer spriteRenderer;
+
+    [Header("==Shield Values==")]
+    [SerializeField] private int shieldDrainRate = 50;
+    [SerializeField] private float shieldShockDuration = 2f;
+    [SerializeField] private float shieldShockStrength = 0.5f;
+    [SerializeField] private int shieldFireDamage = 1;
+    [SerializeField] private float shieldFireDuration = 3f;
 
     void Start()
     {
@@ -16,12 +24,10 @@ public class PlayerShield : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameObject.transform.localPosition = Vector2.zero;
-        gameObject.transform.localRotation = Quaternion.identity;
         if (_player.isShielding)
         {
             if (_player.currentEnergy < 0) Shield(false);
-            //else _player.currentEnergy -= (int) Math.Ceiling(_player.shieldDrainRate * Time.deltaTime);
+            else _player.currentEnergy -= (int) Math.Ceiling(shieldDrainRate * Time.deltaTime);
         }
     }
 
@@ -37,6 +43,11 @@ public class PlayerShield : MonoBehaviour
             spriteRenderer.enabled = false;
             _player.UnequipShield(playAudio);
         }
+    }
+
+    public bool CanActivate()
+    {
+        return _player.currentEnergy - shieldDrainRate >= 0;
     }
 
     public void OnTriggerEnter2D(Collider2D collider)

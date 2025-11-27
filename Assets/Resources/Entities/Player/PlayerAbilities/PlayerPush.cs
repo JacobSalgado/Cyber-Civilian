@@ -36,7 +36,7 @@ public class PlayerPush : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D collision)
     {
         // initialize push velocity
-        print(collision.gameObject.name);
+        //print(collision.gameObject.name);
         if (collision.gameObject.TryGetComponent<Enemy>(out var enemy))
         {
             enemy.pushed = true;

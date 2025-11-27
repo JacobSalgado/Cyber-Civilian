@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerInputManager : MonoBehaviour
@@ -56,7 +55,7 @@ public class PlayerInputManager : MonoBehaviour
                 if (_player.isShielding) _player.shieldAbility.Shield(false, false);
                 else if (_player.isVortexing) _player.vortexAbility.EmitVortex(false, false);
 
-                if ((_player.currentEnergy - _player.phaseDrainRate) >= 0)
+                if (_player.phaseAbility.CanActivate())
                     _player.phaseAbility.Phase(!_player.isPhasing);
 
                 currentInputType = InputType.NONE;
@@ -66,7 +65,7 @@ public class PlayerInputManager : MonoBehaviour
                 if (_player.isPhasing) _player.phaseAbility.Phase(false, false);
                 else if (_player.isVortexing) _player.vortexAbility.EmitVortex(false, false);
 
-                if ((_player.currentEnergy - _player.shieldDrainRate) >= 0)
+                if (_player.shieldAbility.CanActivate())
                     _player.shieldAbility.Shield(!_player.isShielding);
 
                 currentInputType = InputType.NONE;
@@ -76,7 +75,7 @@ public class PlayerInputManager : MonoBehaviour
                 if (_player.isShielding) _player.shieldAbility.Shield(false, false);
                 else if (_player.isPhasing) _player.phaseAbility.Phase(false, false);
 
-                if ((_player.currentEnergy - _player.vortexDrainRate) >= 0)
+                if (_player.vortexAbility.CanActivate())
                     _player.vortexAbility.EmitVortex();
 
                 currentInputType = InputType.NONE;

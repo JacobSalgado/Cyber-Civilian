@@ -16,7 +16,7 @@ public class PlayerDash : State
     {
         player.moveVelocity = Vector2.zero;
         velocity = player.moveAction.action.ReadValue<Vector2>();
-        player.tr.emitting = true;
+        player.trailRenderer.emitting = true;
         player.isDashing = true;
         player.StartCoroutine(InitiateDash());
     }
@@ -39,7 +39,7 @@ public class PlayerDash : State
     private IEnumerator Dash()
     {
         yield return new WaitForSeconds(player.dashTime);
-        player.tr.emitting = false;
+        player.trailRenderer.emitting = false;
         player.invincibility = false;
         player.ChangeState("Idle");
         player.StartCoroutine(DashCooldown());
