@@ -175,7 +175,6 @@ public class Player : Entity
         // applying bonus damage from Vortex ability
         if (!isVortexing && bonusDamageSet)
         {
-            chargeMeter.UpdateMeter(bonusDamageTimer);
             if (!bonusDamageApplied) {
                 currentWeapon.projData.damage = (int) Math.Ceiling(currentWeapon.projData.damage * bonusDamageMultiplier);
                 bonusDamageApplied = true;
@@ -344,6 +343,32 @@ public class Player : Entity
         vortexMultiplierText.text = "Vortex Multiplier Damage: " + bonusDamageMultiplier;
     }
 
+    public override void GotDamaged()
+    {
+        base.GotDamaged();
+
+        if (isDamaged && damagedTime == 0f)
+        {
+            string name = $"Damaged{UnityEngine.Random.Range(1, 5)}";
+            audioManager.PlayAudioSource(name);
+            damagedTime = audioManager.audioEffects[name].clip.length;
+        }
+    }
+
+    // public void OnCollisionEnter2D(Collision2D collision)
+    // {
+    //     //Debug.Log("Collided with " + collision.gameObject.name);
+    //     // if (isShieldBlocking)
+    //     // {
+    //     //     if (collision.gameObject.TryGetComponent<Enemy>(out var enemy))
+    //     //     {
+    //     //         Debug.Log("Applied shock from shield to enemy");
+    //     //         enemy.ApplyShockEffect(shiledShockDuration, shieldSlowDownStrength);
+    //     //         enemy.ApplyOnFireEffect(shiledFireDuration, shieldFireDamage);
+    //     //     }
+    //     // }
+    // }
+
     // ============================
     // SHIELD FUNCTIONS
     // ============================
@@ -378,8 +403,6 @@ public class Player : Entity
         previousWeaponType = currentWeaponType;
         isVortexing = true;
 
-        chargeMeter.TurnOnMeter(ChargeMeter.MeterType.VORTEX_ABSORB, currentEnergy, maxEnergy);
-
         // if (playAudio)
         // audioManager.PlayAudioSource("VortexStart");
     }
@@ -396,37 +419,10 @@ public class Player : Entity
             bonusDamageSet = true;
             bonusDamageApplied = false;
 
-            chargeMeter.TurnOnMeter(ChargeMeter.MeterType.BONUS_DAMAGE, 0f, BONUS_DAMAGE_TIME);
+            chargeMeter.TurnOnMeter(ChargeMeter.MeterType.BONUS_DAMAGE, BONUS_DAMAGE_TIME, BONUS_DAMAGE_TIME);
         }
-        else chargeMeter.TurnOffMeter();
 
         // if (playAudio)
         // audioManager.PlayAudioSource("VortexEnd");
     }
-
-    public override void GotDamaged()
-    {
-        base.GotDamaged();
-
-        if (isDamaged && damagedTime == 0f)
-        {
-            string name = $"Damaged{UnityEngine.Random.Range(1, 5)}";
-            audioManager.PlayAudioSource(name);
-            damagedTime = audioManager.audioEffects[name].clip.length;
-        }
-    }
-
-    // public void OnCollisionEnter2D(Collision2D collision)
-    // {
-    //     //Debug.Log("Collided with " + collision.gameObject.name);
-    //     // if (isShieldBlocking)
-    //     // {
-    //     //     if (collision.gameObject.TryGetComponent<Enemy>(out var enemy))
-    //     //     {
-    //     //         Debug.Log("Applied shock from shield to enemy");
-    //     //         enemy.ApplyShockEffect(shiledShockDuration, shieldSlowDownStrength);
-    //     //         enemy.ApplyOnFireEffect(shiledFireDuration, shieldFireDamage);
-    //     //     }
-    //     // }
-    // }
 }

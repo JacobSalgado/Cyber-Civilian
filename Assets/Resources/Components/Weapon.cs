@@ -163,7 +163,7 @@ public class Weapon : MonoBehaviour
     private void PlayerChargeShot(InputActionReference fireAction, Transform firePoint, int collision_layer)
     {
         Player player = (Player) owner;
-        
+
         // Start charging when the player holds the button
         if (fireAction.action.IsPressed())
         {
@@ -178,7 +178,6 @@ public class Weapon : MonoBehaviour
 
             //Debug.Log($"Charging... {fireTimer:F2}s");
             fireTimer += Time.deltaTime; // Increment charge timer while holding
-            player.chargeMeter.UpdateMeter(fireTimer);
 
             if (fireTimer > projData.timeToSpawn && !isCharged)
             {

@@ -99,9 +99,13 @@ public class PlayerInputManager : MonoBehaviour
 
     private IEnumerator ReloadWeapon()
     {
-        Debug.Log("Reload Started");
+        //Debug.Log("Reload Started");
         _player.isReloading = true;
+        _player.chargeMeter.TurnOnMeter(ChargeMeter.MeterType.RELOADING_WEAPON, 0f, _player.currentWeapon.reloadTime);
+
         yield return new WaitForSeconds(_player.currentWeapon.reloadTime);
+
+        _player.chargeMeter.TurnOffMeter();
         _player.currentWeapon.ReloadWeapon();
         _player.isReloading = false;
     }

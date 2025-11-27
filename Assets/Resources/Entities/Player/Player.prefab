@@ -651,6 +651,10 @@ PrefabInstance:
       value: ChargeMeter
       objectReference: {fileID: 0}
     - target: {fileID: 8072921397103325692, guid: cb788518ce00a2b4d882dca97124b575, type: 3}
+      propertyPath: _entity
+      value: 
+      objectReference: {fileID: 1072733472485737790}
+    - target: {fileID: 8072921397103325692, guid: cb788518ce00a2b4d882dca97124b575, type: 3}
       propertyPath: _player
       value: 
       objectReference: {fileID: 1072733472485737790}
