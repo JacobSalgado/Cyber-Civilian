@@ -135,6 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerPhase
   _player: {fileID: 1072733472485737790}
+  phaseDrainRate: 50
 --- !u!1 &4801417283264684404
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,8 +373,10 @@ MonoBehaviour:
   _player: {fileID: 1072733472485737790}
   aoe: {fileID: 9165450067482053928}
   spriteRenderer: {fileID: 5349885471015370774}
-  selfExplosionDamage: 250
+  vortexDrainRate: 60
+  absorbCost: 40
   maxAbsorbedProjectiles: 25
+  selfExplosionDamage: 250
   damageMultiplierPerProjectile: 0.2
 --- !u!1 &8003983306639829803
 GameObject:
@@ -546,6 +549,11 @@ MonoBehaviour:
   _player: {fileID: 1072733472485737790}
   aoe: {fileID: 816765359881832839}
   spriteRenderer: {fileID: 8608973238200070827}
+  shieldDrainRate: 50
+  shieldShockDuration: 2
+  shieldShockStrength: 0.5
+  shieldFireDamage: 1
+  shieldFireDuration: 3
 --- !u!1001 &2198830254597179044
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -650,6 +658,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ChargeMeter
       objectReference: {fileID: 0}
+    - target: {fileID: 5129530002631133291, guid: cb788518ce00a2b4d882dca97124b575, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8072921397103325692, guid: cb788518ce00a2b4d882dca97124b575, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 6461557343601299151}
     - target: {fileID: 8072921397103325692, guid: cb788518ce00a2b4d882dca97124b575, type: 3}
       propertyPath: _entity
       value: 
@@ -666,6 +682,11 @@ PrefabInstance:
 --- !u!224 &1377332953623697680 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 981386083131170740, guid: cb788518ce00a2b4d882dca97124b575, type: 3}
+  m_PrefabInstance: {fileID: 2198830254597179044}
+  m_PrefabAsset: {fileID: 0}
+--- !u!223 &6461557343601299151 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 5129530002631133291, guid: cb788518ce00a2b4d882dca97124b575, type: 3}
   m_PrefabInstance: {fileID: 2198830254597179044}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &7965485974599497560 stripped
@@ -1783,16 +1804,7 @@ MonoBehaviour:
   maxEnergy: 1000
   energyRegen: 1
   dashCost: 100
-  shieldDrainRate: 50
-  phaseDrainRate: 50
   pushCost: 200
-  vortexCost: 20
-  vortexDrainRate: 30
-  shieldShockDuration: 2
-  shieldSlowDownStrength: 0.5
-  shieldFireDamage: 1
-  shieldFireDuration: 3
-  vortexVisualEffect: {fileID: 0}
 --- !u!114 &8648180505201064651
 MonoBehaviour:
   m_ObjectHideFlags: 0

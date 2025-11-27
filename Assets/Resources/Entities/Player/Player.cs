@@ -173,6 +173,7 @@ public class Player : Entity
                 bonusDamageTimer = 0f;
                 bonusDamageSet = false;
                 bonusDamageApplied = false;
+                chargeMeter.TurnOffMeter();
             }
 
             bonusDamageTimer += Time.deltaTime;
@@ -381,7 +382,7 @@ public class Player : Entity
     }
 
     // ===========================
-    //      Vortex Functions
+    // VORTEX FUNCTIONS
     // ===========================
 
     public void StartVortex(bool playAudio = true)

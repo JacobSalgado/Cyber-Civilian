@@ -24,6 +24,7 @@ public class PlayerShield : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        gameObject.transform.SetLocalPositionAndRotation(Vector2.zero, Quaternion.identity);
         if (_player.isShielding)
         {
             if (_player.currentEnergy < 0) Shield(false);

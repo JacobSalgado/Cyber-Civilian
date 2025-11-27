@@ -23,6 +23,7 @@ public class PlayerVortex : MonoBehaviour
 
     void Update()
     {
+        gameObject.transform.SetLocalPositionAndRotation(Vector2.zero, Quaternion.identity);
         if (_player.isVortexing)
         {
             if (_player.currentEnergy <= 0)
@@ -93,7 +94,7 @@ public class PlayerVortex : MonoBehaviour
         {
             if (proj.attacking_layer == 7)
             {
-                Debug.Log("Projectile absorbed by vortex");
+                //Debug.Log("Projectile absorbed by vortex");
                 _player.currentEnergy -= absorbCost;
                 AbsorbProjectile();
                 proj.CollisionHit();

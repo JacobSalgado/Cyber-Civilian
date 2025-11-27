@@ -22,6 +22,7 @@ public class ChargeMeter : MonoBehaviour
     public Slider slider;
     public Image fillImage;
     public TextMeshProUGUI sliderText;
+    [SerializeField] private Canvas canvas;
     [SerializeField] private Entity _entity;
 
     private MeterType type;
@@ -29,7 +30,7 @@ public class ChargeMeter : MonoBehaviour
 
     void Start()
     {
-        gameObject.SetActive(false);
+        canvas.enabled = false;
         offset = gameObject.transform.localPosition;
     }
 
@@ -38,12 +39,12 @@ public class ChargeMeter : MonoBehaviour
         gameObject.transform.SetPositionAndRotation(_entity.gameObject.transform.position + offset, Quaternion.identity);
         
         // TODO: account for more meter types
-        if (type == MeterType.BONUS_DAMAGE)
-        {
-            slider.value = slider.maxValue - Time.deltaTime;
+        if (canvas.enabled){
+            if (type == MeterType.BONUS_DAMAGE)
+                slider.value -= Time.deltaTime;
+            else 
+                slider.value += Time.deltaTime;
         }
-        else slider.value += Time.deltaTime;
-        
     }
 
     // public void UpdateMeter(float current)
@@ -54,17 +55,17 @@ public class ChargeMeter : MonoBehaviour
     public void TurnOnMeter(MeterType type, float current, float max)
     {
         this.type = type;
-        slider.value = current;
         slider.maxValue = max;
+        slider.value = current;
         sliderText.text = meterTexts[this.type];
 
         gameObject.transform.SetPositionAndRotation(_entity.gameObject.transform.position + offset, Quaternion.identity);
-        gameObject.SetActive(true);
+        canvas.enabled = true;
     }
 
     public void TurnOffMeter()
     {
-        gameObject.SetActive(false);
+        canvas.enabled = false;
         slider.value = 0f;
     }
 }
