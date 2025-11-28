@@ -93,11 +93,6 @@ public class Player : Entity
     // Container for resetting previous weapon after finishing certain abilities
     private PlayerWeaponType previousWeaponType;
 
-    // other push-related properties
-    [NonSerialized] public bool pushed = false;
-    private float pushTimer = 0.0f;
-    const float PUSHED_TIME = 0.5f;
-
     public override void InitializeStates()
     {
         AddState("Idle", new PlayerIdle(this));
@@ -287,22 +282,7 @@ public class Player : Entity
         Vector2 dir = GetDirectionToPosition(mousePos);
         RotateToDirection(dir);
 
-        // apply knockback velocity
-        if (pushed)
-        {
-            pushTimer += Time.deltaTime;
 
-            // decrease knockback velocity
-            rigidBody.linearVelocity = pushedVelocity;
-            pushedVelocity *= 0.85f;
-
-            if (pushTimer > PUSHED_TIME)
-            {
-                pushTimer = 0f;
-                pushed = false;
-            }
-        }
-        else rigidBody.linearVelocity = moveVelocity;
     }
 
     public void EquipNewWeapon(PlayerWeaponType newWeaponType)

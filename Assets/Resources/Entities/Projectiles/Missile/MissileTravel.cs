@@ -42,6 +42,6 @@ public class MissileTravel: State
         }
 
         // move forward
-        missile.rigidBody.linearVelocity = -missile.transform.right * missile.projData.moveSpeed;
+        missile.moveVelocity = -missile.transform.right * missile.projData.moveSpeed;
     }
 }

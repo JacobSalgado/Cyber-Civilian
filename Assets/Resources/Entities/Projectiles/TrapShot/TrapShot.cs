@@ -1,11 +1,11 @@
-using System.Collections;
 using UnityEngine;
+
 public class TrapShot : Projectile
 {
     public GameObject trapField;
+
     public override void InitializeStates()
     {
-        AddState("Idle", new TrapShotIdle(this));
         AddState("Travel", new TrapShotTravel(this));
 
         ChangeState("Travel");
@@ -20,7 +20,7 @@ public class TrapShot : Projectile
     public void DeployField()
     {
         Instantiate(trapField, transform.position, Quaternion.identity, LevelManager.current_level.EntityList.transform);
-        Debug.Log("Trap Field Deployed");
+        //Debug.Log("Trap Field Deployed");
     }
 
     public override void CollisionHit()

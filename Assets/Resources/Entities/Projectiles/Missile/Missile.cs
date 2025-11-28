@@ -7,7 +7,6 @@ public class Missile : Projectile
 
     public override void InitializeStates()
     {
-        AddState("Idle", new MissileIdle(this));
         AddState("Travel", new MissileTravel(this));
 
         ChangeState("Travel");

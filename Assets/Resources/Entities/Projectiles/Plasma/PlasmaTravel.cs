@@ -18,6 +18,6 @@ public class PlasmaTravel : State
 
     public override void UpdateState()
     {
-        plasma.rigidBody.linearVelocity = plasma.transform.right * -plasma.projData.moveSpeed;
+        plasma.moveVelocity = plasma.transform.right * -plasma.projData.moveSpeed;
     }
 }

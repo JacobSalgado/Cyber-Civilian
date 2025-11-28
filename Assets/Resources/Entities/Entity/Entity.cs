@@ -13,19 +13,32 @@ public abstract class Entity : StateManager
     public Slider healthBar;
     public AudioManager audioManager;
     public AudioEffect[] audioEffects;
-    [NonSerialized] public bool invincibility = false;
-    [NonSerialized] public bool isOnFire = false;
-    [NonSerialized] public int fireDamage;
-    [NonSerialized] public float slowDownFactor;
-    public bool isShocked = false;
-    private float originalMoveSpeed;
 
     [NonSerialized] public bool isDamaged = false;
     [NonSerialized] public bool isDead = false;
 
-    // Movement values
+    // Movement Variables
     [NonSerialized] public Vector2 moveVelocity = Vector2.zero;
     [NonSerialized] public Vector2 pushedVelocity = Vector2.zero;
+    private Vector2 finalMovementVelocity = Vector2.zero;
+
+    /* Entity Status Effects */
+    // push/knockback
+    [NonSerialized] public bool pushed = false;
+    [NonSerialized] public float pushedTime = 0f;
+    private float pushTimer = 0.0f;
+
+    // invicibility
+    [NonSerialized] public bool invincibility = false;
+
+    // fire over time
+    [NonSerialized] public bool isOnFire = false;
+    [NonSerialized] public int fireDamage;
+
+    // slow
+    public bool isSlowed = false;
+    [NonSerialized] public float slowdownFactor = 0.5f;
+
 
     /* VIRTUAL/ABSTRACT ENTITY FUNCTIONS */
     public abstract void EntityDie();
@@ -47,20 +60,34 @@ public abstract class Entity : StateManager
         current_state.UpdateState();
 
         // health checks
+        if (isOnFire) TakeDamage(fireDamage);
+        
         if (entityData != null && entityData.currentHealth <= 0 && entityData.maxHealth != 0)
         {
             EntityDie();
         }
 
-        // Status Effects
-        if (isOnFire)
-        {
-            TakeDamage(fireDamage);
-        }
-
         // movement checks
+        if (pushed)
+        {
+            pushTimer += Time.deltaTime;
 
-        //print(current_state);
+            // decrease knockback velocity
+            rigidBody.linearVelocity = pushedVelocity;
+            pushedVelocity *= 0.85f;
+
+            if (pushTimer > pushedTime)
+            {
+                pushTimer = 0f;
+                pushed = false;
+            }
+        }
+        else {
+            finalMovementVelocity = moveVelocity;
+            if (isSlowed)
+                finalMovementVelocity *= slowdownFactor;
+            rigidBody.linearVelocity = finalMovementVelocity;
+        }
     }
 
     /* GENERAL ENTITY FUNCTIONS */
@@ -144,6 +171,7 @@ public abstract class Entity : StateManager
     public void ApplyOnFireEffect(float duration, int damage)
     {
         if (isOnFire) return;
+
         fireDamage = damage;
         isOnFire = true;
         StartCoroutine(FireEffectTimer(duration));
@@ -155,20 +183,18 @@ public abstract class Entity : StateManager
         isOnFire = false;
     }
 
-    public void ApplyShockEffect(float duration, float speedReduction)
+    public void ApplySlowEffect(float duration, float slowdownFactor)
     {
-        if (isShocked) return;
-        slowDownFactor = speedReduction;
-        isShocked = true;
-        originalMoveSpeed = entityData.moveSpeed;
-        entityData.moveSpeed *= slowDownFactor;
-        StartCoroutine(ShockEffectTimer(duration));
+        if (isSlowed) return;
+
+        isSlowed = true;
+        this.slowdownFactor = slowdownFactor;
+        StartCoroutine(SlowEffectTimer(duration));
     }
     
-    private IEnumerator ShockEffectTimer(float duration)
+    private IEnumerator SlowEffectTimer(float duration)
     {
         yield return new WaitForSeconds(duration);
-        entityData.moveSpeed = originalMoveSpeed;
-        isShocked = false;
+        isSlowed = false;
     }
 }

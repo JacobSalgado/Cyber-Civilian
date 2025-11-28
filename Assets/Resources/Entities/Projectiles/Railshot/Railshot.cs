@@ -4,7 +4,6 @@ public class Railshot : Projectile
 {
     public override void InitializeStates()
     {
-        AddState("Idle", new RailshotIdle(this));
         AddState("Active", new RailshotActive(this));
         AddState("FadeAway", new RailshotFadeAway(this));
 

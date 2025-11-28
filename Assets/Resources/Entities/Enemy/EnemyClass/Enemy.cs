@@ -21,9 +21,6 @@ public abstract class Enemy : Entity
     // Non-Serialized Vars
     [NonSerialized] public Transform target; // following the player
     [NonSerialized] public EnemyTypes type;
-    [NonSerialized] public bool pushed = false;
-    const float PUSHED_TIME = 0.5f;
-    float pushTimer = 0f;
 
     public override void Start()
     {
@@ -58,24 +55,7 @@ public abstract class Enemy : Entity
         base.FixedUpdate();
 
         // undo healthBar rotation
-        canvas.transform.rotation = Quaternion.identity;
-
-        // check push timing
-        if (pushed)
-        {
-            pushTimer += Time.deltaTime;
-
-            // decrease push velocity
-            rigidBody.linearVelocity = pushedVelocity;
-            pushedVelocity *= 0.85f;
-
-            if (pushTimer > PUSHED_TIME)
-            {
-                pushTimer = 0f;
-                pushed = false;
-            }
-        }
-        else rigidBody.linearVelocity = moveVelocity;       
+        canvas.transform.rotation = Quaternion.identity;   
     }
 
     public override void EntityDie()

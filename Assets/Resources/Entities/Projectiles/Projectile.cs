@@ -34,7 +34,7 @@ public abstract class Projectile : Entity
         if (attacking_layer == 7 && collision.gameObject.TryGetComponent<Player>(out var player))
         {         
             player.TakeDamage(projData.damage);
-            CheckForEffect(player);
+            CheckForStatusEffect(player);
 
             // Destroy projectile if necessary (blocked or hit)
             HitEffect(collision.transform.position);
@@ -46,7 +46,7 @@ public abstract class Projectile : Entity
         else if (attacking_layer == 6 && collision.gameObject.TryGetComponent<Enemy>(out var enemy))
         {
             enemy.TakeDamage(projData.damage);
-            CheckForEffect(enemy);
+            CheckForStatusEffect(enemy);
             HitEffect(collision.transform.position);
 
             if (projData.destroyOnCollision)
@@ -62,11 +62,11 @@ public abstract class Projectile : Entity
         }
     }
 
-    public void CheckForEffect(Entity entity)
+    public void CheckForStatusEffect(Entity entity)
     {
         if (projData.shocks)
         {
-            entity.ApplyShockEffect(projData.shockDuration, projData.slowDownFactor);
+            entity.ApplySlowEffect(projData.shockDuration, projData.slowDownFactor);
         }
         else if (projData.setsOnFire)
         {

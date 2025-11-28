@@ -6,9 +6,10 @@ public class Plasma : Projectile
     public int damageFieldDamage = 30;
     public int damageFieldFireDamage = 1;
     public float damageFieldFireDuration = 2f;
+
+
     public override void InitializeStates()
     {
-        AddState("Idle", new PlasmaIdle(this));
         AddState("Travel", new PlasmaTravel(this));
 
         ChangeState("Travel");

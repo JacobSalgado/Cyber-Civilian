@@ -37,6 +37,6 @@ public class FlameTravel : State
         if (lifeTimer > flame.projData.lifeTime)
             flame.EntityDie();
 
-        flame.rigidBody.linearVelocity = direction * -flame.projData.moveSpeed;
+        flame.moveVelocity = direction * -flame.projData.moveSpeed;
     }
 }
