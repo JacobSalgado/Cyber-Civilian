@@ -35,7 +35,7 @@ public class Weapon : MonoBehaviour
     // private vars
     [NonSerialized] public Entity owner;
     [NonSerialized] public float fireTimer = 0f;
-    [NonSerialized] public List<Transform> targets = new List<Transform> { };
+    [NonSerialized] public List<Transform> targets = new() { };
     private bool isCharging = false;
     private bool isCharged = false;
     private readonly string[] layerMask = { "Enemy" };
@@ -141,8 +141,7 @@ public class Weapon : MonoBehaviour
         if (fireAction.action.WasReleasedThisFrame() && fireSFX.Equals("FlamethrowerFire"))
         {
             owner.audioManager.PauseAudioSource(fireSFX);
-            float startTime = 5.2f;
-            owner.audioManager.PlayAudioSource(fireSFX, startTime);
+            owner.audioManager.PlayAudioSource(fireSFX, 5.2f);
         }
     }
 
@@ -263,21 +262,15 @@ public class Weapon : MonoBehaviour
         proj.attacking_layer = receiving_layer;
 
         // Vortex damage booster when player is active with vortex
-        // if (owner is Player player)
-        // { 
-        //     int absorbedCount = player.GetAbsorbedCount();
+        if (owner is Player player && player.bonusDamageSet)
+        { 
+            // Apply damage multiplier
+            int originalDamage = proj.projData.damage;
+            int boostedDamage = Mathf.RoundToInt(originalDamage * player.bonusDamageMultiplier);
+            proj.projData.damage = boostedDamage;
 
-        //     if (absorbedCount >= 0 && player.getIsVortexBlocking())
-        //     { 
-        //         // Apply damage multiplier
-        //         float multiplier = player.GetDamageMultiplier();
-        //         int originalDamage = proj.projData.damage;
-        //         int boostedDamage = Mathf.RoundToInt(originalDamage * multiplier);
-        //         proj.projData.damage = boostedDamage;
-
-        //         Debug.Log($"Vortex boost! Damage: {originalDamage} -> {boostedDamage} (x{multiplier:F2}, absorbed: {absorbedCount}");
-        //     }
-        // }
+            Debug.Log($"Vortex boost! Damage: {originalDamage} -> {boostedDamage} (x{player.bonusDamageMultiplier:F2}");
+        }
 
         proj.gameObject.SetActive(active);
 

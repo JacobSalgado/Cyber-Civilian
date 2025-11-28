@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class PlayerVortex : MonoBehaviour
@@ -31,7 +30,7 @@ public class PlayerVortex : MonoBehaviour
                 EmitVortex(absorbedCount > 0);
             }
             else {
-                _player.currentEnergy -= (int) Math.Ceiling(vortexDrainRate * Time.deltaTime);
+                _player.currentEnergy -= Mathf.RoundToInt(vortexDrainRate * Time.deltaTime);
             }
         } 
     }

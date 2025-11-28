@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class PlayerPhase : MonoBehaviour
@@ -12,7 +11,7 @@ public class PlayerPhase : MonoBehaviour
         if (_player.isPhasing)
         {
             if (_player.currentEnergy <= 0) Phase(false);
-            else _player.currentEnergy -= (int) Math.Ceiling(phaseDrainRate * Time.deltaTime);
+            else _player.currentEnergy -= Mathf.RoundToInt(phaseDrainRate * Time.deltaTime);
         }
     }
 

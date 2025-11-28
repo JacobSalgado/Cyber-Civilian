@@ -1,5 +1,4 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class Projectile : Entity
@@ -65,17 +64,10 @@ public abstract class Projectile : Entity
     public void CheckForStatusEffect(Entity entity)
     {
         if (projData.shocks)
-        {
             entity.ApplySlowEffect(projData.shockDuration, projData.slowDownFactor);
-        }
-        else if (projData.setsOnFire)
-        {
+        
+        if (projData.setsOnFire)
             entity.ApplyOnFireEffect(projData.burnDuration, projData.burnDamage);
-        }
-        else
-        {
-            return;
-        }
     }
 
     public override void EntityDie()

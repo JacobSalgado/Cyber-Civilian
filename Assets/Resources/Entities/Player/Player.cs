@@ -84,11 +84,10 @@ public class Player : Entity
     [NonSerialized] public float damagedTime = 0f;
 
     // Bonus Damage is received from Vortex Ability
-    [NonSerialized] public bool bonusDamageSet = false;
-    private float bonusDamageTimer = 0f;
-    private bool bonusDamageApplied = false;
-    private float bonusDamageMultiplier = 1f;
     private const float BONUS_DAMAGE_TIME = 3.0f;
+    private float bonusDamageTimer = 0f;
+    [NonSerialized] public bool bonusDamageSet = false;
+    [NonSerialized] public float bonusDamageMultiplier = 1f;
     
     // Container for resetting previous weapon after finishing certain abilities
     private PlayerWeaponType previousWeaponType;
@@ -167,7 +166,6 @@ public class Player : Entity
                 bonusDamageMultiplier = 1f;
                 bonusDamageTimer = 0f;
                 bonusDamageSet = false;
-                bonusDamageApplied = false;
                 chargeMeter.TurnOffMeter();
             }
 
@@ -211,9 +209,8 @@ public class Player : Entity
         */
 
         // check for weaponKeybind input
-        if (weaponKeybindsAction.action.WasPressedThisFrame() &&
-            inputManager.CanEquip
-        ) {
+        if (weaponKeybindsAction.action.WasPressedThisFrame() && inputManager.CanEquip) 
+        {
             inputManager.currentInputType = PlayerInputManager.InputType.EQUIP_WEAPON;
         }
 
@@ -278,11 +275,9 @@ public class Player : Entity
     {
         base.FixedUpdate();
 
-        // update rotation
+        // update rotation to mouse position
         Vector2 dir = GetDirectionToPosition(mousePos);
         RotateToDirection(dir);
-
-
     }
 
     public void EquipNewWeapon(PlayerWeaponType newWeaponType)
@@ -322,20 +317,6 @@ public class Player : Entity
             damagedTime = audioManager.audioEffects[name].clip.length;
         }
     }
-
-    // public void OnCollisionEnter2D(Collision2D collision)
-    // {
-    //     //Debug.Log("Collided with " + collision.gameObject.name);
-    //     // if (isShieldBlocking)
-    //     // {
-    //     //     if (collision.gameObject.TryGetComponent<Enemy>(out var enemy))
-    //     //     {
-    //     //         Debug.Log("Applied shock from shield to enemy");
-    //     //         enemy.ApplyShockEffect(shiledShockDuration, shieldSlowDownStrength);
-    //     //         enemy.ApplyOnFireEffect(shiledFireDuration, shieldFireDamage);
-    //     //     }
-    //     // }
-    // }
 
     // ============================
     // SHIELD FUNCTIONS
@@ -385,7 +366,6 @@ public class Player : Entity
             bonusDamageMultiplier = damageMultipler;
             bonusDamageTimer = 0f;
             bonusDamageSet = true;
-            bonusDamageApplied = false;
 
             chargeMeter.TurnOnMeter(ChargeMeter.MeterType.BONUS_DAMAGE, BONUS_DAMAGE_TIME, BONUS_DAMAGE_TIME);
         }

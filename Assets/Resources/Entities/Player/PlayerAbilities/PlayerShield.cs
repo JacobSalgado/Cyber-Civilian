@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class PlayerShield : MonoBehaviour
@@ -28,7 +27,7 @@ public class PlayerShield : MonoBehaviour
         if (_player.isShielding)
         {
             if (_player.currentEnergy < 0) Shield(false);
-            else _player.currentEnergy -= (int) Math.Ceiling(shieldDrainRate * Time.deltaTime);
+            else _player.currentEnergy -= Mathf.RoundToInt(shieldDrainRate * Time.deltaTime);
         }
     }
 
@@ -75,4 +74,18 @@ public class PlayerShield : MonoBehaviour
             }
         }
     }
+
+    // public void OnCollisionEnter2D(Collision2D collision)
+    // {
+    //     //Debug.Log("Collided with " + collision.gameObject.name);
+    //     // if (isShieldBlocking)
+    //     // {
+    //     //     if (collision.gameObject.TryGetComponent<Enemy>(out var enemy))
+    //     //     {
+    //     //         Debug.Log("Applied shock from shield to enemy");
+    //     //         enemy.ApplyShockEffect(shiledShockDuration, shieldSlowDownStrength);
+    //     //         enemy.ApplyOnFireEffect(shiledFireDuration, shieldFireDamage);
+    //     //     }
+    //     // }
+    // }
 }
