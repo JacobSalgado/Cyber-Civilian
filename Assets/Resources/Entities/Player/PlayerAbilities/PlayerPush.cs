@@ -5,8 +5,9 @@ public class PlayerPush : MonoBehaviour
     private const float TTL = 0.3f;
     private float timer = 0f;
 
-    [SerializeField] CircleCollider2D aoe;
-    [SerializeField] float force = 1f;
+    [SerializeField] private CircleCollider2D aoe;
+    [SerializeField] private float force = 1f;
+    [SerializeField] private float pushedTime = 3.0f;
 
     void Start()
     {
@@ -40,8 +41,11 @@ public class PlayerPush : MonoBehaviour
         if (collision.gameObject.TryGetComponent<Enemy>(out var enemy))
         {
             enemy.pushed = true;
+
             Vector2 pushDirection = enemy.GetDirectionToPosition(gameObject.transform.position);
             enemy.pushedVelocity = -force * pushDirection;
+            
+            enemy.pushedTime = pushedTime;
         }
     }
 }
