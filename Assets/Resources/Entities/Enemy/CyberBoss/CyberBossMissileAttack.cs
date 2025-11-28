@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class CyberBossMissileAttack: State
@@ -8,11 +7,7 @@ public class CyberBossMissileAttack: State
     private readonly Weapon missileWeapon;
 
     private int shotCounter = 0;
-    private int maxShots = 5;
-
-
     private float shotTimer = 0f;
-    private const float shootTime = 0.35f;
 
     public CyberBossMissileAttack(Entity new_entity) : base(new_entity)
     {
@@ -39,7 +34,7 @@ public class CyberBossMissileAttack: State
         cyberBoss.moveVelocity = Vector2.zero;
         float distanceToTarget = cyberBoss.GetDistanceToTarget();
 
-        if (shotCounter >= maxShots) // --- Change States After Attack ---
+        if (shotCounter >= cyberBoss.maxShots) // --- Change States After Attack ---
         {
             if (distanceToTarget < cyberBoss.distanceToMove)
             {
@@ -59,7 +54,7 @@ public class CyberBossMissileAttack: State
             Vector2 dir = cyberBoss.GetDirectionToPosition(cyberBoss.target.gameObject.transform.position);
             cyberBoss.RotateToDirection(dir);
 
-            if (shotTimer > shootTime)
+            if (shotTimer > cyberBoss.shootTime)
             {
                 cyberBoss.ShootWeapon(cyberBoss.weapon, null, cyberBoss.firePoint, 7);
                 shotTimer = 0f;

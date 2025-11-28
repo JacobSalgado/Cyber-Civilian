@@ -36,7 +36,7 @@ public abstract class Entity : StateManager
     [NonSerialized] public int fireDamage;
 
     // slow
-    public bool isSlowed = false;
+    [NonSerialized] public bool isSlowed = false;
     [NonSerialized] public float slowdownFactor = 0.5f;
 
 

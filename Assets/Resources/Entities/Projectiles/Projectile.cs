@@ -63,8 +63,8 @@ public abstract class Projectile : Entity
 
     public void CheckForStatusEffect(Entity entity)
     {
-        if (projData.shocks)
-            entity.ApplySlowEffect(projData.shockDuration, projData.slowDownFactor);
+        if (projData.slows)
+            entity.ApplySlowEffect(projData.slowDuration, projData.slowdownFactor);
         
         if (projData.setsOnFire)
             entity.ApplyOnFireEffect(projData.burnDuration, projData.burnDamage);
