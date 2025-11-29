@@ -289,6 +289,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1868575608633948007, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
   m_PrefabInstance: {fileID: 707286760853896274}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4939487380926672929 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5574431688330628211, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+  m_PrefabInstance: {fileID: 707286760853896274}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6000895577303506080 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6527896415030157554, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
@@ -368,6 +373,7 @@ MonoBehaviour:
   - {fileID: 6079927618582836151, guid: ce929db82a0221d4dbe81d323f250f8c, type: 3}
   - {fileID: 6079927618582836151, guid: aa0d3157024e86441b365eb1783e7373, type: 3}
   - {fileID: 6079927618582836151, guid: f1f9d59be499e6448b2c6dd1d6091622, type: 3}
+  fireEffectPrefab: {fileID: 4939487380926672929}
   firePoint: {fileID: 1170454396138261301}
   weapon: {fileID: 1577679594348739716, guid: 7caa2f4813b260a44a076a1f15dcabf4, type: 3}
   canvas: {fileID: 328632794084600661}

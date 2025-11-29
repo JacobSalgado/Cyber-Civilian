@@ -346,10 +346,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CyberBossPunch
   initialLocalPosition: {fileID: 8331401517711060881}
-  punchSpeed: 3
   punchCollider: {fileID: 2168450474968927489}
   punchRigidbody: {fileID: 7316356902578904390}
   spriteRenderer: {fileID: 2819921774195636407}
+  timeToLive: 0.2
+  damage: 80
+  punchSpeed: 3
 --- !u!1 &5680406463214280703
 GameObject:
   m_ObjectHideFlags: 0
@@ -525,6 +527,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6527896415030157554, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
   m_PrefabInstance: {fileID: 1337654423169088360}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6902911611822536475 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5574431688330628211, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+  m_PrefabInstance: {fileID: 1337654423169088360}
+  m_PrefabAsset: {fileID: 0}
 --- !u!50 &7554728393922652598 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 8811157356989125342, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
@@ -570,6 +577,7 @@ MonoBehaviour:
   - {fileID: 6079927618582836151, guid: 8c814326181eda740a6720d3f97e0f37, type: 3}
   - {fileID: 6079927618582836151, guid: 6066e53a3454d88428d6c2bd123387e8, type: 3}
   - {fileID: 6079927618582836151, guid: 362b9e346bbb2b44791590d1a965f6d8, type: 3}
+  fireEffectPrefab: {fileID: 6902911611822536475}
   firePoint: {fileID: 828325889361890319}
   weapon: {fileID: 6579814461523234674, guid: a6dd45164a0575a4c9c660b661d68099, type: 3}
   canvas: {fileID: 2292065971395210351}

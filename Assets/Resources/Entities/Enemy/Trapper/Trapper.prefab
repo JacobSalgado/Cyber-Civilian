@@ -328,6 +328,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
+--- !u!1 &6101036871083655426 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5574431688330628211, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+  m_PrefabInstance: {fileID: 1871070412002053489}
+  m_PrefabAsset: {fileID: 0}
 --- !u!50 &7183492431902957487 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 8811157356989125342, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
@@ -477,12 +482,13 @@ MonoBehaviour:
   - {fileID: 6079927618582836151, guid: d02765199b5ea62479e35d951816d46a, type: 3}
   - {fileID: 6079927618582836151, guid: df7acd9fd5e31154e9a80473bee1c2c3, type: 3}
   - {fileID: 6079927618582836151, guid: 12e29c631b6937344924fe7bac51f8da, type: 3}
-  isShocked: 0
+  fireEffectPrefab: {fileID: 6101036871083655426}
   firePoint: {fileID: 7286729672604182}
   weapon: {fileID: 16432950934994515, guid: c44a80ce322cf4b48886e38cb9b6a719, type: 3}
   canvas: {fileID: 1488475855081233014}
   distanceToShoot: 12
   distanceToMove: 22
+  delayAfterSlow: 0.5
 --- !u!114 &8904659477835846501 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7090025075723263508, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}

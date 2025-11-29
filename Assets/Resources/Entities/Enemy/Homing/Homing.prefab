@@ -119,7 +119,7 @@ MonoBehaviour:
   audioManager: {fileID: 458652263754298069}
   audioEffects:
   - {fileID: 6079927618582836151, guid: 50c260c082aef7644b409f05dbe9d4c7, type: 3}
-  isShocked: 0
+  fireEffectPrefab: {fileID: 2983069491685548210}
   firePoint: {fileID: 9067754228479286182}
   weapon: {fileID: 6894637301577557660, guid: 3010bdca4c2402f4fae32d66d3442f03, type: 3}
   canvas: {fileID: 7595005997977222086}
@@ -183,6 +183,11 @@ Animator:
 --- !u!50 &2197234482957794847 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 8811157356989125342, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+  m_PrefabInstance: {fileID: 7221981530428026049}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2983069491685548210 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5574431688330628211, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
   m_PrefabInstance: {fileID: 7221981530428026049}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &3739624171282758146 stripped

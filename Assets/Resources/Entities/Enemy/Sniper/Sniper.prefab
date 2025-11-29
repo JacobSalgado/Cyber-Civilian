@@ -176,7 +176,7 @@ MonoBehaviour:
   - {fileID: 6079927618582836151, guid: b2cefede146407c4f824b7080112c3ad, type: 3}
   - {fileID: 6079927618582836151, guid: b39da1b4b388c0a44b357627e1571da2, type: 3}
   - {fileID: 6079927618582836151, guid: 204b9ecca0f9a564aae556ffaaf4f870, type: 3}
-  isShocked: 0
+  fireEffectPrefab: {fileID: 7579284031993100225}
   firePoint: {fileID: 4439943555385396437}
   weapon: {fileID: 1157213995312190472, guid: f4f07c3e278a0334fad700404b5b7fe0, type: 3}
   canvas: {fileID: 2966775912804215989}
@@ -222,6 +222,11 @@ MonoBehaviour:
 --- !u!50 &6788294976325675372 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 8811157356989125342, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+  m_PrefabInstance: {fileID: 2626542781473881010}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7579284031993100225 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5574431688330628211, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
   m_PrefabInstance: {fileID: 2626542781473881010}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &8335928785559891313 stripped

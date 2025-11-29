@@ -86,10 +86,10 @@ public class PlayerInputManager : MonoBehaviour
     private void UpdateInputConditions()
     {
         CanReload = _player.currentWeapon.currentAmmo < _player.currentWeapon.maxAmmo &&
-        !_player.isVortexing;
+        !_player.isVortexing &&
+        !_player.isReloading;
 
-        CanEquip = !_player.isShielding &&
-        !_player.isVortexing;
+        CanEquip = !_player.isVortexing && !_player.isReloading;
 
         CanFire = (_player.currentWeapon.currentAmmo - _player.currentWeapon.ammoCost) >= 0 &&
         !_player.isShielding &&
@@ -98,6 +98,7 @@ public class PlayerInputManager : MonoBehaviour
 
     private IEnumerator ReloadWeapon()
     {
+        // TODO: stop this coroutine if player changes weapon before reload finishes
         //Debug.Log("Reload Started");
         _player.isReloading = true;
         _player.chargeMeter.TurnOnMeter(ChargeMeter.MeterType.RELOADING_WEAPON, 0f, _player.currentWeapon.reloadTime);

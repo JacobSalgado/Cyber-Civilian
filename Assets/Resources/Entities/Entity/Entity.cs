@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -13,6 +14,8 @@ public abstract class Entity : StateManager
     public Slider healthBar;
     public AudioManager audioManager;
     public AudioEffect[] audioEffects;
+    [SerializeField] private GameObject fireEffectPrefab;
+    private GameObject fireEffect;
 
     [NonSerialized] public bool isDamaged = false;
     [NonSerialized] public bool isDead = false;
@@ -60,10 +63,14 @@ public abstract class Entity : StateManager
         current_state.UpdateState();
 
         // health checks
-        if (isOnFire) TakeDamage(Mathf.CeilToInt(fireDamage * Time.deltaTime));
+        if (isOnFire) {
+            fireEffect.transform.position = gameObject.transform.position;
+            TakeDamage(Mathf.CeilToInt(fireDamage * Time.deltaTime));
+        }
         
         if (entityData != null && entityData.currentHealth <= 0 && entityData.maxHealth != 0)
         {
+            Destroy(fireEffect);
             EntityDie();
         }
 
@@ -175,12 +182,17 @@ public abstract class Entity : StateManager
         fireDamage = damage;
         isOnFire = true;
         StartCoroutine(FireEffectTimer(duration));
+        fireEffect = Instantiate(fireEffectPrefab);
+        fireEffect.GetComponent<ParticleSystem>().Play();
     }
 
     private IEnumerator FireEffectTimer(float duration)
     {
         yield return new WaitForSeconds(duration);
         isOnFire = false;
+        //fireEffect.GetComponent<ParticleSystem>().Stop();
+        Destroy(fireEffect);
+        fireEffect = null;
     }
 
     public void ApplySlowEffect(float duration, float slowdownFactor)

@@ -549,8 +549,8 @@ MonoBehaviour:
   _player: {fileID: 1072733472485737790}
   aoe: {fileID: 816765359881832839}
   spriteRenderer: {fileID: 8608973238200070827}
-  bashDamage: 50
   shieldDrainRate: 100
+  bashDamage: 50
   bashSlowStrength: 0.6
   bashSlowDuration: 2
   bashFireDamage: 20
@@ -1564,6 +1564,11 @@ SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 3736020708952019976, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
   m_PrefabInstance: {fileID: 3593073875161228856}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4955368706772091131 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8437538099348924099, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
+  m_PrefabInstance: {fileID: 3593073875161228856}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5984970219455982714 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7121258720370068034, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
@@ -1771,6 +1776,7 @@ MonoBehaviour:
   - {fileID: 6079927618582836151, guid: 948c04e971675fd4fbe3c311af92f0fa, type: 3}
   - {fileID: 7533918726549745439, guid: 019fdc823c4c7394da714d429a4eaa5d, type: 3}
   - {fileID: 6079927618582836151, guid: 7ebe548be5868bf4a88600a1319bcd65, type: 3}
+  fireEffectPrefab: {fileID: 4955368706772091131}
   trailRenderer: {fileID: 6616881326347800582}
   spriteRenderer: {fileID: 145288011879166512}
   chargeMeter: {fileID: 7965485974599497560}
