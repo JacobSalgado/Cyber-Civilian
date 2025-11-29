@@ -1,16 +1,16 @@
 using UnityEngine;
 
-public class Trooper : Enemy
+public class Shark : Enemy
 {
-    [Header("==Trooper Properties==")]
+    [Header("==Shark Properties==")]
     public float distanceToShoot;
     public float distanceToMove;
 
     public override void InitializeStates()
     {
-        AddState("Idle", new TrooperIdle(this));
-        AddState("Move", new TrooperMove(this));
-        AddState("Shoot", new TrooperShoot(this));
+        AddState("Idle", new SharkIdle(this));
+        AddState("Move", new SharkMove(this));
+        AddState("Shoot", new SharkShoot(this));
 
         ChangeState("Idle");
     }

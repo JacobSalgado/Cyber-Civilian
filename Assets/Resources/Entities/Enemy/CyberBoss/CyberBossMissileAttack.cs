@@ -24,7 +24,6 @@ public class CyberBossMissileAttack: State
 
     public override void UpdateState()
     {
-        // logic similar to sniper/homingshoot script
         if (cyberBoss.target == null)
         {
             Debug.Log("target not found");

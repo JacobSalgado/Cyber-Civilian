@@ -74,7 +74,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6939848692803389791, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       propertyPath: m_Name
-      value: Sniper
+      value: Crab
       objectReference: {fileID: 0}
     - target: {fileID: 8811157356989125342, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
@@ -181,7 +181,7 @@ MonoBehaviour:
   weapon: {fileID: 1157213995312190472, guid: f4f07c3e278a0334fad700404b5b7fe0, type: 3}
   canvas: {fileID: 2966775912804215989}
   spriteRenderer: {fileID: 3453748074742007050}
-  sniperCollider: {fileID: 8828476117384761170}
+  crabCollider: {fileID: 8828476117384761170}
   invisibleTimeRange:
   - 2
   - 4.5

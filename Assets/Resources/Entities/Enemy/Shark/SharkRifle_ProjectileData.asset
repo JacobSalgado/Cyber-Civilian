@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f178c92934891fc41a88f78970ce1529, type: 3}
-  m_Name: TrooperRifle_ProjectileData
+  m_Name: SharkRifle_ProjectileData
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileData
   currentHealth: 0
   maxHealth: 0

@@ -3,35 +3,35 @@ using UnityEngine;
 
 
 /// <summary>
-/// TrooperMove:
+/// SharkMove:
 /// <para>- move towards the target until it's within distanceToShoot range</para>
 /// <para>- if target is outside the distanceToMove range, change to Idle state</para>
 /// </summary>
-public class TrooperMove : State
+public class SharkMove : State
 {
     private const float timeToStep = 0.3f;
 
-    readonly Trooper trooper;
+    readonly Shark shark;
     private Vector2 directionToTarget;
     private float deltaCount = 0f;
     int stepCounter = 1;
 
-    public TrooperMove(Entity new_entity) : base(new_entity)
+    public SharkMove(Entity new_entity) : base(new_entity)
     {
-        trooper = (Trooper)new_entity;
+        shark = (Shark)new_entity;
     }
 
     public override void EnterState(Dictionary<string, object> args = null)
     {
         deltaCount = 0f;
         stepCounter = 1;
-        trooper.audioManager.PlayAudioSource($"Footsteps{stepCounter++}");
-        trooper.PlayAnim("Walk");
+        shark.audioManager.PlayAudioSource($"Footsteps{stepCounter++}");
+        shark.PlayAnim("Walk");
     }
 
     public override void UpdateState()
     {
-        if (trooper.target == null)
+        if (shark.target == null)
         {
             Debug.LogError("Target not found");
             return;
@@ -39,28 +39,28 @@ public class TrooperMove : State
 
         deltaCount += Time.deltaTime;
 
-        if (trooper.PlayFootsteps(deltaCount, timeToStep, stepCounter))
+        if (shark.PlayFootsteps(deltaCount, timeToStep, stepCounter))
         {
             deltaCount = 0f;
             stepCounter++;
             if (stepCounter > 3) stepCounter = 1;
         }
 
-        float distance = trooper.GetDistanceToTarget();
+        float distance = shark.GetDistanceToTarget();
         if (distance > -1f)
         {
-            if (distance < trooper.distanceToShoot)
+            if (distance < shark.distanceToShoot)
             {
-                trooper.ChangeState("Shoot");
+                shark.ChangeState("Shoot");
                 return;
             }
-            else if (distance < trooper.distanceToMove)
+            else if (distance < shark.distanceToMove)
             {
-                directionToTarget = trooper.GetDirectionToPosition(trooper.target.transform.position);
-                trooper.RotateToDirection(directionToTarget);
-                trooper.moveVelocity = directionToTarget * trooper.entityData.moveSpeed;
+                directionToTarget = shark.GetDirectionToPosition(shark.target.transform.position);
+                shark.RotateToDirection(directionToTarget);
+                shark.moveVelocity = directionToTarget * shark.entityData.moveSpeed;
             }
-            else trooper.ChangeState("Idle");
+            else shark.ChangeState("Idle");
         }
     }
 

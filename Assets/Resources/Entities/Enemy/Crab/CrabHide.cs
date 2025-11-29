@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SniperHide : State
+public class CrabHide : State
 {
     private const float timeToStep = 0.25f;
 
-    readonly Sniper sniper;
+    readonly Crab crab;
     private float hideTime;
     private float deltaCount = 0f;
     int stepCounter = 1;
@@ -16,30 +16,30 @@ public class SniperHide : State
     private LayerMask layersToAvoid;
 
 
-    public SniperHide(Entity new_entity) : base(new_entity)
+    public CrabHide(Entity new_entity) : base(new_entity)
     {
-        sniper = (Sniper)new_entity;
+        crab = (Crab)new_entity;
     }
 
     public override void EnterState(Dictionary<string, object> args = null)
     {
-        sniper.timer = 0f;
+        crab.timer = 0f;
         directionTimer = 0f;
 
         deltaCount = 0f;
         stepCounter = 1;
 
-        sniper.Invisible();
-        hideTime = Random.Range(sniper.invisibleTimeRange[0], sniper.invisibleTimeRange[1]);
+        crab.Invisible();
+        hideTime = Random.Range(crab.invisibleTimeRange[0], crab.invisibleTimeRange[1]);
 
         layersToAvoid = LayerMask.GetMask(layerNames);
 
-        sniper.PlayAnim("Idle");
+        crab.PlayAnim("Idle");
     }
 
     public override void UpdateState()
     {
-        if (sniper.target == null)
+        if (crab.target == null)
         {
             Debug.LogError("Target not found");
             return;
@@ -48,8 +48,8 @@ public class SniperHide : State
         deltaCount += Time.deltaTime;
 
         // movement
-        sniper.moveVelocity = -sniper.gameObject.transform.right.normalized * sniper.entityData.moveSpeed;
-        if (sniper.PlayFootsteps(deltaCount, timeToStep, stepCounter))
+        crab.moveVelocity = -crab.gameObject.transform.right.normalized * crab.entityData.moveSpeed;
+        if (crab.PlayFootsteps(deltaCount, timeToStep, stepCounter))
         {
             deltaCount = 0f;
             stepCounter++;
@@ -58,27 +58,27 @@ public class SniperHide : State
 
         directionTimer += Time.deltaTime;
 
-        hit = Physics2D.Raycast(sniper.firePoint.transform.position, -sniper.gameObject.transform.right.normalized, 5f, layersToAvoid);
+        hit = Physics2D.Raycast(crab.firePoint.transform.position, -crab.gameObject.transform.right.normalized, 5f, layersToAvoid);
         
         if (hit.collider != null || directionTimer > 0.35f) 
         {
             directionTimer = 0f;
 
             // change direction of movement
-            Quaternion rotation = sniper.gameObject.transform.rotation;
+            Quaternion rotation = crab.gameObject.transform.rotation;
 
             rotation.z += Random.Range(-1f, 1f);
 
-            sniper.gameObject.transform.rotation = rotation;
+            crab.gameObject.transform.rotation = rotation;
         }
 
-        if (sniper.timer > hideTime)
-            sniper.ChangeState("Idle");
+        if (crab.timer > hideTime)
+            crab.ChangeState("Idle");
     }
     
     public override void ExitState(Dictionary<string, object> args = null)
     {
-        sniper.timer = 0;
-        sniper.Visible();
+        crab.timer = 0;
+        crab.Visible();
     }
 }

@@ -49,8 +49,8 @@ public class EnemySpawn : MonoBehaviour
         // TODO: change enemy names
         string enemyName = typeToSpawn switch
         {
-            Enemy.EnemyTypes.SHARK => "Trooper",
-            Enemy.EnemyTypes.CRAB => "Sniper",
+            Enemy.EnemyTypes.SHARK => "Shark",
+            Enemy.EnemyTypes.CRAB => "Crab",
             Enemy.EnemyTypes.MANTIS => "Mantis",
             Enemy.EnemyTypes.TRAPPER => "Trapper",
             Enemy.EnemyTypes.HOMING => "Homing",

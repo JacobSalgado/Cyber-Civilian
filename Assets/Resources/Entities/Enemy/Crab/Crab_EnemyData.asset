@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fabb98b0c864e404a9bdeefd5c348c0c, type: 3}
-  m_Name: Sniper_EnemyData
+  m_Name: Crab_EnemyData
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   currentHealth: 500
   maxHealth: 500

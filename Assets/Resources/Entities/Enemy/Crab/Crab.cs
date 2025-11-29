@@ -1,11 +1,11 @@
 using System;
 using UnityEngine;
 
-public class Sniper : Enemy
+public class Crab : Enemy
 {
-    [Header("==Sniper GameObjects==")]
+    [Header("==Crab GameObjects==")]
     public SpriteRenderer spriteRenderer;
-    public CapsuleCollider2D sniperCollider;
+    public CapsuleCollider2D crabCollider;
 
     [Header("==Hide Properties==")]
     public float[] invisibleTimeRange = {0f, 1f};
@@ -21,9 +21,9 @@ public class Sniper : Enemy
 
     public override void InitializeStates()
     {
-        AddState("Idle", new SniperIdle(this));
-        AddState("Hide", new SniperHide(this));
-        AddState("Shoot", new SniperShoot(this));
+        AddState("Idle", new CrabIdle(this));
+        AddState("Hide", new CrabHide(this));
+        AddState("Shoot", new CrabShoot(this));
 
         ChangeState("Idle");
     }
@@ -37,7 +37,7 @@ public class Sniper : Enemy
 
         healthCanvas = canvas.GetComponent<Canvas>();
 
-        // NOTE: distanceToShoot for sniper is determined by given railshot length
+        // NOTE: distanceToShoot for crab is determined by given railshot length
         distanceToShoot = weapon.GetComponent<Weapon>().projData.railshotLength;
         distanceToHide = distanceToShoot * 0.5f;
     }
@@ -57,7 +57,7 @@ public class Sniper : Enemy
         isInvisible = true;
         spriteRenderer.enabled = false;
         healthCanvas.enabled = false;
-        //sniperCollider.enabled = false;
+        //crabCollider.enabled = false;
         audioManager.PlayAudioSource("InvisibleStart");
     }
 
@@ -66,7 +66,7 @@ public class Sniper : Enemy
         isInvisible = false;
         spriteRenderer.enabled = true;
         healthCanvas.enabled = true;
-        //sniperCollider.enabled = true;
+        //crabCollider.enabled = true;
         audioManager.PlayAudioSource("InvisibleEnd");
     }
 }
