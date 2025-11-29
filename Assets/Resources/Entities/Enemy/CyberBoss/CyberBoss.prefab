@@ -153,7 +153,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &7418802895093423458
@@ -187,8 +187,8 @@ GameObject:
   - component: {fileID: 5483728133297760575}
   - component: {fileID: 7316356902578904390}
   - component: {fileID: 2168450474968927489}
-  - component: {fileID: 3117823128212804980}
   - component: {fileID: 2819921774195636407}
+  - component: {fileID: 8739641425578551877}
   m_Layer: 11
   m_Name: Punch
   m_TagString: Untagged
@@ -208,7 +208,8 @@ Transform:
   m_LocalPosition: {x: -1.392, y: 0, z: 0}
   m_LocalScale: {x: 1.36, y: 1.36, z: 1.36}
   m_ConstrainProportionsScale: 1
-  m_Children: []
+  m_Children:
+  - {fileID: 8331401517711060881}
   m_Father: {fileID: 5190383900300549018}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &7316356902578904390
@@ -274,23 +275,6 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
---- !u!114 &3117823128212804980
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4116149950389406107}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ed0242a6d30fef4194a87e8589ddce3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Punch
-  initialLocalPosition: {fileID: 8331401517711060881}
-  punchSpeed: 3
-  punchCollider: {fileID: 2168450474968927489}
-  punchRigidbody: {fileID: 7316356902578904390}
-  spriteRenderer: {fileID: 2819921774195636407}
 --- !u!212 &2819921774195636407
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -338,7 +322,7 @@ SpriteRenderer:
   m_SortingLayerID: -824967753
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: 0e859602d512efe428e2b49aa3adc300, type: 3}
+  m_Sprite: {fileID: -2413806693520163455, guid: fe7cc92d08e7ce743b49cc5e5a999a1d, type: 3}
   m_Color: {r: 0.47834992, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -349,6 +333,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8739641425578551877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4116149950389406107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55fa3e65ace171a469eb6bab81467c6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CyberBossPunch
+  initialLocalPosition: {fileID: 8331401517711060881}
+  punchSpeed: 3
+  punchCollider: {fileID: 2168450474968927489}
+  punchRigidbody: {fileID: 7316356902578904390}
+  spriteRenderer: {fileID: 2819921774195636407}
 --- !u!1 &5680406463214280703
 GameObject:
   m_ObjectHideFlags: 0
@@ -373,12 +374,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5680406463214280703}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.392, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.73529416, y: 0.73529416, z: 0.7352941}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5190383900300549018}
+  m_Father: {fileID: 5483728133297760575}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1337654423169088360
 PrefabInstance:
@@ -485,9 +486,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6527896415030157554, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5483728133297760575}
-    - targetCorrespondingSourceObject: {fileID: 6527896415030157554, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8331401517711060881}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6939848692803389791, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       insertIndex: -1
@@ -572,21 +570,20 @@ MonoBehaviour:
   - {fileID: 6079927618582836151, guid: 8c814326181eda740a6720d3f97e0f37, type: 3}
   - {fileID: 6079927618582836151, guid: 6066e53a3454d88428d6c2bd123387e8, type: 3}
   - {fileID: 6079927618582836151, guid: 362b9e346bbb2b44791590d1a965f6d8, type: 3}
-  isShocked: 0
   firePoint: {fileID: 828325889361890319}
   weapon: {fileID: 6579814461523234674, guid: a6dd45164a0575a4c9c660b661d68099, type: 3}
   canvas: {fileID: 2292065971395210351}
   spriteRenderer: {fileID: 1805163559450772944}
   stomp: {fileID: 7418802895093423458}
-  punch: {fileID: 3117823128212804980}
-  weaponsList:
-  - {fileID: 6579814461523234674, guid: a6dd45164a0575a4c9c660b661d68099, type: 3}
+  punch: {fileID: 0}
   distanceToShoot: 20
   distanceToMove: 30
   distanceToHit: 4.5
   distanceToStomp: 11
   seePlayerTimer: 0
   timeToSeePlayer: 1
+  maxShots: 5
+  shootTime: 0.35
 --- !u!70 &3464978359531780074
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

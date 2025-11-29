@@ -1,5 +1,180 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1785932888332322269
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 218478512561323309}
+  - component: {fileID: 765613550087641446}
+  - component: {fileID: 1326519828331497125}
+  - component: {fileID: 6616619563857071340}
+  - component: {fileID: 4205019207953636157}
+  m_Layer: 11
+  m_Name: Punch
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &218478512561323309
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1785932888332322269}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.44, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6000895577303506080}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &765613550087641446
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1785932888332322269}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!58 &1326519828331497125
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1785932888332322269}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.5
+--- !u!212 &6616619563857071340
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1785932888332322269}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 0
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!114 &4205019207953636157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1785932888332322269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f61bde5af2d5b594bb27e545f9b25336, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MantisPunch
+  mantis: {fileID: 7214895973136579558}
+  punchCollider: {fileID: 1326519828331497125}
+  punchRigidbody: {fileID: 765613550087641446}
+  spriteRenderer: {fileID: 6616619563857071340}
+  initialLocalPosition: {fileID: 1170454396138261301}
+  timeToLive: 0.2
+  damage: 50
 --- !u!1001 &707286760853896274
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14,7 +189,7 @@ PrefabInstance:
       objectReference: {fileID: -5148245963441109538, guid: 933a76df249d4334c8026e53b7e24977, type: 3}
     - target: {fileID: 836956141584006840, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       propertyPath: m_Color.b
-      value: 0.73018867
+      value: 0.95660377
       objectReference: {fileID: 0}
     - target: {fileID: 836956141584006840, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       propertyPath: m_Color.g
@@ -22,7 +197,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 836956141584006840, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       propertyPath: m_Color.r
-      value: 0.8372088
+      value: 0.9735849
+      objectReference: {fileID: 0}
+    - target: {fileID: 1868575608633948007, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.585
+      objectReference: {fileID: 0}
+    - target: {fileID: 1868575608633948007, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6474276062370758235, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       propertyPath: m_AnchorMax.x
@@ -74,11 +257,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6939848692803389791, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       propertyPath: m_Name
-      value: Fighter
+      value: Mantis
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 6527896415030157554, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 218478512561323309}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6939848692803389791, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       insertIndex: -1
@@ -101,6 +287,11 @@ GameObject:
 --- !u!4 &1170454396138261301 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1868575608633948007, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+  m_PrefabInstance: {fileID: 707286760853896274}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6000895577303506080 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6527896415030157554, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
   m_PrefabInstance: {fileID: 707286760853896274}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &6776993992137878161 stripped
@@ -177,12 +368,12 @@ MonoBehaviour:
   - {fileID: 6079927618582836151, guid: ce929db82a0221d4dbe81d323f250f8c, type: 3}
   - {fileID: 6079927618582836151, guid: aa0d3157024e86441b365eb1783e7373, type: 3}
   - {fileID: 6079927618582836151, guid: f1f9d59be499e6448b2c6dd1d6091622, type: 3}
-  invincibility: 0
   firePoint: {fileID: 1170454396138261301}
   weapon: {fileID: 1577679594348739716, guid: 7caa2f4813b260a44a076a1f15dcabf4, type: 3}
   canvas: {fileID: 328632794084600661}
-  distanceToHit: 2
+  mantisPunch: {fileID: 4205019207953636157}
   distanceToMove: 20
+  cooldownAfterPunch: 0.6
 --- !u!96 &-9056755244652651032
 TrailRenderer:
   serializedVersion: 3

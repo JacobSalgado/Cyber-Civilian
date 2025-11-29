@@ -3,25 +3,24 @@ using UnityEngine;
 
 public class CyberBossPunch : MonoBehaviour
 {
-    private const float TTL = 0.2f;
     private float timer = 0f;
-    [SerializeField] private Transform initialLocalPosition;
 
-    public float punchSpeed = 3.0f;
+    [SerializeField] private Transform initialLocalPosition;
     public CircleCollider2D punchCollider;
-    public Rigidbody2D punchRigidbody;
-    public SpriteRenderer spriteRenderer;
+    [SerializeField] private Rigidbody2D punchRigidbody;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private float timeToLive = 0.2f;
+    [SerializeField] private int damage = 80;
+    public float punchSpeed = 3.0f;
 
     [NonSerialized] public Vector2 directionToPlayer = Vector2.zero;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         punchCollider.enabled = false;
         spriteRenderer.enabled = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
         gameObject.transform.position = initialLocalPosition.position;
@@ -30,7 +29,7 @@ public class CyberBossPunch : MonoBehaviour
             timer += Time.deltaTime;
 
             //punchRigidbody.linearVelocity = punchSpeed * directionToPlayer;
-            if (timer >= TTL)
+            if (timer >= timeToLive)
             {
                 timer = 0f;
                 punchCollider.enabled = false;
@@ -55,7 +54,7 @@ public class CyberBossPunch : MonoBehaviour
         //print(collision.gameObject.name);
         if (collision.gameObject.TryGetComponent<Player>(out var player))
         {
-            player.TakeDamage(50);
+            player.TakeDamage(damage);
             //ApplyKnockback(player);
         }
     }

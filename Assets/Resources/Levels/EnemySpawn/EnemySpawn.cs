@@ -51,7 +51,7 @@ public class EnemySpawn : MonoBehaviour
         {
             Enemy.EnemyTypes.SHARK => "Trooper",
             Enemy.EnemyTypes.CRAB => "Sniper",
-            Enemy.EnemyTypes.MANTIS => "Fighter",
+            Enemy.EnemyTypes.MANTIS => "Mantis",
             Enemy.EnemyTypes.TRAPPER => "Trapper",
             Enemy.EnemyTypes.HOMING => "Homing",
             Enemy.EnemyTypes.CYBERBOSS => "CyberBoss",

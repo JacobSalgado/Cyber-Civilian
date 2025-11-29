@@ -27,8 +27,10 @@ public abstract class Enemy : Entity
         base.Start();
         target = LevelManager.player.transform;
 
-        weapon = Instantiate(weapon, transform);
-        weapon.GetComponent<Weapon>().owner = this;
+        if (weapon != null) {
+            weapon = Instantiate(weapon, transform);
+            weapon.GetComponent<Weapon>().owner = this;
+        }
         UpdateHealthBar();
     }
 

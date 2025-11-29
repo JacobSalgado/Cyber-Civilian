@@ -24,9 +24,11 @@ public class ProjectileData : EntityData
     //public float explosionRadius = 0f;
 
     [Header("==Status Effect Properties==")]
+    [Header("Burn Over Time Effect")]
     public bool setsOnFire = false;
     public float burnDuration = 0f;
     public int burnDamage = 0;
+    [Header("Slowed Movement Effect")]
     public bool slows = false;
     public float slowDuration = 0f;
     public float slowdownFactor = 0f;

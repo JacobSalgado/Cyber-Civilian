@@ -17,8 +17,8 @@ TagManager:
   - Enemy
   - Projectiles
   - LevelBoundry
-  - PlayerPush
-  - BossAttack
+  - PlayerAttack
+  - EnemyAttack
   - PlayerVortex
   - PlayerShield
   - 

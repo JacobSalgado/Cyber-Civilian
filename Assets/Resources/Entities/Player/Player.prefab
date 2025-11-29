@@ -373,7 +373,7 @@ MonoBehaviour:
   _player: {fileID: 1072733472485737790}
   aoe: {fileID: 9165450067482053928}
   spriteRenderer: {fileID: 5349885471015370774}
-  vortexDrainRate: 60
+  vortexDrainRate: 150
   absorbCost: 40
   maxAbsorbedProjectiles: 25
   selfExplosionDamage: 250
@@ -549,7 +549,7 @@ MonoBehaviour:
   _player: {fileID: 1072733472485737790}
   aoe: {fileID: 816765359881832839}
   spriteRenderer: {fileID: 8608973238200070827}
-  shieldDrainRate: 50
+  shieldDrainRate: 100
   shieldShockDuration: 2
   shieldShockStrength: 0.5
   shieldFireDamage: 1
@@ -1770,7 +1770,6 @@ MonoBehaviour:
   - {fileID: 6079927618582836151, guid: 948c04e971675fd4fbe3c311af92f0fa, type: 3}
   - {fileID: 7533918726549745439, guid: 019fdc823c4c7394da714d429a4eaa5d, type: 3}
   - {fileID: 6079927618582836151, guid: 7ebe548be5868bf4a88600a1319bcd65, type: 3}
-  isShocked: 0
   trailRenderer: {fileID: 6616881326347800582}
   spriteRenderer: {fileID: 145288011879166512}
   chargeMeter: {fileID: 7965485974599497560}

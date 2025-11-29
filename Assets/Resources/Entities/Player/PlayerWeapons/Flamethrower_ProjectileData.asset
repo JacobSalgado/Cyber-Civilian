@@ -20,14 +20,14 @@ MonoBehaviour:
   lifeTime: 0.5
   timeToSpawn: 0
   destroyOnCollision: 0
-  railshotLength: 0
   fadeawayTime: 0.29
+  railshotLength: 0
   homing: 0
   rotateSpeed: 0
   trackingStrength: 0
-  setsOnFire: 0
-  burnDuration: 0
+  setsOnFire: 1
+  burnDuration: 4
   burnDamage: 10
-  shocks: 0
-  shockDuration: 0
-  slowDownFactor: 0
+  slows: 0
+  slowDuration: 0
+  slowdownFactor: 0

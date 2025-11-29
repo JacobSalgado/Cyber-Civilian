@@ -56,23 +56,24 @@ public class PlayerShield : MonoBehaviour
         {
             if (proj.attacking_layer == 7)
             {
-                // Player's forward direction (the direction they are facing)
-                Vector2 playerForward = -_player.firePoint.right.normalized;
-
                 // Direction from player to projectile
-                Vector2 toProjectile = proj.GetDirectionToPosition(_player.transform.position);
+                Vector2 toProjectile = -proj.GetDirectionToPosition(_player.transform.position);
 
-                float dot = Vector2.Dot(toProjectile, playerForward);
-
-                bool blocked = dot < -0.5;
-
-                if (blocked)
+                if (IsShieldBlocking(toProjectile))
                 {
                     proj.HitEffect(proj.gameObject.transform.position);
                     proj.CollisionHit();
                 }
             }
         }
+    }
+
+    public bool IsShieldBlocking(Vector2 vectorToBlock)
+    { 
+        Vector2 playerForward = -_player.firePoint.right.normalized;
+        float dot = Vector2.Dot(vectorToBlock, playerForward);
+        print(dot);
+        return dot > 0.5;
     }
 
     // public void OnCollisionEnter2D(Collision2D collision)
