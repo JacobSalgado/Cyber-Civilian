@@ -9,6 +9,9 @@ public class PlayerShield : MonoBehaviour
 
     [Header("==Shield Values==")]
     [SerializeField] private int shieldDrainRate = 50;
+
+    [Header("Shield Bash Values")]
+    [SerializeField] private int bashDamage = 20;
     [SerializeField] private float bashSlowStrength = 0.7f;
     [SerializeField] private float bashSlowDuration = 2f;
     [SerializeField] private int bashFireDamage = 10;
@@ -49,11 +52,13 @@ public class PlayerShield : MonoBehaviour
     {
         if (_player.isDashing && collider.gameObject.TryGetComponent<Enemy>(out var enemy))
         {
+            // Shield Bash Logic
             Vector2 toEnemy = -enemy.GetDirectionToPosition(_player.transform.position);
 
             if (IsShieldBlocking(toEnemy))
             {
                 // play audio
+                enemy.TakeDamage(bashDamage);
                 enemy.ApplyFireEffect(bashFireDuration, bashFireDamage);
                 enemy.ApplySlowEffect(bashSlowDuration, bashSlowStrength);
             }

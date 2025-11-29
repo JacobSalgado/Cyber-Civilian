@@ -549,6 +549,7 @@ MonoBehaviour:
   _player: {fileID: 1072733472485737790}
   aoe: {fileID: 816765359881832839}
   spriteRenderer: {fileID: 8608973238200070827}
+  bashDamage: 50
   shieldDrainRate: 100
   bashSlowStrength: 0.6
   bashSlowDuration: 2
