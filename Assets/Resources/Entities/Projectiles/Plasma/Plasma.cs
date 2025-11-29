@@ -28,7 +28,7 @@ public class Plasma : Projectile
             if (collision.gameObject.TryGetComponent<Enemy>(out var enemy))
             {
                 enemy.TakeDamage(damageFieldDamage);
-                enemy.ApplyOnFireEffect(damageFieldFireDuration, damageFieldFireDamage);
+                enemy.ApplyFireEffect(damageFieldFireDuration, damageFieldFireDamage);
             }
         }
 

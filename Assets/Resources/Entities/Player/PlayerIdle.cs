@@ -18,7 +18,7 @@ public class PlayerIdle : State
     public override void UpdateState()
     {
         player.moveVelocity = Vector2.zero;
-        if (player.moveAction.action.ReadValue<Vector2>() != Vector2.zero)
+        if (player.IsMoving())
             player.ChangeState("Move");
     }
 

@@ -550,10 +550,10 @@ MonoBehaviour:
   aoe: {fileID: 816765359881832839}
   spriteRenderer: {fileID: 8608973238200070827}
   shieldDrainRate: 100
-  shieldShockDuration: 2
-  shieldShockStrength: 0.5
-  shieldFireDamage: 1
-  shieldFireDuration: 3
+  bashSlowStrength: 0.6
+  bashSlowDuration: 2
+  bashFireDamage: 20
+  bashFireDuration: 2
 --- !u!1001 &2198830254597179044
 PrefabInstance:
   m_ObjectHideFlags: 0

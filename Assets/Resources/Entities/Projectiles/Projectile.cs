@@ -67,7 +67,7 @@ public abstract class Projectile : Entity
             entity.ApplySlowEffect(projData.slowDuration, projData.slowdownFactor);
         
         if (projData.setsOnFire)
-            entity.ApplyOnFireEffect(projData.burnDuration, projData.burnDamage);
+            entity.ApplyFireEffect(projData.burnDuration, projData.burnDamage);
     }
 
     public override void EntityDie()

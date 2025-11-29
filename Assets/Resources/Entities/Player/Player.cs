@@ -225,7 +225,8 @@ public class Player : Entity
         // check dash inputs
         if (dashAction.action.WasPressedThisFrame() && 
             (currentEnergy - dashCost) >= 0 &&
-            !isDashing
+            !isDashing &&
+            IsMoving()
         ) {
             currentEnergy -= dashCost;
             invincibility = true;
@@ -316,6 +317,10 @@ public class Player : Entity
             audioManager.PlayAudioSource(name);
             damagedTime = audioManager.audioEffects[name].clip.length;
         }
+    }
+    public bool IsMoving()
+    {
+        return moveAction.action.ReadValue<Vector2>() != Vector2.zero;
     }
 
     // ============================

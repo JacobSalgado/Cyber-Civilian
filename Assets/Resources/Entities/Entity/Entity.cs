@@ -60,7 +60,7 @@ public abstract class Entity : StateManager
         current_state.UpdateState();
 
         // health checks
-        if (isOnFire) TakeDamage(fireDamage);
+        if (isOnFire) TakeDamage(Mathf.CeilToInt(fireDamage * Time.deltaTime));
         
         if (entityData != null && entityData.currentHealth <= 0 && entityData.maxHealth != 0)
         {
@@ -168,7 +168,7 @@ public abstract class Entity : StateManager
         sr.color = tempColor;
     }
 
-    public void ApplyOnFireEffect(float duration, int damage)
+    public void ApplyFireEffect(float duration, int damage)
     {
         if (isOnFire) return;
 

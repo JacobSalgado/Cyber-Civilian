@@ -9,10 +9,10 @@ public class PlayerShield : MonoBehaviour
 
     [Header("==Shield Values==")]
     [SerializeField] private int shieldDrainRate = 50;
-    [SerializeField] private float shieldShockDuration = 2f;
-    [SerializeField] private float shieldShockStrength = 0.5f;
-    [SerializeField] private int shieldFireDamage = 1;
-    [SerializeField] private float shieldFireDuration = 3f;
+    [SerializeField] private float bashSlowStrength = 0.7f;
+    [SerializeField] private float bashSlowDuration = 2f;
+    [SerializeField] private int bashFireDamage = 10;
+    [SerializeField] private float bashFireDuration = 2.5f;
 
     void Start()
     {
@@ -45,14 +45,20 @@ public class PlayerShield : MonoBehaviour
         }
     }
 
-    public bool CanActivate()
-    {
-        return _player.currentEnergy - shieldDrainRate >= 0;
-    }
-
     public void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.TryGetComponent<Projectile>(out var proj))
+        if (_player.isDashing && collider.gameObject.TryGetComponent<Enemy>(out var enemy))
+        {
+            Vector2 toEnemy = -enemy.GetDirectionToPosition(_player.transform.position);
+
+            if (IsShieldBlocking(toEnemy))
+            {
+                // play audio
+                enemy.ApplyFireEffect(bashFireDuration, bashFireDamage);
+                enemy.ApplySlowEffect(bashSlowDuration, bashSlowStrength);
+            }
+        }
+        else if (collider.gameObject.TryGetComponent<Projectile>(out var proj))
         {
             if (proj.attacking_layer == 7)
             {
@@ -61,6 +67,7 @@ public class PlayerShield : MonoBehaviour
 
                 if (IsShieldBlocking(toProjectile))
                 {
+                    // play audio
                     proj.HitEffect(proj.gameObject.transform.position);
                     proj.CollisionHit();
                 }
@@ -68,25 +75,15 @@ public class PlayerShield : MonoBehaviour
         }
     }
 
+    public bool CanActivate()
+    {
+        return _player.currentEnergy - shieldDrainRate >= 0;
+    }
+
     public bool IsShieldBlocking(Vector2 vectorToBlock)
     { 
         Vector2 playerForward = -_player.firePoint.right.normalized;
         float dot = Vector2.Dot(vectorToBlock, playerForward);
-        print(dot);
         return dot > 0.5;
     }
-
-    // public void OnCollisionEnter2D(Collision2D collision)
-    // {
-    //     //Debug.Log("Collided with " + collision.gameObject.name);
-    //     // if (isShieldBlocking)
-    //     // {
-    //     //     if (collision.gameObject.TryGetComponent<Enemy>(out var enemy))
-    //     //     {
-    //     //         Debug.Log("Applied shock from shield to enemy");
-    //     //         enemy.ApplyShockEffect(shiledShockDuration, shieldSlowDownStrength);
-    //     //         enemy.ApplyOnFireEffect(shiledFireDuration, shieldFireDamage);
-    //     //     }
-    //     // }
-    // }
 }
