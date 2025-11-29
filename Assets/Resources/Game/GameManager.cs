@@ -26,6 +26,7 @@ public class GameManager : StateManager
     public InputActionReference pauseAction;
     public AudioManager audioManager;
     public PauseMenu pauseMenu;
+    public GameCursor cursor;
 
     [Header("==Game Parameters==")]
     public string[] levelList;

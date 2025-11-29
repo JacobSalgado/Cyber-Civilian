@@ -14,12 +14,13 @@ public class GameInGame : State
     {
         manager.UIHolder.SetActive(true);
 
+        manager.cursor.SetCursorType(GameCursor.CursorType.RETICLE);
+
         if (args == null || (args != null && !args.ContainsKey("FromPauseMenu")))
         {
             manager.audioManager.PlayAudioSource("Level1"); // TODO: ACCOMODATE FOR MULTIPLE LEVEL BGMS
             LevelManager.StartLevel();
         }
-
     }
 
     public override void UpdateState()

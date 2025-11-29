@@ -12,6 +12,7 @@ public class GameGameOver : State
 
     public override void EnterState(Dictionary<string, object> args = null)
     {
+        manager.cursor.SetCursorType(GameCursor.CursorType.POINTER);
         manager.UIHolder.SetActive(true);
     }
 

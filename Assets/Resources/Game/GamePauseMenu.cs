@@ -12,6 +12,7 @@ public class GamePauseMenu : State
 
     public override void EnterState(Dictionary<string, object> args = null)
     {
+        manager.cursor.SetCursorType(GameCursor.CursorType.POINTER);
         manager.pauseMenu.gameObject.SetActive(true);
         Time.timeScale = 0f;
     }
