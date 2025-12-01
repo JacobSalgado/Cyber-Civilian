@@ -29,8 +29,6 @@ public class CyberBossTravel: State
     public override void UpdateState()
     {
         Debug.Log("cyberboss travel state");
-
-        //cyberBoss.EnableRageMode();
         
         if (cyberBoss.target == null)
         {
@@ -52,12 +50,6 @@ public class CyberBossTravel: State
         //    cyberBoss.ChangeState("Idle");
         //    return;
         //}
-
-        // --- FOR RAGE MODE -----
-        if (cyberBoss.entityData.currentHealth <= cyberBoss.entityData.maxHealth * 0.3f)
-        {
-            cyberBoss.EnableRageMode();
-        }
 
         float distance = cyberBoss.GetDistanceToTarget();
 

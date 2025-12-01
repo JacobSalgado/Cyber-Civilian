@@ -14,5 +14,4 @@ public abstract class EntityData : ScriptableObject
     public int currentHealth;
     public int maxHealth;
     public float moveSpeed;
-    public float maxMoveSpeed; // mainly for cyberBoss rage mode
 }

@@ -25,11 +25,6 @@ public class CyberBoss : Enemy
     [NonSerialized] public bool inCooldown = true;
     public bool HasSeenPlayerLongEnough => seePlayerTimer >= timeToSeePlayer;
 
-    // ---------- Rage Mode Variables -----------
-    public bool inRageMode = false;
-    public float healthThresholdForRage = 0.3f; // 30% of max health
-
-
     public override void InitializeStates()
     {
         AddState("Idle", new CyberBossIdle(this));
@@ -37,7 +32,6 @@ public class CyberBoss : Enemy
         AddState("Missile", new CyberBossMissileAttack(this));
         AddState("Stomp", new CyberBossStompAttack(this));
         AddState("Punch", new CyberBossPunchAttack(this));
-        //AddState("Rage", new CyberBossRage(this)); // no rage state, just rage function with buffs to other states
 
         ChangeState("Idle");
     }
@@ -94,16 +88,5 @@ public class CyberBoss : Enemy
         inCooldown = true;
         cooldownTime = 0f;
         cooldownEnd = newCooldown;
-    }
-
-    public void EnableRageMode()
-    {
-        inRageMode = true;
-
-        spriteRenderer.color = Color.red; // changes color to red to indicate rage mode
-
-        //entityData.moveSpeed *= 1.2f; // need to call with bool flag to avoid stacking speed increases
-
-        entityData.moveSpeed = Mathf.Min(entityData.moveSpeed * 1.2f, entityData.maxMoveSpeed);
     }
 }

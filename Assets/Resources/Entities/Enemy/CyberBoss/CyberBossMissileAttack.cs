@@ -25,11 +25,6 @@ public class CyberBossMissileAttack: State
         shotCounter = 0;
         shotTimer = 0f;
         Debug.Log("In Missile state");
-
-        if (cyberBoss.inRageMode == true)
-        {
-            maxShots = 15;
-        }
     }
 
     public override void UpdateState()

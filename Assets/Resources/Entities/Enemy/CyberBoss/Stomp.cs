@@ -6,14 +6,14 @@ public class Stomp : MonoBehaviour
     private const float TTL = 1.2f;
     private float timer = 0f;
 
-    [SerializeField] public float moveSpeed = 8f; // made this variable public for easier access in CyberBossStompAttack
-
-    [SerializeField] public float maxShockwaveRadius = 20f; // made this variable public for easier access in CyberBossStompAttack
+    [SerializeField] float moveSpeed = 8f;
+    
+    [SerializeField] private float maxShockwaveRadius = 20f;
     [SerializeField] private float pushForce = 15f;
 
     [NonSerialized] public Vector3 startScale = Vector3.zero;
     [SerializeField] private Vector3 maxScale = Vector3.zero;
-    [SerializeField] public float scaleIncRate = 0.4f; // changed to public for easier access in CyberBossStompAttack
+    [SerializeField] private float scaleIncRate = 0.4f;
 
     public CircleCollider2D aoeCollider;
     public Rigidbody2D rigidBody;
@@ -69,25 +69,14 @@ public class Stomp : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        CyberBoss cyberBoss = GetComponentInParent<CyberBoss>();
-
         // initialize push velocity
-        print(collision.gameObject.name);
+        //print(collision.gameObject.name);
         if (collision.gameObject.TryGetComponent<Player>(out var player))
         {
-            player.pushed = true;
+            //player.pushed = true;
             Vector2 pushDirection = player.GetDirectionToPosition(gameObject.transform.position);
-
-            // rage mode check
-            if (cyberBoss.inRageMode)
-            {
-                player.TakeDamage(250);
-            }
-            else
-            {
-                player.TakeDamage(200); // make player take damage if stomp aoe collides with them   
-            }
-            player.pushedVelocity = -pushForce * pushDirection;
+            player.TakeDamage(200); // make player take damage if stomp aoe collides with them
+            //player.pushedVelocity = -force * pushDirection;
         }
     }
 }

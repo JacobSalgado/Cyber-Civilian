@@ -16,17 +16,6 @@ public class CyberBossStompAttack: State
         cyberBoss.moveVelocity = Vector2.zero;
         cyberBoss.stomp.directionToPlayer = cyberBoss.GetDirectionToPosition(cyberBoss.target.position);
         cyberBoss.stomp.startScale = cyberBoss.stomp.gameObject.transform.localScale;
-
-        // Activate Rage Mode
-        if (cyberBoss.inRageMode)
-        {
-            cyberBoss.stomp.moveSpeed = 20f;
-            cyberBoss.stomp.scaleIncRate = 0.8f;
-            cyberBoss.stomp.maxShockwaveRadius = 35f;
-
-            cyberBoss.stomp.EmitPush(); // emit second push in rage mode
-        }
-
         cyberBoss.stomp.EmitPush();
         cyberBoss.audioManager.PlayAudioSource("Stomp");
     }

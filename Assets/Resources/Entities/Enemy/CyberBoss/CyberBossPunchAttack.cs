@@ -13,12 +13,6 @@ public class CyberBossPunchAttack : State
 
     public override void EnterState(Dictionary<string, object> args = null)
     {
-        // Activate Rage Mode
-        if (cyberBoss.inRageMode)
-        { 
-            cyberBoss.punch.punchSpeed = 10f; 
-        }
-
         punchDirection = cyberBoss.GetDirectionToPosition(cyberBoss.target.transform.position);
         cyberBoss.RotateToDirection(punchDirection);
         cyberBoss.punch.directionToPlayer = punchDirection;
