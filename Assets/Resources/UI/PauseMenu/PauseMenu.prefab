@@ -1941,9 +1941,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Press left mouse click for all weapons. Can also use scroll wheel to change
     between weapons\n\n\n- Full-auto, Low Damage\n\n\n\n- Charge-up attack, must
-    hold down left click for 2 seconds or longer. \n\n\n- Homing attack, point mouse
-    cursor in the direction of the enemy\n\n\n\n- Semi-Auto\n\n\n\n- Hold Down left
-    click to keep Firing"
+    hold down left click for 2 seconds or longer. \n\n\n- Homing attack, shoot missiles
+    at enemies within a radius.\n\n\n\n- Semi-Auto\n\n\n\n- Hold Down left click
+    to keep Firing"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c12f3c067d5a6c94a83a89ab5092407e, type: 2}
   m_sharedMaterial: {fileID: 8598663413909712083, guid: c12f3c067d5a6c94a83a89ab5092407e, type: 2}

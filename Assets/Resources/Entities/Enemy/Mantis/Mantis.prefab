@@ -353,6 +353,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
+--- !u!212 &6791868747676410993 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 6309922597989259299, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+  m_PrefabInstance: {fileID: 707286760853896274}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7610944908136363277 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6939848692803389791, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
@@ -423,6 +428,7 @@ MonoBehaviour:
   firePoint: {fileID: 1170454396138261301}
   weapon: {fileID: 1577679594348739716, guid: 7caa2f4813b260a44a076a1f15dcabf4, type: 3}
   canvas: {fileID: 328632794084600661}
+  missileTargetedSprite: {fileID: 6791868747676410993}
   mantisPunch: {fileID: 4205019207953636157}
   distanceToMove: 20
   cooldownAfterPunch: 0.6

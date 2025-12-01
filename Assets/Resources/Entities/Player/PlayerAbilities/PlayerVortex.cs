@@ -20,7 +20,7 @@ public class PlayerVortex : MonoBehaviour
         spriteRenderer.enabled = false;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         gameObject.transform.SetLocalPositionAndRotation(Vector2.zero, Quaternion.identity);
         if (_player.isVortexing)

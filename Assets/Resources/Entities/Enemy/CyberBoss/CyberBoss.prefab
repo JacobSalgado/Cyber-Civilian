@@ -571,6 +571,11 @@ ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 3331249807665051457, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
   m_PrefabInstance: {fileID: 1337654423169088360}
   m_PrefabAsset: {fileID: 0}
+--- !u!212 &4972278242764727115 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 6309922597989259299, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+  m_PrefabInstance: {fileID: 1337654423169088360}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &4993432275118255531 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6331060172565108419, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
@@ -649,6 +654,7 @@ MonoBehaviour:
   firePoint: {fileID: 828325889361890319}
   weapon: {fileID: 6579814461523234674, guid: a6dd45164a0575a4c9c660b661d68099, type: 3}
   canvas: {fileID: 2292065971395210351}
+  missileTargetedSprite: {fileID: 4972278242764727115}
   spriteRenderer: {fileID: 1805163559450772944}
   stomp: {fileID: 7418802895093423458}
   punch: {fileID: 8739641425578551877}

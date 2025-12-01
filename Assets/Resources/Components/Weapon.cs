@@ -35,7 +35,6 @@ public class Weapon : MonoBehaviour
     // private vars
     [NonSerialized] public Entity owner;
     [NonSerialized] public float fireTimer = 0f;
-    [NonSerialized] public List<Transform> targets = new() { };
     private bool isCharging = false;
     private bool isCharged = false;
     private readonly string[] layerMask = { "Enemy" };
@@ -65,7 +64,7 @@ public class Weapon : MonoBehaviour
             }
             else if (fireMode == FireMode.LOCK_ON)
             {
-                lockOnShot(fireAction, firePoint, collision_layer);
+                PlayerLockOnShot(fireAction, firePoint, collision_layer);
             }
         }
         else // other entities
@@ -201,25 +200,15 @@ public class Weapon : MonoBehaviour
         }        
     }
 
-    private void lockOnShot(InputActionReference fireAction, Transform firePoint, int collision_layer)
+    private void PlayerLockOnShot(InputActionReference fireAction, Transform firePoint, int collision_layer)
     {
+        Player player = owner as Player;
         if (fireAction.action.IsPressed())
-        {
-            // get targets hit by mouse
-            Vector2 mousePos = (owner as Player).cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-
-            Collider2D selected = Physics2D.OverlapPoint(mousePos, LayerMask.GetMask(layerMask));
-
-            //print(selected);
-            if (selected != null && !targets.Contains(selected.gameObject.transform))
-            {
-                targets.Add(selected.gameObject.transform);
-            }
-        }
+            player.missileRadius.ToggleRadius(true);
         if (fireAction.action.WasReleasedThisFrame())
         {
             // fire a projectile for each target
-            foreach (Transform target in targets)
+            foreach (Transform target in player.missileRadius.targetList)
             {
                 if (target == null) continue;
 
@@ -229,7 +218,8 @@ public class Weapon : MonoBehaviour
                 missile.target = target;
                 missile.gameObject.SetActive(true);
             }
-            targets.Clear();
+
+            player.missileRadius.ToggleRadius(false);
         }
     }
 

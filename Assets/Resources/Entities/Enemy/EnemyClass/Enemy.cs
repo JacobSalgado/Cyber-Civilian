@@ -17,6 +17,7 @@ public abstract class Enemy : Entity
     public Transform firePoint;
     public GameObject weapon;
     public GameObject canvas;
+    public SpriteRenderer missileTargetedSprite;
 
     // Non-Serialized Vars
     [NonSerialized] public Transform target; // following the player
@@ -57,7 +58,10 @@ public abstract class Enemy : Entity
         base.FixedUpdate();
 
         // undo healthBar rotation
-        canvas.transform.rotation = Quaternion.identity;   
+        canvas.transform.rotation = Quaternion.identity;
+
+        // undo missile targeted sprite rotation
+        missileTargetedSprite.gameObject.transform.localRotation = Quaternion.identity;
     }
 
     public override void EntityDie()

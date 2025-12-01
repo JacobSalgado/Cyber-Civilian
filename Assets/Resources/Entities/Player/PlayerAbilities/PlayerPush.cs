@@ -14,7 +14,7 @@ public class PlayerPush : MonoBehaviour
         aoe.enabled = false;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         gameObject.transform.SetLocalPositionAndRotation(Vector2.zero, Quaternion.identity);
         if (aoe.enabled)

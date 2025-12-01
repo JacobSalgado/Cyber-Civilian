@@ -21,8 +21,10 @@ public class Player : Entity
     public TrailRenderer trailRenderer; // Used to create dashing effect
     public SpriteRenderer spriteRenderer;
     public ChargeMeter chargeMeter;
+    public MissileRadius missileRadius;
     public ParticleSystem vortexEffect;
     public ParticleSystem bonusDamageEffect;
+    [SerializeField] private ParticleSystem pushEffect;
 
     [Header("Ability GameObjects")]
     public PlayerPush pushAbility;
@@ -266,6 +268,7 @@ public class Player : Entity
         {
             audioManager.PlayAudioSource("Push");
             currentEnergy -= pushCost;
+            pushEffect.Play();
             pushAbility.EmitPush();
         }
 
