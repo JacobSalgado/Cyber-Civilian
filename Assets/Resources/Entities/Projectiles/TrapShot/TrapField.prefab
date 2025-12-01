@@ -115,6 +115,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 5521207800876000039}
   m_SourcePrefab: {fileID: 100100000, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
+--- !u!1 &1487568359867806060 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8269375688597807712, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
+  m_PrefabInstance: {fileID: 7378689400824681228}
+  m_PrefabAsset: {fileID: 0}
 --- !u!50 &2622693824406023010 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 4756910380638058606, guid: 0201dcb0c649ca54499bc3b2bb829e53, type: 3}
@@ -154,11 +159,12 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   audioManager: {fileID: 4343439197829605288}
   audioEffects: []
-  isShocked: 0
+  vfxHolder: {fileID: 1487568359867806060}
+  fireEffect: {fileID: 0}
   spriteRenderer: {fileID: 6178760434096457476}
   trapCollider: {fileID: 5521207800876000039}
-  shockDuration: 2.5
-  slowDownStrength: 0.5
+  slowDuration: 0
+  slowdownStrength: 0
   fadeawayTime: 1
   lifeTime: 4.5
 --- !u!58 &5521207800876000039

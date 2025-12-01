@@ -99,6 +99,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 6423777854429983320}
   m_SourcePrefab: {fileID: 100100000, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
+--- !u!1 &906930941863313539 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5336017325965181423, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
+  m_PrefabInstance: {fileID: 5087738950071533932}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2626735032692184647 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7129002523404261163, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
@@ -189,11 +194,8 @@ MonoBehaviour:
   audioManager: {fileID: 2626735032692184647}
   audioEffects:
   - {fileID: 3572093515493467742, guid: 06e9f3043d54ff14092b7af2e13765f3, type: 3}
-  invincibility: 0
-  isOnFire: 0
-  fireDamage: 0
-  slowDownFactor: 0
-  isShocked: 0
+  vfxHolder: {fileID: 906930941863313539}
+  fireEffect: {fileID: 0}
   spriteRenderer: {fileID: 5588310216381560555}
   projectileCollider: {fileID: 2338270631429808559}
 --- !u!95 &3232304955193415256 stripped

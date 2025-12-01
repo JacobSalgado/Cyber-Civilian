@@ -42,8 +42,6 @@ public class PlayerVortex : MonoBehaviour
             aoe.enabled = true;
             spriteRenderer.enabled = true;
             _player.StartVortex(playAudio);
-
-            // TODO: start visual effect
         }
         else
         {            
@@ -60,8 +58,6 @@ public class PlayerVortex : MonoBehaviour
             spriteRenderer.enabled = false;
             absorbedCount = 0;
             damageMultiplier = 1f;
-            
-            // TODO: stop visual effect
         }
     }
 

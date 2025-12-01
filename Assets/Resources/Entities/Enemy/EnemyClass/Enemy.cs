@@ -64,6 +64,9 @@ public abstract class Enemy : Entity
     {
         LevelManager.enemyKilledCounter += 1;
         LevelManager.player.SetHealth(LevelManager.player.playerData.currentHealth + 70); // TODO: do something cooler
+        GameObject deathEffect = Instantiate(deathEffectPrefab, gameObject.transform.position, gameObject.transform.rotation, LevelManager.current_level.EntityList.transform);
+
+        deathEffect.GetComponent<ParticleSystem>().Play();
         Destroy(gameObject);
     }
 }

@@ -24,6 +24,18 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.092851505
       objectReference: {fileID: 0}
+    - target: {fileID: 2065951743512791927, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065951743512791927, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065951743512791927, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6474276062370758235, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -80,6 +92,22 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: b6dd1c91d55b9a643b7fbbecec1d6b33, type: 2}
+    - target: {fileID: 7918759543219446929, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7918759543219446929, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7918759543219446929, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7918759543219446929, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8811157356989125342, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
       value: 192
@@ -119,7 +147,10 @@ MonoBehaviour:
   audioManager: {fileID: 458652263754298069}
   audioEffects:
   - {fileID: 6079927618582836151, guid: 50c260c082aef7644b409f05dbe9d4c7, type: 3}
-  fireEffectPrefab: {fileID: 2983069491685548210}
+  vfxHolder: {fileID: 3368530581269980177}
+  fireEffect: {fileID: 3276596693948490997}
+  slowEffect: {fileID: 5333207525056486272}
+  deathEffectPrefab: {fileID: 6353264154953994068}
   firePoint: {fileID: 9067754228479286182}
   weapon: {fileID: 6894637301577557660, guid: 3010bdca4c2402f4fae32d66d3442f03, type: 3}
   canvas: {fileID: 7595005997977222086}
@@ -185,9 +216,14 @@ Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 8811157356989125342, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
   m_PrefabInstance: {fileID: 7221981530428026049}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2983069491685548210 stripped
+--- !u!198 &3276596693948490997 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5278621893482301492, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+  m_PrefabInstance: {fileID: 7221981530428026049}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3368530581269980177 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 5574431688330628211, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+  m_CorrespondingSourceObject: {fileID: 5370205311724095696, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
   m_PrefabInstance: {fileID: 7221981530428026049}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &3739624171282758146 stripped
@@ -201,6 +237,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
+--- !u!198 &5333207525056486272 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3331249807665051457, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+  m_PrefabInstance: {fileID: 7221981530428026049}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6353264154953994068 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4328792562998010773, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+  m_PrefabInstance: {fileID: 7221981530428026049}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7595005997977222086 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 963559520040949511, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}

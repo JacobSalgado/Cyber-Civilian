@@ -21,6 +21,8 @@ public class Player : Entity
     public TrailRenderer trailRenderer; // Used to create dashing effect
     public SpriteRenderer spriteRenderer;
     public ChargeMeter chargeMeter;
+    public ParticleSystem vortexEffect;
+    public ParticleSystem bonusDamageEffect;
 
     [Header("Ability GameObjects")]
     public PlayerPush pushAbility;
@@ -39,6 +41,7 @@ public class Player : Entity
     public InputActionReference reloadAction;
     public InputActionReference vortexAction;
     public InputActionReference pushAction;
+    public InputActionReference weaponScrollAction;
 
     [Header("==Weapon Properties==")]
     [NonSerialized] public Weapon currentWeapon;
@@ -73,6 +76,7 @@ public class Player : Entity
     [NonSerialized] public Slider resourceMeter;
     [NonSerialized] public TextMeshProUGUI ammoCountText;
     [NonSerialized] public TextMeshProUGUI vortexMultiplierText;
+    [NonSerialized] public float scrollValue = 0f;
     private Vector2 mousePos;
 
     // Update parameters
@@ -166,6 +170,7 @@ public class Player : Entity
                 bonusDamageMultiplier = 1f;
                 bonusDamageTimer = 0f;
                 bonusDamageSet = false;
+                bonusDamageEffect.Stop();
                 chargeMeter.TurnOffMeter();
             }
 
@@ -209,8 +214,10 @@ public class Player : Entity
         */
 
         // check for weaponKeybind input
-        if (weaponKeybindsAction.action.WasPressedThisFrame() && inputManager.CanEquip) 
-        {
+        scrollValue = weaponScrollAction.action.ReadValue<Vector2>().y;
+        if ((weaponKeybindsAction.action.WasPressedThisFrame() || scrollValue != 0f) && 
+        inputManager.CanEquip
+        ) {
             inputManager.currentInputType = PlayerInputManager.InputType.EQUIP_WEAPON;
         }
 
@@ -219,7 +226,10 @@ public class Player : Entity
             inputManager.CanFire &&
             (fireAction.action.IsPressed() || fireAction.action.WasReleasedThisFrame())
         ) {
-            inputManager.currentInputType = PlayerInputManager.InputType.FIRE_WEAPON;
+            if (currentWeapon.currentAmmo == 0) {
+                inputManager.currentInputType = PlayerInputManager.InputType.RELOAD_WEAPON;
+            }
+            else inputManager.currentInputType = PlayerInputManager.InputType.FIRE_WEAPON;
         }
 
         // check dash inputs
@@ -262,7 +272,7 @@ public class Player : Entity
         // regenerate energy
         if (currentEnergy < maxEnergy && !isShielding && !isPhasing && !isVortexing)
         {
-            currentEnergy += (int) Math.Ceiling(energyRegen * Time.deltaTime);
+            currentEnergy += Mathf.CeilToInt(energyRegen * Time.deltaTime);
             if (currentEnergy > maxEnergy) currentEnergy = maxEnergy;
         }
 
@@ -357,8 +367,13 @@ public class Player : Entity
         previousWeaponType = currentWeaponType;
         isVortexing = true;
 
+        vortexEffect.Play();
+
         // if (playAudio)
         // audioManager.PlayAudioSource("VortexStart");
+
+        if (playAudio)
+            audioManager.PlayAudioSource("ShieldStart");
     }
 
     public void StopVortex(float damageMultipler, bool playAudio = true)
@@ -372,10 +387,16 @@ public class Player : Entity
             bonusDamageTimer = 0f;
             bonusDamageSet = true;
 
+            bonusDamageEffect.Play();
             chargeMeter.TurnOnMeter(ChargeMeter.MeterType.BONUS_DAMAGE, BONUS_DAMAGE_TIME, BONUS_DAMAGE_TIME);
         }
 
+        vortexEffect.Stop();
+
         // if (playAudio)
         // audioManager.PlayAudioSource("VortexEnd");
+
+        if (playAudio)
+            audioManager.PlayAudioSource("ShieldEnd");
     }
 }

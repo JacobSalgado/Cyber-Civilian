@@ -15,7 +15,7 @@ public class ChargeMeter : MonoBehaviour
     readonly Dictionary<MeterType, string> meterTexts = new()
     {
         {MeterType.RAILGUN_CHARGE, ""},
-        {MeterType.BONUS_DAMAGE, "Bonus Damage!"},
+        {MeterType.BONUS_DAMAGE, "Damge Up!"},
         {MeterType.RELOADING_WEAPON, "Reloading"},
     };
 

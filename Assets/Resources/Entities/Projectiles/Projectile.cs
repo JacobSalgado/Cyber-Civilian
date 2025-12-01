@@ -36,7 +36,7 @@ public abstract class Projectile : Entity
             CheckForStatusEffect(player);
 
             // Destroy projectile if necessary (blocked or hit)
-            HitEffect(collision.transform.position);
+            HitEffect(transform.position);
             if (projData.destroyOnCollision)
                 CollisionHit();
         }
@@ -46,7 +46,7 @@ public abstract class Projectile : Entity
         {
             enemy.TakeDamage(projData.damage);
             CheckForStatusEffect(enemy);
-            HitEffect(collision.transform.position);
+            HitEffect(transform.position);
 
             if (projData.destroyOnCollision)
                 CollisionHit();

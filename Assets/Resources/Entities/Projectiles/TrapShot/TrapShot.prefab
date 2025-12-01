@@ -156,7 +156,9 @@ MonoBehaviour:
   audioManager: {fileID: 5834250468036069182}
   audioEffects:
   - {fileID: 3572093515493467742, guid: ccf81f74653d68248a1ba902f3ac707f, type: 3}
-  isShocked: 0
+  vfxHolder: {fileID: 8652948260967780858}
+  fireEffect: {fileID: 0}
+  slowEffect: {fileID: 0}
   spriteRenderer: {fileID: 4111444457807194002}
   projectileCollider: {fileID: 4875203180298447445}
   trapField: {fileID: 4498358616163463395, guid: 4169b8a7c8216824498115b5a3c082cb, type: 3}
@@ -200,5 +202,10 @@ CapsuleCollider2D:
 --- !u!95 &6365862541168117537 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 7656176151515567924, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
+  m_PrefabInstance: {fileID: 3609676769359925269}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8652948260967780858 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5336017325965181423, guid: b81e90bd2b1589841bdce146e544cf8b, type: 3}
   m_PrefabInstance: {fileID: 3609676769359925269}
   m_PrefabAsset: {fileID: 0}

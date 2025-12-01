@@ -7,15 +7,19 @@ using UnityEngine.UI;
 
 public abstract class Entity : StateManager
 {
-    [Header("==Entity GameObjects and Vars==")]
+    [Header("==Entity GameObjects==")]
     public Animator animator;
     public Rigidbody2D rigidBody;
     public EntityData entityData;
     public Slider healthBar;
     public AudioManager audioManager;
     public AudioEffect[] audioEffects;
-    [SerializeField] private GameObject fireEffectPrefab;
-    private GameObject fireEffect;
+
+    [Header("==VFX==")]
+    [SerializeField] private GameObject vfxHolder;
+    [SerializeField] private ParticleSystem fireEffect;
+    [SerializeField] private ParticleSystem slowEffect;
+    [SerializeField] protected GameObject deathEffectPrefab;
 
     [NonSerialized] public bool isDamaged = false;
     [NonSerialized] public bool isDead = false;
@@ -60,11 +64,12 @@ public abstract class Entity : StateManager
     public virtual void FixedUpdate()
     {
         rigidBody.angularVelocity = 0f;
+        vfxHolder.transform.rotation = Quaternion.identity;
         current_state.UpdateState();
 
         // health checks
         if (isOnFire) {
-            fireEffect.transform.position = gameObject.transform.position;
+            // fireEffect.transform.position = gameObject.transform.position;
             TakeDamage(Mathf.CeilToInt(fireDamage * Time.deltaTime));
         }
         
@@ -182,17 +187,14 @@ public abstract class Entity : StateManager
         fireDamage = damage;
         isOnFire = true;
         StartCoroutine(FireEffectTimer(duration));
-        fireEffect = Instantiate(fireEffectPrefab);
-        fireEffect.GetComponent<ParticleSystem>().Play();
+        fireEffect.Play();
     }
 
     private IEnumerator FireEffectTimer(float duration)
     {
         yield return new WaitForSeconds(duration);
         isOnFire = false;
-        //fireEffect.GetComponent<ParticleSystem>().Stop();
-        Destroy(fireEffect);
-        fireEffect = null;
+        fireEffect.Stop();
     }
 
     public void ApplySlowEffect(float duration, float slowdownFactor)
@@ -202,11 +204,13 @@ public abstract class Entity : StateManager
         isSlowed = true;
         this.slowdownFactor = slowdownFactor;
         StartCoroutine(SlowEffectTimer(duration));
+        slowEffect.Play();
     }
     
     private IEnumerator SlowEffectTimer(float duration)
     {
         yield return new WaitForSeconds(duration);
         isSlowed = false;
+        slowEffect.Stop();
     }
 }

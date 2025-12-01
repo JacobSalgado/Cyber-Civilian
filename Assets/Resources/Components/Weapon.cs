@@ -23,7 +23,7 @@ public class Weapon : MonoBehaviour
     public int ammoCost;
     public float fireRate;
     public float reloadTime;
-    public int reloadAmount;
+    //public int reloadAmount;
     public float reloadSlowDownFactor = 0.75f;
     public bool infiniteAmmo = false;
     public ProjectileData projData;
@@ -235,18 +235,20 @@ public class Weapon : MonoBehaviour
 
     public void ReloadWeapon()
     {
-        currentAmmo += reloadAmount;
-        if (currentAmmo > maxAmmo) currentAmmo = maxAmmo;
-        Debug.Log("Weapon reloaded");
+        currentAmmo = maxAmmo;
+        //currentAmmo += reloadAmount;
+        //if (currentAmmo > maxAmmo) currentAmmo = maxAmmo;
+        //Debug.Log("Weapon reloaded");
         // play SFX/VFX
     }
     
     // Overload function for partil reloads (revoler, missile launcher, etc)
     public void ReloadWeapon(float howLongReloadWasHeld)
     {
-        currentAmmo += reloadAmount * (int)howLongReloadWasHeld;
-        if (currentAmmo > maxAmmo) currentAmmo = maxAmmo;
-        Debug.Log("Weapon reloaded");
+        currentAmmo = maxAmmo;
+        //currentAmmo += reloadAmount * (int)howLongReloadWasHeld;
+        //if (currentAmmo > maxAmmo) currentAmmo = maxAmmo;
+        //Debug.Log("Weapon reloaded");
         // play SFX/VFX
     }
 

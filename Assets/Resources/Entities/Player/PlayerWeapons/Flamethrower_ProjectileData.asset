@@ -15,7 +15,7 @@ MonoBehaviour:
   currentHealth: 0
   maxHealth: 0
   moveSpeed: 25
-  damage: 20
+  damage: 10
   hitEffect: {fileID: 0}
   lifeTime: 0.5
   timeToSpawn: 0

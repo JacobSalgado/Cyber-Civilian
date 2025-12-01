@@ -46,7 +46,8 @@ public class PlayerInputManager : MonoBehaviour
                 break;
 
             case InputType.FIRE_WEAPON:
-                if (_player.isVortexing) _player.vortexAbility.EmitVortex();
+                if (_player.isShielding) _player.shieldAbility.Shield(false, false);
+                else if (_player.isVortexing) _player.vortexAbility.EmitVortex();
 
                 FireWeapon();
                 break;
@@ -92,7 +93,6 @@ public class PlayerInputManager : MonoBehaviour
         CanEquip = !_player.isVortexing && !_player.isReloading;
 
         CanFire = (_player.currentWeapon.currentAmmo - _player.currentWeapon.ammoCost) >= 0 &&
-        !_player.isShielding &&
         !_player.isReloading;
     }
 
@@ -112,13 +112,35 @@ public class PlayerInputManager : MonoBehaviour
 
     private void EquipWeapon()
     {
-        Player.PlayerWeaponType new_weapon_type;
-        string action = _player.weaponKeybindsAction.action.activeControl.name;
+        Player.PlayerWeaponType new_weapon_type = _player.currentWeaponType;
 
-        if (string.Compare(action, "q") != 0)
+        if (_player.scrollValue > 0f) // Up
         {
-            int num_key = int.Parse(action);
-            new_weapon_type = (Player.PlayerWeaponType)(num_key - 1);
+            if (_player.currentWeaponType == Player.PlayerWeaponType.BULLET)
+            {
+                new_weapon_type = Player.PlayerWeaponType.FLAMETHROWER;
+            }
+            else 
+                new_weapon_type = (Player.PlayerWeaponType)(((int) _player.currentWeaponType - 1) % _player.weapons.Length);
+        }
+        else if (_player.scrollValue < 0f) // Down
+        {
+            if (_player.currentWeaponType == Player.PlayerWeaponType.FLAMETHROWER)
+            {
+                new_weapon_type = Player.PlayerWeaponType.BULLET;
+            }
+            else
+                new_weapon_type = (Player.PlayerWeaponType)(((int) _player.currentWeaponType + 1) % _player.weapons.Length);
+        }
+        else if (_player.weaponKeybindsAction.action.activeControl.name != null)
+        {
+            string action = _player.weaponKeybindsAction.action.activeControl.name;
+
+            if (string.Compare(action, "q") != 0)
+            {
+                int num_key = int.Parse(action);
+                new_weapon_type = (Player.PlayerWeaponType)(num_key - 1);
+            }
         }
         else new_weapon_type = (Player.PlayerWeaponType)(((int) _player.currentWeaponType + 1) % _player.weapons.Length);
 
