@@ -17,6 +17,6 @@ public class BulletTravel : State
 
     public override void UpdateState()
     {
-        bullet.rigidBody.linearVelocity = bullet.transform.right * -bullet.projData.moveSpeed;
+        bullet.moveVelocity = bullet.transform.right * -bullet.projData.moveSpeed;
     }
 }

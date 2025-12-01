@@ -13,7 +13,7 @@ public class TrapFieldActive : State
 
     public override void EnterState(Dictionary<string, object> args = null)
     {
-        trapField.rigidBody.linearVelocity = Vector2.zero;
+        trapField.moveVelocity = Vector2.zero;
         timer = 0f;
     }
 

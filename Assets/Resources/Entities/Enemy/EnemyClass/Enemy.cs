@@ -18,23 +18,19 @@ public abstract class Enemy : Entity
     public GameObject weapon;
     public GameObject canvas;
 
-    [NonSerialized] public Vector2 pushedVelocity;
-    [NonSerialized] public Vector2 moveVelocity = Vector2.zero;
-
     // Non-Serialized Vars
     [NonSerialized] public Transform target; // following the player
     [NonSerialized] public EnemyTypes type;
-    [NonSerialized] public bool pushed = false;
-    const float PUSHED_TIME = 0.5f;
-    float pushTimer = 0f;
 
     public override void Start()
     {
         base.Start();
         target = LevelManager.player.transform;
 
-        weapon = Instantiate(weapon, transform);
-        weapon.GetComponent<Weapon>().owner = this;
+        if (weapon != null) {
+            weapon = Instantiate(weapon, transform);
+            weapon.GetComponent<Weapon>().owner = this;
+        }
         UpdateHealthBar();
     }
 
@@ -61,30 +57,16 @@ public abstract class Enemy : Entity
         base.FixedUpdate();
 
         // undo healthBar rotation
-        canvas.transform.rotation = Quaternion.identity;
-
-        // check push timing
-        if (pushed)
-        {
-            pushTimer += Time.deltaTime;
-
-            // decrease push velocity
-            rigidBody.linearVelocity = pushedVelocity;
-            pushedVelocity *= 0.85f;
-
-            if (pushTimer > PUSHED_TIME)
-            {
-                pushTimer = 0f;
-                pushed = false;
-            }
-        }
-        else rigidBody.linearVelocity = moveVelocity;       
+        canvas.transform.rotation = Quaternion.identity;   
     }
 
     public override void EntityDie()
     {
         LevelManager.enemyKilledCounter += 1;
         LevelManager.player.SetHealth(LevelManager.player.playerData.currentHealth + 70); // TODO: do something cooler
+        GameObject deathEffect = Instantiate(deathEffectPrefab, gameObject.transform.position, gameObject.transform.rotation, LevelManager.current_level.EntityList.transform);
+
+        deathEffect.GetComponent<ParticleSystem>().Play();
         Destroy(gameObject);
     }
 }

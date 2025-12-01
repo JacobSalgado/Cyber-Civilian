@@ -17,11 +17,10 @@ TagManager:
   - Enemy
   - Projectiles
   - LevelBoundry
-  - PlayerPush
-  - BossStomp
-  - 
-  - 
-  - 
+  - PlayerAttack
+  - EnemyAttack
+  - PlayerVortex
+  - PlayerShield
   - 
   - 
   - 

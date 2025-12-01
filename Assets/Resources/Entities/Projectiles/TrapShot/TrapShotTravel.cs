@@ -27,6 +27,6 @@ public class TrapShotTravel : State
             trapShot.EntityDie();
             return;
         }
-        trapShot.rigidBody.linearVelocity = trapShot.transform.right * -trapShot.projData.moveSpeed;
+        trapShot.moveVelocity = trapShot.transform.right * -trapShot.projData.moveSpeed;
     }
 }

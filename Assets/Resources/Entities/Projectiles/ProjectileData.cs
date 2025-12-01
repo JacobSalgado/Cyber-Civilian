@@ -12,10 +12,10 @@ public class ProjectileData : EntityData
     public float lifeTime;
     public float timeToSpawn;
     public bool destroyOnCollision = true;
+    public float fadeawayTime = 1f;
 
     [Header("==Railshot Properties==")]
     public float railshotLength = 10f;
-    public float fadeawayTime = 1f;
 
     [Header("==Missile Properties==")]
     public bool homing = true;
@@ -24,10 +24,12 @@ public class ProjectileData : EntityData
     //public float explosionRadius = 0f;
 
     [Header("==Status Effect Properties==")]
+    [Header("Burn Over Time Effect")]
     public bool setsOnFire = false;
     public float burnDuration = 0f;
     public int burnDamage = 0;
-    public bool shocks = false;
-    public float shockDuration = 0f;
-    public float slowDownFactor = 0f;
+    [Header("Slowed Movement Effect")]
+    public bool slows = false;
+    public float slowDuration = 0f;
+    public float slowdownFactor = 0f;
 }

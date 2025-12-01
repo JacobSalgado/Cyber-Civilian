@@ -26,6 +26,7 @@ public class GameManager : StateManager
     public InputActionReference pauseAction;
     public AudioManager audioManager;
     public PauseMenu pauseMenu;
+    public GameCursor cursor;
 
     [Header("==Game Parameters==")]
     public string[] levelList;
@@ -277,11 +278,11 @@ public class GameManager : StateManager
         player.resourceMeter = hud.resourceSlider;
         player.UpdateResourceMeter();
 
-        player.ammoCount = hud.ammoCountText;
-        player.UpdateAmmoCount();
+        player.ammoCountText = hud.ammoCountText;
+        player.UpdateAmmoCountText();
 
-        player.vortexMultiplier = hud.vortexMultiplierText;
-        player.UpdateVortexMultiplier();
+        player.vortexMultiplierText = hud.vortexMultiplierText;
+        player.UpdateVortexMultiplierText();
 
         yield return null;
     }

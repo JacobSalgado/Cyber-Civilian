@@ -5,6 +5,7 @@ public class Trapper : Enemy
     [Header("==Trapper Properties==")]
     public float distanceToShoot;
     public float distanceToMove;
+    public float delayAfterSlow = 0.5f;
 
     public override void InitializeStates()
     {

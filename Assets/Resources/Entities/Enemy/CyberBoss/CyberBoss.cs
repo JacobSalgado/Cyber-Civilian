@@ -3,21 +3,24 @@ using System;
 
 public class CyberBoss : Enemy
 {
-    [Header("==Cyber Boss Properties==")]
+    [Header("==CyberBoss GameObjects==")]
     public SpriteRenderer spriteRenderer;
-    public Stomp stomp;
-    public Punch punch;
+    public CyberBossStomp stomp;
+    public CyberBossPunch punch;
 
-    public GameObject[] weaponsList;
-
+    [Header("==Behavior Distances==")]
     public float distanceToShoot = 20f; // missile attack
     public float distanceToMove = 30f; // travel
     public float distanceToHit = 3f; // exploding punch attack
     public float distanceToStomp = 12f; // stomp attack
 
-    //------- Locking onto player -----------
+    [Header("==Vision Properites==")]
     public float seePlayerTimer = 0f;
     public float timeToSeePlayer = 1.0f;
+
+    [Header("==Missile Attack Properites==")]
+    public int maxShots = 5;
+    public float shootTime = 0.35f;
 
     [NonSerialized] public float cooldownTime = 0f;
     [NonSerialized] public float cooldownEnd = 0f;

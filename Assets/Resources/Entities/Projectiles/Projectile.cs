@@ -1,5 +1,4 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class Projectile : Entity
@@ -32,41 +31,12 @@ public abstract class Projectile : Entity
     {
         // Player Collision
         if (attacking_layer == 7 && collision.gameObject.TryGetComponent<Player>(out var player))
-        {
-            if (player.getIsVortexBlocking())
-            {
-                Debug.Log("Projectile absorbed by vortex");
-
-                player.AbsorbProjectile(gameObject);
-                player.currentEnergy -= player.vortexCost; // resource meter drains even more when hit by projectiles
-                CollisionHit();
-                return;
-            }
-            
-            bool blocked = false;
-
-            if (player.getIsShieldBlocking())
-            {
-                // Player's forward direction (the direction they are facing)
-                Vector2 playerForward = -player.firePoint.right.normalized;
-
-                // Direction from player to projectile
-                Vector2 toProjectile = (transform.position - player.transform.position).normalized;
-
-                float dot = Vector2.Dot(playerForward, toProjectile);
-
-                blocked = dot > Mathf.Cos(45f * Mathf.Deg2Rad);
-            }
-
-            if (!blocked)
-            {
-                player.TakeDamage(projData.damage);
-                CheckForEffect(player);
-            }
-            else Debug.Log("Projectile Blocked");
+        {         
+            player.TakeDamage(projData.damage);
+            CheckForStatusEffect(player);
 
             // Destroy projectile if necessary (blocked or hit)
-            HitEffect(collision.transform.position);
+            HitEffect(transform.position);
             if (projData.destroyOnCollision)
                 CollisionHit();
         }
@@ -75,8 +45,8 @@ public abstract class Projectile : Entity
         else if (attacking_layer == 6 && collision.gameObject.TryGetComponent<Enemy>(out var enemy))
         {
             enemy.TakeDamage(projData.damage);
-            CheckForEffect(enemy);
-            HitEffect(collision.transform.position);
+            CheckForStatusEffect(enemy);
+            HitEffect(transform.position);
 
             if (projData.destroyOnCollision)
                 CollisionHit();
@@ -91,20 +61,13 @@ public abstract class Projectile : Entity
         }
     }
 
-    public void CheckForEffect(Entity entity)
+    public void CheckForStatusEffect(Entity entity)
     {
-        if (projData.shocks)
-        {
-            entity.ApplyShockEffect(projData.shockDuration, projData.slowDownFactor);
-        }
-        else if (projData.setsOnFire)
-        {
-            entity.ApplyOnFireEffect(projData.burnDuration, projData.burnDamage);
-        }
-        else
-        {
-            return;
-        }
+        if (projData.slows)
+            entity.ApplySlowEffect(projData.slowDuration, projData.slowdownFactor);
+        
+        if (projData.setsOnFire)
+            entity.ApplyFireEffect(projData.burnDuration, projData.burnDamage);
     }
 
     public override void EntityDie()

@@ -29,28 +29,28 @@ public class PlayerMove : State
         if (velocity != Vector2.zero)
         {
             deltaCount += Time.deltaTime;
-            // Adjust speed if the player is reloading
-            if (player.isReloading)
-            {
-                player.rigidBody.linearVelocity = player.currentWeapon.reloadSlowDownFactor * player.entityData.moveSpeed * velocity;
-            }
-            else
-            {
-                player.rigidBody.linearVelocity = velocity * player.entityData.moveSpeed;
-            }
+
+            // footsteps
             if (player.PlayFootsteps(deltaCount, timeToStep, stepCounter))
             {
                 deltaCount = 0f;
                 stepCounter++;
                 if (stepCounter > 3) stepCounter = 1;
             }
+
+            // Adjust speed if the player is reloading
+            if (player.isReloading)
+            {
+                player.moveVelocity = player.currentWeapon.reloadSlowDownFactor * player.entityData.moveSpeed * velocity;
+            }
+            else player.moveVelocity = velocity * player.entityData.moveSpeed;
         }
         else player.ChangeState("Idle");
     }
 
     public override void ExitState(Dictionary<string, object> args = null)
     {
-        player.rigidBody.linearVelocity = Vector2.zero;
+        
     }
 
 }

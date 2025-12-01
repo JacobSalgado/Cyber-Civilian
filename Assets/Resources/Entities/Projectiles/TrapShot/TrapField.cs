@@ -4,8 +4,8 @@ public class TrapField : Entity
 {
     public SpriteRenderer spriteRenderer;
     public Collider2D trapCollider;
-    public float shockDuration = 0f;
-    public float slowDownStrength = 0f;
+    public float slowDuration = 0f;
+    public float slowdownStrength = 0f;
     public float fadeawayTime = 1f;
     public float lifeTime = 5f;
     public override void InitializeStates()
@@ -34,7 +34,7 @@ public class TrapField : Entity
         {
             if (!player.invincibility)
             {
-                player.ApplyShockEffect(shockDuration, slowDownStrength);
+                player.ApplySlowEffect(slowDuration, slowdownStrength);
             }
         }
     }

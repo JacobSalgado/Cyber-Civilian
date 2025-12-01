@@ -49,9 +49,9 @@ public class EnemySpawn : MonoBehaviour
         // TODO: change enemy names
         string enemyName = typeToSpawn switch
         {
-            Enemy.EnemyTypes.SHARK => "Trooper",
-            Enemy.EnemyTypes.CRAB => "Sniper",
-            Enemy.EnemyTypes.MANTIS => "Fighter",
+            Enemy.EnemyTypes.SHARK => "Shark",
+            Enemy.EnemyTypes.CRAB => "Crab",
+            Enemy.EnemyTypes.MANTIS => "Mantis",
             Enemy.EnemyTypes.TRAPPER => "Trapper",
             Enemy.EnemyTypes.HOMING => "Homing",
             Enemy.EnemyTypes.CYBERBOSS => "CyberBoss",
@@ -59,7 +59,7 @@ public class EnemySpawn : MonoBehaviour
         };
         enemyPrefabPath += enemyName + "/" + enemyName;
 
-        Debug.Log(enemyPrefabPath);
+        //Debug.Log(enemyPrefabPath);
 
         if (spawnCondition == EnemySpawnCondition.TIMED)
         {

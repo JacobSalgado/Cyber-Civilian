@@ -1,14 +1,18 @@
 using UnityEngine;
 public class Plasma : Projectile
 {
+    [Header("==Damage Field GameObjects==")]
     public Collider2D damageFieldCollider;
     public SpriteRenderer damageFieldSpriteRenderer;
+
+    [Header("==Damage Field Properties==")]
     public int damageFieldDamage = 30;
-    public int damageFieldFireDamage = 1;
-    public float damageFieldFireDuration = 2f;
+    public int damageFieldFireDamage = 10;
+    public float damageFieldFireDuration = 1.2f;
+
+
     public override void InitializeStates()
     {
-        AddState("Idle", new PlasmaIdle(this));
         AddState("Travel", new PlasmaTravel(this));
 
         ChangeState("Travel");
@@ -27,7 +31,7 @@ public class Plasma : Projectile
             if (collision.gameObject.TryGetComponent<Enemy>(out var enemy))
             {
                 enemy.TakeDamage(damageFieldDamage);
-                enemy.ApplyOnFireEffect(damageFieldFireDuration, damageFieldFireDamage);
+                enemy.ApplyFireEffect(damageFieldFireDuration, damageFieldFireDamage);
             }
         }
 

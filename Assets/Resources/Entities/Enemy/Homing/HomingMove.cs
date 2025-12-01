@@ -41,7 +41,7 @@ public class HomingMove : State
         float distance = homing.GetDistanceToTarget();
         if (distance > -1f)
         {
-            if (distance > homing.distanceToShoot)
+            if (distance < homing.distanceToShoot)
             {
                 homing.ChangeState("Shoot");
                 return;

@@ -12,13 +12,13 @@ public class PlayerIdle : State
 
     public override void EnterState(Dictionary<string, object> args = null)
     {
-        player.rigidBody.linearVelocity = Vector2.zero;
+        player.moveVelocity = Vector2.zero;
     }
 
     public override void UpdateState()
     {
-        player.rigidBody.linearVelocity = Vector2.zero;
-        if (player.moveAction.action.ReadValue<Vector2>() != Vector2.zero)
+        player.moveVelocity = Vector2.zero;
+        if (player.IsMoving())
             player.ChangeState("Move");
     }
 

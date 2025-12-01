@@ -47,15 +47,15 @@ public class TrapperShoot : State
                 trapper.ChangeState("Idle");
         }
 
-        if (LevelManager.player.isShocked)
+        if (LevelManager.player.isSlowed)
         {
-            trapper.StartCoroutine(DelayAfterShock());
+            trapper.StartCoroutine(DelayAfterSlow());
         }
     }
 
-    private IEnumerator DelayAfterShock()
+    private IEnumerator DelayAfterSlow()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(trapper.delayAfterSlow);
         trapper.ChangeState("Idle");
     }
     

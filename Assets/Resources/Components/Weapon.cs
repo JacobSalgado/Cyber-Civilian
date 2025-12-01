@@ -23,7 +23,7 @@ public class Weapon : MonoBehaviour
     public int ammoCost;
     public float fireRate;
     public float reloadTime;
-    public int reloadAmount;
+    //public int reloadAmount;
     public float reloadSlowDownFactor = 0.75f;
     public bool infiniteAmmo = false;
     public ProjectileData projData;
@@ -35,7 +35,7 @@ public class Weapon : MonoBehaviour
     // private vars
     [NonSerialized] public Entity owner;
     [NonSerialized] public float fireTimer = 0f;
-    [NonSerialized] public List<Transform> targets = new List<Transform> { };
+    [NonSerialized] public List<Transform> targets = new() { };
     private bool isCharging = false;
     private bool isCharged = false;
     private readonly string[] layerMask = { "Enemy" };
@@ -49,8 +49,6 @@ public class Weapon : MonoBehaviour
 
     public void Shoot(InputActionReference fireAction, Transform firePoint, int collision_layer, string fireSFX = "")
     {
-        if (currentAmmo - ammoCost < 0) return;
-
         if (fireAction != null) // player shooting
         {
             if (fireMode == FireMode.FULL_AUTO)
@@ -63,7 +61,7 @@ public class Weapon : MonoBehaviour
             }
             else if (fireMode == FireMode.CHARGE)
             {
-                chargeShot(fireAction, firePoint, collision_layer);
+                PlayerChargeShot(fireAction, firePoint, collision_layer);
             }
             else if (fireMode == FireMode.LOCK_ON)
             {
@@ -143,8 +141,7 @@ public class Weapon : MonoBehaviour
         if (fireAction.action.WasReleasedThisFrame() && fireSFX.Equals("FlamethrowerFire"))
         {
             owner.audioManager.PauseAudioSource(fireSFX);
-            float startTime = 5.2f;
-            owner.audioManager.PlayAudioSource(fireSFX, startTime);
+            owner.audioManager.PlayAudioSource(fireSFX, 5.2f);
         }
     }
 
@@ -162,8 +159,10 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    private void chargeShot(InputActionReference fireAction, Transform firePoint, int collision_layer)
+    private void PlayerChargeShot(InputActionReference fireAction, Transform firePoint, int collision_layer)
     {
+        Player player = (Player) owner;
+
         // Start charging when the player holds the button
         if (fireAction.action.IsPressed())
         {
@@ -172,25 +171,30 @@ public class Weapon : MonoBehaviour
                 isCharging = true;
                 isCharged = false;
                 fireTimer = 0f;
+                player.chargeMeter.TurnOnMeter(ChargeMeter.MeterType.RAILGUN_CHARGE, 0f, projData.timeToSpawn);
                 //Debug.Log("Started charging");
             }
 
             //Debug.Log($"Charging... {fireTimer:F2}s");
             fireTimer += Time.deltaTime; // Increment charge timer while holding
-            
+
             if (fireTimer > projData.timeToSpawn && !isCharged)
             {
+                player.chargeMeter.TurnOffMeter();
                 owner.audioManager.PlayAudioSource("RailgunCharged");
                 isCharged = true;
             }
         }
 
         // Fire when player releases the button
-        if (isCharged && fireAction.action.WasReleasedThisFrame())
+        if (fireAction.action.WasReleasedThisFrame())
         {
-            //Debug.Log($"Released at {fireTimer:F2}s");
-            ShootProjectile(firePoint, collision_layer);
-            owner.audioManager.PlayAudioSource("RailgunFire");
+            if (isCharged){
+                //Debug.Log($"Released at {fireTimer:F2}s");
+                ShootProjectile(firePoint, collision_layer);
+                owner.audioManager.PlayAudioSource("RailgunFire");
+            }
+            player.chargeMeter.TurnOffMeter();
             isCharging = false; // Reset for next charge
 
             fireTimer = 0f;
@@ -231,18 +235,20 @@ public class Weapon : MonoBehaviour
 
     public void ReloadWeapon()
     {
-        currentAmmo += reloadAmount;
-        if (currentAmmo > maxAmmo) currentAmmo = maxAmmo;
-        Debug.Log("Weapon reloaded");
+        currentAmmo = maxAmmo;
+        //currentAmmo += reloadAmount;
+        //if (currentAmmo > maxAmmo) currentAmmo = maxAmmo;
+        //Debug.Log("Weapon reloaded");
         // play SFX/VFX
     }
     
     // Overload function for partil reloads (revoler, missile launcher, etc)
     public void ReloadWeapon(float howLongReloadWasHeld)
     {
-        currentAmmo += reloadAmount * (int)howLongReloadWasHeld;
-        if (currentAmmo > maxAmmo) currentAmmo = maxAmmo;
-        Debug.Log("Weapon reloaded");
+        currentAmmo = maxAmmo;
+        //currentAmmo += reloadAmount * (int)howLongReloadWasHeld;
+        //if (currentAmmo > maxAmmo) currentAmmo = maxAmmo;
+        //Debug.Log("Weapon reloaded");
         // play SFX/VFX
     }
 
@@ -258,20 +264,14 @@ public class Weapon : MonoBehaviour
         proj.attacking_layer = receiving_layer;
 
         // Vortex damage booster when player is active with vortex
-        if (owner is Player player)
+        if (owner is Player player && player.bonusDamageSet)
         { 
-            int absorbedCount = player.GetAbsorbedCount();
+            // Apply damage multiplier
+            int originalDamage = proj.projData.damage;
+            int boostedDamage = Mathf.RoundToInt(originalDamage * player.bonusDamageMultiplier);
+            proj.projData.damage = boostedDamage;
 
-            if (absorbedCount >= 0 && player.getIsVortexBlocking())
-            { 
-                // Apply damage multiplier
-                float multiplier = player.GetDamageMultiplier();
-                int originalDamage = proj.projData.damage;
-                int boostedDamage = Mathf.RoundToInt(originalDamage * multiplier);
-                proj.projData.damage = boostedDamage;
-
-                Debug.Log($"Vortex boost! Damage: {originalDamage} -> {boostedDamage} (x{multiplier:F2}, absorbed: {absorbedCount}");
-            }
+            Debug.Log($"Vortex boost! Damage: {originalDamage} -> {boostedDamage} (x{player.bonusDamageMultiplier:F2}");
         }
 
         proj.gameObject.SetActive(active);
