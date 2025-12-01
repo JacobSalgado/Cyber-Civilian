@@ -52,11 +52,22 @@ public class Punch : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
+        CyberBoss cyberBoss = GetComponentInParent<CyberBoss>();
+
         //print(collision.gameObject.name);
         if (collision.gameObject.TryGetComponent<Player>(out var player))
         {
-            player.TakeDamage(50);
             //ApplyKnockback(player);
+
+            // Rage mode check
+            if (cyberBoss.inRageMode)
+            {
+                player.TakeDamage(100);
+            }
+            else
+            {
+                player.TakeDamage(50);
+            }
         }
     }
 

@@ -15,3 +15,4 @@ MonoBehaviour:
   currentHealth: 5000
   maxHealth: 5000
   moveSpeed: 8
+  maxMoveSpeed: 15

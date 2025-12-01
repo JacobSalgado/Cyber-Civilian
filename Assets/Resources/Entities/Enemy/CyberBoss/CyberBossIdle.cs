@@ -42,8 +42,8 @@ public class CyberBossIdle: State
             cyberBoss.ChangeState("Punch");
         else if (distanceToTarget < cyberBoss.distanceToStomp && !cyberBoss.inCooldown)
             cyberBoss.ChangeState("Stomp");
-        else if (distanceToTarget < cyberBoss.distanceToShoot && !cyberBoss.inCooldown)
-            cyberBoss.ChangeState("Missile");
+        //else if (distanceToTarget < cyberBoss.distanceToShoot && !cyberBoss.inCooldown)
+        //    cyberBoss.ChangeState("Missile");
         else if (distanceToTarget < cyberBoss.distanceToMove && !cyberBoss.inCooldown)
             cyberBoss.ChangeState("Travel");
     }
