@@ -345,6 +345,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 963559520040949511, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
   m_PrefabInstance: {fileID: 1871070412002053489}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2730752881093848804 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4328792562998010773, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+  m_PrefabInstance: {fileID: 1871070412002053489}
+  m_PrefabAsset: {fileID: 0}
 --- !u!198 &4021040108971424304 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 3331249807665051457, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
@@ -523,7 +528,7 @@ MonoBehaviour:
   vfxHolder: {fileID: 6012778185452373409}
   fireEffect: {fileID: 5815851384670291269}
   slowEffect: {fileID: 4021040108971424304}
-  deathEffectPrefab: {fileID: 0}
+  deathEffectPrefab: {fileID: 2730752881093848804}
   firePoint: {fileID: 7286729672604182}
   weapon: {fileID: 16432950934994515, guid: c44a80ce322cf4b48886e38cb9b6a719, type: 3}
   canvas: {fileID: 1488475855081233014}

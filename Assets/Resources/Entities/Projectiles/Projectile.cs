@@ -3,10 +3,11 @@ using UnityEngine;
 
 public abstract class Projectile : Entity
 {
+    [Header("==Projectile GameObjects==")]
     public SpriteRenderer spriteRenderer;
     public Collider2D projectileCollider;
 
-    public ProjectileData projData;
+    [NonSerialized] public ProjectileData projData;
     [NonSerialized] public LayerMask attacking_layer = 0;
     private bool collisionHit = false;
     private float timer = 0f;
@@ -37,6 +38,11 @@ public abstract class Projectile : Entity
 
             // Destroy projectile if necessary (blocked or hit)
             HitEffect(transform.position);
+            if (this is Railshot railshot)
+            {
+                HitEffect(collision.gameObject.transform.position);
+            }
+
             if (projData.destroyOnCollision)
                 CollisionHit();
         }
@@ -47,6 +53,10 @@ public abstract class Projectile : Entity
             enemy.TakeDamage(projData.damage);
             CheckForStatusEffect(enemy);
             HitEffect(transform.position);
+            if (this is Railshot railshot)
+            {
+                HitEffect(collision.gameObject.transform.position);
+            }
 
             if (projData.destroyOnCollision)
                 CollisionHit();
