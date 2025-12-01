@@ -15,19 +15,19 @@ MonoBehaviour:
   currentHealth: 0
   maxHealth: 0
   moveSpeed: 35
-  damage: 100
+  damage: 80
   hitEffect: {fileID: 6996612073667387790, guid: 73dd775d02fe8ef4cab1bbcfb652c45c, type: 3}
   lifeTime: 0
   timeToSpawn: 0
   destroyOnCollision: 1
-  railshotLength: 10
   fadeawayTime: 1
+  railshotLength: 10
   homing: 0
   rotateSpeed: 0
   trackingStrength: 0
   setsOnFire: 0
   burnDuration: 0
   burnDamage: 0
-  shocks: 1
-  shockDuration: 5
-  slowDownFactor: 0.1
+  slows: 0
+  slowDuration: 0
+  slowdownFactor: 0
