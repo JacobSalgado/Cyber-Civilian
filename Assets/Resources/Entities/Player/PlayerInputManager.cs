@@ -132,7 +132,7 @@ public class PlayerInputManager : MonoBehaviour
             else
                 new_weapon_type = (Player.PlayerWeaponType)(((int) _player.currentWeaponType + 1) % _player.weapons.Length);
         }
-        else if (_player.weaponKeybindsAction.action.activeControl.name != null)
+        else if (_player.weaponKeybindsAction.action != null)
         {
             string action = _player.weaponKeybindsAction.action.activeControl.name;
 

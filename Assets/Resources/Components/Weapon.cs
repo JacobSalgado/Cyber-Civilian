@@ -272,6 +272,17 @@ public class Weapon : MonoBehaviour
             proj.projData.damage = boostedDamage;
 
             Debug.Log($"Vortex boost! Damage: {originalDamage} -> {boostedDamage} (x{player.bonusDamageMultiplier:F2}");
+
+            proj.projData.damage = boostedDamage;
+        }
+        else if (owner is CyberBoss cyberBoss && cyberBoss.inRageMode)
+        {
+            int originalDamage = proj.projData.damage;
+            int boostedDamage = Mathf.RoundToInt(originalDamage * cyberBoss.rageDamageBoost);
+
+            Debug.Log($"Vortex boost! Damage: {originalDamage} -> {boostedDamage} (x{cyberBoss.rageDamageBoost:F2}");
+
+            proj.projData.damage = boostedDamage;
         }
 
         proj.gameObject.SetActive(active);

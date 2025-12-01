@@ -52,8 +52,7 @@ public class CyberBossTravel: State
         //}
 
         float distance = cyberBoss.GetDistanceToTarget();
-
-        if (distance <= cyberBoss.distanceToHit && !cyberBoss.inCooldown)
+        if (distance < cyberBoss.distanceToHit && !cyberBoss.inCooldown)
         {
             cyberBoss.ChangeState("Punch");
             return;

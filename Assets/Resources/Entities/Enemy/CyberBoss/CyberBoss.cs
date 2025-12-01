@@ -22,6 +22,12 @@ public class CyberBoss : Enemy
     public int maxShots = 5;
     public float shootTime = 0.35f;
 
+    [Header("===Rage Mode Properties=")]
+    public float healthThresholdForRage = 0.3f; // 30% of max health
+    public float rageDamageBoost = 1.3f;
+    public float rageSpeedBoost = 1.2f;
+
+    [NonSerialized] public bool inRageMode = false;
     [NonSerialized] public float cooldownTime = 0f;
     [NonSerialized] public float cooldownEnd = 0f;
 
@@ -48,6 +54,9 @@ public class CyberBoss : Enemy
 
     public override void FixedUpdate()
     {
+        if (!inRageMode && entityData.currentHealth < entityData.maxHealth * healthThresholdForRage)
+            EnableRageMode();
+        
         base.FixedUpdate();
 
         if (inCooldown)
@@ -91,5 +100,18 @@ public class CyberBoss : Enemy
         inCooldown = true;
         cooldownTime = 0f;
         cooldownEnd = newCooldown;
+    }
+
+    public void EnableRageMode()
+    {
+        inRageMode = true;
+        spriteRenderer.color = Color.red; // changes color to red to indicate rage mode
+
+        // apply multipliers
+        entityData.moveSpeed *= rageSpeedBoost;
+        stomp.damage = Mathf.CeilToInt(stomp.damage * rageDamageBoost);
+        stomp.moveSpeed *= rageSpeedBoost;
+        punch.damage = Mathf.CeilToInt(punch.damage * rageDamageBoost);
+        // NOTE: missile damage buffed in Weapon script
     }
 }

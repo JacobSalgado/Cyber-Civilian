@@ -5,12 +5,18 @@ public class CyberBossPunch : MonoBehaviour
 {
     private float timer = 0f;
 
+    [Header("==Necessary GameObjects==")]
+    [SerializeField] private CyberBoss _cyberBoss;
     [SerializeField] private Transform initialLocalPosition;
     public CircleCollider2D punchCollider;
     [SerializeField] private Rigidbody2D punchRigidbody;
     [SerializeField] private SpriteRenderer spriteRenderer;
+
+    [Header("==Punch Properties==")]
     [SerializeField] private float timeToLive = 0.2f;
-    [SerializeField] private int damage = 80;
+    [SerializeField] private float force = 5f;
+    [SerializeField] private float pushedTime = 3f;
+    public int damage = 80;
     public float punchSpeed = 3.0f;
 
     [NonSerialized] public Vector2 directionToPlayer = Vector2.zero;
@@ -21,14 +27,13 @@ public class CyberBossPunch : MonoBehaviour
         spriteRenderer.enabled = false;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         gameObject.transform.position = initialLocalPosition.position;
         if (punchCollider.enabled)
         {
             timer += Time.deltaTime;
 
-            //punchRigidbody.linearVelocity = punchSpeed * directionToPlayer;
             if (timer >= timeToLive)
             {
                 timer = 0f;
@@ -36,7 +41,6 @@ public class CyberBossPunch : MonoBehaviour
                 spriteRenderer.enabled = false;
             }
         }
-        //else gameObject.transform.localPosition = Vector2.zero;
     }
 
     public void EmitPunch()
@@ -52,31 +56,22 @@ public class CyberBossPunch : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D collision)
     {
         //print(collision.gameObject.name);
-        if (collision.gameObject.TryGetComponent<Player>(out var player))
-        {
+        if (collision.gameObject.TryGetComponent<Player>(out var player)) {
+            Vector2 vectorToCheck = (gameObject.transform.position - player.gameObject.transform.position).normalized;
+            if (player.isShielding && player.shieldAbility.IsShieldBlocking(vectorToCheck)) 
+                return;
+
             player.TakeDamage(damage);
-            //ApplyKnockback(player);
-        }
-    }
 
-    private void ApplyKnockback(Player player)
-    { 
-        Rigidbody2D playerRb = player.GetComponent<Rigidbody2D>();
+            // apply knockback if in rage mode
+            if (_cyberBoss.inRageMode && !player.pushed){
+                player.pushed = true;
 
-        if (playerRb != null)
-        {
-            // direction from punch to player
-            Vector2 knockbackDirection = (player.transform.position - transform.position).normalized;
+                Vector2 pushDirection = player.GetDirectionToPosition(gameObject.transform.position);
+                player.pushedVelocity = -force * pushDirection;
 
-            // knockback force
-            float knockbackForce = 1000f;
-
-            // force applied here
-            //playerRb.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
-            playerRb.linearVelocity = knockbackDirection * knockbackForce;
-
-            Debug.Log("knockback forced applied");
-
+                player.pushedTime = pushedTime;
+            }
         }
     }
 }

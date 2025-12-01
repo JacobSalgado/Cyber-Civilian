@@ -6,33 +6,34 @@ public class CyberBossStomp : MonoBehaviour
     private const float TTL = 1.2f;
     private float timer = 0f;
 
-    [SerializeField] float moveSpeed = 8f;
-    
-    [SerializeField] private float maxShockwaveRadius = 20f;
-    [SerializeField] private float pushForce = 15f;
-
-    [NonSerialized] public Vector3 startScale = Vector3.zero;
-    [SerializeField] private Vector3 maxScale = Vector3.zero;
-    [SerializeField] private float scaleIncRate = 0.4f;
-
+    [Header("==Stomp GameObjects==")]
     public CircleCollider2D aoeCollider;
     public Rigidbody2D rigidBody;
     public SpriteRenderer spriteRenderer;
 
+    [Header("==Stomp Properties==")]
+    [SerializeField] private float pushForce = 15f;
+    [SerializeField] private float pushedTime = 2f;
+    public float moveSpeed = 8f;
+    public int damage = 200;
+
+    [Header("==Stomp Size Behavior==")]
+    [SerializeField] private Vector3 maxScale = Vector3.zero;
+    [SerializeField] private float scaleIncRate = 0.4f;
+
+    [NonSerialized] public Vector3 startScale = Vector3.zero;
+    [NonSerialized] public Vector2 directionToPlayer = Vector2.zero;
+
     // hashset if we want to make it so the aoe affects other enemies as well
     // private HashSet<Collider2D> hitTargets = new HashSet<Collider2D>();
 
-    [NonSerialized] public Vector2 directionToPlayer = Vector2.zero;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         aoeCollider.enabled = false;
         spriteRenderer.enabled = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (aoeCollider.enabled)
         {
@@ -69,14 +70,22 @@ public class CyberBossStomp : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        // initialize push velocity
         //print(collision.gameObject.name);
-        if (collision.gameObject.TryGetComponent<Player>(out var player))
-        {
-            //player.pushed = true;
-            Vector2 pushDirection = player.GetDirectionToPosition(gameObject.transform.position);
-            player.TakeDamage(200); // make player take damage if stomp aoe collides with them
-            //player.pushedVelocity = -force * pushDirection;
+        if (collision.gameObject.TryGetComponent<Player>(out var player)) {
+            Vector2 vectorToCheck = (gameObject.transform.position - player.gameObject.transform.position).normalized;
+            if (player.isShielding && player.shieldAbility.IsShieldBlocking(vectorToCheck)) 
+                return;
+
+            player.TakeDamage(damage);
+
+            if (!player.pushed) {
+                player.pushed = true;
+
+                Vector2 pushDirection = player.GetDirectionToPosition(gameObject.transform.position);
+                player.pushedVelocity = -pushForce * pushDirection;
+
+                player.pushedTime = pushedTime;
+            }
         }
     }
 }

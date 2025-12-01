@@ -6,7 +6,7 @@ public abstract class Projectile : Entity
     public SpriteRenderer spriteRenderer;
     public Collider2D projectileCollider;
 
-    [NonSerialized] public ProjectileData projData;
+    public ProjectileData projData;
     [NonSerialized] public LayerMask attacking_layer = 0;
     private bool collisionHit = false;
     private float timer = 0f;

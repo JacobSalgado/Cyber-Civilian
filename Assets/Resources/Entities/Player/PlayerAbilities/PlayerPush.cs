@@ -16,8 +16,7 @@ public class PlayerPush : MonoBehaviour
 
     void Update()
     {
-        gameObject.transform.localPosition = Vector2.zero;
-        gameObject.transform.localRotation = Quaternion.identity;
+        gameObject.transform.SetLocalPositionAndRotation(Vector2.zero, Quaternion.identity);
         if (aoe.enabled)
         {
             timer += Time.deltaTime;
