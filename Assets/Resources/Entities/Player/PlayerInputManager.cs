@@ -40,7 +40,7 @@ public class PlayerInputManager : MonoBehaviour
 
             case InputType.EQUIP_WEAPON:
                 if (_player.isShielding) _player.shieldAbility.Shield(false, false);
-                else if (_player.isVortexing) _player.vortexAbility.EmitVortex(false, false);
+                else if (_player.isVortexing) _player.vortexAbility.EmitVortex();
 
                 EquipWeapon();
                 break;

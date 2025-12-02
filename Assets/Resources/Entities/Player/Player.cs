@@ -263,7 +263,7 @@ public class Player : Entity
         }
 
         // check vortex inputs
-        if (vortexAction.action.WasPressedThisFrame())
+        if (vortexAction.action.WasPressedThisFrame() && !bonusDamageSet)
         {
             inputManager.currentInputType = PlayerInputManager.InputType.VORTEX;
         }
