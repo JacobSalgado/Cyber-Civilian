@@ -30,7 +30,7 @@ public class PlayerVortex : MonoBehaviour
                 EmitVortex(absorbedCount > 0);
             }
             else {
-                _player.currentEnergy -= Mathf.RoundToInt(vortexDrainRate * Time.deltaTime);
+                _player.currentEnergy -= vortexDrainRate * Time.deltaTime;
             }
         } 
     }

@@ -30,7 +30,7 @@ public class PlayerShield : MonoBehaviour
         if (_player.isShielding)
         {
             if (_player.currentEnergy < 0) Shield(false);
-            else _player.currentEnergy -= Mathf.RoundToInt(shieldDrainRate * Time.deltaTime);
+            else _player.currentEnergy -= shieldDrainRate * Time.deltaTime;
         }
     }
 

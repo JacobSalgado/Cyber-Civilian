@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerPhase
   _player: {fileID: 1072733472485737790}
-  phaseDrainRate: 50
+  phaseDrainRate: 60
 --- !u!1 &4801417283264684404
 GameObject:
   m_ObjectHideFlags: 0
@@ -2101,9 +2101,10 @@ MonoBehaviour:
   dashCooldown: 0.5
   currentEnergy: 1000
   maxEnergy: 1000
-  energyRegen: 5
+  energyRegen: 100
   dashCost: 150
   pushCost: 60
+  shootingInPhaseCost: 150
 --- !u!114 &8648180505201064651
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -65,11 +65,12 @@ public class Player : Entity
     [NonSerialized] public bool isVortexing = false;
 
     [Header("==Resource Properties==")]
-    public int currentEnergy = 1000;
-    public int maxEnergy = 1000;
-    public int energyRegen = 10;
-    public int dashCost = 100;
-    public int pushCost = 200;
+    public float currentEnergy = 1000;
+    public float maxEnergy = 1000;
+    public float energyRegen = 10;
+    public float dashCost = 100;
+    public float pushCost = 200;
+    public float shootingInPhaseCost = 50;
 
     /* NonSerialized variables */
     // Assigned during runtime
@@ -231,7 +232,11 @@ public class Player : Entity
             if (currentWeapon.currentAmmo == 0) {
                 inputManager.currentInputType = PlayerInputManager.InputType.RELOAD_WEAPON;
             }
-            else inputManager.currentInputType = PlayerInputManager.InputType.FIRE_WEAPON;
+            else {
+                if (isPhasing) currentEnergy -= shootingInPhaseCost * Time.deltaTime;
+
+                inputManager.currentInputType = PlayerInputManager.InputType.FIRE_WEAPON;
+            }
         }
 
         // check dash inputs
@@ -275,9 +280,12 @@ public class Player : Entity
         // regenerate energy
         if (currentEnergy < maxEnergy && !isShielding && !isPhasing && !isVortexing)
         {
-            currentEnergy += Mathf.CeilToInt(energyRegen * Time.deltaTime);
+            currentEnergy += energyRegen * Time.deltaTime;
             if (currentEnergy > maxEnergy) currentEnergy = maxEnergy;
         }
+
+        // energy underflow check
+        if (currentEnergy < 0) currentEnergy = 0;
 
         /* UI updates */
         UpdateResourceMeter();
