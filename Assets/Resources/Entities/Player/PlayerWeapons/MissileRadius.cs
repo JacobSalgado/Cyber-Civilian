@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class MissileRadius : MonoBehaviour
 {
-    [NonSerialized] public List<Transform> targetList = new() { };
     [SerializeField] private CircleCollider2D aoeCollider;
     [SerializeField] private SpriteRenderer aoeVisual;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [NonSerialized] public List<Transform> targetList = new() { };
+    [NonSerialized] public float cooldownTime = 0f; // NOTE: set by missile launcher's fire rate
+    [NonSerialized] public bool onCooldown = false;
+    private float timer = 0f;
+
     void Start()
     {
         aoeCollider.enabled = false;
@@ -18,13 +21,26 @@ public class MissileRadius : MonoBehaviour
     void FixedUpdate()
     {
         gameObject.transform.SetLocalPositionAndRotation(Vector2.zero, Quaternion.identity);
+
+        if (onCooldown)
+        {
+            timer += Time.deltaTime;
+            if (timer > cooldownTime) onCooldown = false;
+        }
     }
 
     public void ToggleRadius(bool toggle)
     {
+        if (onCooldown) return;
+
         aoeCollider.enabled = toggle;
         aoeVisual.enabled = toggle;
-        if (toggle == false) ClearTargetList();
+        if (!toggle) 
+        {
+            ClearTargetList();
+            timer = 0f;
+            onCooldown = true;
+        }
     }
 
     public void OnTriggerEnter2D(Collider2D collider)
@@ -36,15 +52,6 @@ public class MissileRadius : MonoBehaviour
         }
     }
 
-    private void ClearTargetList()
-    {
-        foreach (Transform target in targetList)
-        {
-            target.gameObject.GetComponent<Enemy>().missileTargetedSprite.enabled = false;
-        }
-        targetList.Clear();
-    }
-
     public void OnTriggerExit2D(Collider2D collider)
      {
          if (collider.gameObject.TryGetComponent<Enemy>(out var enemy))
@@ -52,5 +59,14 @@ public class MissileRadius : MonoBehaviour
              targetList.Remove(enemy.gameObject.transform);
              enemy.missileTargetedSprite.enabled = false;
         }
+    }
+
+    private void ClearTargetList()
+    {
+        foreach (Transform target in targetList)
+        {
+            target.gameObject.GetComponent<Enemy>().missileTargetedSprite.enabled = false;
+        }
+        targetList.Clear();
     }
 }

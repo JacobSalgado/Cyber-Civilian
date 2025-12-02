@@ -2102,8 +2102,8 @@ MonoBehaviour:
   currentEnergy: 1000
   maxEnergy: 1000
   energyRegen: 5
-  dashCost: 100
-  pushCost: 200
+  dashCost: 150
+  pushCost: 60
 --- !u!114 &8648180505201064651
 MonoBehaviour:
   m_ObjectHideFlags: 0

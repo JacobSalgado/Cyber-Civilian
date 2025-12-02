@@ -37,7 +37,6 @@ public class Weapon : MonoBehaviour
     [NonSerialized] public float fireTimer = 0f;
     private bool isCharging = false;
     private bool isCharged = false;
-    private readonly string[] layerMask = { "Enemy" };
 
     void Start()
     {
@@ -52,11 +51,11 @@ public class Weapon : MonoBehaviour
         {
             if (fireMode == FireMode.FULL_AUTO)
             {
-                fullAutoShot(fireAction, firePoint, collision_layer, fireSFX);
+                PlayerFullAutoShot(fireAction, firePoint, collision_layer, fireSFX);
             }
             else if (fireMode == FireMode.SEMI_AUTO)
             {
-                semiAutoShot(fireAction, firePoint, collision_layer);
+                PlayerSemiAutoShot(fireAction, firePoint, collision_layer);
             }
             else if (fireMode == FireMode.CHARGE)
             {
@@ -119,7 +118,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    private void fullAutoShot(InputActionReference fireAction, Transform firePoint, int collision_layer , string fireSFX = "")
+    private void PlayerFullAutoShot(InputActionReference fireAction, Transform firePoint, int collision_layer , string fireSFX = "")
     {
         if (fireAction.action.IsPressed())
         {
@@ -144,7 +143,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    private void semiAutoShot(InputActionReference fireAction, Transform firePoint, int collision_layer)
+    private void PlayerSemiAutoShot(InputActionReference fireAction, Transform firePoint, int collision_layer)
     {
         fireTimer -= Time.deltaTime;
         if (fireAction.action.WasPressedThisFrame())
@@ -203,8 +202,11 @@ public class Weapon : MonoBehaviour
     private void PlayerLockOnShot(InputActionReference fireAction, Transform firePoint, int collision_layer)
     {
         Player player = owner as Player;
-        if (fireAction.action.IsPressed())
+        if (player.missileRadius.onCooldown) return;
+
+        if (fireAction.action.IsPressed()){
             player.missileRadius.ToggleRadius(true);
+        }
         if (fireAction.action.WasReleasedThisFrame())
         {
             // fire a projectile for each target
@@ -220,6 +222,7 @@ public class Weapon : MonoBehaviour
             }
 
             player.missileRadius.ToggleRadius(false);
+            player.missileRadius.cooldownTime = fireRate;
         }
     }
 
