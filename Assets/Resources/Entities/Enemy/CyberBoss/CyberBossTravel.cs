@@ -45,6 +45,11 @@ public class CyberBossTravel: State
             if (stepCounter > 3) stepCounter = 1;
         }
 
+        /*if (deltaCount >= cyberBoss.shieldDuration)
+        {
+            cyberBoss.UnequipShield();
+        }*/
+
         //if (!cyberBoss.HasSeenPlayerLongEnough)
         //{
         //    cyberBoss.ChangeState("Idle");
