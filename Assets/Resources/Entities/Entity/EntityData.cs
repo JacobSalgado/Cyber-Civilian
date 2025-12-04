@@ -14,4 +14,7 @@ public abstract class EntityData : ScriptableObject
     public int currentHealth;
     public int maxHealth;
     public float moveSpeed;
+
+    [Header("==Enemy Drop Chances==")]
+    public int medpackDropChance;
 }

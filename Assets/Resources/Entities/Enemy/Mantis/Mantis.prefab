@@ -429,6 +429,7 @@ MonoBehaviour:
   weapon: {fileID: 1577679594348739716, guid: 7caa2f4813b260a44a076a1f15dcabf4, type: 3}
   canvas: {fileID: 328632794084600661}
   missileTargetedSprite: {fileID: 6791868747676410993}
+  medpackPrefab: {fileID: 7907817577662680029, guid: 494fc1c560145b34583f367ea4045fee, type: 3}
   mantisPunch: {fileID: 4205019207953636157}
   distanceToMove: 20
   cooldownAfterPunch: 0.6
