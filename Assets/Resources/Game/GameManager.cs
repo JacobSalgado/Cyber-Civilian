@@ -27,6 +27,7 @@ public class GameManager : StateManager
     public AudioManager audioManager;
     public PauseMenu pauseMenu;
     public GameCursor cursor;
+    public GameTransitionHandler transitionHandler;
 
     [Header("==Game Parameters==")]
     public string[] levelList;
@@ -155,6 +156,8 @@ public class GameManager : StateManager
 
     private IEnumerator LoadMainMenu()
     {
+       transitionHandler.FadeInTransition();
+
         // load the menu prefab and attach it to UI Holder
         ResourceRequest request = Resources.LoadAsync<GameObject>(mainMenuPath);
         while (!request.isDone)
@@ -171,6 +174,8 @@ public class GameManager : StateManager
 
         loadingProgress += 0.5f;
 
+        transitionHandler.FadeAwayTransition();
+        yield return new WaitForSeconds(transitionHandler.fadeAwayTime);
         isLoading = false;
     }
 

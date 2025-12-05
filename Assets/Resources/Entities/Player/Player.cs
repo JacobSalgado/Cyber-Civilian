@@ -190,31 +190,6 @@ public class Player : Entity
         ) {
             inputManager.currentInputType = PlayerInputManager.InputType.RELOAD_WEAPON;
         }
-    
-        // Check for long reload for weapons that support it
-        // Currently works bad
-        /*
-        if (reloadAction.action.IsPressed() && ammo < currentWeapon.maxAmmo && !isShieldBlocking && !isDashing && (currentWeaponType != PlayerWeaponType.BULLET) && (currentWeaponType != PlayerWeaponType.PLASMA))
-        {
-            if (!isReloading)
-            {
-                isReloading = true;
-                reloadTimer = 0f;
-                this.entityData.moveSpeed *= currentWeapon.reloadSlowDownFactor;
-                Debug.Log("Reload set to true, long reload started");
-            }                                       
-
-            reloadTimer += Time.deltaTime;
-
-            if ((reloadTimer >= currentWeapon.reloadTime || reloadAction.action.WasReleasedThisFrame()) && isReloading)
-            {
-                isReloading = false;
-                this.entityData.moveSpeed = originalSpeed;
-                currentWeapon.ReloadWeapon(reloadTimer);
-                Debug.Log("Reload set to false, long reload ended");      
-            }              
-        }
-        */
 
         // check for weaponKeybind input
         scrollValue = weaponScrollAction.action.ReadValue<Vector2>().y;
@@ -371,7 +346,6 @@ public class Player : Entity
     // ===========================
     // VORTEX FUNCTIONS
     // ===========================
-
     public void StartVortex(bool playAudio = true)
     {
         // change weapon sprite to vortex shield sprite

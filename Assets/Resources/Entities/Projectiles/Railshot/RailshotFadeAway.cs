@@ -27,8 +27,7 @@ public class RailshotFadeAway : State
             return;
         }
 
-        Color currentColor = railshot.spriteRenderer.color;
-        currentColor.a -= Time.deltaTime / railshot.projData.fadeawayTime;
-        railshot.spriteRenderer.color = currentColor;
+        float alpha = railshot.spriteRenderer.color.a - Time.deltaTime / railshot.projData.fadeawayTime;
+        railshot.ChangeSpriteAlpha(railshot.spriteRenderer, alpha);
     }
 }
