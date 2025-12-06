@@ -1,71 +1,89 @@
-// using UnityEngine;
-// using UnityEngine.UI;
+using System;
+using System.Collections;
+using UnityEngine;
 
-// public class GameTransitionHandler : MonoBehaviour
-// {
-//     public TransitionScreen fadeScreen;
+public class GameTransitionHandler : MonoBehaviour
+{
+    public enum TransitionType
+    {
+        FADE_IN,
+        FADE_OUT,
+    }
+
+    [SerializeField] private GameManager manager;
+    public TransitionScreen fadeScreen;
     
-//     public float fadeInTime = 0.2f;
-//     public float fadeAwayTime = 0.2f;
+    private float fadeInTime = 0.2f;
+    private float fadeAwayTime = 0.2f;
 
-//     private float timer = 0f;
-//     private bool fadingIn = false;
-//     private bool fadingAway = false;
-//     private Image image;
+    private float timer = 0f;
+    private bool fadingIn = false;
+    private bool fadingAway = false;
 
-//     void Start()
-//     {
-//         fadeImage.enabled = false;
+    void Update()
+    { 
+        if (fadingIn && timer <= fadeInTime)
+        {
+            timer += Time.deltaTime;
+            float alpha = fadeScreen.image.color.a - Time.deltaTime / fadeInTime;
+            fadeScreen.ChangeScreenAlpha(alpha);
 
-//     }
+            if (timer > fadeInTime)
+            {
+                timer = 0f;
+                fadingIn = false;
+                fadeScreen.ChangeScreenAlpha(0f);
+                fadeScreen.SetSortingOrder(-1);
+            }
+        }
 
-//     void Update()
-//     {
-//         if (fadingIn && timer <= fadeInTime)
-//         {
-//             timer += Time.deltaTime;
-//             float alpha = fadeImage.color.a - Time.deltaTime / fadeInTime;
-//             ChangeSpriteAlpha(fadeImage, alpha);
+        if (fadingAway && timer <= fadeAwayTime)
+        {
+            timer += Time.deltaTime;
+            float alpha = fadeScreen.image.color.a + Time.deltaTime / fadeInTime;
+            fadeScreen.ChangeScreenAlpha(alpha);
 
-//             if (timer > fadeInTime)
-//             {
-//                 timer = 0f;
-//                 fadingIn = false;
-//                 ChangeSpriteAlpha(fadeImage, 0f);
-//             }
-//         }
+            if (timer > fadeAwayTime)
+            {
+                timer = 0f;
+                fadingAway= false;
+                fadeScreen.ChangeScreenAlpha(1f);
+                fadeScreen.SetSortingOrder(-1);
+            }
+        }
+    }
 
-//         if (fadingAway && timer <= fadeAwayTime)
-//         {
-//             timer += Time.deltaTime;
-//             float alpha = fadeImage.color.a - Time.deltaTime / fadeAwayTime;
-//             ChangeSpriteAlpha(fadeImage, alpha);
+    public void FadeInTransition()
+    {
+        fadingIn = true;
+        fadeScreen.SetSortingOrder(1);
+    }
 
-//             if (timer > fadeAwayTime)
-//             {
-//                 timer = 0f;
-//                 fadingAway= false;
-//                 ChangeSpriteAlpha(fadeImage, 1f);
-//             }
-//         }
-//     }
+    public void FadeAwayTransition()
+    {
+        fadingAway = true;
+        fadeScreen.SetSortingOrder(1);
+    }
 
-//     public void FadeInTransition()
-//     {
-//         fadeImage.enabled = true;
-//         fadingIn = true;
-//     }
+    public IEnumerator Transition(TransitionType type, float duration)
+    {
+        fadeScreen.SetSortingOrder(1);
 
-//     public void FadeAwayTransition()
-//     {
-//         fadeImage.enabled = true;
-//         fadingAway = true;
-//     }
+        switch (type)
+        {
+            case TransitionType.FADE_IN:
+                fadeInTime = duration;
+                fadingIn = true;
+                yield return new WaitForSeconds(fadeInTime);
 
-//     public void ChangeSpriteAlpha(SpriteRenderer sr, float new_alpha)
-//     {
-//         Color tempColor = sr.color;
-//         tempColor.a = new_alpha;
-//         sr.color = tempColor;
-//     }
-// }
+                break;
+
+            case TransitionType.FADE_OUT:
+                fadeAwayTime = duration;
+                fadingAway = true;
+                yield return new WaitForSeconds(fadeAwayTime);
+
+                break;
+        }
+    }
+}

@@ -16,8 +16,6 @@ public class GameLoadingScreen : State
         prev_args = null;
 
         manager.cursor.SetCursorType(GameCursor.CursorType.POINTER);
-        manager.UIHolder.SetActive(false);
-        manager.loadingScreenHolder.SetActive(true);
         manager.loadingProgress = 0f;
         manager.loadingScreenSlider.value = 0f;
 
@@ -61,7 +59,7 @@ public class GameLoadingScreen : State
     {
         if (nextState == GameManager.GameState.IN_GAME)
         {
-            manager.camera.gameObject.SetActive(true);
+            //manager.camera.gameObject.SetActive(true);
         }
         manager.loadingScreenHolder.SetActive(false);
     }

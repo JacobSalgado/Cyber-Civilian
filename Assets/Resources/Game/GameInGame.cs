@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Diagnostics;
+using UnityEngine;
 
 public class GameInGame : State
 {
@@ -51,6 +53,8 @@ public class GameInGame : State
         {
             manager.levelIndex++;
             manager.audioManager.StopAudioSource("Level1");
+            LevelManager.StopAllEntites();
+    
             if (manager.levelIndex >= manager.levelList.Length) // Game Complete
             {
                 manager.ChangeState("LoadingScreen", new Dictionary<string, object>()
@@ -74,13 +78,6 @@ public class GameInGame : State
 
     public override void ExitState(Dictionary<string, object> args = null)
     {
-        // close current level
-        if (args != null)
-        {
-            manager.hud.PlayerHUDClose();
-            manager.hud = null;
-
-            LevelManager.Close();
-        }
+        
     }
 }

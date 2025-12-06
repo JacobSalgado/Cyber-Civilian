@@ -63,6 +63,8 @@ public abstract class Entity : StateManager
 
     public virtual void FixedUpdate()
     {
+        if (LevelManager.player.isDead) return;
+
         rigidBody.angularVelocity = 0f;
         vfxHolder.transform.rotation = Quaternion.identity;
         current_state.UpdateState();
@@ -120,7 +122,6 @@ public abstract class Entity : StateManager
         else if (new_health < 0)
         {
             entityData.currentHealth = 0;
-            //ChangeState("Death");
         }
         else
             entityData.currentHealth = new_health;

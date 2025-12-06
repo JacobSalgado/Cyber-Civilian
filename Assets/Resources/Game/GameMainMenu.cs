@@ -23,7 +23,6 @@ public class GameMainMenu : State
 
     public override void ExitState(Dictionary<string, object> args = null)
     {
-        manager.mainMenu.MainMenuClose();
-        manager.mainMenu = null;
+
     }
 }

@@ -156,7 +156,25 @@ public class GameManager : StateManager
 
     private IEnumerator LoadMainMenu()
     {
-       transitionHandler.FadeInTransition();
+        yield return StartCoroutine(transitionHandler.Transition(GameTransitionHandler.TransitionType.FADE_OUT, 0.75f));
+        UIHolder.SetActive(false);
+
+        if (gameOver != null)
+        {
+            gameOver.GameOverMenuClose();
+            gameOver = null;
+        }
+
+        if (hud != null)
+        {
+            hud.PlayerHUDClose();
+            hud = null;
+
+            LevelManager.Close();
+        }
+
+        loadingScreenHolder.SetActive(true);
+        yield return StartCoroutine(transitionHandler.Transition(GameTransitionHandler.TransitionType.FADE_IN, 0.2f));
 
         // load the menu prefab and attach it to UI Holder
         ResourceRequest request = Resources.LoadAsync<GameObject>(mainMenuPath);
@@ -174,9 +192,7 @@ public class GameManager : StateManager
 
         loadingProgress += 0.5f;
 
-        transitionHandler.FadeAwayTransition();
-        yield return new WaitForSeconds(transitionHandler.fadeAwayTime);
-        isLoading = false;
+        yield return StartCoroutine(ExitLoadingScreen(0.5f, 0.2f));
     }
 
     private IEnumerator InitializeMainMenu(GameObject prefab)
@@ -199,6 +215,20 @@ public class GameManager : StateManager
 
     private IEnumerator LoadGameOverMenu()
     {
+        yield return StartCoroutine(transitionHandler.Transition(GameTransitionHandler.TransitionType.FADE_OUT, 0.2f));
+        UIHolder.SetActive(false);
+
+        if (hud != null)
+        {
+            hud.PlayerHUDClose();
+            hud = null;
+
+            LevelManager.Close();
+        }
+
+        //loadingScreenHolder.SetActive(true);
+        yield return StartCoroutine(transitionHandler.Transition(GameTransitionHandler.TransitionType.FADE_IN, 0.2f));
+
         // load the menu prefab and attach it to UI Holder
         ResourceRequest request = Resources.LoadAsync<GameObject>(gameOverPath);
         while (!request.isDone)
@@ -215,7 +245,7 @@ public class GameManager : StateManager
 
         loadingProgress += 0.5f;
 
-        isLoading = false;
+        yield return StartCoroutine(ExitLoadingScreen(0.5f, 0.2f));
     }
 
     private IEnumerator InitializeGameOverMenu(GameObject prefab)
@@ -231,12 +261,38 @@ public class GameManager : StateManager
 
     public void LoadInGameAsync()
     {
-        UIHolder.SetActive(false);
+        UIHolder.SetActive(false);        
         StartCoroutine(LoadInGame());
     }
 
     private IEnumerator LoadInGame()
     {
+        yield return StartCoroutine(transitionHandler.Transition(GameTransitionHandler.TransitionType.FADE_OUT, 0.2f));
+        UIHolder.SetActive(false);
+
+        if (mainMenu != null) 
+        {
+            mainMenu.MainMenuClose();
+            mainMenu = null;
+        }
+        
+        if (gameOver != null)
+        {
+            gameOver.GameOverMenuClose();
+            gameOver = null;
+        }
+
+        if (hud != null)
+        {
+            hud.PlayerHUDClose();
+            hud = null;
+
+            LevelManager.Close();
+        }
+
+        loadingScreenHolder.SetActive(true);
+        yield return StartCoroutine(transitionHandler.Transition(GameTransitionHandler.TransitionType.FADE_IN, 0.2f));
+
         Level new_level;
 
         yield return LevelManager.LoadLevel(levelList[levelIndex], this);
@@ -262,7 +318,7 @@ public class GameManager : StateManager
         yield return StartCoroutine(InitializeGameCamera(new_level));
         loadingProgress = 1.0f;
 
-        isLoading = false;
+        yield return StartCoroutine(ExitLoadingScreen(0.5f, 0.2f));
     }
 
     private IEnumerator InitializePlayerHUD(GameObject prefab)
@@ -301,7 +357,7 @@ public class GameManager : StateManager
         // connect player to cam for mouse aiming
         player.cam = camera;
 
-        camera.gameObject.SetActive(false);
+        //camera.gameObject.SetActive(false);
 
         yield return null;
     }
@@ -317,5 +373,13 @@ public class GameManager : StateManager
 
         pauseMenu.buttons[0].onClick.AddListener(ResumeGameButton);
         pauseMenu.buttons[1].onClick.AddListener(ExitGameButton);
+    }
+
+    private IEnumerator ExitLoadingScreen(float fadeAwayTime, float fadeInTime)
+    {
+        yield return StartCoroutine(transitionHandler.Transition(GameTransitionHandler.TransitionType.FADE_OUT, fadeAwayTime));
+        isLoading = false;
+
+        yield return StartCoroutine(transitionHandler.Transition(GameTransitionHandler.TransitionType.FADE_IN, fadeInTime));
     }
 }

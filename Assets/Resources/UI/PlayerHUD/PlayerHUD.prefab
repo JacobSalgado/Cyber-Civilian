@@ -83,7 +83,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1366, y: 788}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -710,11 +710,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7822501420727033030, guid: fa91ec7874df1c643b4e253d396c494a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -586
+      value: -822
       objectReference: {fileID: 0}
     - target: {fileID: 7822501420727033030, guid: fa91ec7874df1c643b4e253d396c494a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -353
+      value: -496
       objectReference: {fileID: 0}
     - target: {fileID: 7822501420727033030, guid: fa91ec7874df1c643b4e253d396c494a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

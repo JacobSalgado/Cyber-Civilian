@@ -109,6 +109,14 @@ public static class LevelManager
         }
     }
 
+    public static void StopAllEntites() 
+    {
+        foreach (Transform transform in current_level.EntityList.transform)
+        {
+            transform.gameObject.SetActive(false);
+        }
+    }
+
     /*
     TODO: Restart Level
     */

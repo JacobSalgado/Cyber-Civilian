@@ -71,6 +71,7 @@ public abstract class Enemy : Entity
         GameObject deathEffect = Instantiate(deathEffectPrefab, gameObject.transform.position, gameObject.transform.rotation, LevelManager.current_level.EntityList.transform);
 
         deathEffect.GetComponent<ParticleSystem>().Play();
+        isDead = true;
         Destroy(gameObject);
     }
 }

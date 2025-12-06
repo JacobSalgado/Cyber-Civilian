@@ -23,7 +23,6 @@ public class GameGameOver : State
     
     public override void ExitState(Dictionary<string, object> args = null)
     {
-        manager.gameOver.GameOverMenuClose();
-        manager.gameOver = null;
+
     }
 }

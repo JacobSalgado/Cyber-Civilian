@@ -61,5 +61,8 @@ TagManager:
   - name: UI Slider
     uniqueID: 846273167
     locked: 0
+  - name: Transition
+    uniqueID: 3606194671
+    locked: 0
   m_RenderingLayers:
   - Default
