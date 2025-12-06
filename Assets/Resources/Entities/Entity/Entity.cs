@@ -183,7 +183,7 @@ public abstract class Entity : StateManager
 
     public void ApplyFireEffect(float duration, int damage)
     {
-        if (isOnFire) return;
+        if (isOnFire || invincibility) return;
 
         fireDamage = damage;
         isOnFire = true;
@@ -200,7 +200,7 @@ public abstract class Entity : StateManager
 
     public void ApplySlowEffect(float duration, float slowdownFactor)
     {
-        if (isSlowed) return;
+        if (isSlowed || invincibility) return;
 
         isSlowed = true;
         this.slowdownFactor = slowdownFactor;

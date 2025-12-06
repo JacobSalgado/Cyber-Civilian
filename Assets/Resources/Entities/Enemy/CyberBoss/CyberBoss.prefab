@@ -379,7 +379,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CyberBossShield
   _cyberBoss: {fileID: -1727907755325779256}
   spriteRenderer: {fileID: 5665503337076108205}
-  maxShieldHealth: 10000
+  maxShieldHealth: 6000
 --- !u!1 &4116149950389406107
 GameObject:
   m_ObjectHideFlags: 0

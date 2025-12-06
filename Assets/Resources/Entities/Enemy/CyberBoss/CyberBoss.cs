@@ -36,9 +36,6 @@ public class CyberBoss : Enemy
     [Header("==Shield Properties==")]
     public CyberBossShield shield;
     [NonSerialized] public bool isShielding = true; // initially set to active when spawned
-    //public float shieldCooldownTime = 5f;
-    //public float shieldTimer = 0f;
-    //public float shieldDuration = 7f;
     public bool HasSeenPlayerLongEnough => seePlayerTimer >= timeToSeePlayer;
 
     public override void InitializeStates()
@@ -65,6 +62,7 @@ public class CyberBoss : Enemy
             EnableRageMode();
 
         shield.Shield(isShielding); // activates shield
+        invincibility = isShielding;
         //Debug.Log("Shield Health: " + shield.currentShieldHealth.ToString());
 
 
@@ -132,10 +130,12 @@ public class CyberBoss : Enemy
     public void EquipShield()
     {
         isShielding = true;
+        // TODO: play SFX
     }
 
     public void UnequipShield()
     {
         isShielding = false;
+        // TODO: play SFX
     }
 }
