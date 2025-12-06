@@ -29,7 +29,7 @@ public class PlayerShield : MonoBehaviour
         gameObject.transform.SetLocalPositionAndRotation(Vector2.zero, Quaternion.identity);
         if (_player.isShielding)
         {
-            if (_player.currentEnergy < 0) Shield(false);
+            if (_player.currentEnergy <= 0) Shield(false);
             else _player.currentEnergy -= shieldDrainRate * Time.deltaTime;
         }
     }

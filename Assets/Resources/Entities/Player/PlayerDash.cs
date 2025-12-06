@@ -17,7 +17,6 @@ public class PlayerDash : State
         player.moveVelocity = Vector2.zero;
         velocity = player.moveAction.action.ReadValue<Vector2>();
         player.trailRenderer.emitting = true;
-        player.isDashing = true;
         player.StartCoroutine(InitiateDash());
     }
 
@@ -33,6 +32,8 @@ public class PlayerDash : State
 
     private IEnumerator InitiateDash()
     {
+        player.isDashing = true;
+        player.Push();
         player.audioManager.PlayAudioSource("Dashing");
         yield return player.StartCoroutine(Dash());
     }

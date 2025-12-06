@@ -25,13 +25,8 @@ public class PlayerVortex : MonoBehaviour
         gameObject.transform.SetLocalPositionAndRotation(Vector2.zero, Quaternion.identity);
         if (_player.isVortexing)
         {
-            if (_player.currentEnergy <= 0)
-            {
-                EmitVortex(absorbedCount > 0);
-            }
-            else {
-                _player.currentEnergy -= vortexDrainRate * Time.deltaTime;
-            }
+            if (_player.currentEnergy <= 0) EmitVortex(absorbedCount > 0);
+            else _player.currentEnergy -= vortexDrainRate * Time.deltaTime;
         } 
     }
 

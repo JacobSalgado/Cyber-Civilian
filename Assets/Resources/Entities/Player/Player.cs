@@ -42,7 +42,6 @@ public class Player : Entity
     public InputActionReference phaseAction;
     public InputActionReference reloadAction;
     public InputActionReference vortexAction;
-    public InputActionReference pushAction;
     public InputActionReference weaponScrollAction;
 
     [Header("==Weapon Properties==")]
@@ -69,7 +68,6 @@ public class Player : Entity
     public float maxEnergy = 1000;
     public float energyRegen = 10;
     public float dashCost = 100;
-    public float pushCost = 200;
     public float shootingInPhaseCost = 50;
 
     /* NonSerialized variables */
@@ -243,15 +241,6 @@ public class Player : Entity
             inputManager.currentInputType = PlayerInputManager.InputType.VORTEX;
         }
 
-        // check push inputs
-        if (pushAction.action.WasPressedThisFrame() && currentEnergy - pushCost >= 0)
-        {
-            audioManager.PlayAudioSource("Push");
-            currentEnergy -= pushCost;
-            pushEffect.Play();
-            pushAbility.EmitPush();
-        }
-
         // regenerate energy
         if (currentEnergy < maxEnergy && !isShielding && !isPhasing && !isVortexing)
         {
@@ -317,6 +306,13 @@ public class Player : Entity
     public bool IsMoving()
     {
         return moveAction.action.ReadValue<Vector2>() != Vector2.zero;
+    }
+
+    public void Push()
+    {
+        //audioManager.PlayAudioSource("Push");
+        pushEffect.Play();
+        pushAbility.EmitPush();
     }
 
     // ============================

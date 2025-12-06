@@ -2098,7 +2098,7 @@ MonoBehaviour:
   weaponRenderer: {fileID: 1226822478304895784}
   dashPower: 2.5
   dashTime: 0.2
-  dashCooldown: 0.5
+  dashCooldown: 0.7
   currentEnergy: 1000
   maxEnergy: 1000
   energyRegen: 100
@@ -2143,13 +2143,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5874292679230129247}
     m_Modifications:
+    - target: {fileID: 4893042538803646129, guid: 093f85e7e138e18489c1a97c77884b40, type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 1072733472485737790}
     - target: {fileID: 5076348673995540964, guid: 093f85e7e138e18489c1a97c77884b40, type: 3}
       propertyPath: m_Radius
-      value: 3.16
+      value: 4.42
       objectReference: {fileID: 0}
     - target: {fileID: 5076348673995540964, guid: 093f85e7e138e18489c1a97c77884b40, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6072223108442767175, guid: 093f85e7e138e18489c1a97c77884b40, type: 3}
       propertyPath: m_LocalPosition.x

@@ -5,6 +5,7 @@ public class PlayerPush : MonoBehaviour
     private const float TTL = 0.3f;
     private float timer = 0f;
 
+    [SerializeField] private Player _player;
     [SerializeField] private CircleCollider2D aoe;
     [SerializeField] private float force = 1f;
     [SerializeField] private float pushedTime = 3.0f;
@@ -30,7 +31,8 @@ public class PlayerPush : MonoBehaviour
 
     public void EmitPush()
     {
-        if (!aoe.enabled) aoe.enabled = true;
+        if (!aoe.enabled) 
+            aoe.enabled = true;
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
