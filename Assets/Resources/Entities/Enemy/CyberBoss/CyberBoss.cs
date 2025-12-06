@@ -32,6 +32,13 @@ public class CyberBoss : Enemy
     [NonSerialized] public float cooldownEnd = 0f;
 
     [NonSerialized] public bool inCooldown = true;
+
+    [Header("==Shield Properties==")]
+    public CyberBossShield shield;
+    [NonSerialized] public bool isShielding = true; // initially set to active when spawned
+    //public float shieldCooldownTime = 5f;
+    //public float shieldTimer = 0f;
+    //public float shieldDuration = 7f;
     public bool HasSeenPlayerLongEnough => seePlayerTimer >= timeToSeePlayer;
 
     public override void InitializeStates()
@@ -56,7 +63,11 @@ public class CyberBoss : Enemy
     {
         if (!inRageMode && entityData.currentHealth < entityData.maxHealth * healthThresholdForRage)
             EnableRageMode();
-        
+
+        shield.Shield(isShielding); // activates shield
+        //Debug.Log("Shield Health: " + shield.currentShieldHealth.ToString());
+
+
         base.FixedUpdate();
 
         if (inCooldown)
@@ -113,5 +124,18 @@ public class CyberBoss : Enemy
         stomp.moveSpeed *= rageSpeedBoost;
         punch.damage = Mathf.CeilToInt(punch.damage * rageDamageBoost);
         // NOTE: missile damage buffed in Weapon script
+    }
+
+    // ============================
+    // SHIELD FUNCTIONS
+    // ============================
+    public void EquipShield()
+    {
+        isShielding = true;
+    }
+
+    public void UnequipShield()
+    {
+        isShielding = false;
     }
 }
