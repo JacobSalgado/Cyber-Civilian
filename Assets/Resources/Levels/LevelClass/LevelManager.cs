@@ -69,6 +69,8 @@ public static class LevelManager
                 enemySpawn.Spawn();
             }
         }
+
+        current_level.hasStarted = true;
     }
 
     public static void Update()
@@ -96,6 +98,8 @@ public static class LevelManager
         {
             isLevelCompleted = !current_level.cyberBoss;
         }
+
+        current_level.hasStarted = !isLevelCompleted;
     }
 
     public static void Close()

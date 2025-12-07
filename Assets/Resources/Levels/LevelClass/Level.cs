@@ -16,10 +16,13 @@ public class Level : MonoBehaviour
     public GameObject EnemySpawns;
     public PolygonCollider2D confiner;
     public Player player;
+    public AudioManager audioManager;
+    [SerializeField] private AudioEffect[] SFX;
 
     [Header("==Level Properties==")]
     public LevelObjective levelObjective;
     public int enemyKilledGoal;
+    [NonSerialized] public bool hasStarted = false;
     [NonSerialized] public bool isExitReached = false;
     [NonSerialized] public GameObject cyberBoss = null;
     
@@ -42,6 +45,8 @@ public class Level : MonoBehaviour
         }
 
         if (enemyKilledGoal < 0) enemyKilledGoal = 0;
+
+        audioManager.InitializeAudioDictionary(SFX);
     }
 
     // TODO: EXPAND ON LEVEL SCRIPT
