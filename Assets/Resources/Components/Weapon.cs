@@ -128,18 +128,20 @@ public class Weapon : MonoBehaviour
                 fireTimer += 1f / fireRate;
                 ShootProjectile(firePoint, collision_layer);
 
-                float startTime = 0.0f;
                 if (fireSFX.Equals("FlamethrowerFire"))
-                    startTime = 0.85f;
-
-                owner.audioManager.PlayAudioSource(fireSFX, startTime);
+                {
+                    AudioSource sfx = owner.audioManager.GetAudioSource("FlamethrowerFire");
+                    if (!sfx.isPlaying || sfx.time > sfx.clip.length - 0.2f)
+                        owner.audioManager.PlayAudioSource(fireSFX);
+                }
+                else owner.audioManager.PlayAudioSource(fireSFX);
             }
         }
         
-        if (fireAction.action.WasReleasedThisFrame() && fireSFX.Equals("FlamethrowerFire"))
+        if ((fireAction.action.WasReleasedThisFrame() || currentAmmo - ammoCost <= 0) && fireSFX.Equals("FlamethrowerFire"))
         {
-            owner.audioManager.PauseAudioSource(fireSFX);
-            owner.audioManager.PlayAudioSource(fireSFX, 5.2f);
+            owner.audioManager.StopAudioSource("FlamethrowerFire");
+            owner.audioManager.PlayAudioSource("FlamethrowerEnd");
         }
     }
 
@@ -152,7 +154,7 @@ public class Weapon : MonoBehaviour
             {
                 fireTimer += 1f/fireRate;
                 ShootProjectile(firePoint, collision_layer);
-                //owner.audioManager.PlayAudioSource("");
+                owner.audioManager.PlayAudioSource("PlasmaRevolverFire");
             }
         }
     }

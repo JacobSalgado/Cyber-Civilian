@@ -31,12 +31,12 @@ public class HomingMove : State
 
         homing.deltaCount += Time.deltaTime;
 
-        if (homing.PlayFootsteps(homing.deltaCount, timeToStep, homing.stepCounter))
-        {
-            homing.deltaCount = 0f;
-            homing.stepCounter++;
-            if (homing.stepCounter > 3) homing.stepCounter = 1;
-        }
+        // if (homing.PlayFootsteps(homing.deltaCount, timeToStep, homing.stepCounter))
+        // {
+        //     homing.deltaCount = 0f;
+        //     homing.stepCounter++;
+        //     if (homing.stepCounter > 3) homing.stepCounter = 1;
+        // }
 
         float distance = homing.GetDistanceToTarget();
         if (distance > -1f)

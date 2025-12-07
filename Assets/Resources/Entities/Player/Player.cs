@@ -310,7 +310,6 @@ public class Player : Entity
 
     public void Push()
     {
-        //audioManager.PlayAudioSource("Push");
         pushEffect.Play();
         pushAbility.EmitPush();
     }
@@ -325,8 +324,11 @@ public class Player : Entity
         weaponRenderer.enabled = false;
         isShielding = true;
 
-        if (playAudio)
+        if (playAudio){
+            if (audioManager.GetAudioSource("ShieldEnd").isPlaying)
+                audioManager.StopAudioSource("ShieldEnd");
             audioManager.PlayAudioSource("ShieldStart");
+        }
     }
 
     public void UnequipShield(bool playAudio = true)
@@ -335,8 +337,11 @@ public class Player : Entity
         weaponRenderer.enabled = true;
         isShielding = false;
 
-        if (playAudio)
-            audioManager.PlayAudioSource("ShieldEnd");
+        if (playAudio){
+            if (audioManager.GetAudioSource("ShieldStart").isPlaying)
+                audioManager.StopAudioSource("ShieldStart");
+            audioManager.PlayAudioSource("ShieldEnd", 0.2f);
+        }
     }
 
     // ===========================
@@ -350,11 +355,11 @@ public class Player : Entity
 
         vortexEffect.Play();
 
-        // if (playAudio)
-        // audioManager.PlayAudioSource("VortexStart");
-
-        if (playAudio)
-            audioManager.PlayAudioSource("ShieldStart");
+        if (playAudio) {
+            if (audioManager.GetAudioSource("VortexEnd").isPlaying)
+                audioManager.StopAudioSource("VortexEnd");
+            audioManager.PlayAudioSource("VortexStart");
+        }
     }
 
     public void StopVortex(float damageMultipler, bool playAudio = true)
@@ -369,15 +374,16 @@ public class Player : Entity
             bonusDamageSet = true;
 
             bonusDamageEffect.Play();
+            audioManager.PlayAudioSource("VortexPowerUp");
             chargeMeter.TurnOnMeter(ChargeMeter.MeterType.BONUS_DAMAGE, BONUS_DAMAGE_TIME, BONUS_DAMAGE_TIME);
         }
 
         vortexEffect.Stop();
 
-        // if (playAudio)
-        // audioManager.PlayAudioSource("VortexEnd");
-
-        if (playAudio)
-            audioManager.PlayAudioSource("ShieldEnd");
+        if (playAudio) {
+            if (audioManager.GetAudioSource("VortexStart").isPlaying)
+                audioManager.StopAudioSource("VortexStart");
+            audioManager.PlayAudioSource("VortexEnd");
+        }
     }
 }

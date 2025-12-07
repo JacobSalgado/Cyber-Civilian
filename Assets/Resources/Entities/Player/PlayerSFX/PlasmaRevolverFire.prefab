@@ -11,14 +11,18 @@ PrefabInstance:
     - target: {fileID: -3736538713012353100, guid: a788ba907d79d1e49a2f38412bff1ca8, type: 3}
       propertyPath: clip
       value: 
-      objectReference: {fileID: 8300000, guid: 571d7a68efdfd3a48ac731e4ac4b95c0, type: 3}
+      objectReference: {fileID: 8300000, guid: 7bf62ba4945f64a459ad7207f176b17c, type: 3}
+    - target: {fileID: -3736538713012353100, guid: a788ba907d79d1e49a2f38412bff1ca8, type: 3}
+      propertyPath: pitch
+      value: 1.4
+      objectReference: {fileID: 0}
     - target: {fileID: -3736538713012353100, guid: a788ba907d79d1e49a2f38412bff1ca8, type: 3}
       propertyPath: volume
       value: 0.45
       objectReference: {fileID: 0}
     - target: {fileID: 3725071110052549950, guid: a788ba907d79d1e49a2f38412bff1ca8, type: 3}
       propertyPath: m_Name
-      value: FlamethrowerFire
+      value: PlasmaRevolverFire
       objectReference: {fileID: 0}
     - target: {fileID: 7677490764105600873, guid: a788ba907d79d1e49a2f38412bff1ca8, type: 3}
       propertyPath: m_LocalPosition.x

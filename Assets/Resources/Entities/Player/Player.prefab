@@ -2050,17 +2050,21 @@ MonoBehaviour:
   - {fileID: 6079927618582836151, guid: 5221b4c759144f449ab5286dc097d815, type: 3}
   - {fileID: 6079927618582836151, guid: 8211f92088d7a1e4a8d9624436ce6b24, type: 3}
   - {fileID: 6079927618582836151, guid: f4f96f27720ec5a4aa31e3ee6b788442, type: 3}
-  - {fileID: 6079927618582836151, guid: 21dbbd02298d2f24d8eff3719a04842c, type: 3}
-  - {fileID: 6079927618582836151, guid: f0c3a23e7df724c42b61c1048ac89327, type: 3}
-  - {fileID: 6079927618582836151, guid: 4ec52f424917db8489c6f038b70051eb, type: 3}
+  - {fileID: 6079927618582836151, guid: 7f456460f149db541bc8849fa34701ad, type: 3}
+  - {fileID: 6079927618582836151, guid: 7ebe548be5868bf4a88600a1319bcd65, type: 3}
+  - {fileID: 6079927618582836151, guid: cfdd87d672f1f8f4f888d60ad0b95f8f, type: 3}
   - {fileID: 6079927618582836151, guid: a037ef0adabe3bc4caf7c61692b4b72a, type: 3}
   - {fileID: 6079927618582836151, guid: d838ef21ebc4a9743a295c82e0e484ba, type: 3}
   - {fileID: 6079927618582836151, guid: e5fdbd51be24d23489a5ef2b8e5ebb84, type: 3}
   - {fileID: 6079927618582836151, guid: c8233c8d0d70501499afc825f90b59e3, type: 3}
+  - {fileID: 6079927618582836151, guid: 21dbbd02298d2f24d8eff3719a04842c, type: 3}
+  - {fileID: 6079927618582836151, guid: f0c3a23e7df724c42b61c1048ac89327, type: 3}
+  - {fileID: 6079927618582836151, guid: 4ec52f424917db8489c6f038b70051eb, type: 3}
   - {fileID: 6079927618582836151, guid: 2c2734b3e85b12f4184223d76be8356c, type: 3}
   - {fileID: 6079927618582836151, guid: 948c04e971675fd4fbe3c311af92f0fa, type: 3}
-  - {fileID: 7533918726549745439, guid: 019fdc823c4c7394da714d429a4eaa5d, type: 3}
-  - {fileID: 6079927618582836151, guid: 7ebe548be5868bf4a88600a1319bcd65, type: 3}
+  - {fileID: 6079927618582836151, guid: 639ea699e3a9fff40b78a19cb8243b50, type: 3}
+  - {fileID: 6079927618582836151, guid: e5accb2d3e98ef6438497531531d90e1, type: 3}
+  - {fileID: 6079927618582836151, guid: 39ff189a761e1a44ebd03296ac306a69, type: 3}
   vfxHolder: {fileID: 4836743710226449496}
   fireEffect: {fileID: 4672540849098245308}
   slowEffect: {fileID: 2856310810943863753}
@@ -2085,7 +2089,6 @@ MonoBehaviour:
   phaseAction: {fileID: -9135410620642095999, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   reloadAction: {fileID: 6505802653974701790, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   vortexAction: {fileID: 5246173511191468154, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  pushAction: {fileID: -4952092908596449744, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   weaponScrollAction: {fileID: -4760955252322487463, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   firePoint: {fileID: 7870654291819106841}
   weapons:
@@ -2103,7 +2106,6 @@ MonoBehaviour:
   maxEnergy: 1000
   energyRegen: 100
   dashCost: 150
-  pushCost: 60
   shootingInPhaseCost: 150
 --- !u!114 &8648180505201064651
 MonoBehaviour:
