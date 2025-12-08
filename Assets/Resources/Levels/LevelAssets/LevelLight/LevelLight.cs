@@ -35,9 +35,11 @@ public class LevelLight : MonoBehaviour
         // NOTE: static has no dynamic behaviour
         if (behaviour == LightBehaviour.STATIC) return;
 
-        AudioSource sfx = audioManager.GetAudioSource(SFXToPlay);
-        if (sfx && (!sfx.isPlaying || sfx.time > sfx.clip.length - 0.2f))
-            audioManager.PlayAudioSource(SFXToPlay);
+        if (audioManager) {
+            AudioSource sfx = audioManager.GetAudioSource(SFXToPlay);
+            if (sfx && (!sfx.isPlaying || sfx.time > sfx.clip.length - 0.2f))
+                audioManager.PlayAudioSource(SFXToPlay);
+        }
 
         timer += Time.deltaTime;
         NonStaticLight();

@@ -292,8 +292,8 @@ MonoBehaviour:
   cursor: {fileID: 1230950462}
   transitionHandler: {fileID: 1364000839}
   levelList:
-  - levelTwo
   - levelOne
+  - levelTwo
   startingState: 0
   BGM:
   - {fileID: 6554651378409300978, guid: bde6bcc18be375e449f6f1b6681824bc, type: 3}
