@@ -13,19 +13,31 @@ public class LevelLight : MonoBehaviour
     [Header("==Light Properties==")]
     [SerializeField] private Light2D light2D;
     [SerializeField] private LightBehaviour behaviour;
+    [SerializeField] private AudioEffect[] SFX;
+    [SerializeField] private string SFXToPlay = "";
+    public AudioManager audioManager;
 
     [Header("==Non-Static Properties==")]
     [SerializeField] private float turnOnTime = 0f;
     [SerializeField] private float turnOffTime = 0f;
 
     private bool turnOn = false;
-    private float timer;
+    private float timer = 0f;
 
-    // Update is called once per frame
+    void Start()
+    {
+        if (SFX.Length > 0)
+            audioManager.InitializeAudioDictionary(SFX);
+    }
+
     void Update()
     {
         // NOTE: static has no dynamic behaviour
         if (behaviour == LightBehaviour.STATIC) return;
+
+        AudioSource sfx = audioManager.GetAudioSource(SFXToPlay);
+        if (sfx && (!sfx.isPlaying || sfx.time > sfx.clip.length - 0.2f))
+            audioManager.PlayAudioSource(SFXToPlay);
 
         timer += Time.deltaTime;
         NonStaticLight();

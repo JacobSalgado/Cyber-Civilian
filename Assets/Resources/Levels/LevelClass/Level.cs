@@ -46,7 +46,7 @@ public class Level : MonoBehaviour
 
         if (enemyKilledGoal < 0) enemyKilledGoal = 0;
 
-        audioManager.InitializeAudioDictionary(SFX);
+        //audioManager.InitializeAudioDictionary(SFX);
     }
 
     // TODO: EXPAND ON LEVEL SCRIPT

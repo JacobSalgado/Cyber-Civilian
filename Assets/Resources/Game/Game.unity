@@ -260,7 +260,6 @@ GameObject:
   - component: {fileID: 476967449}
   - component: {fileID: 476967448}
   - component: {fileID: 476967450}
-  - component: {fileID: 476967451}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -287,6 +286,7 @@ MonoBehaviour:
   camera: {fileID: 1093947791}
   cinemachine: {fileID: 730194402}
   pauseAction: {fileID: -8928665272387638255, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  listener: {fileID: 599587104}
   audioManager: {fileID: 476967450}
   pauseMenu: {fileID: 604244151}
   cursor: {fileID: 1230950462}
@@ -323,6 +323,7 @@ Transform:
   - {fileID: 362184620}
   - {fileID: 891931243}
   - {fileID: 1230950461}
+  - {fileID: 599587105}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &476967450
@@ -338,14 +339,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
   audioPlayer: {fileID: 483986785}
---- !u!81 &476967451
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 476967447}
-  m_Enabled: 1
 --- !u!1 &483986785
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,6 +529,46 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36175eb9b88d19046a9e14ee97eb1b69, type: 3}
+--- !u!1 &599587103
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 599587105}
+  - component: {fileID: 599587104}
+  m_Layer: 0
+  m_Name: AudioListener
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!81 &599587104
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 599587103}
+  m_Enabled: 1
+--- !u!4 &599587105
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 599587103}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 476967449}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!224 &604244150 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4205517577013905485, guid: 632c91b441c8cd94c9666fa27e6d82cf, type: 3}

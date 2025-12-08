@@ -18,6 +18,14 @@ public class AudioManager : MonoBehaviour
             player.pitch = newAudioEffects[i].pitch;
             player.clip = newAudioEffects[i].clip;
             player.volume = newAudioEffects[i].volume;
+            player.spatialBlend = newAudioEffects[i].spatialBlend;
+
+            if (player.spatialBlend > 0){
+                player.minDistance = newAudioEffects[i].minDistance;
+                player.maxDistance = newAudioEffects[i].maxDistance;
+                player.spread = 360f;
+                player.dopplerLevel = 0f;
+            }
 
             audioEffects.Add(newAudioEffects[i].gameObject.name, player);
         }

@@ -22,7 +22,7 @@ public static class LevelManager
     /// <param name="level_name">Filename of desired level prefab</param>
     public static IEnumerator LoadLevel(string level_name, GameManager gameManager)
     {
-        string level_path = $"Levels/LevelList/{level_name}";
+        string level_path = $"Levels/LevelList/{level_name}/{level_name}";
 
         ResourceRequest request = Resources.LoadAsync<GameObject>(level_path);
         while (!request.isDone)

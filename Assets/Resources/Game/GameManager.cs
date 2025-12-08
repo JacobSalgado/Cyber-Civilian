@@ -24,6 +24,7 @@ public class GameManager : StateManager
     public new Camera camera;
     public CinemachineCamera cinemachine;
     public InputActionReference pauseAction;
+    public AudioListener listener;
     public AudioManager audioManager;
     public PauseMenu pauseMenu;
     public GameCursor cursor;

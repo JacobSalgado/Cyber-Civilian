@@ -38,6 +38,9 @@ public class GameInGame : State
 
         LevelManager.Update();
 
+        // make listener game object follow player
+        manager.listener.gameObject.transform.position = LevelManager.player.gameObject.transform.position;
+
         // check if player is dead
         if (manager.player.isDead)
         {
@@ -78,6 +81,6 @@ public class GameInGame : State
 
     public override void ExitState(Dictionary<string, object> args = null)
     {
-        
+        manager.listener.gameObject.transform.position = Vector2.zero;
     }
 }

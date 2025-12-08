@@ -12,6 +12,18 @@ PrefabInstance:
       propertyPath: clip
       value: 
       objectReference: {fileID: 8300000, guid: f5afb765a25bbd44a99149f8eba91cb7, type: 3}
+    - target: {fileID: -3736538713012353100, guid: a788ba907d79d1e49a2f38412bff1ca8, type: 3}
+      propertyPath: maxDistance
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: -3736538713012353100, guid: a788ba907d79d1e49a2f38412bff1ca8, type: 3}
+      propertyPath: minDistance
+      value: 7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -3736538713012353100, guid: a788ba907d79d1e49a2f38412bff1ca8, type: 3}
+      propertyPath: spatialBlend
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3725071110052549950, guid: a788ba907d79d1e49a2f38412bff1ca8, type: 3}
       propertyPath: m_Name
       value: Impact

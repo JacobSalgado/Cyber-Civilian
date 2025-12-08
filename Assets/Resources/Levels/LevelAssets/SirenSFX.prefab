@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &1748830567376368643
+--- !u!1001 &1644914909826982982
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -11,26 +11,22 @@ PrefabInstance:
     - target: {fileID: -3736538713012353100, guid: a788ba907d79d1e49a2f38412bff1ca8, type: 3}
       propertyPath: clip
       value: 
-      objectReference: {fileID: 8300000, guid: 9d2ddd6779abf7e4a8135e62c05d7701, type: 3}
+      objectReference: {fileID: 8300000, guid: 2589a118e7efa104fbb30340e9ae003a, type: 3}
     - target: {fileID: -3736538713012353100, guid: a788ba907d79d1e49a2f38412bff1ca8, type: 3}
       propertyPath: loop
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -3736538713012353100, guid: a788ba907d79d1e49a2f38412bff1ca8, type: 3}
-      propertyPath: pitch
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: -3736538713012353100, guid: a788ba907d79d1e49a2f38412bff1ca8, type: 3}
       propertyPath: volume
-      value: 1
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: -3736538713012353100, guid: a788ba907d79d1e49a2f38412bff1ca8, type: 3}
       propertyPath: maxDistance
-      value: 15
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -3736538713012353100, guid: a788ba907d79d1e49a2f38412bff1ca8, type: 3}
       propertyPath: minDistance
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -3736538713012353100, guid: a788ba907d79d1e49a2f38412bff1ca8, type: 3}
       propertyPath: spatialBlend
@@ -38,7 +34,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3725071110052549950, guid: a788ba907d79d1e49a2f38412bff1ca8, type: 3}
       propertyPath: m_Name
-      value: Footsteps3
+      value: SirenSFX
       objectReference: {fileID: 0}
     - target: {fileID: 7677490764105600873, guid: a788ba907d79d1e49a2f38412bff1ca8, type: 3}
       propertyPath: m_LocalPosition.x
