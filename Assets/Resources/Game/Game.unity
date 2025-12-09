@@ -291,8 +291,9 @@ MonoBehaviour:
   pauseMenu: {fileID: 604244151}
   cursor: {fileID: 1230950462}
   levelList:
-  - TutorialLevel
-  - levelOne
+  - levelThree
+  - levelThree
+  - levelTwo
   - levelTwo
   startingState: 0
   BGM:
