@@ -1,15 +1,15 @@
-using System;
+﻿using System;
 using UnityEngine;
 
 public class CyberBossStomp : MonoBehaviour
 {
     private const float TTL = 1.2f;
-    private float timer = 0f;
+    private float timer;
 
     [Header("==Stomp GameObjects==")]
-    [SerializeField] private CyberBoss _cyberBoss;
+    [SerializeField] private CyberBoss cyberBoss;
     public CircleCollider2D aoeCollider;
-    public Rigidbody2D rigidBody;
+    public Rigidbody2D rb;
     public SpriteRenderer spriteRenderer;
 
     [Header("==Stomp Properties==")]
@@ -19,73 +19,103 @@ public class CyberBossStomp : MonoBehaviour
     public int damage = 200;
 
     [Header("==Stomp Size Behavior==")]
-    [SerializeField] private Vector3 maxScale = Vector3.zero;
+    [SerializeField] private float maxScale = 3f;
     [SerializeField] private float scaleIncRate = 0.4f;
 
-    [NonSerialized] public Vector3 startScale = Vector3.zero;
-    [NonSerialized] public Vector2 directionToPlayer = Vector2.zero;
+    [NonSerialized] public Vector2 directionToPlayer;
 
-    // hashset if we want to make it so the aoe affects other enemies as well
-    // private HashSet<Collider2D> hitTargets = new HashSet<Collider2D>();
+    public Vector3 startScale;
+    private bool isActive;
 
-    void Start()
+    void Awake()
     {
-        aoeCollider.enabled = false;
-        spriteRenderer.enabled = false;
+        startScale = transform.localScale;
+        ResetAOE();
     }
 
     void FixedUpdate()
     {
-        if (aoeCollider.enabled)
+        if (!isActive) return;
+
+        timer += Time.deltaTime;
+
+        // Scale outward
+        if (transform.localScale.x < maxScale)
         {
-            timer += Time.deltaTime;
-            if (gameObject.transform.localScale.x < maxScale.x) // NOTE: scale should be uniform
-            {
-                Vector3 newScale = gameObject.transform.localScale;
-                newScale.x += scaleIncRate * Time.deltaTime;
-                newScale.y += scaleIncRate * Time.deltaTime;
-                newScale.z += scaleIncRate * Time.deltaTime;
-                gameObject.transform.localScale = newScale;
-            }
-                
-            rigidBody.linearVelocity = moveSpeed * directionToPlayer;
-            
-            if (timer > TTL)
-            {
-                timer = 0f;
-                aoeCollider.enabled = false;
-                spriteRenderer.enabled = false;
-                rigidBody.linearVelocity = Vector2.zero;
-            }
+            float scaleDelta = scaleIncRate * Time.deltaTime;
+            transform.localScale += Vector3.one * scaleDelta;
         }
-        else gameObject.transform.localPosition = Vector2.zero;
-    }
 
-    public void EmitPush()
-    {
-        if (!aoeCollider.enabled) {
-            aoeCollider.enabled = true;
-            spriteRenderer.enabled = true;
-            _cyberBoss.stompEffect.Play();
+        // Move forward
+        rb.linearVelocity = directionToPlayer * moveSpeed;
+
+        if (timer >= TTL)
+        {
+            ResetAOE();
         }
     }
 
-    public void OnTriggerEnter2D(Collider2D collision)
+    // ============================
+    // ACTIVATE STOMP
+    // ============================
+    public void EmitPush(Vector2 spawnPosition, Vector2 moveDirection)
     {
-        //print(collision.gameObject.name);
-        if (collision.gameObject.TryGetComponent<Player>(out var player)) {
-            Vector2 vectorToCheck = (gameObject.transform.position - player.gameObject.transform.position).normalized;
-            if (player.isShielding && player.shieldAbility.IsShieldBlocking(vectorToCheck)) 
+        if (isActive) return;
+
+        transform.position = spawnPosition;
+        directionToPlayer = moveDirection.normalized;
+
+        transform.localScale = startScale;
+        timer = 0f;
+        isActive = true;
+
+        aoeCollider.enabled = true;
+        spriteRenderer.enabled = true;
+
+        // play particles
+        cyberBoss.stompEffect.transform.position = spawnPosition;
+        cyberBoss.stompEffect.Play();
+    }
+
+    // ============================
+    // RESET STOMP
+    // ============================
+    private void ResetAOE()
+    {
+        isActive = false;
+
+        aoeCollider.enabled = false;
+        spriteRenderer.enabled = false;
+
+        rb.linearVelocity = Vector2.zero;
+        transform.localScale = startScale;
+    }
+
+    // ============================
+    // COLLISION
+    // ============================
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!isActive) return;
+
+        if (collision.TryGetComponent<Player>(out var player))
+        {
+            Vector2 vectorToCheck =
+                (transform.position - player.transform.position).normalized;
+
+            if (player.isShielding &&
+                player.shieldAbility.IsShieldBlocking(vectorToCheck))
                 return;
 
             player.TakeDamage(damage);
 
-            if (!player.pushed) {
+            if (!player.pushed)
+            {
                 player.pushed = true;
+                Vector2 pushDir =
+                    player.GetDirectionToPosition(transform.position);
 
-                Vector2 pushDirection = player.GetDirectionToPosition(gameObject.transform.position);
-                player.pushedVelocity = -pushForce * pushDirection;
-
+                player.pushedVelocity = -pushForce * pushDir;
                 player.pushedTime = pushedTime;
             }
         }
