@@ -7,6 +7,7 @@ public class CyberBossStomp : MonoBehaviour
     private float timer = 0f;
 
     [Header("==Stomp GameObjects==")]
+    [SerializeField] private CyberBoss _cyberBoss;
     public CircleCollider2D aoeCollider;
     public Rigidbody2D rigidBody;
     public SpriteRenderer spriteRenderer;
@@ -65,6 +66,7 @@ public class CyberBossStomp : MonoBehaviour
         if (!aoeCollider.enabled) {
             aoeCollider.enabled = true;
             spriteRenderer.enabled = true;
+            _cyberBoss.stompEffect.Play();
         }
     }
 
