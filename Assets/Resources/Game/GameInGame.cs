@@ -1,10 +1,8 @@
 using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
 
 public class GameInGame : State
 {
-    const string playerHUDPath = "Assets/UI/PlayerHUD/PlayerHUD.prefab";
     readonly GameManager manager;
 
     public GameInGame(GameManager gameManager) : base(gameManager)

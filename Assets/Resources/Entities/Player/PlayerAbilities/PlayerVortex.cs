@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerVortex : MonoBehaviour
@@ -9,7 +10,7 @@ public class PlayerVortex : MonoBehaviour
     [SerializeField] private int absorbCost = 40;
     [SerializeField] private int maxAbsorbedProjectiles = 25;  // if exceeded, vortex will explode and player will take selfExplosionDamage
     [SerializeField] private int selfExplosionDamage = 250;
-    [SerializeField] private float damageMultiplierPerProjectile = 0.2f;
+    [SerializeField] private float damagedAbsorbedToMultiplierPercentage = 0.1f;
 
     private int absorbedCount = 0;
     private float damageMultiplier = 1f;
@@ -41,10 +42,7 @@ public class PlayerVortex : MonoBehaviour
         else
         {            
             // apply damage multiplier
-            if (applyMulitpler)
-            {
-                damageMultiplier += absorbedCount * damageMultiplierPerProjectile;
-            }
+            if (!applyMulitpler) damageMultiplier = 1f;
             
             _player.StopVortex(damageMultiplier, playAudio);
 
@@ -61,7 +59,7 @@ public class PlayerVortex : MonoBehaviour
         return _player.currentEnergy - vortexDrainRate >= 0;
     }
 
-    public void AbsorbProjectile()
+    public void AbsorbProjectile(int projDamage)
     {
         absorbedCount++;
     
@@ -70,12 +68,16 @@ public class PlayerVortex : MonoBehaviour
         {
             _player.TakeDamage(selfExplosionDamage);
             absorbedCount = 0;
-            EmitVortex(true);
+            EmitVortex(false);
+            return;
         }
 
-        // TODO: add visual/audio feedback
+        // update multiplier based on damage from proj damage
+        damageMultiplier += damagedAbsorbedToMultiplierPercentage * projDamage * 0.01f;
+        float damageMultiplierText = MathF.Round(damageMultiplier * 100f - 100); // rounding to nearest tenth
+        _player.hud.UpdateVortexMultiplierText(damageMultiplierText);
 
-        //Debug.Log($"Absorbed projectile! Count: {absorbedCount}");
+        // TODO: add visual/audio feedback
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -86,7 +88,8 @@ public class PlayerVortex : MonoBehaviour
             {
                 //Debug.Log("Projectile absorbed by vortex");
                 _player.currentEnergy -= absorbCost;
-                AbsorbProjectile();
+
+                AbsorbProjectile(proj.projData.damage);
                 proj.CollisionHit();
             }
         }

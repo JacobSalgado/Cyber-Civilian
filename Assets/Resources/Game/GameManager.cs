@@ -340,11 +340,8 @@ public class GameManager : StateManager
         player.resourceMeter = hud.resourceSlider;
         player.UpdateResourceMeter();
 
-        player.ammoCountText = hud.ammoCountText;
-        player.UpdateAmmoCountText();
-
-        player.vortexMultiplierText = hud.vortexMultiplierText;
-        player.UpdateVortexMultiplierText();
+        player.hud = hud;
+        hud.ToggleVortexSubMenu(false);
 
         yield return null;
     }

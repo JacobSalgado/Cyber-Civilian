@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -75,10 +74,10 @@ public class Player : Entity
     [NonSerialized] public Camera cam;
     [NonSerialized] public PlayerData playerData;
     [NonSerialized] public Slider resourceMeter;
-    [NonSerialized] public TextMeshProUGUI ammoCountText;
-    [NonSerialized] public TextMeshProUGUI vortexMultiplierText;
+    [NonSerialized] public PlayerHUD hud;
     [NonSerialized] public float scrollValue = 0f;
     private Vector2 mousePos;
+
 
     // Update parameters
     [NonSerialized] public bool updatePlayer = false;
@@ -92,7 +91,7 @@ public class Player : Entity
     private const float BONUS_DAMAGE_TIME = 3.0f;
     private float bonusDamageTimer = 0f;
     [NonSerialized] public bool bonusDamageSet = false;
-    [NonSerialized] public float bonusDamageMultiplier = 1f;
+    public float bonusDamageMultiplier = 1f;
     
     // Container for resetting previous weapon after finishing certain abilities
     private PlayerWeaponType previousWeaponType;
@@ -161,17 +160,13 @@ public class Player : Entity
         // applying bonus damage from Vortex ability
         if (!isVortexing && bonusDamageSet)
         {
-            // if (!bonusDamageApplied) {
-            //     currentWeapon.projData.damage = (int) Math.Ceiling(currentWeapon.projData.damage * bonusDamageMultiplier);
-            //     bonusDamageApplied = true;
-            // }
-
             if (bonusDamageTimer > BONUS_DAMAGE_TIME)
             {
                 bonusDamageMultiplier = 1f;
                 bonusDamageTimer = 0f;
                 bonusDamageSet = false;
                 bonusDamageEffect.Stop();
+                hud.ToggleVortexSubMenu(false);
                 chargeMeter.TurnOffMeter();
             }
 
@@ -253,8 +248,7 @@ public class Player : Entity
 
         /* UI updates */
         UpdateResourceMeter();
-        UpdateAmmoCountText();
-        UpdateVortexMultiplierText();
+        hud.UpdateAmmoCountText(currentWeapon.currentAmmo, currentWeapon.maxAmmo);
     }
 
     public override void FixedUpdate()
@@ -280,16 +274,6 @@ public class Player : Entity
     {
         resourceMeter.maxValue = maxEnergy;
         resourceMeter.value = currentEnergy;
-    }
-
-    public void UpdateAmmoCountText()
-    {
-        if (ammoCountText && currentWeapon) ammoCountText.text = $"({currentWeapon.currentAmmo}/{currentWeapon.maxAmmo})";
-    }
-
-    public void UpdateVortexMultiplierText()
-    {
-        vortexMultiplierText.text = /*"Vortex Multiplier Damage: \n" +*/"" + bonusDamageMultiplier;
     }
 
     public override void GotDamaged()
@@ -352,6 +336,8 @@ public class Player : Entity
         // change weapon sprite to vortex shield sprite
         previousWeaponType = currentWeaponType;
         isVortexing = true;
+        hud.UpdateVortexMultiplierText(0f);
+        hud.ToggleVortexSubMenu(true);
 
         vortexEffect.Play();
 
@@ -362,14 +348,14 @@ public class Player : Entity
         }
     }
 
-    public void StopVortex(float damageMultipler, bool playAudio = true)
+    public void StopVortex(float damageMultiplier, bool playAudio = true)
     {
         EquipNewWeapon(previousWeaponType);
         isVortexing = false;
         
-        if (damageMultipler > 1.0f)
+        if (damageMultiplier > 1.0f)
         {
-            bonusDamageMultiplier = damageMultipler;
+            bonusDamageMultiplier = damageMultiplier;
             bonusDamageTimer = 0f;
             bonusDamageSet = true;
 
@@ -377,6 +363,7 @@ public class Player : Entity
             audioManager.PlayAudioSource("VortexPowerUp");
             chargeMeter.TurnOnMeter(ChargeMeter.MeterType.BONUS_DAMAGE, BONUS_DAMAGE_TIME, BONUS_DAMAGE_TIME);
         }
+        else hud.ToggleVortexSubMenu(false);
 
         vortexEffect.Stop();
 
