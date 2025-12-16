@@ -289,7 +289,7 @@ public class Player : Entity
 
     public void UpdateVortexMultiplierText()
     {
-        vortexMultiplierText.text = "Vortex Multiplier Damage: " + bonusDamageMultiplier;
+        vortexMultiplierText.text = /*"Vortex Multiplier Damage: \n" +*/"" + bonusDamageMultiplier;
     }
 
     public override void GotDamaged()
