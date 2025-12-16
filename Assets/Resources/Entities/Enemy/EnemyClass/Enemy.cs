@@ -67,6 +67,13 @@ public abstract class Enemy : Entity
     public override void EntityDie()
     {
         LevelManager.enemyKilledCounter += 1;
+
+        if (LevelManager.current_level.levelObjective == Level.LevelObjective.ENEMY_COUNT){
+            LevelManager.player.hud.UpdateEnemyKilledProgressBar(
+                LevelManager.enemyKilledCounter,
+                LevelManager.current_level.enemyKilledGoal
+            );
+        }
         LevelManager.player.SetHealth(LevelManager.player.playerData.currentHealth + 100); // TODO: do something cooler
         GameObject deathEffect = Instantiate(deathEffectPrefab, gameObject.transform.position, gameObject.transform.rotation, LevelManager.current_level.EntityList.transform);
 

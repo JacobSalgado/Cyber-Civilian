@@ -19,7 +19,8 @@ public class PlayerHUD : MonoBehaviour
     [SerializeField] private GameObject vortexSubMenu;
 
     // Level Objective Submenu
-    [SerializeField] private TextMeshProUGUI objectiveText;
+    // [SerializeField] private TextMeshProUGUI objectiveText;
+    [SerializeField] private Slider enemyKilledProgressBar;
 
     private readonly Dictionary<Player.WeaponType, Color> weaponColors = new()
     {
@@ -70,5 +71,11 @@ public class PlayerHUD : MonoBehaviour
     public void UpdateVortexMultiplierText(float multiplier)
     {
         vortexMultiplierText.text = $"{multiplier}%";
+    }
+
+    public void UpdateEnemyKilledProgressBar(int current, int max)
+    {
+        enemyKilledProgressBar.maxValue = max;
+        enemyKilledProgressBar.value = current < max ? current : max;
     }
 }

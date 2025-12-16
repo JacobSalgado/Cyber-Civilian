@@ -58,6 +58,7 @@ public static class LevelManager
         isLevelCompleted = false;
 
         current_level.gameObject.SetActive(true);
+        player.hud.UpdateEnemyKilledProgressBar(0, current_level.enemyKilledGoal);
         player.gameObject.SetActive(true);
 
         // When starting a level, only immediate type enemy spawns should be called

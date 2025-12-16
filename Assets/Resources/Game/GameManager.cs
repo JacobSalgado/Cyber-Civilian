@@ -344,6 +344,8 @@ public class GameManager : StateManager
         player.hud = hud;
         hud.ToggleVortexSubMenu(false);
 
+        hud.UpdateEnemyKilledProgressBar(0, 1);
+
         yield return null;
     }
 
