@@ -50,6 +50,7 @@ public class CyberBossPunch : MonoBehaviour
             punchCollider.enabled = true;
             spriteRenderer.enabled = true;
             timer = 0f;
+            _cyberBoss.punchEffect.Play();
         } 
     }
 

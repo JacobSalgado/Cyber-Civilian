@@ -35,5 +35,6 @@ public class CyberBossPunchAttack : State
     {
         cyberBoss.moveVelocity = Vector2.zero;
         cyberBoss.SetCooldown(0.5f);
+        cyberBoss.punchEffect.Stop();
     }
 }

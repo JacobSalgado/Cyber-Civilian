@@ -38,6 +38,21 @@ public class CyberBoss : Enemy
     [NonSerialized] public bool isShielding = true; // initially set to active when spawned
     public bool HasSeenPlayerLongEnough => seePlayerTimer >= timeToSeePlayer;
 
+    [Header("==Particle Effects Properties==")]
+    // explosive-like crack 
+    public ParticleSystem shieldBrokenHealthyEffect;
+    public ParticleSystem shieldBrokenDamagedEffect;
+    public ParticleSystem shieldBrokenCriticalEffect;
+
+    // represents the shield slowly shattering
+    //public ParticleSystem shieldBreakingHealthyyEffect;
+    //public ParticleSystem shieldBreakingDamagedEffect;
+    //public ParticleSystem shieldBreakingCriticalEffect;
+
+    // attack effects
+    public ParticleSystem stompEffect;
+    public ParticleSystem punchEffect;
+
     public override void InitializeStates()
     {
         AddState("Idle", new CyberBossIdle(this));
@@ -136,6 +151,7 @@ public class CyberBoss : Enemy
     public void UnequipShield()
     {
         isShielding = false;
+        //shieldBrokenCriticalEffect.Play();
         // TODO: play SFX
     }
 }
