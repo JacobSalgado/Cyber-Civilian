@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Player : Entity
 {
-    public enum PlayerWeaponType
+    public enum WeaponType
     {
         BULLET,
         RAILGUN,
@@ -47,7 +47,7 @@ public class Player : Entity
     [NonSerialized] public Weapon currentWeapon;
     public Transform firePoint;
     public GameObject[] weapons;
-    public PlayerWeaponType currentWeaponType = PlayerWeaponType.BULLET;
+    public WeaponType currentWeaponType = WeaponType.BULLET;
     public SpriteRenderer weaponRenderer; // Renderer for switching weapon sprites
 
     [Header("==Dashing Properties==")]
@@ -94,7 +94,7 @@ public class Player : Entity
     public float bonusDamageMultiplier = 1f;
     
     // Container for resetting previous weapon after finishing certain abilities
-    private PlayerWeaponType previousWeaponType;
+    private WeaponType previousWeaponType;
 
     public override void InitializeStates()
     {
@@ -193,7 +193,7 @@ public class Player : Entity
         }
 
         // check fire inputs
-        if (currentWeaponType < PlayerWeaponType.NONE &&
+        if (currentWeaponType < WeaponType.NONE &&
             inputManager.CanFire &&
             (fireAction.action.IsPressed() || fireAction.action.WasReleasedThisFrame())
         ) {
@@ -260,7 +260,7 @@ public class Player : Entity
         RotateToDirection(dir);
     }
 
-    public void EquipNewWeapon(PlayerWeaponType newWeaponType)
+    public void EquipNewWeapon(WeaponType newWeaponType)
     {
         if ((int)newWeaponType < weapons.Length)
         {

@@ -112,25 +112,25 @@ public class PlayerInputManager : MonoBehaviour
 
     private void EquipWeapon()
     {
-        Player.PlayerWeaponType new_weapon_type = _player.currentWeaponType;
+        Player.WeaponType new_weapon_type = _player.currentWeaponType;
 
         if (_player.scrollValue > 0f) // Up
         {
-            if (_player.currentWeaponType == Player.PlayerWeaponType.BULLET)
+            if (_player.currentWeaponType == Player.WeaponType.BULLET)
             {
-                new_weapon_type = Player.PlayerWeaponType.FLAMETHROWER;
+                new_weapon_type = Player.WeaponType.FLAMETHROWER;
             }
             else 
-                new_weapon_type = (Player.PlayerWeaponType)(((int) _player.currentWeaponType - 1) % _player.weapons.Length);
+                new_weapon_type = (Player.WeaponType)(((int) _player.currentWeaponType - 1) % _player.weapons.Length);
         }
         else if (_player.scrollValue < 0f) // Down
         {
-            if (_player.currentWeaponType == Player.PlayerWeaponType.FLAMETHROWER)
+            if (_player.currentWeaponType == Player.WeaponType.FLAMETHROWER)
             {
-                new_weapon_type = Player.PlayerWeaponType.BULLET;
+                new_weapon_type = Player.WeaponType.BULLET;
             }
             else
-                new_weapon_type = (Player.PlayerWeaponType)(((int) _player.currentWeaponType + 1) % _player.weapons.Length);
+                new_weapon_type = (Player.WeaponType)(((int) _player.currentWeaponType + 1) % _player.weapons.Length);
         }
         else if (_player.weaponKeybindsAction.action != null)
         {
@@ -139,19 +139,20 @@ public class PlayerInputManager : MonoBehaviour
             if (string.Compare(action, "q") != 0)
             {
                 int num_key = int.Parse(action);
-                new_weapon_type = (Player.PlayerWeaponType)(num_key - 1);
+                new_weapon_type = (Player.WeaponType)(num_key - 1);
             }
         }
-        else new_weapon_type = (Player.PlayerWeaponType)(((int) _player.currentWeaponType + 1) % _player.weapons.Length);
+        else new_weapon_type = (Player.WeaponType)(((int) _player.currentWeaponType + 1) % _player.weapons.Length);
 
         _player.EquipNewWeapon(new_weapon_type);
+        _player.hud.UpdateCurrentWeaponType(new_weapon_type);
         currentInputType = InputType.NONE;
     }
 
     private void FireWeapon()
     {
         string fireSFX  = "";
-        if (_player.currentWeaponType == Player.PlayerWeaponType.FLAMETHROWER)
+        if (_player.currentWeaponType == Player.WeaponType.FLAMETHROWER)
             fireSFX = "FlamethrowerFire";
         else fireSFX = "PeaShooterFire";
         

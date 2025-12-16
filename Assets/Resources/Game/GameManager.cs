@@ -340,6 +340,7 @@ public class GameManager : StateManager
         player.resourceMeter = hud.resourceSlider;
         player.UpdateResourceMeter();
 
+        hud.UpdateCurrentWeaponType(player.currentWeaponType);
         player.hud = hud;
         hud.ToggleVortexSubMenu(false);
 
