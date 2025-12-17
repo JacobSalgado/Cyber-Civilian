@@ -59686,6 +59686,18 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5615939798847133151, guid: 99f61e5de5596e4439e5ee06fb2f0027, type: 3}
+      propertyPath: m_Intensity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5615939798847133151, guid: 99f61e5de5596e4439e5ee06fb2f0027, type: 3}
+      propertyPath: m_ShadowIntensity
+      value: 0.697
+      objectReference: {fileID: 0}
+    - target: {fileID: 5615939798847133151, guid: 99f61e5de5596e4439e5ee06fb2f0027, type: 3}
+      propertyPath: m_FalloffIntensity
+      value: 0.228
+      objectReference: {fileID: 0}
     - target: {fileID: 5638770733109614523, guid: 99f61e5de5596e4439e5ee06fb2f0027, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.6666667
