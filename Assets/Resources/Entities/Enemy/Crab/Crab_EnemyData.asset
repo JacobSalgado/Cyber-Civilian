@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fabb98b0c864e404a9bdeefd5c348c0c, type: 3}
   m_Name: Crab_EnemyData
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
-  currentHealth: 500
-  maxHealth: 500
+  currentHealth: 400
+  maxHealth: 400
   moveSpeed: 17
   medpackDropChance: 10

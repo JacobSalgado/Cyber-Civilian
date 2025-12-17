@@ -8,6 +8,58 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 727303379697599157, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_ShadowCastingSource
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 727303379697599157, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_ShadowShape2DProvider
+      value: 7920992104374337615
+      objectReference: {fileID: 0}
+    - target: {fileID: 727303379697599157, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_ShadowShape2DComponent
+      value: 
+      objectReference: {fileID: 8044791079203639929}
+    - target: {fileID: 727303379697599157, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_ShadowMesh.m_InitialTrim
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 727303379697599157, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_PreviousShadowCastingSource
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 727303379697599157, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_PreviousShadowShape2DSource
+      value: 
+      objectReference: {fileID: 8044791079203639929}
+    - target: {fileID: 727303379697599157, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_ShadowMesh.m_LocalBounds.m_Center.x
+      value: 0.09499359
+      objectReference: {fileID: 0}
+    - target: {fileID: 727303379697599157, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_ShadowMesh.m_LocalBounds.m_Center.y
+      value: -0.38500214
+      objectReference: {fileID: 0}
+    - target: {fileID: 727303379697599157, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_ShadowMesh.m_LocalBounds.m_Extent.x
+      value: 1.2949905
+      objectReference: {fileID: 0}
+    - target: {fileID: 727303379697599157, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_ShadowMesh.m_LocalBounds.m_Extent.y
+      value: 0.8249893
+      objectReference: {fileID: 0}
+    - target: {fileID: 727303379697599157, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: 'managedReferences[7920992104374337613]'
+      value: Unity.RenderPipelines.Universal.2D.Runtime UnityEngine.Rendering.Universal.ShadowShape2DProvider_SpriteRenderer
+      objectReference: {fileID: 0}
+    - target: {fileID: 727303379697599157, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: 'managedReferences[7920992104374337614]'
+      value: Unity.RenderPipelines.Universal.2D.Runtime UnityEngine.Rendering.Universal.ShadowShape2DProvider_Collider2D
+      objectReference: {fileID: 0}
+    - target: {fileID: 727303379697599157, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: 'managedReferences[7920992104374337615]'
+      value: Unity.RenderPipelines.Universal.2D.Runtime UnityEngine.Rendering.Universal.ShadowShape2DProvider_SpriteRenderer
+      objectReference: {fileID: 0}
     - target: {fileID: 836956141584006840, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       propertyPath: m_Size.x
       value: 2.85
@@ -202,8 +254,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
+  m_Offset: {x: 0.29806393, y: -0.4470981}
+  m_Size: {x: 2.0283284, y: 2.0283284}
   m_Direction: 0
 --- !u!114 &458652263754298069 stripped
 MonoBehaviour:

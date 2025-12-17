@@ -205,6 +205,7 @@ MonoBehaviour:
   aoeCollider: {fileID: 8935194537158849570}
   rb: {fileID: 423815992907518796}
   spriteRenderer: {fileID: 1136895396980746933}
+  startOfStomp: 0.45
   pushForce: 50
   pushedTime: 1.4
   moveSpeed: 8
@@ -732,6 +733,42 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 727303379697599157, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_ShadowCastingSource
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 727303379697599157, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_ShadowShape2DProvider
+      value: 7920992104374337618
+      objectReference: {fileID: 0}
+    - target: {fileID: 727303379697599157, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_ShadowShape2DComponent
+      value: 
+      objectReference: {fileID: 1805163559450772944}
+    - target: {fileID: 727303379697599157, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_ShadowMesh.m_InitialTrim
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 727303379697599157, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_PreviousShadowCastingSource
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 727303379697599157, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_ShadowMesh.m_LocalBounds.m_Center.y
+      value: -0.0005264282
+      objectReference: {fileID: 0}
+    - target: {fileID: 727303379697599157, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_ShadowMesh.m_LocalBounds.m_Extent.x
+      value: 1.269989
+      objectReference: {fileID: 0}
+    - target: {fileID: 727303379697599157, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_ShadowMesh.m_LocalBounds.m_Extent.y
+      value: 0.9194565
+      objectReference: {fileID: 0}
+    - target: {fileID: 727303379697599157, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: 'managedReferences[7920992104374337618]'
+      value: Unity.RenderPipelines.Universal.2D.Runtime UnityEngine.Rendering.Universal.ShadowShape2DProvider_SpriteRenderer
+      objectReference: {fileID: 0}
     - target: {fileID: 836956141584006840, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       propertyPath: m_Size.x
       value: 2.64
@@ -1022,7 +1059,7 @@ MonoBehaviour:
   weapon: {fileID: 6579814461523234674, guid: a6dd45164a0575a4c9c660b661d68099, type: 3}
   canvas: {fileID: 2292065971395210351}
   missileTargetedSprite: {fileID: 4972278242764727115}
-  medpackPrefab: {fileID: 0}
+  medpackPrefab: {fileID: 7993648597399353722, guid: 80db0a0df941b8340a8358074ad7db80, type: 3}
   spriteRenderer: {fileID: 1805163559450772944}
   stomp: {fileID: 7418802895093423458}
   punch: {fileID: 8739641425578551877}

@@ -5,6 +5,9 @@ public class CyberBossStompAttack: State
 {
     readonly CyberBoss cyberBoss;
 
+    float timer;
+    bool hasStomped = false;
+
     public CyberBossStompAttack(Entity new_entity) : base(new_entity)
     {
         cyberBoss = (CyberBoss) new_entity;
@@ -19,11 +22,22 @@ public class CyberBossStompAttack: State
         cyberBoss.stomp.EmitPush(cyberBoss.transform.position, cyberBoss.stomp.directionToPlayer);
         cyberBoss.audioManager.PlayAudioSource("Stomp");
         cyberBoss.PlayAnim("Stomp");
+
+        timer = 0f;
+        hasStomped = false;
     }
 
     public override void UpdateState()
     {
-        if (!cyberBoss.stomp.aoeCollider.enabled)
+        timer += Time.deltaTime;
+
+        if (timer > cyberBoss.stomp.startOfStomp && !hasStomped)
+        {
+            cyberBoss.stomp.EmitPush(cyberBoss.transform.position, cyberBoss.stomp.directionToPlayer);
+            hasStomped = true;
+        }
+
+        if (hasStomped && !cyberBoss.stomp.aoeCollider.enabled)
         {
             cyberBoss.ChangeState("Travel");
         }

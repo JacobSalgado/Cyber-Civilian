@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fabb98b0c864e404a9bdeefd5c348c0c, type: 3}
   m_Name: CyberBoss_EnemyData
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
-  currentHealth: 5000
-  maxHealth: 5000
+  currentHealth: 2100
+  maxHealth: 2100
   moveSpeed: 8
+  medpackDropChance: 0

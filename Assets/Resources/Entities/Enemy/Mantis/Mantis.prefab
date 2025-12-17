@@ -183,6 +183,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 727303379697599157, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_ShadowCastingSource
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 727303379697599157, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_ShadowShape2DProvider
+      value: 7920992104374337617
+      objectReference: {fileID: 0}
+    - target: {fileID: 727303379697599157, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_ShadowShape2DComponent
+      value: 
+      objectReference: {fileID: 165998368046858986}
+    - target: {fileID: 727303379697599157, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: 'managedReferences[7920992104374337617]'
+      value: Unity.RenderPipelines.Universal.2D.Runtime UnityEngine.Rendering.Universal.ShadowShape2DProvider_SpriteRenderer
+      objectReference: {fileID: 0}
     - target: {fileID: 836956141584006840, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -307,6 +323,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: -2165622025388617675}
   m_SourcePrefab: {fileID: 100100000, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+--- !u!212 &165998368046858986 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 836956141584006840, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+  m_PrefabInstance: {fileID: 707286760853896274}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &328632794084600661 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 963559520040949511, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}

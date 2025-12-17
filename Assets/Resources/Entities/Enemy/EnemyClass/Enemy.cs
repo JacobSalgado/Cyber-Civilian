@@ -77,16 +77,22 @@ public abstract class Enemy : Entity
                 LevelManager.current_level.enemyKilledGoal
             );
         }
-        LevelManager.player.SetHealth(LevelManager.player.playerData.currentHealth + 100); // TODO: do something cooler
+
         GameObject deathEffect = Instantiate(deathEffectPrefab, gameObject.transform.position, gameObject.transform.rotation, LevelManager.current_level.EntityList.transform);
 
         deathEffect.GetComponent<ParticleSystem>().Play();
         isDead = true;
 
-        int rand = UnityEngine.Random.Range(0, 100);
-        if (entityData.medpackDropChance >= rand)
+        float rand = UnityEngine.Random.Range(0, 1.0f);
+        float playerChanceIncrease = 1f - (LevelManager.player.entityData.currentHealth / LevelManager.player.entityData.maxHealth);
+        float medpackDropChance = entityData.medpackDropChance * 0.01f + playerChanceIncrease * 0.2f;
+        
+
+        Debug.Log(medpackDropChance);
+        if (rand < medpackDropChance)
         {
-            Instantiate(medpackPrefab, transform.position, Quaternion.identity);
+            GameObject medpack = Instantiate(medpackPrefab, LevelManager.current_level.EntityList.transform);
+            medpack.transform.position = gameObject.transform.position;
         }
         Destroy(gameObject);
     }

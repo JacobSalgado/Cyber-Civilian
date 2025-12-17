@@ -8,6 +8,42 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 727303379697599157, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_ShadowCastingSource
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 727303379697599157, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_ShadowShape2DProvider
+      value: 7920992104374337620
+      objectReference: {fileID: 0}
+    - target: {fileID: 727303379697599157, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_ShadowShape2DComponent
+      value: 
+      objectReference: {fileID: 3453748074742007050}
+    - target: {fileID: 727303379697599157, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_ShadowMesh.m_InitialTrim
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 727303379697599157, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_PreviousShadowCastingSource
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 727303379697599157, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_ShadowMesh.m_LocalBounds.m_Extent.x
+      value: 0.97499084
+      objectReference: {fileID: 0}
+    - target: {fileID: 727303379697599157, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: m_ShadowMesh.m_LocalBounds.m_Extent.y
+      value: 0.96499634
+      objectReference: {fileID: 0}
+    - target: {fileID: 727303379697599157, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: 'managedReferences[7920992104374337619]'
+      value: Unity.RenderPipelines.Universal.2D.Runtime UnityEngine.Rendering.Universal.ShadowShape2DProvider_SpriteRenderer
+      objectReference: {fileID: 0}
+    - target: {fileID: 727303379697599157, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
+      propertyPath: 'managedReferences[7920992104374337620]'
+      value: Unity.RenderPipelines.Universal.2D.Runtime UnityEngine.Rendering.Universal.ShadowShape2DProvider_SpriteRenderer
+      objectReference: {fileID: 0}
     - target: {fileID: 836956141584006840, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -186,8 +222,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.03, y: 0}
-  m_Size: {x: 2.0551462, y: 2.0551462}
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 2.21, y: 2.03}
   m_Direction: 0
 --- !u!114 &3067670079557629852
 MonoBehaviour:

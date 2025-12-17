@@ -13,6 +13,7 @@ public class CyberBossStomp : MonoBehaviour
     public SpriteRenderer spriteRenderer;
 
     [Header("==Stomp Properties==")]
+    public float startOfStomp = 0f;
     [SerializeField] private float pushForce = 15f;
     [SerializeField] private float pushedTime = 2f;
     public float moveSpeed = 8f;
@@ -21,11 +22,10 @@ public class CyberBossStomp : MonoBehaviour
     [Header("==Stomp Size Behavior==")]
     [SerializeField] private float maxScale = 3f;
     [SerializeField] private float scaleIncRate = 0.4f;
+    public Vector3 startScale;
 
     [NonSerialized] public Vector2 directionToPlayer;
-
-    public Vector3 startScale;
-    private bool isActive;
+    [NonSerialized] public bool isActive;
 
     void Awake()
     {
