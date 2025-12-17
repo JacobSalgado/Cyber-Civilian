@@ -162,16 +162,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 836956141584006840, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       propertyPath: m_Size.x
-      value: 1.21
+      value: 1.22
       objectReference: {fileID: 0}
     - target: {fileID: 836956141584006840, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       propertyPath: m_Size.y
-      value: 2.16
+      value: 2.98
       objectReference: {fileID: 0}
     - target: {fileID: 836956141584006840, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 2195191635609960088, guid: 8ec0d7e7f114e084d9e097f214ab7418, type: 3}
+      objectReference: {fileID: -6492253534890368051, guid: c100ed816efc7e14d89726645536a0ec, type: 3}
     - target: {fileID: 836956141584006840, guid: deaeccc5fc59a034bb5ec75b60aad555, type: 3}
       propertyPath: m_Color.b
       value: 0.54905653
@@ -429,8 +429,8 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.16, y: 1.21}
-    newSize: {x: 1.21, y: 2.16}
+    oldSize: {x: 1.22, y: 2.98}
+    newSize: {x: 1.22, y: 2.98}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0

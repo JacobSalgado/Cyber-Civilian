@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 8ec0d7e7f114e084d9e097f214ab7418
+guid: 81d575a24ce3851438617bec3810441f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2195191635609960088
-    second: SharkEnemy_Idle_0
+      213: 5258617233507861237
+    second: BeetleEnemy_Walk_SpriteSheet_0
+  - first:
+      213: -2629455476313589951
+    second: BeetleEnemy_Walk_SpriteSheet_1
+  - first:
+      213: 2184544183369051308
+    second: BeetleEnemy_Walk_SpriteSheet_2
+  - first:
+      213: 6433254301865723647
+    second: BeetleEnemy_Walk_SpriteSheet_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +46,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -97,6 +106,19 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -113,13 +135,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SharkEnemy_Idle_0
+      name: BeetleEnemy_Walk_SpriteSheet_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 216
-        height: 121
+        x: 4
+        y: 75
+        width: 285
+        height: 174
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +150,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 89eb0767923e67e10800000000000000
-      internalID: 2195191635609960088
+      spriteID: 5f2cbf4338c5af840800000000000000
+      internalID: 5258617233507861237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeetleEnemy_Walk_SpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 75
+        width: 285
+        height: 174
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1477f9dfc2c428bd0800000000000000
+      internalID: -2629455476313589951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeetleEnemy_Walk_SpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 626
+        y: 75
+        width: 278
+        height: 174
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cacabdd4c5f015e10800000000000000
+      internalID: 2184544183369051308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeetleEnemy_Walk_SpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 923
+        y: 75
+        width: 277
+        height: 174
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff6c574e3b2874950800000000000000
+      internalID: 6433254301865723647
       vertices: []
       indices: 
       edges: []
@@ -148,7 +236,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      SharkEnemy_Idle_0: 2195191635609960088
+      BeetleEnemy_Walk_SpriteSheet_0: 5258617233507861237
+      BeetleEnemy_Walk_SpriteSheet_1: -2629455476313589951
+      BeetleEnemy_Walk_SpriteSheet_2: 2184544183369051308
+      BeetleEnemy_Walk_SpriteSheet_3: 6433254301865723647
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

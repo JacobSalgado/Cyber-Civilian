@@ -1,19 +1,10 @@
 fileFormatVersion: 2
-guid: 07157b23a3a08d2449e631f6f8c044b9
+guid: 21300fc3a695af04dadcdc328babfd3d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2097554576775798839
-    second: CrabEnemy_Walk_SpriteSheet_0
-  - first:
-      213: -2760348100586967441
-    second: CrabEnemy_Walk_SpriteSheet_1
-  - first:
-      213: 3668890868879694338
-    second: CrabEnemy_Walk_SpriteSheet_2
-  - first:
-      213: 3820707476398242150
-    second: CrabEnemy_Walk_SpriteSheet_3
+      213: -2075937648345133626
+    second: BatEnemy_Idle_Sprite_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -106,6 +97,19 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -122,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CrabEnemy_Walk_SpriteSheet_0
+      name: BatEnemy_Idle_Sprite_0
       rect:
         serializedVersion: 2
-        x: 25
-        y: 41
-        width: 204
-        height: 224
+        x: 117
+        y: 2
+        width: 122
+        height: 298
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,74 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 73067b536c20c1d10800000000000000
-      internalID: 2097554576775798839
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CrabEnemy_Walk_SpriteSheet_1
-      rect:
-        serializedVersion: 2
-        x: 326
-        y: 40
-        width: 218
-        height: 223
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f6ee618070641b9d0800000000000000
-      internalID: -2760348100586967441
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CrabEnemy_Walk_SpriteSheet_2
-      rect:
-        serializedVersion: 2
-        x: 639
-        y: 36
-        width: 204
-        height: 221
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 20a9f3f7ec48ae230800000000000000
-      internalID: 3668890868879694338
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CrabEnemy_Walk_SpriteSheet_3
-      rect:
-        serializedVersion: 2
-        x: 961
-        y: 37
-        width: 274
-        height: 246
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6697561f431e50530800000000000000
-      internalID: 3820707476398242150
+      spriteID: 6cd478625b9c033e0800000000000000
+      internalID: -2075937648345133626
       vertices: []
       indices: 
       edges: []
@@ -223,10 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      CrabEnemy_Walk_SpriteSheet_0: 2097554576775798839
-      CrabEnemy_Walk_SpriteSheet_1: -2760348100586967441
-      CrabEnemy_Walk_SpriteSheet_2: 3668890868879694338
-      CrabEnemy_Walk_SpriteSheet_3: 3820707476398242150
+      BatEnemy_Idle_Sprite_0: -2075937648345133626
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

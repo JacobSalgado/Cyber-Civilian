@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 6a3ac63452ee620449d804f07f384acd
+guid: ee2194f80333de74d87ee6080c5ead6b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3279843769133324740
-    second: CrabEnemy_Idle_Sprite_0
+      213: 709096898050245340
+    second: BeetleEnemy_Idle_Sprite_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -97,6 +97,19 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -113,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CrabEnemy_Idle_Sprite_0
+      name: BeetleEnemy_Idle_Sprite_0
       rect:
         serializedVersion: 2
-        x: 60
-        y: 53
-        width: 221
-        height: 203
+        x: 15
+        y: 48
+        width: 308
+        height: 252
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4c958f9d788548d20800000000000000
-      internalID: 3279843769133324740
+      spriteID: cd2cd9f2fd737d900800000000000000
+      internalID: 709096898050245340
       vertices: []
       indices: 
       edges: []
@@ -148,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      CrabEnemy_Idle_Sprite_0: 3279843769133324740
+      BeetleEnemy_Idle_Sprite_0: 709096898050245340
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
