@@ -19,6 +19,9 @@ public abstract class Enemy : Entity
     public GameObject canvas;
     public SpriteRenderer missileTargetedSprite;
 
+    [Header("==Drop items==")]
+    [SerializeField] private GameObject medpackPrefab;
+
     // Non-Serialized Vars
     [NonSerialized] public Transform target; // following the player
     [NonSerialized] public EnemyTypes type;
@@ -79,6 +82,12 @@ public abstract class Enemy : Entity
 
         deathEffect.GetComponent<ParticleSystem>().Play();
         isDead = true;
+
+        int rand = UnityEngine.Random.Range(0, 100);
+        if (entityData.medpackDropChance >= rand)
+        {
+            Instantiate(medpackPrefab, transform.position, Quaternion.identity);
+        }
         Destroy(gameObject);
     }
 }

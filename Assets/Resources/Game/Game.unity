@@ -292,6 +292,10 @@ MonoBehaviour:
   cursor: {fileID: 1230950462}
   transitionHandler: {fileID: 1364000839}
   levelList:
+  - levelFour
+  - levelFour
+  - levelThree
+  - levelTwo
   - levelOne
   - levelTwo
   startingState: 0

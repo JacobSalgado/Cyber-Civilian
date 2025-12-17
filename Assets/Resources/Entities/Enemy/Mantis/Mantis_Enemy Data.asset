@@ -15,3 +15,4 @@ MonoBehaviour:
   currentHealth: 350
   maxHealth: 350
   moveSpeed: 16
+  medpackDropChance: 10
