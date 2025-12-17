@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Medpack : PickupItem
 {
-    [SerializeField] private int healAmount = 500;
+    [SerializeField] private int healAmount = 200;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -18,7 +18,7 @@ public class Medpack : PickupItem
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.TryGetComponent<Player>(out var player) &&player.playerData.currentHealth < player.playerData.maxHealth) {
+        if (collision.gameObject.TryGetComponent<Player>(out var player) && player.playerData.currentHealth < player.playerData.maxHealth) {
             player.SetHealth(player.playerData.currentHealth + healAmount);
             Destroy(gameObject);
         }
