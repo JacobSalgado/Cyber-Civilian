@@ -426,10 +426,10 @@ MonoBehaviour:
   slowEffect: {fileID: 2876167950383893267}
   deathEffectPrefab: {fileID: 3873725052919816135}
   firePoint: {fileID: 1170454396138261301}
-  weapon: {fileID: 7993648597399353722, guid: 80db0a0df941b8340a8358074ad7db80, type: 3}
+  weapon: {fileID: 0}
   canvas: {fileID: 328632794084600661}
   missileTargetedSprite: {fileID: 6791868747676410993}
-  medpackPrefab: {fileID: 7907817577662680029, guid: 494fc1c560145b34583f367ea4045fee, type: 3}
+  medpackPrefab: {fileID: 7993648597399353722, guid: 80db0a0df941b8340a8358074ad7db80, type: 3}
   mantisPunch: {fileID: 4205019207953636157}
   distanceToMove: 20
   cooldownAfterPunch: 0.6

@@ -18,7 +18,7 @@ public class GameInGame : State
 
         if (args == null || (args != null && !args.ContainsKey("FromPauseMenu")))
         {
-            manager.audioManager.PlayAudioSource("Level1"); // TODO: ACCOMODATE FOR MULTIPLE LEVEL BGMS
+            manager.audioManager.PlayAudioSource(manager.currentBGM); // TODO: ACCOMODATE FOR MULTIPLE LEVEL BGMS
             LevelManager.StartLevel();
         }
     }
@@ -53,7 +53,7 @@ public class GameInGame : State
         if (LevelManager.isLevelCompleted)
         {
             manager.levelIndex++;
-            manager.audioManager.StopAudioSource("Level1");
+            manager.audioManager.StopAudioSource(manager.currentBGM);
             LevelManager.StopAllEntites();
     
             if (manager.levelIndex >= manager.levelList.Length || LevelManager.current_level is Tutorial) // Game Complete

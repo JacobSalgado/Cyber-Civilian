@@ -41,6 +41,7 @@ public class GameManager : StateManager
     [NonSerialized] public Player player;
     [NonSerialized] public int levelIndex = 0;
     [NonSerialized] public float loadingProgress = 0f;
+    [NonSerialized] public string currentBGM;
     const string mainMenuPath = "UI/MainMenu/MainMenu";
     const string playerHUDPath = "UI/PlayerHUD/PlayerHUD";
     const string gameOverPath = "UI/GameOverMenu/GameOverMenu";
@@ -130,7 +131,7 @@ public class GameManager : StateManager
 
         LevelManager.Close();
 
-        audioManager.StopAudioSource("Level1");
+        audioManager.StopAudioSource(currentBGM);
 
         ChangeState("LoadingScreen", new Dictionary<string, object>()
         {
@@ -141,7 +142,7 @@ public class GameManager : StateManager
     public void RestartGameButton()
     {
         audioManager.PlayAudioSource("Select");
-        audioManager.StopAudioSource("Level1");
+        audioManager.StopAudioSource(currentBGM);
 
         StartGameButton();
     }
@@ -306,7 +307,17 @@ public class GameManager : StateManager
 
         Level new_level;
 
-        string level_name = args.ContainsKey("tutorial") ? "Tutorial" : levelList[levelIndex];
+        string level_name = "";
+        if (args.ContainsKey("tutorial"))
+        {
+            level_name = "Tutorial";
+            currentBGM = "Tutorial 1";
+        } 
+        else
+        {
+            level_name = levelList[levelIndex];
+            currentBGM = level_name == "levelTwo" ? "Boss" : "Level1";
+        }
 
         yield return LevelManager.LoadLevel(level_name, this);
 
