@@ -22,6 +22,10 @@ public class PlayerHUD : MonoBehaviour
     [SerializeField] private TextMeshProUGUI enemyKilledText;
     [SerializeField] private Slider enemyKilledProgressBar;
 
+    [Header("==HUD VFX==")]
+    [SerializeField] private ParticleSystem playerOnFireEffect;
+    [SerializeField] private ParticleSystem playerSlowedDownEffect;
+
     private readonly Dictionary<Player.WeaponType, Color> weaponColors = new()
     {
         {Player.WeaponType.BULLET, Color.violetRed},
@@ -78,5 +82,25 @@ public class PlayerHUD : MonoBehaviour
         enemyKilledProgressBar.maxValue = max;
         enemyKilledProgressBar.value = current < max ? current : max;
         enemyKilledText.text = $"({current}/{max})";
+    }
+
+    public void PlayOnFireEffect()
+    {
+        playerOnFireEffect.Play();
+    }
+
+    public void PlaySlowedEffect()
+    { 
+        playerSlowedDownEffect.Play();
+    }
+
+    public void StopOnFireEffect()
+    {
+        playerOnFireEffect.Stop();
+    }
+
+    public void StopSlowedEffect()
+    {
+        playerSlowedDownEffect.Stop();
     }
 }

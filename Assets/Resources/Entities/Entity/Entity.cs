@@ -189,6 +189,11 @@ public abstract class Entity : StateManager
         isOnFire = true;
         StartCoroutine(FireEffectTimer(duration));
         fireEffect.Play();
+
+        if (this is Player player)
+        {
+            player.hud.PlayOnFireEffect();
+        }
     }
 
     private IEnumerator FireEffectTimer(float duration)
@@ -196,6 +201,11 @@ public abstract class Entity : StateManager
         yield return new WaitForSeconds(duration);
         isOnFire = false;
         fireEffect.Stop();
+
+        if (this is Player player)
+        {
+            player.hud.StopOnFireEffect();
+        }
     }
 
     public void ApplySlowEffect(float duration, float slowdownFactor)
@@ -206,6 +216,11 @@ public abstract class Entity : StateManager
         this.slowdownFactor = slowdownFactor;
         StartCoroutine(SlowEffectTimer(duration));
         slowEffect.Play();
+
+        if (this is Player player)
+        {
+            player.hud.PlaySlowedEffect();
+        }
     }
     
     private IEnumerator SlowEffectTimer(float duration)
@@ -213,5 +228,10 @@ public abstract class Entity : StateManager
         yield return new WaitForSeconds(duration);
         isSlowed = false;
         slowEffect.Stop();
+
+        if (this is Player player)
+        { 
+            player.hud.StopSlowedEffect();
+        }
     }
 }

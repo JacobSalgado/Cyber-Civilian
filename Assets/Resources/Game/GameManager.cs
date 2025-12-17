@@ -346,6 +346,9 @@ public class GameManager : StateManager
 
         hud.UpdateEnemyKilledProgressBar(0, 1);
 
+        hud.GetComponent<Canvas>().worldCamera = camera;
+        hud.GetComponent<Canvas>().sortingLayerName = "UI";
+
         yield return null;
     }
 

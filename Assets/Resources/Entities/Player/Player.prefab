@@ -377,7 +377,7 @@ MonoBehaviour:
   absorbCost: 40
   maxAbsorbedProjectiles: 25
   selfExplosionDamage: 250
-  damageMultiplierPerProjectile: 0.2
+  damagedAbsorbedToMultiplierPercentage: 0.1
 --- !u!1 &7511587088211677069
 GameObject:
   m_ObjectHideFlags: 0
@@ -2069,6 +2069,7 @@ MonoBehaviour:
   fireEffect: {fileID: 4672540849098245308}
   slowEffect: {fileID: 2856310810943863753}
   deathEffectPrefab: {fileID: 3858362665475075869}
+  playerHUDFireEffect: {fileID: 6465808689158510420, guid: 221dd4e4131e0804299c35df5f5d143d, type: 3}
   trailRenderer: {fileID: 6616881326347800582}
   spriteRenderer: {fileID: 145288011879166512}
   chargeMeter: {fileID: 7965485974599497560}
@@ -2107,6 +2108,7 @@ MonoBehaviour:
   energyRegen: 100
   dashCost: 150
   shootingInPhaseCost: 150
+  bonusDamageMultiplier: 1
 --- !u!114 &8648180505201064651
 MonoBehaviour:
   m_ObjectHideFlags: 0
