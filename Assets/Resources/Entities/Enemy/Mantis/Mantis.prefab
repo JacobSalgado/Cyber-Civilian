@@ -426,7 +426,7 @@ MonoBehaviour:
   slowEffect: {fileID: 2876167950383893267}
   deathEffectPrefab: {fileID: 3873725052919816135}
   firePoint: {fileID: 1170454396138261301}
-  weapon: {fileID: 1577679594348739716, guid: 7caa2f4813b260a44a076a1f15dcabf4, type: 3}
+  weapon: {fileID: 7993648597399353722, guid: 80db0a0df941b8340a8358074ad7db80, type: 3}
   canvas: {fileID: 328632794084600661}
   missileTargetedSprite: {fileID: 6791868747676410993}
   medpackPrefab: {fileID: 7907817577662680029, guid: 494fc1c560145b34583f367ea4045fee, type: 3}

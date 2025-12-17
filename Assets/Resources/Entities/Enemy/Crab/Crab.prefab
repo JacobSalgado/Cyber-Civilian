@@ -222,7 +222,7 @@ MonoBehaviour:
   weapon: {fileID: 1157213995312190472, guid: f4f07c3e278a0334fad700404b5b7fe0, type: 3}
   canvas: {fileID: 2966775912804215989}
   missileTargetedSprite: {fileID: 8350240599735133073}
-  medpackPrefab: {fileID: 7907817577662680029, guid: 494fc1c560145b34583f367ea4045fee, type: 3}
+  medpackPrefab: {fileID: 7993648597399353722, guid: 80db0a0df941b8340a8358074ad7db80, type: 3}
   spriteRenderer: {fileID: 3453748074742007050}
   crabCollider: {fileID: 8828476117384761170}
   invisibleTimeRange:

@@ -155,7 +155,7 @@ MonoBehaviour:
   weapon: {fileID: 6894637301577557660, guid: 3010bdca4c2402f4fae32d66d3442f03, type: 3}
   canvas: {fileID: 7595005997977222086}
   missileTargetedSprite: {fileID: 3722498714905097442}
-  medpackPrefab: {fileID: 7907817577662680029, guid: 494fc1c560145b34583f367ea4045fee, type: 3}
+  medpackPrefab: {fileID: 7993648597399353722, guid: 80db0a0df941b8340a8358074ad7db80, type: 3}
   spriteRenderer: {fileID: 8044791079203639929}
   capsuleCollider: {fileID: 8284027357278030350}
   distanceToShoot: 14

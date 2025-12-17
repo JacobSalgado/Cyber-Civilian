@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4085946693297160235}
   - component: {fileID: 4273408564096513995}
   - component: {fileID: 1095062722605414286}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: PickupItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77,8 +77,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -37308357
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: fe7cc92d08e7ce743b49cc5e5a999a1d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -103,3 +103,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3fe69ef2e0719a41ad0380946abd36a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  lifeTime: 100
