@@ -24,6 +24,7 @@ public class CyberBossTravel: State
         Debug.Log("In travel state");
         deltaCount = 0f;
         stepCounter = 1;
+        cyberBoss.PlayAnim("Idle");
     }
 
     public override void UpdateState()

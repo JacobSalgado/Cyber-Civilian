@@ -19,7 +19,7 @@ public class CyberBossPunchAttack : State
         cyberBoss.punch.EmitPunch();
         Debug.Log("In punch state");
         cyberBoss.audioManager.PlayAudioSource("Punch");
-        //cyberBoss.PlayAnim("Punch");
+        cyberBoss.PlayAnim("Punch");
     }
 
     public override void UpdateState()
