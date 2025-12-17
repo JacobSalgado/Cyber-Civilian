@@ -18,8 +18,7 @@ public class Medpack : PickupItem
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        collision.gameObject.TryGetComponent<Player>(out var player);
-        if (player.playerData.currentHealth < player.playerData.maxHealth) {
+        if (collision.gameObject.TryGetComponent<Player>(out var player) &&player.playerData.currentHealth < player.playerData.maxHealth) {
             player.SetHealth(player.playerData.currentHealth + healAmount);
             Destroy(gameObject);
         }
