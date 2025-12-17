@@ -13,6 +13,8 @@ public class PlayerIdle : State
     public override void EnterState(Dictionary<string, object> args = null)
     {
         player.moveVelocity = Vector2.zero;
+        player.PlayAnim("Idle");
+        player.playerFeet.SetActive(false);
     }
 
     public override void UpdateState()

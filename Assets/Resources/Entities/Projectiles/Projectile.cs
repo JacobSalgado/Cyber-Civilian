@@ -12,6 +12,9 @@ public abstract class Projectile : Entity
     private bool collisionHit = false;
     private float timer = 0f;
 
+    [Header("==Player VFX==")]
+    public ParticleSystem playerHUDFireEffect;
+
     public override void Start()
     {
         base.Start();
@@ -75,7 +78,7 @@ public abstract class Projectile : Entity
     {
         if (projData.slows)
             entity.ApplySlowEffect(projData.slowDuration, projData.slowdownFactor);
-        
+
         if (projData.setsOnFire)
             entity.ApplyFireEffect(projData.burnDuration, projData.burnDamage);
     }

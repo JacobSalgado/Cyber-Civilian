@@ -28,6 +28,10 @@ public class PlayerHUD : MonoBehaviour
     [SerializeField] private TextMeshProUGUI tutorialText;
     [SerializeField] private TextMeshProUGUI missionText;
 
+    [Header("==HUD VFX==")]
+    [SerializeField] private ParticleSystem playerOnFireEffect;
+    [SerializeField] private ParticleSystem playerSlowedDownEffect;
+
     private readonly Dictionary<Player.WeaponType, Color> weaponColors = new()
     {
         {Player.WeaponType.BULLET, Color.violetRed},
@@ -109,5 +113,25 @@ public class PlayerHUD : MonoBehaviour
     public void ToggleTutorialTextbox(bool toggle)
     {
         tutorialTextbox.SetActive(toggle);
+    }
+
+    public void PlayOnFireEffect()
+    {
+        playerOnFireEffect.Play();
+    }
+
+    public void PlaySlowedEffect()
+    { 
+        playerSlowedDownEffect.Play();
+    }
+
+    public void StopOnFireEffect()
+    {
+        playerOnFireEffect.Stop();
+    }
+
+    public void StopSlowedEffect()
+    {
+        playerSlowedDownEffect.Stop();
     }
 }

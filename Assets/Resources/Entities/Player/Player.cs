@@ -20,6 +20,7 @@ public class Player : Entity
     public TrailRenderer trailRenderer; // Used to create dashing effect
     public SpriteRenderer spriteRenderer;
     public ChargeMeter chargeMeter;
+    public GameObject playerFeet;
     public MissileRadius missileRadius;
     public ParticleSystem vortexEffect;
     public ParticleSystem bonusDamageEffect;
