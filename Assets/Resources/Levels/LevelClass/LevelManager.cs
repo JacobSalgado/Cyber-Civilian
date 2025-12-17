@@ -57,8 +57,19 @@ public static class LevelManager
         enemyKilledCounter = 0;
         isLevelCompleted = false;
 
+        if (current_level.levelObjective == Level.LevelObjective.TUTORIAL && current_level is Tutorial tutorial)
+        {
+            player.hud.ToggleLevelProgressGameObjects(false);
+            tutorial.SetupSection();
+        }
+        else if (current_level.levelObjective == Level.LevelObjective.DEFEAT_BOSS) {
+            player.hud.ToggleLevelProgressGameObjects(false);
+            player.hud.SetLevelObjectiveText("Defeat CyberBoss");
+        }
+        else
+            player.hud.UpdateEnemyKilledProgressBar(0, current_level.enemyKilledGoal);
+
         current_level.gameObject.SetActive(true);
-        player.hud.UpdateEnemyKilledProgressBar(0, current_level.enemyKilledGoal);
         player.gameObject.SetActive(true);
 
         // When starting a level, only immediate type enemy spawns should be called
@@ -121,8 +132,4 @@ public static class LevelManager
             transform.gameObject.SetActive(false);
         }
     }
-
-    /*
-    TODO: Restart Level
-    */
 }

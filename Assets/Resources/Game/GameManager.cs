@@ -89,9 +89,18 @@ public class GameManager : StateManager
         });
     }
 
+    public void StartTutorialButton()
+    {
+        audioManager.PlayAudioSource("Select");
+        ChangeState("LoadingScreen", new Dictionary<string, object>()
+        {
+            { "nextState", GameState.IN_GAME },
+            { "tutorial", true},
+        });
+    }
+
     public void EndGameButton()
     {
-        Debug.Log("Game Ended");
         #if UNITY_STANDALONE
             Application.Quit();
         #endif
@@ -203,6 +212,7 @@ public class GameManager : StateManager
 
         mainMenu.buttons[0].onClick.AddListener(StartGameButton);
         mainMenu.buttons[1].onClick.AddListener(EndGameButton);
+        mainMenu.buttons[2].onClick.AddListener(StartTutorialButton);
 
         yield return null;
     }
@@ -296,7 +306,9 @@ public class GameManager : StateManager
 
         Level new_level;
 
-        yield return LevelManager.LoadLevel(levelList[levelIndex], this);
+        string level_name = args.ContainsKey("tutorial") ? "Tutorial" : levelList[levelIndex];
+
+        yield return LevelManager.LoadLevel(level_name, this);
 
         loadingProgress = 0.25f;
         new_level = LevelManager.current_level;
@@ -357,8 +369,6 @@ public class GameManager : StateManager
 
         // connect player to cam for mouse aiming
         player.cam = camera;
-
-        //camera.gameObject.SetActive(false);
 
         yield return null;
     }

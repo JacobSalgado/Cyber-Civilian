@@ -69,24 +69,6 @@ public class CyberBossShield : MonoBehaviour
             EnterCriticalState();
         else if (healthPercentage <= 0.75f && currentState != ShieldState.Damaged && !inCriticalCondition)
             EnterDamagedState();
-
-        /*if (healthPercentage <= 0.25f)
-        {
-            spriteRenderer.color = red; // critical color
-            _cyberBoss.shieldBreakingCriticalEffect.Stop();
-        }
-        else if (healthPercentage <= 0.375f)
-            _cyberBoss.shieldBreakingCriticalEffect.Play();
-        else if (healthPercentage <= 0.5f)
-        {
-            spriteRenderer.color = yellow; // damaged color
-            _cyberBoss.shieldBreakingDamagedEffect.Stop(); // stop playing shield cracking
-        }
-        else if (healthPercentage <= 0.75f) // indicate shield breaking
-            _cyberBoss.shieldBreakingDamagedEffect.Play();
-
-        if (currentShieldHealth <= 0)
-            BreakShield();*/
     }
 
     public void OnTriggerEnter2D(Collider2D collider)

@@ -9,6 +9,7 @@ public class Level : MonoBehaviour
         ENEMY_COUNT,
         REACH_EXIT,
         DEFEAT_BOSS,
+        TUTORIAL,
     }
 
     [Header("==Necessary Level GameObjects==")]

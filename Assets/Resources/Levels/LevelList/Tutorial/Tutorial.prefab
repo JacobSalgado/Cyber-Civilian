@@ -20787,7 +20787,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5545329013626772892, guid: 512edb4db613d9045b2de37832b2b10f, type: 3}
       propertyPath: m_Name
-      value: TutorialLevel
+      value: Tutorial
       objectReference: {fileID: 0}
     - target: {fileID: 6771834842223702313, guid: 512edb4db613d9045b2de37832b2b10f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -20839,7 +20839,7 @@ PrefabInstance:
       objectReference: {fileID: 93138786610205521}
     - target: {fileID: 7205215515983607880, guid: 512edb4db613d9045b2de37832b2b10f, type: 3}
       propertyPath: levelObjective
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7205215515983607880, guid: 512edb4db613d9045b2de37832b2b10f, type: 3}
       propertyPath: enemyKilledGoal
@@ -20861,7 +20861,8 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7205215515983607880, guid: 512edb4db613d9045b2de37832b2b10f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6771834842223702313, guid: 512edb4db613d9045b2de37832b2b10f, type: 3}
@@ -20901,6 +20902,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 6676334552265161237}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5545329013626772892, guid: 512edb4db613d9045b2de37832b2b10f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 829650827454525359}
     - targetCorrespondingSourceObject: {fileID: 5466632238827196237, guid: 512edb4db613d9045b2de37832b2b10f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5407693594165275751}
@@ -20908,6 +20912,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 920970196585800328}
   m_SourcePrefab: {fileID: 100100000, guid: 512edb4db613d9045b2de37832b2b10f, type: 3}
+--- !u!1 &317827493436614277 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8489659787397819312, guid: 512edb4db613d9045b2de37832b2b10f, type: 3}
+  m_PrefabInstance: {fileID: 8194425911847128373}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1634987029346409572 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7424420350747201873, guid: 512edb4db613d9045b2de37832b2b10f, type: 3}
@@ -21035,6 +21044,38 @@ BoxCollider2D:
 --- !u!4 &4289280802730005667 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5349965029925476758, guid: 512edb4db613d9045b2de37832b2b10f, type: 3}
+  m_PrefabInstance: {fileID: 8194425911847128373}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4417052295137824937 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5545329013626772892, guid: 512edb4db613d9045b2de37832b2b10f, type: 3}
+  m_PrefabInstance: {fileID: 8194425911847128373}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &829650827454525359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4417052295137824937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c22bb373ed86f241bbcd96ec269ddbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tutorial
+  EntityList: {fileID: 4207791406965179000}
+  EnemySpawns: {fileID: 317827493436614277}
+  confiner: {fileID: 5740060270130122245}
+  player: {fileID: 93138786610205521}
+  audioManager: {fileID: 0}
+  SFX: []
+  levelObjective: 4
+  enemyKilledGoal: 0
+  section: 0
+  nextSectionAction: {fileID: 6537878169417253423, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+--- !u!60 &5740060270130122245 stripped
+PolygonCollider2D:
+  m_CorrespondingSourceObject: {fileID: 4472277376370721584, guid: 512edb4db613d9045b2de37832b2b10f, type: 3}
   m_PrefabInstance: {fileID: 8194425911847128373}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &6301587827799210476 stripped

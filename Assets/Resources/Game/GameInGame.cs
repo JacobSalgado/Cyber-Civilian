@@ -56,7 +56,7 @@ public class GameInGame : State
             manager.audioManager.StopAudioSource("Level1");
             LevelManager.StopAllEntites();
     
-            if (manager.levelIndex >= manager.levelList.Length) // Game Complete
+            if (manager.levelIndex >= manager.levelList.Length || LevelManager.current_level is Tutorial) // Game Complete
             {
                 manager.ChangeState("LoadingScreen", new Dictionary<string, object>()
                 {

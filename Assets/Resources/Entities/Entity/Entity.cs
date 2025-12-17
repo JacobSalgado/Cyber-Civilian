@@ -207,7 +207,7 @@ public abstract class Entity : StateManager
         StartCoroutine(SlowEffectTimer(duration));
         slowEffect.Play();
     }
-    
+
     private IEnumerator SlowEffectTimer(float duration)
     {
         yield return new WaitForSeconds(duration);

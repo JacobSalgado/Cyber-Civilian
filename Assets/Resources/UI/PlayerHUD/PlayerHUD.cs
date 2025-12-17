@@ -19,8 +19,14 @@ public class PlayerHUD : MonoBehaviour
     [SerializeField] private GameObject vortexSubMenu;
 
     [Header("==Level Progress Properties==")]
+    [SerializeField] private TextMeshProUGUI levelObjectiveText;
     [SerializeField] private TextMeshProUGUI enemyKilledText;
     [SerializeField] private Slider enemyKilledProgressBar;
+
+    [Header("==Tutorial Textbox==")]
+    [SerializeField] private GameObject tutorialTextbox;
+    [SerializeField] private TextMeshProUGUI tutorialText;
+    [SerializeField] private TextMeshProUGUI missionText;
 
     private readonly Dictionary<Player.WeaponType, Color> weaponColors = new()
     {
@@ -31,7 +37,6 @@ public class PlayerHUD : MonoBehaviour
         {Player.WeaponType.FLAMETHROWER, Color.red},
         {Player.WeaponType.NONE, Color.gray},
     };
-
 
     public void PlayerHUDClose()
     {
@@ -78,5 +83,31 @@ public class PlayerHUD : MonoBehaviour
         enemyKilledProgressBar.maxValue = max;
         enemyKilledProgressBar.value = current < max ? current : max;
         enemyKilledText.text = $"({current}/{max})";
+    }
+
+    public void SetLevelObjectiveText(string text)
+    {
+        levelObjectiveText.text = text;
+    }
+
+    public void ToggleLevelProgressGameObjects(bool toggle)
+    {
+        enemyKilledText.gameObject.SetActive(toggle);
+        enemyKilledProgressBar.gameObject.SetActive(toggle);
+    }
+
+    public void SetMissionText(string text)
+    {
+        missionText.text = text;
+    }
+
+    public void SetTutorialText(string text)
+    {
+        tutorialText.text = text;
+    }
+
+    public void ToggleTutorialTextbox(bool toggle)
+    {
+        tutorialTextbox.SetActive(toggle);
     }
 }
