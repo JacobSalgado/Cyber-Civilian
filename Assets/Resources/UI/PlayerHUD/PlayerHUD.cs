@@ -9,17 +9,17 @@ public class PlayerHUD : MonoBehaviour
     public Slider healthSlider;
     public Slider resourceSlider;
 
-    // Ammo SubMenu
+    [Header("==Ammo/Weapon SubMenu Properties==")]    
     [SerializeField] private TextMeshProUGUI currentWeaponText;
     [SerializeField] private TextMeshProUGUI ammoCountText;
     [SerializeField] private Image ammoBackground;
 
-    // Vortex SubMenu
+    [Header("==Vortex SubMenu Properties==")]
     [SerializeField] private TextMeshProUGUI vortexMultiplierText;
     [SerializeField] private GameObject vortexSubMenu;
 
-    // Level Objective Submenu
-    // [SerializeField] private TextMeshProUGUI objectiveText;
+    [Header("==Level Progress Properties==")]
+    [SerializeField] private TextMeshProUGUI enemyKilledText;
     [SerializeField] private Slider enemyKilledProgressBar;
 
     private readonly Dictionary<Player.WeaponType, Color> weaponColors = new()
@@ -77,5 +77,6 @@ public class PlayerHUD : MonoBehaviour
     {
         enemyKilledProgressBar.maxValue = max;
         enemyKilledProgressBar.value = current < max ? current : max;
+        enemyKilledText.text = $"({current}/{max})";
     }
 }
