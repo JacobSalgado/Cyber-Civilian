@@ -20,6 +20,9 @@ public class PlayerMove : State
         deltaCount = 0f;
         stepCounter = 1;
         player.audioManager.PlayAudioSource($"Footsteps{stepCounter++}");
+
+        player.playerFeet.SetActive(true);
+        player.PlayAnim("Walk");
     }
 
     public override void UpdateState()
